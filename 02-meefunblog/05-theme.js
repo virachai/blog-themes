@@ -326,3 +326,10 @@ function autoGenTocv11() {
     tocH2.parentNode.insertBefore(tocList, tocH2.nextSibling);
   }
 }
+
+/* ---------- Thai UI labels (template strings the XML still carries) ---------- */
+(() => {
+  document.querySelectorAll('.post-author-label').forEach(e => { if (/Written By/i.test(e.textContent)) e.textContent = 'โดย '; });
+  document.querySelectorAll('a, span').forEach(e => { if (e.children.length === 0 && /^\s*Show 9\+ more\s*$/.test(e.textContent)) e.textContent = 'ดูทั้งหมด'; });
+  document.querySelectorAll('.Attribution .copyright, .copyright').forEach(e => { e.textContent = e.textContent.replace(/20\d\d/, String(new Date().getFullYear())); });
+})();

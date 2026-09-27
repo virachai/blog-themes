@@ -550,3 +550,30 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
 #PopularPosts3 article.post > * { grid-column: 2; }
 
 .item-view .post-body > .separator:first-child + .mp-caption { margin-top: 0.6em; }
+
+/* ---------- Hero, sidebar and footer refinements ---------- */
+
+/* Hero: shorter, and graded into the page red instead of a flat black veil over a teal image. */
+#HTML2 .hero-image {
+  position: relative;
+  height: clamp(300px, 46vh, 460px);
+  min-height: 0;
+  max-height: none;
+  background-image:
+    linear-gradient(180deg, rgba(20, 6, 5, 0.55) 0%, rgba(20, 6, 5, 0.35) 45%, rgba(188, 56, 46, 0.92) 100%),
+    url("https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg");
+}
+
+#HTML2 .hero-text h2 { font-size: clamp(2rem, 1.4rem + 2.4vw, 2.75rem) !important; margin: 0 0 0.3em; }
+#HTML2 .hero-text p { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem); line-height: 1.6; margin: 0.2em auto; max-width: 36em; }
+
+/* Left sidebar: one strong level (section heads), the links at medium weight. */
+#HTML3 .widget-content a,
+#HTML3 .widget-content li,
+#HTML3 .widget-content span { font-weight: 500; }
+#HTML3 .widget-content .Db span,
+#HTML3 h2 { font-weight: 700; }
+
+/* Footer: less dead space above and below the links. */
+.page_body .centered > #footer.footer.section { padding: 1.5rem 0 2rem; }
+#HTML4 hr { margin-top: 1.25rem; margin-bottom: 1.5rem; border-bottom-color: rgba(255, 255, 255, 0.3); }
