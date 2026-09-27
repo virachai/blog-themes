@@ -430,3 +430,123 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
   body:not(.item-view) .Blog .post-snippet,
   body:not(.item-view) .Blog .post-timestamp { display: none; }
 }
+
+/* ---------- Long-article structure (from the LipsCode post pattern) ---------- */
+
+/* Lead image straight after the title, with a caption line. */
+/* The base pulls .separator to the card edges and pads 1.5em below it; the lead image stays
+   edge to edge (square corners) with its caption right underneath. */
+.item-view .post-body.entry-content.float-container > .separator:first-child { padding-bottom: 0; }
+.item-view .post-body > .separator:first-child img { display: block; width: 100%; }
+
+.item-view .post-body .mp-caption,
+.item-view .post-body .tr-caption {
+  font-family: var(--mp-font-ui);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--mp-muted);
+  text-align: center;
+  margin: 0.5em 0 1.4em;
+}
+
+/* Section headings carry a rule so long posts scan in blocks (the base draws it in blue). */
+.item-view .post-body.entry-content h2#conclusion,
+.item-view .post-body.entry-content h2[id^="toc"],
+.item-view .post-body.entry-content > h2 {
+  padding-bottom: 0.35em;
+  border-bottom: 2px solid var(--mp-border);
+  margin-bottom: 0.7em;
+}
+
+/* Table of contents built by autoGenTocv11(): a quiet panel, numbered, in the brand colours
+   instead of the base blue-purple gradient. */
+.item-view .post-body.entry-content #toc_container {
+  background: var(--mp-surface);
+  color: var(--mp-text);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius);
+  margin: 1.6em 0;
+  padding: 1em 1.2em 1.1em;
+}
+
+.item-view .post-body.entry-content #toc_container h2 {
+  font-family: var(--mp-font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mp-accent);
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.5em;
+}
+
+.item-view .post-body.entry-content #toc_container .svg-fill-color { fill: var(--mp-accent); }
+
+.item-view .post-body.entry-content #toc_container ol {
+  list-style: none;
+  counter-reset: mp-toc;
+  margin: 0;
+  padding: 0;
+  font-size: 0.975rem;
+}
+
+.item-view .post-body.entry-content #toc_container ol > li {
+  counter-increment: mp-toc;
+  display: grid;
+  grid-template-columns: 1.8em 1fr;
+  font-weight: 600;
+  margin: 0;
+  padding: 0.28em 0;
+  border-top: 1px solid var(--mp-border);
+}
+
+.item-view .post-body.entry-content #toc_container ol > li:first-child { border-top: 0; }
+
+.item-view .post-body.entry-content #toc_container ol > li::before {
+  content: counter(mp-toc);
+  color: var(--mp-accent);
+  font-family: var(--mp-font-ui);
+  font-variant-numeric: tabular-nums;
+}
+
+.item-view .post-body.entry-content #toc_container ol > li > ul {
+  grid-column: 2;
+  list-style: none;
+  margin: 0.15em 0 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+.item-view .post-body.entry-content #toc_container li,
+.item-view .post-body.entry-content #toc_container a {
+  color: var(--mp-text);
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.item-view .post-body.entry-content #toc_container a:hover { color: var(--mp-accent); text-decoration: underline; }
+
+/* Popular posts: a ranking, so it is numbered, with hairlines instead of dashes. */
+#PopularPosts3 [role="feed"] { counter-reset: mp-pop; }
+
+#PopularPosts3 article.post {
+  counter-increment: mp-pop;
+  display: grid;
+  grid-template-columns: 1.6em 1fr;
+  align-items: start;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+#PopularPosts3 article.post::before {
+  content: counter(mp-pop);
+  font-family: var(--mp-font-ui);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #ffd2a6;               /* the logo orange, lightened to read on the red page */
+  font-variant-numeric: tabular-nums;
+}
+
+#PopularPosts3 article.post > * { grid-column: 2; }
+
+.item-view .post-body > .separator:first-child + .mp-caption { margin-top: 0.6em; }
