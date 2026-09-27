@@ -1,0 +1,167 @@
+/* Mee Prompt theme overrides.
+   Loaded after the Blogger skin. Every rule is scoped to .post-body or the mp- prefix
+   so the theme's own header, sidebar and widgets are untouched. */
+
+:root {
+  --mp-text: #1f2328;
+  --mp-muted: #59636e;
+  --mp-accent: #2f6fdb;
+  --mp-accent-ink: #ffffff;
+  --mp-surface: #f6f8fa;
+  --mp-border: #d1d9e0;
+  --mp-evidence: #1a7f37;
+  --mp-evidence-bg: #eef8f0;
+  --mp-note: #9a6700;
+  --mp-note-bg: #fff8e5;
+  --mp-radius: 10px;
+}
+
+/* ---------- Post readability ---------- */
+
+.item-view .post-body {
+  color: var(--mp-text);
+  font-size: 1.0625rem;
+  line-height: 1.85;           /* Thai script needs more leading than Latin */
+  overflow-wrap: anywhere;
+}
+
+.item-view .post-body h2,
+.item-view .post-body h3 {
+  line-height: 1.4;
+  margin: 2em 0 0.6em;
+  scroll-margin-top: 72px;     /* keeps headings visible when jumped to from the table of contents */
+}
+
+.item-view .post-body h2 { font-size: 1.5rem; }
+.item-view .post-body h3 { font-size: 1.2rem; }
+
+.item-view .post-body p,
+.item-view .post-body ul,
+.item-view .post-body ol { margin: 0 0 1.1em; }
+
+.item-view .post-body li { margin-bottom: 0.35em; }
+
+.item-view .post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--mp-radius);
+}
+
+.item-view .post-body a:not(.mp-button) {
+  color: var(--mp-accent);
+  text-underline-offset: 3px;
+}
+
+/* Tables scroll sideways on narrow screens instead of widening the page. */
+.item-view .post-body table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 0 0 1.4em;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.item-view .post-body th,
+.item-view .post-body td {
+  border: 1px solid var(--mp-border);
+  padding: 0.55em 0.8em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.item-view .post-body th { background: var(--mp-surface); font-weight: 600; }
+
+.item-view .post-body pre {
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius);
+  padding: 1em;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.item-view .post-body :not(pre) > code {
+  background: var(--mp-surface);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.92em;
+}
+
+.item-view .post-body blockquote {
+  margin: 0 0 1.2em;
+  padding: 0.2em 1em;
+  border-left: 4px solid var(--mp-border);
+  color: var(--mp-muted);
+}
+
+/* ---------- Components (mp- prefix) ---------- */
+
+.mp-summary,
+.mp-evidence,
+.mp-note,
+.mp-cta {
+  border-radius: var(--mp-radius);
+  padding: 1em 1.2em;
+  margin: 0 0 1.5em;
+}
+
+.mp-summary > :last-child,
+.mp-evidence > :last-child,
+.mp-note > :last-child,
+.mp-cta > :last-child { margin-bottom: 0; }
+
+.mp-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 0.3em;
+}
+
+.mp-summary {
+  background: var(--mp-surface);
+  border-left: 4px solid var(--mp-accent);
+}
+.mp-summary .mp-label { color: var(--mp-accent); }
+
+.mp-evidence {
+  background: var(--mp-evidence-bg);
+  border-left: 4px solid var(--mp-evidence);
+}
+.mp-evidence .mp-label { color: var(--mp-evidence); }
+
+.mp-note {
+  background: var(--mp-note-bg);
+  border-left: 4px solid var(--mp-note);
+}
+
+.mp-cta {
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  text-align: center;
+}
+
+.mp-cta-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.3em;
+}
+
+.mp-button {
+  display: inline-block;
+  background: var(--mp-accent);
+  color: var(--mp-accent-ink) !important;   /* beats the skin's link colour */
+  font-weight: 600;
+  text-decoration: none !important;
+  border-radius: 999px;
+  padding: 0.65em 1.5em;
+  margin-top: 0.4em;
+}
+
+.mp-button:hover,
+.mp-button:focus-visible { filter: brightness(1.08); }
+
+.mp-button:focus-visible { outline: 3px solid var(--mp-accent); outline-offset: 3px; }
