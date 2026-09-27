@@ -3,7 +3,7 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' lang='th' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=2' rel='stylesheet'/>
+    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=1' rel='stylesheet'/>
     <meta content='F269D94506B7CDB4BFE29ACA40036431' name='msvalidate.01'/>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- 2023 Update -->
@@ -3752,7 +3752,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
 
           <div class='centered'>
             <div class='centered-top-placeholder'/>
-            <header class='centered-top-container mf-header' role='banner'>
+            <header class='centered-top-container' role='banner'>
               <div class='centered-top'>
                 <b:class cond='data:view.isSearch and data:view.search.query' name='search-focused'/>
 
@@ -3872,9 +3872,9 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
                     </b:widget>
                   </b:section>
                   <b:comment>Nav primarily intended for sections that consist of major navigation blocks.</b:comment>
-                  <nav class='mf-primary-nav' aria-label='Primary navigation' role='navigation'>
+                  <nav role='navigation' style='display:none;'>
                     <b:section class='clearboth' id='page_list_top' name='Page List (Top)' showaddelement='false'>
-                      <b:widget id='PageList1' locked='true' title='Pages' type='PageList' visible='true'>
+                      <b:widget id='PageList1' locked='true' title='Pages' type='PageList' visible='false'>
                         <b:widget-settings>
                           <b:widget-setting name='pageListJson'>{}</b:widget-setting>
                           <b:widget-setting name='homeTitle'>Home</b:widget-setting>
@@ -3967,7 +3967,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
         </b:includable>
                 </b:widget>
               </b:section>
-              <main class='centered-bottom mf-main' id='main' role='main' tabindex='-1'>
+              <main class='centered-bottom' id='main' role='main' tabindex='-1'>
                 <b:if cond='data:view.isMultipleItems'>
                   <h2 class='main-heading'><data:messages.posts/></h2>
                 </b:if>
@@ -3987,7 +3987,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
                     </div>
                   </div>
                 </b:if>
-                <b:section class='main mf-content' id='page_body' name='Page Body' showaddelement='false'>
+                <b:section class='main' id='page_body' name='Page Body' showaddelement='false'>
                   <b:widget id='HTML7' locked='false' title='Active-Float-Button' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'/>
@@ -3999,7 +3999,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='HTML2' locked='false' title='Legacy Hero' type='HTML' visible='false'>
+                  <b:widget id='HTML2' locked='false' title=' ' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[<style>
    #Blog1 {padding-top:32px}
@@ -4111,7 +4111,7 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='HTML3' locked='false' title='Legacy Navigation' type='HTML' visible='false'>
+                  <b:widget id='HTML3' locked='false' title='มาทำความรู้จักมีพร้อม' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[<style>
   #left-menu-section .Db {
@@ -4443,7 +4443,7 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='HTML5' locked='false' title='สารบัญ' type='HTML' visible='false'>
+                  <b:widget id='HTML5' locked='false' title='สารบัญ' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[No Data!<!--<ol>
     <li><a href="#toc_1">สวย...แต่ก็อันตราย</a></li>
@@ -4737,10 +4737,10 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='FeaturedPost1' locked='true' title='Featured Story' type='FeaturedPost' version='2' visible='true'>
+                  <b:widget id='FeaturedPost1' locked='true' title='Featured Post' type='FeaturedPost' version='2' visible='false'>
                     <b:widget-settings>
                       <b:widget-setting name='showSnippet'>true</b:widget-setting>
-                      <b:widget-setting name='showPostTitle'>true</b:widget-setting>
+                      <b:widget-setting name='showPostTitle'>false</b:widget-setting>
                       <b:widget-setting name='postId'>2832570450720480216</b:widget-setting>
                       <b:widget-setting name='showFirstImage'>true</b:widget-setting>
                       <b:widget-setting name='useMostRecentPost'>true</b:widget-setting>
@@ -5005,9 +5005,9 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
                     <b:widget-settings>
                       <b:widget-setting name='showDateHeader'>false</b:widget-setting>
                       <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
-                      <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+                      <b:widget-setting name='showShareButtons'>false</b:widget-setting>
                       <b:widget-setting name='authorLabel'>Written By</b:widget-setting>
-                      <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+                      <b:widget-setting name='showCommentLink'>false</b:widget-setting>
                       <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
                       <b:widget-setting name='showAuthor'>true</b:widget-setting>
                       <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
@@ -6833,7 +6833,7 @@ window.addEventListener("load", cookieConsent);
   </ul>
 </b:includable>
         </b:widget>
-        <b:widget id='Label1' locked='false' title='ป้ายกำกับ' type='Label' visible='true'>
+        <b:widget id='Label1' locked='false' title='ป้ายกำกับ' type='Label' visible='false'>
           <b:widget-settings>
             <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
             <b:widget-setting name='display'>LIST</b:widget-setting>
@@ -6866,7 +6866,7 @@ window.addEventListener("load", cookieConsent);
           <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
         </b:includable>
         </b:widget>
-        <b:widget id='PopularPosts2' locked='false' title='บทความยอดนิยม' type='PopularPosts' version='2' visible='true'>
+        <b:widget id='PopularPosts2' locked='false' title='' type='PopularPosts' version='2' visible='false'>
           <b:widget-settings>
             <b:widget-setting name='numItemsToShow'>6</b:widget-setting>
             <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -7475,6 +7475,6 @@ function autoGenTocv11() {
   }
 }
 </script>  
-<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=2' rel='stylesheet'/>
+<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=1' rel='stylesheet'/>
   </body>
 </html>
