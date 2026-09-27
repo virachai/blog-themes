@@ -700,6 +700,8 @@ body.page-view .Blog .post-header { display: none; }
 
 /* Static pages render the title as h2 (posts use h1); match the post title scale. */
 .item-view .Blog h2.post-title {
+  float: none;                 /* base floats it, so a page without a lead image overlapped the title */
+  width: auto;
   font-family: var(--mp-font-ui);
   font-size: clamp(1.5rem, 1.1rem + 1.2vw, 1.875rem);
   font-weight: 700;
@@ -707,3 +709,5 @@ body.page-view .Blog .post-header { display: none; }
   color: var(--mp-text);
   margin: 0.1em 0 0.35em;
 }
+
+.item-view .Blog .post > .post-body { clear: both; }
