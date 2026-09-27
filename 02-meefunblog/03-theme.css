@@ -634,3 +634,10 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
 .item-view .post-body .mp-search button:focus-visible { outline: 3px solid var(--mp-highlight); outline-offset: 2px; }
 
 .item-view .post-body .mp-page-card img { display: block; width: calc(100% + 2.2em); max-width: none; margin: -0.9em -1.1em 0.8em; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 0; }
+
+/* Menu category list (replaces the old .cat-item markup) */
+#HTML3 .mp-menu-list { margin: 0.2em 0 0.6em; padding-left: 2.1em; }
+#HTML3 .mp-menu-list li { margin: 0.25em 0; color: #fdfdfd; }
+#HTML3 .mp-menu-list a { color: #fdfdfd; font-weight: 500; font-size: 0.95rem; text-decoration: none; }
+#HTML3 .mp-menu-list a:hover { text-decoration: underline; }
+#HTML3 .mp-menu-title { font-size: 1.125rem; margin: 0 0 0.4em; color: #fdfdfd; }
