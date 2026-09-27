@@ -759,3 +759,7 @@ body.page-view .Blog .blog-posts .post-outer-container { padding-top: 0; overflo
 /* Pages without a lead image: the same banner on a deep brand gradient. */
 .item-view .post-body > .separator.mp-banner-plain { min-height: clamp(160px, 26vw, 210px); margin: 0 -16px 1.2em; padding: 0; background: radial-gradient(120% 140% at 0% 0%, #d0493d 0%, #a3281f 55%, #6e1510 100%); }
 .item-view .post-body > .separator.mp-banner-plain::after { background: none; }
+/* Page banner: round the top corners only (matches the card), square at the bottom. */
+.item-view .post-body > .separator.mp-banner,
+.item-view .post-body > .separator.mp-banner img,
+.item-view .post-body > .separator.mp-banner::after { border-radius: 16px 16px 0 0; }
