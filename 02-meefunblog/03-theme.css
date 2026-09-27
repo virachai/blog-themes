@@ -756,3 +756,6 @@ body.page-view .Blog .blog-posts .post-outer-container { padding-top: 0; overflo
 .item-view .post-body .mp-banner-text p.mp-banner-dash { font-size: 1rem; line-height: 1.2; opacity: 0.8; }
 .item-view .post-body .mp-banner-text p.mp-banner-sub { font-size: 1rem; font-weight: 600; }
 .item-view .post-body .mp-banner-text p.mp-banner-dash { font-size: 1.25rem; line-height: 1.4; opacity: 0.9; }
+/* Pages without a lead image: the same banner on a deep brand gradient. */
+.item-view .post-body > .separator.mp-banner-plain { min-height: clamp(160px, 26vw, 210px); margin: 0 -16px 1.2em; padding: 0; background: radial-gradient(120% 140% at 0% 0%, #d0493d 0%, #a3281f 55%, #6e1510 100%); }
+.item-view .post-body > .separator.mp-banner-plain::after { background: none; }

@@ -414,7 +414,8 @@ if (location.pathname.startsWith('/p/')) document.body.classList.add('page-view'
   const body = document.querySelector('.item-view .post-body');
   const lead = body && body.firstElementChild;
   const title = document.querySelector('.item-view .Blog .post-title');
-  if (!lead || !lead.classList.contains('separator') || !lead.querySelector('img') || !title) return;
+  if (!body || !title) return;
+  const hasImage = lead && lead.classList.contains('separator') && lead.querySelector('img');
   const [main, site] = title.textContent.trim().split(/\s+-\s+/);   // "Send Prompt (ส่งพร้อม) - Mee Prompt (มีพร้อม)"
   const box = document.createElement('div'); box.className = 'mp-banner-text';
   const p1 = document.createElement('p'); p1.className = 'mp-banner-title'; p1.textContent = main; box.append(p1);
@@ -422,7 +423,9 @@ if (location.pathname.startsWith('/p/')) document.body.classList.add('page-view'
     const dash = document.createElement('p'); dash.className = 'mp-banner-dash'; dash.textContent = '-';
     const p2 = document.createElement('p'); p2.className = 'mp-banner-sub'; p2.textContent = site; box.append(dash, p2);
   }
-  lead.classList.add('mp-banner'); lead.append(box);
-  lead.setAttribute('aria-hidden', 'true');
+  // No lead image (e.g. category): a plain brand-coloured banner instead.
+  const banner = hasImage ? lead : body.insertBefore(Object.assign(document.createElement('div'), { className: 'separator mp-banner-plain' }), body.firstChild);
+  banner.classList.add('mp-banner'); banner.append(box);
+  banner.setAttribute('aria-hidden', 'true');
   title.classList.add('mp-visually-hidden');
 })();
