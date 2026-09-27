@@ -3,14 +3,14 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' lang='th' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-28.7' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-28.7b' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
     <!-- EXPERIMENT (staging): cache-busting ts param on theme CSS/JS. Revert = move the static tags out of <noscript>. -->
     <script>//<![CDATA[
 (function(){var B='https://virachai.github.io/blog-themes/02-meefunblog/';var ts=window.__mpTs=Date.now();
-document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+'<link rel="stylesheet" href="'+B+'04-theme-base.css?v=4&ts='+ts+'">'+'<script defer src="'+B+'05-theme.js?v=1&ts='+ts+'"></script>');})();
+document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+'<link rel="stylesheet" href="'+B+'04-theme-base.css?v=4&ts='+ts+'">'+'<scr'+'ipt defer src="'+B+'05-theme.js?v=1&ts='+ts+'"></scr'+'ipt>');})();
 //]]></script>
     <noscript>
       <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6' rel='stylesheet'/>
