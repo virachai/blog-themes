@@ -1,6 +1,14 @@
 # Mee Prompt Theme
 
-Stylesheet for [meeprompt.blogspot.com](https://meeprompt.blogspot.com/). The Blogger theme (a Contempo-style responsive theme) keeps its own layout. [theme.css](theme.css) adds two things on top of it:
+Stylesheet and Blogger theme for [meeprompt.blogspot.com](https://meeprompt.blogspot.com/).
+
+| File | Purpose |
+| :-- | :-- |
+| [01-theme.css](01-theme.css) | Stylesheet loaded by the theme from GitHub Pages |
+| [02-theme-v2.xml](02-theme-v2.xml) | Theme to restore in Blogger: cleaned of LipsCode/1000Ber leftovers, loads `01-theme.css` |
+| [03-theme-backup-20260927.xml](03-theme-backup-20260927.xml) | Live theme as of 2026-09-27, for rollback |
+
+The Blogger theme (a Contempo-style responsive theme) keeps its own layout. [01-theme.css](01-theme.css) adds two things on top of it:
 
 1. **Readability for post pages:** Thai-friendly line height, heading rhythm, responsive tables, code blocks and quotes. These rules apply only inside `.post-body`.
 2. **Post components** with the `mp-` prefix, used in post HTML (by hand or by the publishing pipeline).

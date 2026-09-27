@@ -1,37 +1,40 @@
 # Blog Themes
 
-Shared CSS and JS for the owner's Blogger blogs, served by GitHub Pages. Each blog's Blogger theme loads its stylesheet from this repository, so layout changes ship with a commit instead of a theme edit.
+Shared CSS and Blogger theme files for the owner's Blogger blogs, served by GitHub Pages. Each blog's Blogger theme loads its stylesheet from this repository, so layout changes ship with a commit instead of a theme edit.
 
-## URL pattern
+## Structure
 
-```
-https://virachai.github.io/blog-themes/<blog>/theme.css
-```
+- One numbered folder per blog: `NN-slug/`. Numbers are unique, never reused, and a new blog takes the highest number plus one.
+- Files inside a blog folder are `NN-slug.ext`, numbered in the order they are used (stylesheet, live theme, backups).
+- Every folder has a hand-written `README.md` that starts with `# Title` and a generated `INDEX.md`. Never edit `INDEX.md` by hand.
+- Renaming a published file breaks live themes: update the `<link>` in every theme XML in the same commit.
 
-| Blog | Folder | Stylesheet |
+| Blog | Folder | Stylesheet URL |
 | :-- | :-- | :-- |
-| Mee Prompt (meeprompt.blogspot.com) | [meeprompt/](meeprompt/README.md) | `https://virachai.github.io/blog-themes/meeprompt/theme.css` |
-| MeeFun staging (meefunblog.blogspot.com) | [meefunblog/](meefunblog/README.md) | Uses the Mee Prompt stylesheet |
+| Mee Prompt (meeprompt.blogspot.com) | [01-meeprompt/](01-meeprompt/README.md) | `https://virachai.github.io/blog-themes/01-meeprompt/01-theme.css` |
+| MeeFun staging (meefunblog.blogspot.com) | [02-meefunblog/](02-meefunblog/README.md) | Uses the Mee Prompt stylesheet |
+| LipsCode (backup only) | [03-lipscode/](03-lipscode/README.md) | — |
 
-## Setup (once)
+Contents are listed in [INDEX.md](INDEX.md).
 
-1. Create the public repository `virachai/blog-themes` on GitHub and push this folder.
-2. Open Settings → Pages, choose **Deploy from a branch**, then `main` / `(root)`.
-3. In the blog's theme, load the stylesheet in `<head>` (the Mee Prompt theme v2 already does this):
+## Commands
 
-   ```html
-   <link href='https://virachai.github.io/blog-themes/meeprompt/theme.css?v=1' rel='stylesheet'/>
-   ```
+```bash
+node scripts/node/build-index.mjs           # regenerate every INDEX.md
+node scripts/node/build-index.mjs --check   # structure gate: prints STRUCTURE-CHECK: PASS/FAIL
+```
+
+Run both before every commit: the check must pass and a rerun of `build-index.mjs` must report `0 written`.
 
 ## Updating a theme
 
-1. Edit `<blog>/theme.css` and commit.
-2. Push. GitHub Pages redeploys in about a minute and serves the file with `Cache-Control: max-age=600`, so visitors see the change within about 10 minutes.
+1. Edit the blog's stylesheet, run the commands above, commit and push.
+2. GitHub Pages redeploys in about a minute and serves files with `Cache-Control: max-age=600`, so visitors see the change within about 10 minutes.
 3. For a change that must show immediately, raise the `?v=` number in the Blogger theme.
+4. Try every change on the staging blog (02-meefunblog) before Mee Prompt.
 
 ## Rules
 
-- One folder per blog. Each folder has its own README.
-- Scope every rule to the blog's existing classes (`.post-body`, `.widget`) or to the `mp-` component prefix, so a stylesheet cannot break Blogger's own layout.
-- Do not put secrets, tracking IDs or personal data in this public repository.
+- Scope CSS to the blog's existing classes (`.post-body`, `.widget`) or the `mp-` component prefix, so a stylesheet cannot break Blogger's own layout.
+- This repository is public. Never commit secrets, API tokens or personal data. Theme XML may contain public IDs only (Analytics, AdSense publisher ID).
 - `.nojekyll` keeps GitHub Pages from running Jekyll, so files are served as-is.

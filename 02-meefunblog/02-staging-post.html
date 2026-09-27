@@ -1,0 +1,37 @@
+<div class="mp-summary">
+  <p class="mp-label">สรุปสั้น</p>
+  <p>โพสต์ทดสอบสำหรับตรวจ layout ของธีม Mee Prompt บน staging ทุก component ต้องแสดงผลถูกต้องทั้งมือถือและเดสก์ท็อป</p>
+</div>
+
+<h2>หัวข้อระดับ 2: ตรวจระยะบรรทัดภาษาไทย</h2>
+<p>ย่อหน้านี้ใช้ตรวจระยะห่างระหว่างบรรทัดของภาษาไทยที่มีสระบนและล่าง เช่น ผู้ใช้ ปั๊มน้ำ ที่ดิน ฤๅษี ต้องไม่ชนกัน ข้อความยาวพอที่จะขึ้นหลายบรรทัดบนหน้าจอมือถือ เพื่อดูว่าอ่านสบายตา มี<a href="https://meefunblog.blogspot.com/">ลิงก์ตัวอย่าง</a> และ <code>inline code</code> อยู่ในบรรทัดด้วย</p>
+
+<ul>
+  <li>รายการที่หนึ่ง</li>
+  <li>รายการที่สอง ที่ยาวกว่าเล็กน้อยเพื่อดูการตัดบรรทัดในรายการ</li>
+</ul>
+
+<div class="mp-evidence">
+  <p class="mp-label">ทดสอบจริง</p>
+  <p>ตัวอย่าง: ทดสอบกับใบแจ้งหนี้ 50 ฉบับ ใช้เวลา 6 นาที แก้มือ 2 รายการ</p>
+</div>
+
+<h3>หัวข้อระดับ 3: ตารางกว้าง (ต้องเลื่อนแนวนอนได้บนมือถือ)</h3>
+<table>
+  <tr><th>ขั้นตอน</th><th>เครื่องมือ</th><th>เวลา (ทำมือ)</th><th>เวลา (workflow)</th><th>ความผิดพลาด</th><th>หมายเหตุ</th></tr>
+  <tr><td>รับไฟล์ PDF</td><td>Email</td><td>2 นาที</td><td>0 นาที</td><td>0</td><td>ดึงไฟล์แนบอัตโนมัติ</td></tr>
+  <tr><td>ดึงข้อมูล</td><td>AI extraction</td><td>5 นาที</td><td>10 วินาที</td><td>2</td><td>ตรวจด้วยกฎตรวจสอบ</td></tr>
+</table>
+
+<pre><code>node scripts/node/check-structure.mjs
+STRUCTURE-CHECK: PASS</code></pre>
+
+<blockquote>ข้อความอ้างอิง ใช้ตรวจสีและเส้นขอบด้านซ้าย</blockquote>
+
+<div class="mp-note">หมายเหตุ: นี่คือโพสต์ทดสอบ ลบได้หลังตรวจเสร็จ</div>
+
+<div class="mp-cta">
+  <p class="mp-cta-title">ดาวน์โหลดชุดเครื่องมือฟรี</p>
+  <p>ตัวอย่างกล่อง CTA พร้อมปุ่ม</p>
+  <a class="mp-button" href="https://meefunblog.blogspot.com/">รับชุดเครื่องมือ</a>
+</div>
