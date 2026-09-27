@@ -1,4 +1,4 @@
-# 03-07 Post #0001: ต้นไม้ในคอนโดแสงน้อย
+# 03-07 Post 0001: ต้นไม้ในคอนโดแสงน้อย
 
 Create in Blogger → meefunblog → **Posts** → **New post**.
 
@@ -22,6 +22,6 @@ All four images are in [02-meefunblog/11-images/](../../02-meefunblog/11-images/
 
 ## Check after publishing
 
-1. The title shows `#0001` small and muted after the title.
+1. The body starts with `<div class="mp-id" data-id="0001"></div>` (ID marker, invisible) and the title has no `#0001`.
 2. The table of contents lists 7 sections and each link jumps to its heading.
 3. All four images load on a phone (scroll to the bottom so lazy images load).

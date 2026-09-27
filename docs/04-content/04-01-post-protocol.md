@@ -22,7 +22,7 @@ Every post follows these rules, whether it is created in the Blogger editor or s
 
 - Four digits, unique, never reused. The next post takes the highest ID + 1. The register is below.
 - The marker has no text, so it never appears in snippets, cards or feeds.
-- Legacy: post #0001 was published with `#0001` at the end of its title; `05-theme.js` still reads that.
+- `05-theme.js` still reads a legacy `#NNNN` at the end of a title, as a fallback.
 
 ## 3. Linking another post: type its ID
 
@@ -45,4 +45,4 @@ Email posting cannot set labels or a Search description. The description is cove
 
 | ID | Title | Body file | URL |
 | --- | --- | --- | --- |
-| 0001 | ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด | [13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) | https://meefunblog.blogspot.com/2026/09/3-0001.html (legacy ID in title) |
+| 0001 | ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (Low Light Condo Plants) | [13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) | https://meefunblog.blogspot.com/2026/09/3-0001.html (keep: Blogger does not change the URL when the title changes) |
