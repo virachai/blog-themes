@@ -3,7 +3,7 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' lang='th' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-28.7b' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-28.8' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
@@ -29,11 +29,11 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
       <!-- Hide Hero Section -->
       <!-- Styles moved to 02-meefunblog/04-theme-base.css (home page, body.home-view) -->
       <!-- <meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHTiORdCsMwc_809jgShlgXZVrwmPAhs5HxRq6NM0GxSjK_4dw0oFiOb7lcXUQrNsjv1iZogLEkPfyWauYmb3QFby_GgHQrlPGDE4WCumKY3PoO_hp8mUuG8cwsbltWxM_2ujrYA8MoVcAvZDnHLxBvN65ww1oqQU9D1criZue8bEoN9ssFFYODMX3L5k/s1600/Lipstick_1266x.webp' property='og:image'/> -->
-      <meta content='https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg' property='og:image'/>
+      <meta content='https://virachai.github.io/blog-themes/02-meefunblog/11-images/01-hero.jpg' property='og:image'/>
       <!-- <link as='image' href='https://blogger.googleusercontent.com/img/proxy/AVvXsEjzIjusFcyFhmSp8VZ75HCfw0FgdHQRwiUkghqcM8diD_3SvroYhv6GATDml7Fi_qj6llRYt7ZCvEXgPvRTU4pEEAnmax6fQK3GylfX5nDs7AGjjW3hvEQbjihNQs4DBbnKiI9dh9O40QUfzbN1ui3T_t4umTCZPMA8ic1XD7tGp9mMGoufwRo5Tvpx7CuKzSuTtTdg=w640-h360-p-k-no-nu' rel='preload'/> -->
       <!-- <link as='image' href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHTiORdCsMwc_809jgShlgXZVrwmPAhs5HxRq6NM0GxSjK_4dw0oFiOb7lcXUQrNsjv1iZogLEkPfyWauYmb3QFby_GgHQrlPGDE4WCumKY3PoO_hp8mUuG8cwsbltWxM_2ujrYA8MoVcAvZDnHLxBvN65ww1oqQU9D1criZue8bEoN9ssFFYODMX3L5k/s1600/Lipstick_1266x.webp' rel='preload'/> -->
-      <link as='image' href='https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg' rel='preload'/>
-      <meta content='ร่วมเดินทางไปกับ MeePrompt' name='description'/>
+      <link as='image' href='https://virachai.github.io/blog-themes/02-meefunblog/11-images/01-hero.jpg' rel='preload'/>
+      <meta expr:content='data:blog.metaDescription ?: data:blog.title' name='description'/>
     </b:if>
     <!-- Posts and pages: server-side meta description. Blogger fills data:view.description from the Search description, or from the first text of the post when there is none (Post via email). -->
     <b:if cond='data:view.isSingleItem'>
@@ -69,7 +69,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
         <!-- <link href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css' rel='stylesheet'/>
 		<script src='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js'/> -->
 <!-- Twitter Card Meta Tags by SWT ~ www.superwebtricks.com -->
-<meta content='summary' name='twitter:card'/>
+<meta content='summary_large_image' name='twitter:card'/>
 <!-- <meta content='@SuperWebTricks' name='twitter:site'/> -->
 <b:if cond='data:blog.pageType == &quot;item&quot;'>
   <meta expr:content='data:blog.pageName' name='twitter:title'/>
@@ -84,7 +84,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
 <b:if cond='data:blog.postImageUrl'>
 <link as='image' expr:href='data:blog.postImageUrl' rel='preload'/>  
 <meta expr:content='data:blog.postImageUrl' name='twitter:image:src'/>
-<b:else/><meta content='https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg' name='twitter:image:src'/>
+<b:else/><meta content='https://virachai.github.io/blog-themes/02-meefunblog/11-images/01-hero.jpg' name='twitter:image:src'/>
 </b:if>
 <!-- Twitter Card Meta Tags HELP ~ http://www.superwebtricks.com?p=944 -->            
       </b:if>    
