@@ -686,3 +686,14 @@ body.page-view .Blog .post-header { display: none; }
 }
 .item-view .post-body .mp-field label.mp-switch { display: inline-flex; margin: 0; font-weight: 400; }
 .item-view .post-body .mp-switch-track { display: inline-block; }
+
+/* ---------- Contact profile ---------- */
+.item-view .post-body .mp-profile { border: 1px solid var(--mp-border); border-radius: var(--mp-radius); padding: 1em 1.2em; margin: 0 0 1.4em; }
+.item-view .post-body .mp-profile p { margin: 0; }
+.item-view .post-body .mp-profile-name { font-family: var(--mp-font-ui); font-weight: 700; font-size: 1.15rem; }
+.item-view .post-body .mp-profile-role { color: var(--mp-muted); font-size: 0.95rem; }
+.item-view .post-body .mp-profile-links { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0.8em 0 0; padding: 0; }
+.item-view .post-body .mp-profile-links li { margin: 0; }
+.item-view .post-body .mp-profile-links a { display: inline-block; padding: 0.3em 0.85em; border: 1px solid var(--mp-border); border-radius: 999px; background: var(--mp-surface); color: var(--mp-text); font-family: var(--mp-font-ui); font-size: 0.9rem; text-decoration: none; }
+.item-view .post-body .mp-profile-links a:hover { border-color: var(--mp-accent); color: var(--mp-accent); }
+.item-view .post-body .mp-contact-mail { text-align: center; margin: 0 0 1.4em; }
