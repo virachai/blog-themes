@@ -711,3 +711,7 @@ body.page-view .Blog .post-header { display: none; }
 }
 
 .item-view .Blog .post > .post-body { clear: both; }
+
+/* Post ID after titles ("#0001"): present but quiet. */
+.mp-post-id { font-size: 0.6em; font-weight: 500; color: var(--mp-muted); letter-spacing: 0.02em; vertical-align: 0.15em; white-space: nowrap; }
+#PopularPosts3 .mp-post-id { color: rgba(255, 255, 255, 0.6); }

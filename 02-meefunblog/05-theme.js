@@ -362,3 +362,40 @@ if (location.pathname.startsWith('/p/')) document.body.classList.add('page-view'
     setTimeout(() => { form.hidden = true; show($('mp-form-done'), true); $('mp-form-done').scrollIntoView({ block: 'center' }); }, 800);
   });
 })();
+
+/* ---------- Post IDs: "Title #0001". In a post body, "#0001" becomes a link to that post. ---------- */
+(() => {
+  const ID = /#(\d{4})\b/;
+  // Show the ID after titles quietly.
+  document.querySelectorAll('.post-title, .post-title a').forEach(el => {
+    if (el.children.length || !ID.test(el.textContent)) return;
+    el.innerHTML = el.textContent.replace(/\s*#(\d{4})\b/, ' <span class="mp-post-id">#$1</span>');
+  });
+  const body = document.querySelector('.item-view .post-body');
+  if (!body || !/#\d{4}\b/.test(body.textContent)) return;
+  const own = (document.querySelector('.item-view .post-title') || {}).textContent || '';
+  fetch('/feeds/posts/summary?alt=json&max-results=500')
+    .then(r => r.json())
+    .then(j => {
+      const map = {};
+      (j.feed.entry || []).forEach(e => {
+        const m = e.title.$t.match(ID); const link = (e.link || []).find(l => l.rel === 'alternate');
+        if (m && link) map[m[1]] = { url: link.href, title: e.title.$t.replace(/\s*#\d{4}\b/, '').trim() };
+      });
+      const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, {
+        acceptNode: n => (/#\d{4}\b/.test(n.nodeValue) && !n.parentElement.closest('a, pre, code, #toc_container')) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+      });
+      const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        const frag = document.createDocumentFragment(); let last = 0; const text = node.nodeValue;
+        text.replace(/#(\d{4})\b/g, (all, id, at) => {
+          frag.append(text.slice(last, at)); last = at + all.length;
+          const hit = map[id];
+          if (hit && !own.includes('#' + id)) { const a = document.createElement('a'); a.href = hit.url; a.textContent = hit.title; a.className = 'mp-post-link'; frag.append(a); }
+          else frag.append(all);
+        });
+        frag.append(text.slice(last)); node.replaceWith(frag);
+      });
+    })
+    .catch(() => {});
+})();
