@@ -12,7 +12,7 @@ Create in Blogger → meefunblog → **Pages** → **New page**.
 
 ## Before publishing
 
-Replace both `[EMAIL]` placeholders with the real contact address. Blogger's own Contact Form widget can be used instead if no public address should be shown.
+The email and social links come from https://virachai.github.io/ (the owner's public profile). Nothing to replace.
 
 ## Check after publishing
 
