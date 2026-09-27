@@ -69,6 +69,9 @@
   padding: 0.55em 0.8em;
   text-align: left;
   vertical-align: top;
+  min-width: 6em;              /* cells keep their width so the table scrolls instead of squeezing */
+  overflow-wrap: normal;       /* undo the post-body "anywhere" and skin "break-word": no mid-word breaks like "Em ail" */
+  word-break: normal;
 }
 
 .item-view .post-body th { background: var(--mp-surface); font-weight: 600; }
