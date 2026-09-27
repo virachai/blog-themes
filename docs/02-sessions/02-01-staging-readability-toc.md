@@ -10,6 +10,7 @@ Commit `5c06245` (2026-09-27), titled "refine staging theme and css styling for 
 2. **Restore:** `02-meefunblog/01-theme-staging.xml` and `02-meefunblog/03-theme.css` checked out from `1775126`.
 3. **Cache-buster:** both `03-theme.css` links in the staging XML changed from `?v=2` to `?v=3`, because the revert had served `?v=1` and a lower version could hit stale cache.
 4. **Re-clone:** `01-theme-staging.xml` rebuilt from `01-meeprompt/02-theme-v2.xml` with the `afcdb11` staging recipe (domain `meefunblog.blogspot.com`, `noindex,nofollow`, `[STAGING]` title, CSS link `02-meefunblog/03-theme.css?v=4`); `03-theme.css` copied from `01-meeprompt/01-theme.css` with a staging first comment line. SEO head (`19a0119`) and editorial layout (`16d0e3c`, `1775126`) are dropped.
+5. **CSS out of XML:** head `<style>` blocks and the Blogger-rendered `<b:skin>` moved to `02-meefunblog/04-theme-base.css` (`201cd46`). The head blocks were copied XML-encoded, so `#HTML3 > h3.title` and `#HTML4.widget.HTML > h3.title` were dropped and both widget labels showed on desktop; entities decoded in `b0fc907`. The XML now carries `<meta name='theme-build'>` for curl rechecks.
 
 ## Verification
 
@@ -18,6 +19,7 @@ Commit `5c06245` (2026-09-27), titled "refine staging theme and css styling for 
 | `diff 01-meeprompt/02-theme-v2.xml 02-meefunblog/01-theme-staging.xml` | only domain, noindex, title and `?v=4` CSS links differ |
 | `grep -c 'theme.css?v=4' 02-meefunblog/01-theme-staging.xml` | 2 |
 | `node scripts/node/build-index.mjs --check` | pass (see log) |
+| CDP 390px / 1366px after `b0fc907` | pass: no page overflow, table scrolls, Thai line-height 27.75px, HTML3/HTML4 titles hidden |
 | Staging blog render (Thai post, mobile tables) | skipped — owner must paste the XML into the staging blog |
 
 ## Open Items
