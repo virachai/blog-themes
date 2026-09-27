@@ -406,3 +406,23 @@ if (location.pathname.startsWith('/p/')) document.body.classList.add('page-view'
     })
     .catch(() => {});
 })();
+
+/* ---------- Static pages: the page title, centred on the lead image ("Send Prompt (ส่งพร้อม)" / "-" / "Mee Prompt (มีพร้อม)").
+   The real H1 stays in the DOM for search engines and screen readers, visually hidden. ---------- */
+(() => {
+  if (!document.body.classList.contains('page-view')) return;
+  const body = document.querySelector('.item-view .post-body');
+  const lead = body && body.firstElementChild;
+  const title = document.querySelector('.item-view .Blog .post-title');
+  if (!lead || !lead.classList.contains('separator') || !lead.querySelector('img') || !title) return;
+  const [main, site] = title.textContent.trim().split(/\s+-\s+/);   // "Send Prompt (ส่งพร้อม) - Mee Prompt (มีพร้อม)"
+  const box = document.createElement('div'); box.className = 'mp-banner-text';
+  const p1 = document.createElement('p'); p1.className = 'mp-banner-title'; p1.textContent = main; box.append(p1);
+  if (site) {
+    const dash = document.createElement('p'); dash.className = 'mp-banner-dash'; dash.textContent = '-';
+    const p2 = document.createElement('p'); p2.className = 'mp-banner-sub'; p2.textContent = site; box.append(dash, p2);
+  }
+  lead.classList.add('mp-banner'); lead.append(box);
+  lead.setAttribute('aria-hidden', 'true');
+  title.classList.add('mp-visually-hidden');
+})();
