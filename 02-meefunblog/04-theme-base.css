@@ -62,7 +62,7 @@
       	.post-body .snippet-thumbnail {min-height:288px;}
       	.svg-fill-color {fill: currentcolor;}
       
-      	/*.blog-posts .post-outer-container:nth-child(n + 2) .snippet-thumbnail img:not([loading=&#39;lazy&#39;]){display:none};*/
+      	/*.blog-posts .post-outer-container:nth-child(n + 2) .snippet-thumbnail img:not([loading='lazy']){display:none};*/
       	.blog-posts .post-outer-container:nth-child(n + 2) .snippet-thumbnail img:not(.lazy){display:none};
       	.blog-posts .post-outer-container:nth-child(n + 2) .snippet-thumbnail img.lazy{display:inline};
       	.post-bottom .flat-button {
@@ -2500,10 +2500,10 @@ div.search {transform: translateY(-2px)}*/
 .header-widget {opacity: 0};
   
 @font-face {
-  font-family: &#39;Lobster&#39;;
+  font-family: 'Lobster';
   font-style: normal;
   font-weight: 400;
-  src: local(&#39;Lobster Regular&#39;), local(&#39;Lobster-Regular&#39;), url(https://fonts.gstatic.com/s/lobster/v21/neILzCirqoswsqX9zo-mM5Ez.woff2) format(&#39;woff2&#39;);
+  src: local('Lobster Regular'), local('Lobster-Regular'), url(https://fonts.gstatic.com/s/lobster/v21/neILzCirqoswsqX9zo-mM5Ez.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -2582,9 +2582,9 @@ body {min-width:320px}
 }
 /*  
 a.timestamp-link::before {
-  font-family: &quot;Font Awesome 5 Free&quot;;
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content:  &quot;\f017 &quot;;
+  content:  "\f017 ";
   color: #2196f3;
 }
 2022  
@@ -2649,7 +2649,7 @@ a.timestamp-link::before {
   padding-top: 80px;
   margin-bottom: 5px;
 }
-.post-body.entry-content a[name=&quot;more&quot;]{
+.post-body.entry-content a[name="more"]{
   display:block;
   transform:translateY(-76px);
   transform:translateY(-80px);
@@ -2735,7 +2735,7 @@ a.timestamp-link::before {
   line-height: 28px;
 }
 .post-body.entry-content h2#conclusion,
-.post-body.entry-content h2[id^=&quot;toc&quot;]{
+.post-body.entry-content h2[id^="toc"]{
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 2px solid #4098D7;
@@ -2761,8 +2761,8 @@ a.timestamp-link::before {
   top: 64px;
   margin-top: 0px;
 }
-#HTML3 &gt; h3.title {display:none}
-#HTML3 &gt; .widget-content {
+#HTML3 > h3.title {display:none}
+#HTML3 > .widget-content {
   /*position: sticky;*/
 }
 /*#HTML3 {display:none}*/
@@ -2831,7 +2831,7 @@ a.timestamp-link::before {
   display: flex;
   justify-content: space-between;
 }
-.container.post-body.entry-content .post-snippet.snippet-container &gt; div.snippet-item {
+.container.post-body.entry-content .post-snippet.snippet-container > div.snippet-item {
   padding-top:15px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2840,7 +2840,7 @@ a.timestamp-link::before {
     line-clamp: 4;
   -webkit-box-orient: vertical;
 }
-.post-body.entry-content.float-container &gt; .separator {
+.post-body.entry-content.float-container > .separator {
   clear: both;
   margin: 0px -16px;
   /*max-height: 288px;*/
@@ -2848,15 +2848,15 @@ a.timestamp-link::before {
   text-align: center;
   padding-bottom: 1.5em;
 }
-.post-body.entry-content.float-container &gt; .separator figure {margin:0}
-.post-body.entry-content.float-container &gt; .separator img {
+.post-body.entry-content.float-container > .separator figure {margin:0}
+.post-body.entry-content.float-container > .separator img {
   max-height: 288px;
   height: calc(56vw);
   object-fit: cover;
 }
-.page_body .centered &gt; #footer.footer.section {padding: 3rem 0;}
+.page_body .centered > #footer.footer.section {padding: 3rem 0;}
 
-#HTML4.widget.HTML &gt; h3.title {display:none}
+#HTML4.widget.HTML > h3.title {display:none}
 #HTML4 hr {
   margin-top: 3rem;
   margin-bottom: 3rem;

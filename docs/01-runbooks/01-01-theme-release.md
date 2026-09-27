@@ -6,7 +6,7 @@ Every theme or stylesheet change goes to the staging blog first, then to the liv
 
 ## 1. Prepare
 
-1. Edit the **staging** files only: [02-meefunblog/03-theme.css](../../02-meefunblog/03-theme.css) or the staging theme XML.
+1. Edit the **staging** files only: [02-meefunblog/03-theme.css](../../02-meefunblog/03-theme.css), [02-meefunblog/04-theme-base.css](../../02-meefunblog/04-theme-base.css) or the staging theme XML. When the XML changes, bump its `<meta name='theme-build'>` (`meefun-staging YYYY-MM-DD.N`).
 2. Run `node scripts/node/build-index.mjs`, then `node scripts/node/build-index.mjs --check` (must print `STRUCTURE-CHECK: PASS`).
 3. Commit and push. Wait about a minute for GitHub Pages, then open the stylesheet URL and confirm it shows CSS, not a 404.
 
@@ -21,6 +21,11 @@ Every theme or stylesheet change goes to the staging blog first, then to the liv
    - `mp-summary`, `mp-evidence`, `mp-note` and `mp-cta` render with their colours; the button is readable.
    - Header, sidebar and home page look as before.
    - View source: `noindex,nofollow` and the `02-meefunblog/03-theme.css` link are present.
+5. Confirm the blog runs the version in the repo:
+   ```bash
+   curl -s https://meefunblog.blogspot.com/ | grep -o "content='[^']*' name='theme-build'"   # must match the XML
+   for f in 03-theme.css 04-theme-base.css; do [ "$(curl -s https://virachai.github.io/blog-themes/02-meefunblog/$f | sha1sum)" = "$(git show HEAD:02-meefunblog/$f | sha1sum)" ] && echo "$f OK" || echo "$f STALE"; done
+   ```
 
 ## 3. Live (Mee Prompt)
 
