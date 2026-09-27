@@ -725,3 +725,7 @@ body.page-view .Blog .post-header { display: none; }
 .item-view .post-body .mp-credits { margin: 2em 0 0; padding-top: 0.8em; border-top: 1px solid var(--mp-border); font-family: var(--mp-font-ui); font-size: 0.8125rem; color: var(--mp-muted); }
 .item-view .post-body > .separator:first-child:not(:has(+ .mp-caption)) { padding-bottom: 0; margin-bottom: 1.2em; }
 .item-view .post-body > .separator:first-child img { display: block; width: 100%; }
+
+/* TOC hover: one underline only (the base adds a dotted border-bottom on top of ours). */
+.item-view .post-body.entry-content #toc_container h2 + ol li a:hover,
+.item-view .post-body.entry-content #toc_container a:hover { border-bottom: 0; text-decoration: underline; text-underline-offset: 3px; }
