@@ -2,14 +2,14 @@
 
 Create in Blogger → meefunblog → **Posts** → **New post**.
 
-| Field | Enter |
-| --- | --- |
-| Title | `ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด #0001` |
-| Body | Switch the editor to **HTML view**, paste the whole of [02-meefunblog/13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) |
-| Labels (Post settings) | `home`, `plants` (the site categories are still Prompt / Workflow / AI tools; change them before publishing more home posts) |
-| Permalink (Post settings → Permalink → Custom) | `low-light-condo-plants` |
-| Search description (Post settings) | `3 ต้นไม้ทนแสงน้อยสำหรับคอนโด ลิ้นมังกร พลูด่าง กวักมรกต พร้อมวิธีวางและรดน้ำให้เลี้ยงรอด` |
-| Options → Reader comments | Allow |
+| Field                                          | Enter                                                                                                                                           |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                                          | `ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด #0001`                                                                                                 |
+| Body                                           | Switch the editor to **HTML view**, paste the whole of [02-meefunblog/13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) |
+| Labels (Post settings)                         | `home`, `plants` (the site categories are still Prompt / Workflow / AI tools; change them before publishing more home posts)                    |
+| Permalink (Post settings → Permalink → Custom) | `low-light-condo-plants`                                                                                                                        |
+| Search description (Post settings)             | `3 ต้นไม้ทนแสงน้อยสำหรับคอนโด ลิ้นมังกร พลูด่าง กวักมรกต พร้อมวิธีวางและรดน้ำให้เลี้ยงรอด`                                                      |
+| Options → Reader comments                      | Allow                                                                                                                                           |
 
 ## Images
 
