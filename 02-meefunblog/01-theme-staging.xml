@@ -3,9 +3,12 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-27.2' name='theme-build'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=4' rel='stylesheet'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/04-theme-base.css?v=2' rel='stylesheet'/>
+    <meta content='meefun-staging 2026-09-27.3' name='theme-build'/>
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
+    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=5' rel='stylesheet'/>
+    <link href='https://virachai.github.io/blog-themes/02-meefunblog/04-theme-base.css?v=3' rel='stylesheet'/>
     <meta content='F269D94506B7CDB4BFE29ACA40036431' name='msvalidate.01'/>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- 2023 Update -->
@@ -3904,6 +3907,6 @@ function autoGenTocv11() {
   }
 }
 </script>  
-<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=4' rel='stylesheet'/>
+<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=5' rel='stylesheet'/>
   </body>
 </html>

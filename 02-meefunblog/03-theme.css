@@ -1,25 +1,33 @@
 /* MeeFun staging theme overrides (test here, then copy to 01-meeprompt/01-theme.css).
-   Loaded after the Blogger skin. Every rule is scoped to .post-body or the mp- prefix
-   so the theme's own header, sidebar and widgets are untouched. */
+   Loaded last, after 04-theme-base.css. Rules are scoped to Blogger widgets (.widget, .Blog,
+   #HTMLn, #PopularPosts3), .post-body or the mp- prefix. They refine type, colour and detail only:
+   positions, widths and columns stay exactly as the theme lays them out. */
 
 :root {
-  --mp-text: #1f2328;
-  --mp-muted: #59636e;
-  --mp-accent: #2f6fdb;
+  --mp-page: #bc382e;          /* the theme's red page background, for reference */
+  --mp-text: #231f1e;
+  --mp-muted: #6e6461;         /* 5.8:1 on white */
+  --mp-accent: #a3281f;        /* the page red, deepened for text on white: 7.3:1 */
+  --mp-accent-hover: #86201a;
   --mp-accent-ink: #ffffff;
-  --mp-surface: #f6f8fa;
-  --mp-border: #d1d9e0;
+  --mp-highlight: #ff8000;     /* the logo orange: focus rings only */
+  --mp-surface: #faf6f5;
+  --mp-border: #eadfdc;
   --mp-evidence: #1a7f37;
   --mp-evidence-bg: #eef8f0;
   --mp-note: #9a6700;
   --mp-note-bg: #fff8e5;
-  --mp-radius: 10px;
+  --mp-radius: 12px;
+  --mp-font-ui: "IBM Plex Sans Thai", "Leelawadee UI", "Noto Sans Thai", Tahoma, sans-serif;
+  --mp-font-read: "IBM Plex Sans Thai Looped", "IBM Plex Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
+  --mp-font-code: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
 /* ---------- Post readability ---------- */
 
 .item-view .post-body {
   color: var(--mp-text);
+  font-family: var(--mp-font-read);
   font-size: 1.0625rem;
   line-height: 1.85;           /* Thai script needs more leading than Latin */
   overflow-wrap: anywhere;
@@ -27,6 +35,9 @@
 
 .item-view .post-body h2,
 .item-view .post-body h3 {
+  font-family: var(--mp-font-ui);
+  font-weight: 700;
+  color: var(--mp-text);
   line-height: 1.4;
   margin: 2em 0 0.6em;
   scroll-margin-top: 72px;     /* keeps headings visible when jumped to from the table of contents */
@@ -49,7 +60,14 @@
 
 .item-view .post-body a:not(.mp-button) {
   color: var(--mp-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+}
+
+.item-view .post-body a:not(.mp-button):hover {
+  color: var(--mp-accent-hover);
+  text-decoration-thickness: 2px;
 }
 
 /* Tables scroll sideways on narrow screens instead of widening the page. */
@@ -77,28 +95,41 @@
 .item-view .post-body th { background: var(--mp-surface); font-weight: 600; }
 
 .item-view .post-body pre {
-  background: var(--mp-surface);
-  border: 1px solid var(--mp-border);
+  background: #25201f;          /* dark block: commands and prompts stand apart from prose */
+  color: #f6efec;
   border-radius: var(--mp-radius);
-  padding: 1em;
+  padding: 1em 1.2em;
   overflow-x: auto;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-family: var(--mp-font-code);
+  font-size: 0.88rem;
+  line-height: 1.65;
 }
 
+.item-view .post-body pre code { font-family: inherit; background: none; padding: 0; color: inherit; }
+
 .item-view .post-body :not(pre) > code {
-  background: var(--mp-surface);
-  border-radius: 4px;
-  padding: 0.1em 0.35em;
-  font-size: 0.92em;
+  background: #f3ebe8;
+  color: var(--mp-text);
+  border-radius: 5px;
+  padding: 0.12em 0.4em;
+  font-family: var(--mp-font-code);
+  font-size: 0.88em;
 }
 
 .item-view .post-body blockquote {
   margin: 0 0 1.2em;
   padding: 0.2em 1em;
-  border-left: 4px solid var(--mp-border);
+  border-left: 3px solid var(--mp-border);
   color: var(--mp-muted);
 }
+
+/* Thai has no true italics; browsers slant the glyphs, which hurts stacked vowels. */
+.item-view .post-body blockquote,
+.item-view .post-body em,
+.item-view .post-body i { font-style: normal; }
+.item-view .post-body em { font-weight: 600; }
+
+.item-view .post-body ::selection { background: #ffe1c4; color: var(--mp-text); }
 
 /* ---------- Components (mp- prefix) ---------- */
 
@@ -117,10 +148,9 @@
 .mp-cta > :last-child { margin-bottom: 0; }
 
 .mp-label {
-  font-size: 0.8rem;
+  font-family: var(--mp-font-ui);
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   margin: 0 0 0.3em;
 }
 
@@ -148,6 +178,7 @@
 }
 
 .mp-cta-title {
+  font-family: var(--mp-font-ui);
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 0.3em;
@@ -164,7 +195,121 @@
   margin-top: 0.4em;
 }
 
-.mp-button:hover,
-.mp-button:focus-visible { filter: brightness(1.08); }
+.mp-button:hover { background: var(--mp-accent-hover); }
 
-.mp-button:focus-visible { outline: 3px solid var(--mp-accent); outline-offset: 3px; }
+/* ---------- Site details: type, colour and depth on the existing widgets ---------- */
+
+/* One UI typeface for every widget; post body text uses the looped cut above. */
+.widget,
+.widget button,
+.widget input { font-family: var(--mp-font-ui); }
+
+/* Keyboard focus is visible everywhere, in the logo orange. */
+.widget a:focus-visible,
+.widget button:focus-visible,
+.widget summary:focus-visible,
+.mp-button:focus-visible {
+  outline: 3px solid var(--mp-highlight);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Cards: a shadow tinted with the page red instead of flat white on red. */
+.Blog .blog-posts .post-outer-container {
+  box-shadow: 0 1px 1px rgba(90, 20, 14, 0.18), 0 16px 36px -22px rgba(60, 8, 4, 0.7);
+}
+
+/* Card and post titles */
+.Blog .post-title,
+.Blog .post-title a {
+  font-family: var(--mp-font-ui);
+  font-weight: 600;
+  color: var(--mp-text);
+  letter-spacing: 0;
+}
+
+.Blog h3.post-title,
+.Blog h3.post-title a {
+  font-size: 1.1875rem;
+  line-height: 1.45;           /* room for Thai marks above and below */
+}
+
+.Blog h3.post-title a:hover { color: var(--mp-accent); }
+
+/* The post title leads the page: larger than the H2s inside the post. */
+.item-view .Blog h1.post-title {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0.1em 0 0.35em;
+}
+
+/* Byline: quiet, one colour, the author name slightly stronger. */
+.Blog .post-header .byline {
+  font-size: 0.8125rem;
+  color: var(--mp-muted);
+}
+
+.Blog .post-header .byline a.g-profile {
+  animation: none;             /* the base theme cycles this link's colour forever */
+  color: var(--mp-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.Blog .post-header .byline a.g-profile:hover { color: var(--mp-accent); }
+
+.Blog .post-timestamp .fa {
+  font-size: 0.95em !important;   /* the template sets 18px inline */
+  color: var(--mp-muted);
+  margin-right: 0.3em;
+}
+
+/* Card snippet */
+.Blog .post-snippet .snippet-item {
+  color: #4a4240;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+/* Read more: sentence case in the accent colour, not shouting blue caps. */
+.Blog .jump-link.flat-button { text-transform: none; letter-spacing: 0; }
+
+.Blog .jump-link.flat-button.ripple > a,
+.Blog .jump-link.flat-button.ripple > a:visited {
+  color: var(--mp-accent);
+  font-weight: 600;
+}
+
+.Blog .jump-link.flat-button.ripple > a:hover { color: var(--mp-accent-hover); }
+
+/* The template puts the post title inside the link and hides it by clipping the link at 107px.
+   Keep it for screen readers, hide it properly so it cannot peek out next to "Read more". */
+.Blog .jump-link.flat-button.ripple > a > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hero */
+#HTML2 h2 {
+  font-family: var(--mp-font-ui);
+  font-weight: 700;
+  letter-spacing: -0.01em;     /* Latin wordmark only; Thai lines below keep normal spacing */
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Sidebar and popular list on the red page */
+#HTML3 h2,
+#PopularPosts3 .title { font-family: var(--mp-font-ui); font-weight: 700; }
+
+#PopularPosts3 .post-title a { font-weight: 500; line-height: 1.5; }
+
+@media (prefers-reduced-motion: reduce) {
+  .widget *,
+  .widget *::before,
+  .widget *::after { transition: none !important; animation: none !important; }
+}

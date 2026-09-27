@@ -13,7 +13,10 @@ Staging has its own stylesheet so a CSS change can be tested without touching th
 
 ## Changes waiting to be promoted to Mee Prompt
 
-- None. Staging was re-cloned from Mee Prompt v2 on 2026-09-27 (see [docs/02-sessions/02-01-staging-readability-toc.md](../docs/02-sessions/02-01-staging-readability-toc.md)); the earlier SEO head and editorial changes were dropped and must be redone if still wanted.
+- Detail polish (layout unchanged), build `meefun-staging 2026-09-27.3`:
+  - Typefaces: IBM Plex Sans Thai for UI and headings, IBM Plex Sans Thai Looped for post body text, loaded by a Google Fonts `<link>` in the XML `<head>`. The base theme's `* { font-family: Lobster !important }` is removed from `04-theme-base.css` (Lobster never loaded; the rule only forced the fallback).
+  - Colour: links, read-more and the CTA button use `--mp-accent` #a3281f (the page red deepened, 7.3:1 on white) instead of three different blues; focus rings use the logo orange.
+  - Details: post title larger than its H2s, card titles 19px with Thai line-height, quieter byline without the colour-cycling author link, sentence-case "Read more", red-tinted card shadow, dark code blocks, no synthetic italics on Thai.
 - Moving theme CSS out of the XML (`04-theme-base.css`) is staging-only until verified.
 
 The release procedure is in [docs/01-runbooks/01-01-theme-release.md](../docs/01-runbooks/01-01-theme-release.md).

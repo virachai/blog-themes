@@ -2512,9 +2512,10 @@ div.search {transform: translateY(-2px)}*/
   font-display: swap;
 }
 
-* {
-  font-family: Lobster, sans-serif !important;  
-}
+/* Removed: * { font-family: Lobster, sans-serif !important; }
+   The Lobster @font-face above never loads (the stray ";" after ".header-widget {opacity: 0}"
+   makes the parser drop it), so this rule only forced the system fallback onto every element
+   and blocked any other font. Typefaces are set in 03-theme.css. */
 .fa {
   font-family: FontAwesome !important;
   color:#2196f3;
