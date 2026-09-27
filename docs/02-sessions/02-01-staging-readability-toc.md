@@ -1,23 +1,25 @@
-# 02-01 Staging theme readability and TOC
+# 02-01 Staging theme revert and restore
 
 ## Overview
 
-Commit `5c06245` (2026-09-27) reworked the MeeFun staging theme for post readability and an auto-generated table of contents. The change is on staging only; `01-meeprompt/` (live) is untouched, so nothing reaches the live blog until the release runbook is followed.
+Commit `5c06245` (2026-09-27), titled "refine staging theme and css styling for readability and TOC auto-generation", was in fact a full revert of the MeeFun staging theme to its `19a0119` content. It also converted `01-theme-staging.xml` to CRLF, so its diff showed ~15,000 changed lines and hid the revert. The staging files are now restored to `1775126` with the stylesheet cache-buster bumped to `?v=3`. Live (`01-meeprompt/`) was never affected.
 
 ## Key Changes
 
-1. **Staging CSS:** `02-meefunblog/03-theme.css` was rewritten from the "Premium Editorial" layout overrides (header, homepage cards, featured story, sidebar, footer) down to three sections: post readability, horizontally scrolling tables on narrow screens, and the `mp-` components. The header comment now states the staging→live copy step.
-2. **Staging theme XML:** `02-meefunblog/01-theme-staging.xml` gained TOC handling in the `#HTML6` widget: a floating "show TOC" button on item pages, a bottom TOC container toggled per breakpoint, and a script that clones `#toc_container` lists into it.
-3. **Index:** `02-meefunblog/INDEX.md` regenerated.
+1. **Diagnosis:** `git diff --ignore-cr-at-eol 19a0119 5c06245 -- 02-meefunblog/` is empty, so `5c06245` discarded all of `16d0e3c` (editorial `mf-` classes, visible PageList nav, `?v=2`) and `1775126` (Featured Story, Label1 and PopularPosts2 sidebar, legacy HTML2/3/5 hidden). The `#HTML6` TOC code it appeared to add already existed.
+2. **Restore:** `02-meefunblog/01-theme-staging.xml` and `02-meefunblog/03-theme.css` checked out from `1775126`.
+3. **Cache-buster:** both `03-theme.css` links in the staging XML changed from `?v=2` to `?v=3`, because the revert had served `?v=1` and a lower version could hit stale cache.
 
 ## Verification
 
-| Check                                               | Result                                     |
-| --------------------------------------------------- | ------------------------------------------ |
-| `node scripts/node/build-index.mjs --check`         | pass after this report's changes (see log) |
-| Staging blog render (Thai post, mobile tables, TOC) | skipped — not verified in this session     |
+| Check | Result |
+| --- | --- |
+| `git diff --ignore-cr-at-eol 1775126 -- 02-meefunblog/` | only the two `?v=3` lines and `INDEX.md` differ |
+| `grep -c 'theme.css?v=3' 02-meefunblog/01-theme-staging.xml` | 2 |
+| `node scripts/node/build-index.mjs --check` | pass (see log) |
+| Staging blog render (Featured Story, sidebar, nav, Thai post) | skipped — owner must paste the XML into the staging blog |
 
 ## Open Items
 
-- Verify on the staging blog with `02-meefunblog/02-staging-post.html`, then promote the CSS to `01-meeprompt/01-theme.css` per `docs/01-runbooks/01-01-theme-release.md` — owner decides.
-- `02-meefunblog/INDEX.md` had uncommitted changes before this session; regenerated here.
+- Owner: upload `02-meefunblog/01-theme-staging.xml` to the staging blog and confirm the layout, then decide on promotion per `docs/01-runbooks/01-01-theme-release.md`.
+- Find what rewrote the file with CRLF and old content, likely an agent or editor saving a stale Blogger export, before it happens again.
