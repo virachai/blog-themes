@@ -333,3 +333,6 @@ function autoGenTocv11() {
   document.querySelectorAll('a, span').forEach(e => { if (e.children.length === 0 && /^\s*Show 9\+ more\s*$/.test(e.textContent)) e.textContent = 'ดูทั้งหมด'; });
   document.querySelectorAll('.Attribution .copyright, .copyright').forEach(e => { e.textContent = e.textContent.replace(/20\d\d/, String(new Date().getFullYear())); });
 })();
+
+/* ---------- Static pages (/p/...): mark the body so CSS can drop post-only details ---------- */
+if (location.pathname.startsWith('/p/')) document.body.classList.add('page-view');

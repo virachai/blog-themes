@@ -641,3 +641,6 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
 #HTML3 .mp-menu-list a { color: #fdfdfd; font-weight: 500; font-size: 0.95rem; text-decoration: none; }
 #HTML3 .mp-menu-list a:hover { text-decoration: underline; }
 #HTML3 .mp-menu-title { font-size: 1.125rem; margin: 0 0 0.4em; color: #fdfdfd; }
+
+/* Static pages carry no author or date line. */
+body.page-view .Blog .post-header { display: none; }
