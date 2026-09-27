@@ -720,3 +720,8 @@ body.page-view .Blog .post-header { display: none; }
 .item-view .post-body.entry-content.float-container > .separator:has(+ .mp-caption) { padding-bottom: 0; }
 .item-view .post-body > .separator:has(+ .mp-caption) img { display: block; width: 100%; }
 .item-view .post-body > .separator + .mp-caption { margin-top: 0.6em; }
+
+/* Lead-image credit moved to the end of the post, so the first text Blogger reads is the summary. */
+.item-view .post-body .mp-credits { margin: 2em 0 0; padding-top: 0.8em; border-top: 1px solid var(--mp-border); font-family: var(--mp-font-ui); font-size: 0.8125rem; color: var(--mp-muted); }
+.item-view .post-body > .separator:first-child:not(:has(+ .mp-caption)) { padding-bottom: 0; margin-bottom: 1.2em; }
+.item-view .post-body > .separator:first-child img { display: block; width: 100%; }

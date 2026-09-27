@@ -3,7 +3,7 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-27.5' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-28.6' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
@@ -27,6 +27,10 @@
       <!-- <link as='image' href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHTiORdCsMwc_809jgShlgXZVrwmPAhs5HxRq6NM0GxSjK_4dw0oFiOb7lcXUQrNsjv1iZogLEkPfyWauYmb3QFby_GgHQrlPGDE4WCumKY3PoO_hp8mUuG8cwsbltWxM_2ujrYA8MoVcAvZDnHLxBvN65ww1oqQU9D1criZue8bEoN9ssFFYODMX3L5k/s1600/Lipstick_1266x.webp' rel='preload'/> -->
       <link as='image' href='https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg' rel='preload'/>
       <meta content='ร่วมเดินทางไปกับ MeePrompt' name='description'/>
+    </b:if>
+    <!-- Posts and pages: server-side meta description. Blogger fills data:view.description from the Search description, or from the first text of the post when there is none (Post via email). -->
+    <b:if cond='data:view.isSingleItem'>
+      <meta expr:content='data:view.description.escaped' name='description'/>
     </b:if>
     
     <!--  2022 End -->

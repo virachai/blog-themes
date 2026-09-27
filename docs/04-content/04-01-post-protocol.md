@@ -30,8 +30,8 @@ Write `#0001` anywhere in the body text. `05-theme.js` reads the blog feed and r
 
 ## 4. Body structure
 
-1. Lead image: `<div class="separator"><img ...></div>` then `<p class="mp-caption">ภาพ: {photographer} / Pexels</p>`.
-2. `<div class="mp-summary">` with a 1–2 sentence summary. With email posting there is no search description, so Google and the home-page card use this first text.
+1. Lead image with **no caption**: `<div class="separator"><img ...></div>`. Its credit goes at the very end of the post: `<p class="mp-credits">ภาพนำ: {photographer} / Pexels</p>`.
+2. `<div class="mp-summary">` with a 1–2 sentence summary (about 150 characters). It must be the **first text** in the body: with email posting there is no Search description, so Blogger builds the meta description, the og:description and the home-page card snippet from this text (theme build .6 outputs `data:view.description` as `<meta name="description">`).
 3. Intro paragraph, then `<div id="toc_container"><h2>สารบัญ</h2></div>`.
 4. `<h2 title="{short TOC label}">` sections, optional `<h3>`, images with captions, `mp-note` / `mp-evidence` boxes.
 5. Images come from Pexels, are stored in `02-meefunblog/11-images/` with credits in its README, and are linked from GitHub Pages.
@@ -39,7 +39,7 @@ Write `#0001` anywhere in the body text. `05-theme.js` reads the blog feed and r
 
 ## 5. After publishing (Blogger editor, a few minutes)
 
-Email posting cannot set these, so add them afterwards if possible: labels, and a search description (the summary sentence). Then ask for a CDP check of the post URL at 390px and 1366px.
+Email posting cannot set labels or a Search description. The description is covered by rule 4.2; add labels afterwards in the editor if possible. Then ask for a CDP check of the post URL at 390px and 1366px.
 
 ## Post register
 
