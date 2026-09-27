@@ -697,3 +697,13 @@ body.page-view .Blog .post-header { display: none; }
 .item-view .post-body .mp-profile-links a { display: inline-block; padding: 0.3em 0.85em; border: 1px solid var(--mp-border); border-radius: 999px; background: var(--mp-surface); color: var(--mp-text); font-family: var(--mp-font-ui); font-size: 0.9rem; text-decoration: none; }
 .item-view .post-body .mp-profile-links a:hover { border-color: var(--mp-accent); color: var(--mp-accent); }
 .item-view .post-body .mp-contact-mail { text-align: center; margin: 0 0 1.4em; }
+
+/* Static pages render the title as h2 (posts use h1); match the post title scale. */
+.item-view .Blog h2.post-title {
+  font-family: var(--mp-font-ui);
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--mp-text);
+  margin: 0.1em 0 0.35em;
+}
