@@ -5436,13 +5436,13 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
           <!--
           <div class='jump-link flat-button ripple' style='max-width:107px;inline-size:107px;overflow:hidden;max-height:34px;white-space:nowrap;text-overflow:ellipsis;'>
             <a expr:href='data:post.hasJumpLink ? data:post.url fragment &quot;more&quot; : data:post.url' expr:title='data:post.title'>
-              <data:blog.jumpLinkMessage/> <span style='color:#000;background-color:#fff;margin-left:8px'><data:post.title/></span>
+              <data:blog.jumpLinkMessage/> <span style='color:#000;background-color:#fff;margin-left:16px'><data:post.title/></span>
             </a>
           </div>
 		  -->
           <div class='jump-link flat-button ripple'>
             <a expr:aria-label='data:post.title' expr:href='data:post.hasJumpLink ? data:post.url fragment &quot;more&quot; : data:post.url' expr:title='data:post.title'>
-              <data:blog.jumpLinkMessage/> <span style='color:#000;background-color:#fff;margin-left:8px'><data:post.title/></span>
+              <data:blog.jumpLinkMessage/> <span style='color:#000;background-color:#fff;margin-left:16px'><data:post.title/></span>
             </a>
           </div>
 
