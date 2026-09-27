@@ -165,3 +165,27 @@
 .mp-button:focus-visible { filter: brightness(1.08); }
 
 .mp-button:focus-visible { outline: 3px solid var(--mp-accent); outline-offset: 3px; }
+
+/* Box labels drawn by CSS, so Blogger's auto snippet (og:description) starts with the real summary text.
+   Older posts that still contain <p class="mp-label"> keep their own label. */
+.mp-summary:not(:has(> .mp-label))::before,
+.mp-evidence:not(:has(> .mp-label))::before {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.3em;
+}
+.mp-summary:not(:has(> .mp-label))::before { content: "สรุปสั้น"; color: var(--mp-accent); }
+.mp-evidence:not(:has(> .mp-label))::before { content: "ทดสอบจริง"; color: var(--mp-evidence); }
+
+/* Figures: full content width, caption underneath. */
+.item-view .post-body .mp-figure { margin: 0 0 1.5em; }
+.item-view .post-body .mp-figure img { display: block; width: 100%; height: auto; }
+.item-view .post-body .mp-figure figcaption {
+  color: var(--mp-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-top: 0.5em;
+  text-align: center;
+}
