@@ -7,7 +7,7 @@ Guidance for coding agents working in this repository.
 Static CSS and Blogger theme XML for the owner's Blogger blogs, served as-is by GitHub Pages (`https://virachai.github.io/blog-themes/...`, `.nojekyll`). Live Blogger themes `<link>` to stylesheets here, so a pushed commit changes live sites within ~10 minutes (`Cache-Control: max-age=600`; bump `?v=` in the theme XML for immediate effect). The repo is public.
 
 - `01-meeprompt/` — live blog (Mee Prompt): `01-theme.css`, `02-theme-v2.xml`, backup XML.
-- `02-meefunblog/` — staging blog: `01-theme-staging.xml`, `02-staging-post.html` (test post), `03-theme.css`.
+- `02-meefunblog/` — staging blog: `01-theme-staging.xml`, `02-staging-post.html` (test post), `03-theme.css` (overrides, loaded last), `04-theme-base.css` (all CSS moved out of the XML), `05-theme.js` (theme scripts moved out of the XML).
 - `03-lipscode/` — backup only.
 - `docs/` — `00-governance/` (naming rules), `01-runbooks/` (theme release).
 - `scripts/node/build-index.mjs` — generates every `INDEX.md` and enforces structure.

@@ -3,12 +3,13 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-27.3' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-27.4' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=5' rel='stylesheet'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/04-theme-base.css?v=3' rel='stylesheet'/>
+    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6' rel='stylesheet'/>
+    <link href='https://virachai.github.io/blog-themes/02-meefunblog/04-theme-base.css?v=4' rel='stylesheet'/>
+    <script defer='defer' src='https://virachai.github.io/blog-themes/02-meefunblog/05-theme.js?v=1'></script>
     <meta content='F269D94506B7CDB4BFE29ACA40036431' name='msvalidate.01'/>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- 2023 Update -->
@@ -16,30 +17,7 @@
     <!-- <link as='script' href='https://www.googletagmanager.com/gtag/js?id=G-LS7XPQQD6B' rel='preload'/> -->
     <!-- 2022 Update -->
     <!-- Styles moved to 02-meefunblog/04-theme-base.css -->
-    <script>
-      /*
-      let toc_list = document.querySelector(&quot;#toc_container &gt; ul&quot;) || document.querySelector(&quot;#toc_container &gt; ol&quot;) || false;
-      let clone = toc_list.cloneNode(true);
-      document.querySelector(&quot;#HTML5 .widget-content&quot;).appendChild(clone); 
-      */
-    (() =&gt; {
-      const ff = document.querySelectorAll(&quot;style&quot;)[0];
-      if(!ff) return;
-      ff.innerHTML = (ff.innerHTML+&#39;&#39;).replaceAll(&quot;font-family:&#39;Roboto&#39;;&quot;, &quot;format(&#39;woff2&#39;);font-display:swap;&quot;);
-     })();
-      
-(() =&gt; {
-/*let widgetsCount = 0;
-let widgets = setInterval(() =&gt; {
-let elm = document.querySelector(&quot;script[src=&#39;https://www.blogger.com/static/v1/widgets/1221747029-widgets.js&#39;]&quot;);
-if(++widgetsCount &gt; 100 || elm){
-if(elm) elm.parentNode.removeChild(elm);
-clearInterval(widgets);
-console.log(widgetsCount);
-}
-}, 100);*/
-})();
-    </script>
+    <!-- Removed: a script that rewrote the first <style> (Roboto -> font-display). It was a no-op once the head <style> moved out, and deferred it would break Blogger's @font-face. -->
     <b:if cond='data:view.isHomepage'>
       <!-- Hide Hero Section -->
       <!-- Styles moved to 02-meefunblog/04-theme-base.css (home page, body.home-view) -->
@@ -103,17 +81,7 @@ console.log(widgetsCount);
     <!-- <meta content='width=device-width, initial-scale=1.0' name='viewport'/> -->
        
     <b:include data='blog' name='all-head-content'/>
-<script>
-  (() =&gt; {
-    if (document.querySelector(&quot;meta[name=&#39;description&#39;]&quot;)) return;
-    const desc = document.querySelector(&quot;meta[property=&#39;og:description&#39;]&quot;);
-    if (!desc) return;
-    let clone = desc.cloneNode(true);
-    clone.setAttribute(&quot;name&quot;, &quot;description&quot;);
-    clone.removeAttribute(&quot;property&quot;);
-    document.querySelector(&quot;head&quot;).appendChild(clone);
-  })();
-</script>
+<!-- Script moved to 02-meefunblog/05-theme.js (head: meta description fallback) -->
     <!-- <include expiration='7d' path='**favicon-32x32.png'/> -->
     <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLU8nAHh2T13oOlJrmbuvgDwXAo7GAV9K1KRBOllFHBmZzCksFg1v4f0GwIx3zg7sUXx1DCfEl2MOfr3SOLUyO_mCvBjqd9Bx3r29ux65MjL8QaA3CQ5GHQujr0wf2wd_nya2_DYowQ8ZkG9xXEnwzRlVP5RTnvNyQhRvUeWKrqIQX2sTVfv17YYiZ-Jc/s1600/apple-touch-icon.png' rel='apple-touch-icon' sizes='57x57'/>
     <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLU8nAHh2T13oOlJrmbuvgDwXAo7GAV9K1KRBOllFHBmZzCksFg1v4f0GwIx3zg7sUXx1DCfEl2MOfr3SOLUyO_mCvBjqd9Bx3r29ux65MjL8QaA3CQ5GHQujr0wf2wd_nya2_DYowQ8ZkG9xXEnwzRlVP5RTnvNyQhRvUeWKrqIQX2sTVfv17YYiZ-Jc/s1600/apple-touch-icon.png' rel='apple-touch-icon' sizes='60x60'/>
@@ -2839,100 +2807,7 @@ console.log(widgetsCount);
               </b:widget>
               <b:widget id='HTML1' locked='false' title='JS101' type='HTML' visible='true'>
                 <b:widget-settings>
-                  <b:widget-setting name='content'><![CDATA[<script>
-window.addEventListener("load", () => {
-
-const heroUpdate = () => {
-    try {
-        const bd = document.querySelector('body');
-        const bodyWidth = bd.offsetWidth;
-        const scrWidth = screen.width;
-        const diffWidth = Math.abs(bodyWidth - scrWidth);
-        const elmHero = document.querySelector(".hero-image");
-        elmHero.classList.add("hero-image-mobile");
-        if(diffWidth > 10) elmHero.classList.remove("hero-image-mobile");
-    }
-    catch(err) {console.log(err);}
-}
-heroUpdate();
-
-const menu = document.querySelector(".svg-icon-24-button.hamburger-menu");
-//console.log(menu);
-menu.setAttribute("id","hamburgerMenuId");
-menu.setAttribute("aria-label","hamburgerMenuName");
-
-if(!document.querySelector('.page_body h3.post-title.entry-title a')){
-let pstitle = document.querySelector('.page_body h3.post-title.entry-title');
-if(pstitle) pstitle.outerHTML = '<h2 class="post-title entry-title">' + pstitle.innerHTML + '</h2>';
-}
-});
-                    
-// 2024-01-17             
-const heroGetpinned = () => {
-    try {
-        const heroSticky = document.querySelector('.hero-sticky-pinned');
-        if(!heroSticky) return;        
-		const observer = new IntersectionObserver( 
-        	([e]) => document.querySelector('#HTML3').classList.toggle("set-sticky", e.intersectionRatio < 1),{ threshold: [1] }
-        );
-		observer.observe(heroSticky);	
-    }
-    catch(err) {console.log(err);}
-}
-heroGetpinned();
-
-const tocGetpinned = () => {
-    try {
-		const tocSticky = document.querySelector('#toc_sticky');
-        if(!tocSticky) return;
-
-		let callback = (entries, observer) => {
-			const rect = tocSticky.getBoundingClientRect();
-
- 			if(rect.top.toFixed()*1 > 0){
-				document.querySelector('#HTML5').classList.add("on-sticky");
-				document.querySelector('#HTML5').classList.toggle("on-sticky");
-				return;
-			}
-			document.querySelector('#HTML5').classList.toggle("on-sticky");
-		};
-
-		const observer = new IntersectionObserver(callback, { threshold: [1] });
-
-		observer.observe(tocSticky);
-        
-    }
-    catch(err) {console.log(err);}
-}
-tocGetpinned();
-
-const buttonGetpinned = () => {
-    try {
-		const tocSticky = document.querySelector('#HTML7');
-        if(!tocSticky) return;
-    
- 		const rect = tocSticky.getBoundingClientRect();
-		let callback = (entries, observer) => {
-			const rect = tocSticky.getBoundingClientRect();
-			//console.log(rect.top.toFixed());
- 			if(rect.top.toFixed()*1 > 0){
-				document.querySelector('#HTML6').classList.add("on-sticky");
-				document.querySelector('#HTML6').classList.toggle("on-sticky");
-				return;
-			}
-			document.querySelector('#HTML6').classList.toggle("on-sticky");
-		};
-
-		const observer = new IntersectionObserver(callback, { threshold: [1] });
-
-		observer.observe(tocSticky);
-        
-    }
-    catch(err) {console.log(err);}
-}
-buttonGetpinned();
-                    
-</script>
+                  <b:widget-setting name='content'><![CDATA[<!-- Script moved to 02-meefunblog/05-theme.js (HTML1 widget "JS101") -->
 <!-- Styles moved to 02-meefunblog/04-theme-base.css (HTML1 widget content) -->]]></b:widget-setting>
                 </b:widget-settings>
                 <b:includable id='main'>
@@ -3687,226 +3562,7 @@ head.appendChild(script);
 <div class='dim-overlay hidden' id='subscribe-dim-overlay' style='display:none'/>
 <!-- <div class="dim-overlay hidden"></div> -->
 <!-- Styles moved to 02-meefunblog/04-theme-base.css (end of <body>) -->
-<script>
-const hamburger = document.querySelector(&quot;.hamburger-menu&quot;)
-if(hamburger !== null){
-  
-  hamburger.addEventListener(&quot;click&quot;, function() {
-  	document.querySelector(&quot;aside&quot;).classList.toggle(&quot;sidebar-invisible&quot;);
-  	document.querySelector(&quot;body&quot;).classList.toggle(&quot;sidebar-visible&quot;); 
-  	document.querySelector(&quot;aside&quot;).classList.toggle(&quot;sidebar-visible&quot;);
-  	document.querySelector(&quot;#subscribe-dim-overlay&quot;).classList.toggle(&quot;hidden&quot;);
-  	document.querySelector(&quot;.header-widget&quot;).classList.toggle(&quot;hidden&quot;);
-  document.querySelector(&quot;div.centered-top&quot;).classList.toggle(&quot;hidden&quot;);
-  //centered-top
-  });
-}
-  
-const hiddenOverlay = document.querySelector(&quot;#subscribe-dim-overlay&quot;)
-if(hiddenOverlay !== null){
-  hiddenOverlay.addEventListener(&quot;click&quot;, function() {
-  	hamburger.click();
-  });
-}
-  
-const sidebarBack = document.querySelector(&quot;.sidebar-back&quot;);
-if(sidebarBack !== null){
-  sidebarBack.addEventListener(&quot;click&quot;, function() {
-  	hamburger.click();
-  });
-}  
-
-const searchBt = document.querySelector(&quot;button.touch-icon-button&quot;);
-const searchSection = document.querySelector(&quot;div.search&quot;);
-if(searchBt !== null){
-  searchBt.addEventListener(&quot;click&quot;, function() {
-  	if(searchSection !== null) searchSection.classList.add(&quot;focused&quot;);
-  });
-}
-
-//page_body
-const pageBody = document.querySelector(&quot;button.search-cancel&quot;);
-if(pageBody !== null){
-  pageBody.addEventListener(&quot;click&quot;, function() {
-  	if(searchSection !== null) searchSection.classList.remove(&quot;focused&quot;);
-  });
-}
-
-//window.addEventListener(&#39;DOMContentLoaded&#39;, (event) =&gt; {
-//console.log(&#39;DOM fully loaded and parsed&#39;);
-//});
-const tocBtnShow = () =&gt; {  
-  const elmTocBtn = document.querySelector(&quot;a.float-button.show_toc_section&quot;);
-  if(!elmTocBtn) return;
-  
-  //if(!elmTocBtnClose) return;
-  
-  const handleclick = (event) =&gt; {
-
-  	const tocBottomContainer = document.querySelector(&quot;.toc-bottom-container&quot;);
-  	if(tocBottomContainer) {
- 		tocBottomContainer.classList.add(&quot;section-display-m&quot;);
-  		//console.log(event.target.closest(&quot;div.float-button-link&quot;));
-  		if(event.target.closest(&quot;div.float-button-link&quot;)) {
-  			const elmTocBtnClose = document.querySelector(&quot;#HTML6 .toc-bottom-container.section-display-m .close-button button&quot;);
-  			elmTocBtnClose.onclick = handleclick; 
-  			//console.log(elmTocBtnClose);
-  		}
-  	};
-  	
-  	if(event.target.closest(&quot;.close-button&quot;)) {
-  		tocBottomContainer.classList.add(&quot;section-display-m&quot;);
-  		if( event.target.closest(&quot;.close-button&quot;) ) { 
-  			tocBottomContainer.classList.remove(&quot;section-display-m&quot;);
-  		}
-  	}
-  	//alert(event.target.tagName);
-  	event.preventDefault();
-  }
-  
-  if (typeof window.addEventListener != &quot;undefined&quot;) {
-    elmTocBtn.addEventListener(&quot;click&quot;, handleclick, false);
-  	//elmTocBtnClose.addEventListener(&quot;click&quot;, handleclick, false);
-  } else {
-  	elmTocBtn.attachEvent(&quot;onclick&quot;, handleclick);
-  	//elmTocBtnClose.attachEvent(&quot;onclick&quot;, handleclick);
-  }
-  
-  //Copy Toc to Element
-  (() =&gt; {
-  	const toc_list = document.querySelector(&quot;#toc_container &gt; ul&quot;) || document.querySelector(&quot;#toc_container &gt; ol&quot;) || false;
-  	
-  	if(!toc_list) return;
-  
-    let cloneR = toc_list.cloneNode(true);
-  	let cloneB = toc_list.cloneNode(true);
-    
-  	const toc_right = document.querySelector(&quot;#HTML5 .widget-content&quot;);
-  	
-  	if(!toc_right) return;
-  
-  	toc_right.innerHTML = &quot;&quot;;
-  	toc_right.appendChild(cloneR);
-  	//console.log(clone);
-  
-  	const toc_bottom = document.querySelector(&quot;#HTML6 .toc-bottom-list&quot;);
-  	if(!toc_bottom) return;
-  	toc_bottom.innerHTML = &quot;&quot;;
-  	toc_bottom.appendChild(cloneB);
-  })()
-}
-
-window.onload = (event) =&gt; {
-
-//actionNewsByNo();
-//viewLottoNews(); 
-autoGenTocv11();
-tocBtnShow();
-  
-const thumbnailImg = document.querySelectorAll(&#39;.post-body .snippet-thumbnail img&#39;);
-if(1)
-if(thumbnailImg !== null){
-  thumbnailImg.forEach(element =&gt; {
-  	//const pw = element.parentElement.clientWidth + &#39;px&#39;;
-  	//const ph = element.parentElement.clientHeight + &#39;px&#39;;
-  	//element.setAttribute(&#39;width&#39;, pw);
-  	//element.setAttribute(&#39;height&#39;, ph);
-    element.setAttribute(&#39;width&#39;, &#39;100%&#39;);
-    element.setAttribute(&#39;height&#39;, &#39;100%&#39;);
-  	//parentElement
-  	element.setAttribute(&#39;loading&#39;, &#39;lazy&#39;);
-  	element.setAttribute(&#39;class&#39;, &#39;lazy&#39;);
-  	//element.setAttribute(&#39;srcset&#39;, `${element.src.replace(&#39;w512-h288&#39;, &#39;w360-h203&#39;)} 370w, ${element.src} 2560w`);
-  	//element.setAttribute(&#39;srcset&#39;, `${element.src.replace(&#39;w460-h260&#39;, &#39;w360-h203&#39;).replace(&#39;w512-h288&#39;, &#39;w360-h203&#39;)} 370w, ${element.src} 2560w`);
-  });
-}
-
-
-document.querySelector(&quot;#subscribe-dim-overlay&quot;).style = &#39;&#39;;
-document.querySelector(&#39;.header-image-wrapper img&#39;).setAttribute(&quot;height&quot;, &quot;34.8&quot;);
-document.querySelector(&#39;.header-image-wrapper img&#39;).setAttribute(&quot;width&quot;, &quot;40&quot;);
-
-};
-  
-function autoGenTocv11() {
-  const toc = document.querySelector(&quot;#toc_container&quot;);
-  if (!toc) return;
-
-  const tocH2 = toc.querySelector(&quot;h2&quot;);
-  if (!tocH2) return;
-
-  // Create an empty unordered list for the TOC
-  const tocList = document.createElement(&quot;ol&quot;);
-  tocList.setAttribute(&quot;id&quot;, &quot;toc_ol&quot;);
-
-  let headings = toc.nextElementSibling;
-  const h2list = [];
-
-  let h2no = 0;
-  let h3no = 0;
-  let subList = null;
-  // Loop through each heading
-  while (headings) {
-    let tag = headings.nodeName;
-    if (tag != &quot;H2&quot; &amp;&amp; tag != &quot;H3&quot;) {
-      headings = headings.nextElementSibling;
-      continue;
-    }   
-    
-    if (tag == &quot;H2&quot;){ 
-      h3no = 0;
-      h2no++;
-    } else if (tag == &quot;H3&quot;){ 
-      h3no++;    
-    }
-    
-    let idElem = headings.getAttribute(&quot;id&quot;) || `toc_${h2no}_${h3no}`;
-    if(!idElem) return;
-  
-    headings.setAttribute(&quot;id&quot;, idElem);
-
-    item = document.createElement(&quot;li&quot;);        
-    link = document.createElement(&quot;a&quot;);
-    link.textContent = headings.getAttribute(&quot;title&quot;) || headings.textContent || idElem;
-    link.setAttribute(&quot;href&quot;, &quot;#&quot; + idElem);
-    item.appendChild(link);
-
-    if(tag == &quot;H3&quot;) {
-      !subList &amp;&amp; (subList = document.createElement(&quot;ul&quot;));
-      subList.appendChild(item);
-      if(h2list) {
-        let temp = h2list.pop();
-        if(temp.length &gt; 1) {
-          temp.removeChild(temp.children[1]);
-        }
-        temp.appendChild(subList);
-        h2list.push(temp);
-      }
-    }
-    if (tag == &quot;H2&quot;){
-      h2list.push(item);
-      subList = null;
-    }
-    
-    previousSibling = headings;
-    headings = headings.nextElementSibling;
-  }
-  
-  const tocOl = toc.querySelector(&quot;ol&quot;);
-  if (tocOl != null) return;
- 
-  const tocUl = toc.querySelector(&quot;ul&quot;);
-  if (tocUl != null) return;
-  
-  h2list.forEach((itm) =&gt; {
-    tocList.appendChild(itm);
-  });
-
-  if (tocH2 &amp;&amp; tocH2.parentNode) {
-    tocH2.parentNode.insertBefore(tocList, tocH2.nextSibling);
-  }
-}
-</script>  
-<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=5' rel='stylesheet'/>
+<!-- Script moved to 02-meefunblog/05-theme.js (end of <body>) -->  
+<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6' rel='stylesheet'/>
   </body>
 </html>
