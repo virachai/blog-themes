@@ -1,0 +1,36 @@
+.DS_Store
+.env
+*.tmp
+research/raw/
+products/exports/*.zip
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+
+# local env files
+.env
+.env.local
+
+# editor / tooling
+.vscode/
+.serena/
+.DS_Store
+
+# Claude Code personal instructions (not shared)
+CLAUDE.local.md
+
+# run artifacts
+screenshot.png
+*.screenshot.png
+logs/*.jsonl
+npm-debug.log*
+
+# My personal agent runs and data
+.agent-runs/
+.agents/
+.claude/
+.tmp/
+.vscode/
+artifacts/
