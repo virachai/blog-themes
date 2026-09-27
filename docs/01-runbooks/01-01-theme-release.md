@@ -6,7 +6,7 @@ Every theme or stylesheet change goes to the staging blog first, then to the liv
 
 ## 1. Prepare
 
-1. Edit the stylesheet or theme XML.
+1. Edit the **staging** files only: [02-meefunblog/03-theme.css](../../02-meefunblog/03-theme.css) or the staging theme XML.
 2. Run `node scripts/node/build-index.mjs`, then `node scripts/node/build-index.mjs --check` (must print `STRUCTURE-CHECK: PASS`).
 3. Commit and push. Wait about a minute for GitHub Pages, then open the stylesheet URL and confirm it shows CSS, not a 404.
 
@@ -20,12 +20,12 @@ Every theme or stylesheet change goes to the staging blog first, then to the liv
    - The wide table scrolls sideways on the phone; the page itself does not.
    - `mp-summary`, `mp-evidence`, `mp-note` and `mp-cta` render with their colours; the button is readable.
    - Header, sidebar and home page look as before.
-   - View source: `noindex,nofollow` and the `01-theme.css` link are present.
+   - View source: `noindex,nofollow` and the `02-meefunblog/03-theme.css` link are present.
 
 ## 3. Live (Mee Prompt)
 
-1. Blogger → Mee Prompt → Theme → **Backup**.
-2. **Restore** [01-meeprompt/02-theme-v2.xml](../../01-meeprompt/02-theme-v2.xml).
+1. CSS change: copy the body of `02-meefunblog/03-theme.css` into `01-meeprompt/01-theme.css` (keep its first comment line), run the checks, commit and push.
+2. Theme XML change (first rollout or later): Blogger → Mee Prompt → Theme → **Backup**, then **Restore** [01-meeprompt/02-theme-v2.xml](../../01-meeprompt/02-theme-v2.xml).
 3. Open the home page and one post; repeat the checks from step 2.4 (without noindex).
 
 ## Rollback

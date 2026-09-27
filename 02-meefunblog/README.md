@@ -6,5 +6,6 @@
 | :-- | :-- |
 | [01-theme-staging.xml](01-theme-staging.xml) | Mee Prompt theme v2 with meefunblog URLs, `noindex,nofollow` and a `[STAGING]` title prefix |
 | [02-staging-post.html](02-staging-post.html) | Test post using every `mp-` component, a wide table, code and Thai text |
+| [03-theme.css](03-theme.css) | Staging stylesheet. Edit CSS here first; once it passes, copy it to [../01-meeprompt/01-theme.css](../01-meeprompt/01-theme.css) (keep that file's first comment line) |
 
-It loads the Mee Prompt stylesheet ([../01-meeprompt/01-theme.css](../01-meeprompt/01-theme.css)), so no copy is kept here. The release procedure is in [docs/01-runbooks/01-01-theme-release.md](../docs/01-runbooks/01-01-theme-release.md).
+Staging has its own stylesheet so a CSS change can be tested without touching the live blog. The release procedure is in [docs/01-runbooks/01-01-theme-release.md](../docs/01-runbooks/01-01-theme-release.md).
