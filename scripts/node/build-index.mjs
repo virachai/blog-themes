@@ -25,7 +25,7 @@ const title = (path) => {
 
 function walk(dir) {
   const rel = relative(ROOT, dir).replaceAll('\\', '/') || '.';
-  const entries = readdirSync(dir, { withFileTypes: true }).filter((e) => !e.name.startsWith('.'));
+  const entries = readdirSync(dir, { withFileTypes: true }).filter((e) => !e.name.startsWith('.') && !(rel === 'logs' && e.name.endsWith('.jsonl'))); // logs/*.jsonl are gitignored
   const readme = join(dir, 'README.md');
   if (!existsSync(readme)) errors.push(`${rel}: missing README.md`);
   else if (!/^# \S/.test(readFileSync(readme, 'utf8'))) errors.push(`${rel}/README.md: must start with "# Title"`);
@@ -36,7 +36,7 @@ function walk(dir) {
   for (const e of entries) {
     if (SKIP.has(e.name)) continue;
     let pattern = null;
-    if (rel === '.' && e.isDirectory() && !['docs', 'scripts'].includes(e.name)) pattern = NUMBERED;
+    if (rel === '.' && e.isDirectory() && !['docs', 'logs', 'memory', 'scripts'].includes(e.name)) pattern = NUMBERED;
     else if (isBlogFolder && e.isFile()) pattern = NUMBERED;
     else if (rel === 'docs') pattern = e.isDirectory() ? NUMBERED : null;
     else if (docSection && e.isFile()) pattern = new RegExp(`^(${docSection[1]}-\\d{2})-[a-z0-9]+(?:-[a-z0-9]+)*\\.md$`);
