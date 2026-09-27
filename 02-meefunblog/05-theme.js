@@ -336,3 +336,29 @@ function autoGenTocv11() {
 
 /* ---------- Static pages (/p/...): mark the body so CSS can drop post-only details ---------- */
 if (location.pathname.startsWith('/p/')) document.body.classList.add('page-view');
+
+/* ---------- Send-prompt form (/p/form.html): validate, then post to Google Forms via a hidden iframe ---------- */
+(() => {
+  const form = document.getElementById('mp-prompt-form');
+  if (!form) return;
+  const $ = id => document.getElementById(id);
+  const phone = $('mp-form-phone'), prompt = $('mp-form-prompt'), mode = $('mp-form-mode'), count = $('mp-form-count');
+  const uuid = () => (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2));
+  const show = (el, on) => { el.hidden = !on; };
+  const syncCount = () => { count.textContent = prompt.value.length + ' / 1000'; };
+  const syncMode = () => { $('mp-form-mode-text').textContent = mode.checked ? 'รับบริจาคและขาย' : 'รับบริจาคเท่านั้น'; };
+  prompt.addEventListener('input', syncCount);
+  mode.addEventListener('change', syncMode);
+  phone.addEventListener('input', () => { phone.value = phone.value.replace(/\D/g, '').slice(0, 10); });
+  form.addEventListener('reset', () => setTimeout(() => { syncCount(); syncMode(); show($('mp-form-phone-err'), false); show($('mp-form-prompt-err'), false); }));
+  form.addEventListener('submit', e => {
+    const phoneOk = /^0\d{9}$/.test(phone.value.trim());
+    const promptOk = prompt.value.trim().length > 0;
+    show($('mp-form-phone-err'), !phoneOk);
+    show($('mp-form-prompt-err'), !promptOk);
+    if (!phoneOk || !promptOk) { e.preventDefault(); (phoneOk ? prompt : phone).focus(); return; }
+    $('mp-form-uuid').value = uuid();
+    form.querySelector('.mp-form-submit').disabled = true;
+    setTimeout(() => { form.hidden = true; show($('mp-form-done'), true); $('mp-form-done').scrollIntoView({ block: 'center' }); }, 800);
+  });
+})();

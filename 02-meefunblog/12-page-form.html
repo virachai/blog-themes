@@ -2,21 +2,41 @@
 <p class="mp-caption">ภาพ: Arina Krasnikova / Pexels</p>
 
 <div class="mp-summary">
-  <p>มี Prompt ที่ใช้ได้ผลจริงกับงานของคุณ ส่งมาแบ่งปันได้ Prompt ที่ผ่านการทดสอบจะลงเป็นบทความพร้อมเครดิตผู้ส่ง</p>
+  <p>ส่ง Prompt สำหรับสร้างภาพด้วย AI เพื่อจัดเก็บเข้าคลังกลางของ Mee Prompt Prompt ที่ผ่านการคัดเลือกจะเปิดให้คนอื่นใช้ต่อ</p>
 </div>
 
-<h2>สิ่งที่ควรส่งมา</h2>
-<ol>
-  <li><strong>งานที่ใช้:</strong> เช่น สรุปใบแจ้งหนี้ ตอบแชตลูกค้า เขียนโพสต์ขายของ</li>
-  <li><strong>Prompt:</strong> คัดลอกมาทั้งหมด ตัดข้อมูลลูกค้าหรือข้อมูลส่วนตัวออกก่อน</li>
-  <li><strong>เครื่องมือ AI:</strong> เช่น ChatGPT, Gemini, Claude</li>
-  <li><strong>ผลที่ได้:</strong> ประหยัดเวลาเท่าไร หรือตัวอย่างผลลัพธ์</li>
-</ol>
+<div class="mp-form-done" id="mp-form-done" hidden>ส่งข้อมูลเรียบร้อยแล้ว ขอบคุณที่ส่ง Prompt มาแบ่งปัน</div>
 
-<div class="mp-cta">
-  <p class="mp-cta-title">ส่งพรอมต์ของคุณ</p>
-  <p>กรอกแบบฟอร์มสั้น ๆ ใช้เวลาประมาณ 3 นาที</p>
-  <a class="mp-button" href="[GOOGLE_FORM_URL]">เปิดแบบฟอร์ม</a>
-</div>
+<form class="mp-form" id="mp-prompt-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfK4VF_F96rW3O8AKWYZqGGyqh11_Y17lete33eW8UBu9mg3g/formResponse" method="post" target="mp-form-sink" novalidate>
+  <input type="hidden" name="entry.1591525062" id="mp-form-uuid" value="">
 
-<div class="mp-note">ห้ามส่งรหัสผ่าน API key หรือข้อมูลลูกค้าจริงมาใน Prompt</div>
+  <div class="mp-field">
+    <label for="mp-form-phone">เบอร์พร้อมเพย์ <span class="mp-req">*</span></label>
+    <input type="tel" id="mp-form-phone" name="entry.616789277" inputmode="numeric" maxlength="10" pattern="0[0-9]{9}" placeholder="เช่น 0912345678" aria-describedby="mp-form-phone-err" required>
+    <p class="mp-field-err" id="mp-form-phone-err" hidden>กรอกเบอร์มือถือ 10 หลัก ขึ้นต้นด้วย 0</p>
+  </div>
+
+  <div class="mp-field">
+    <span class="mp-field-label">โหมด</span>
+    <label class="mp-switch">
+      <input type="checkbox" id="mp-form-mode" name="entry.318904958" value="true">
+      <span class="mp-switch-track" aria-hidden="true"></span>
+      <span class="mp-switch-text" id="mp-form-mode-text">รับบริจาคเท่านั้น</span>
+    </label>
+  </div>
+
+  <div class="mp-field">
+    <label for="mp-form-prompt">Prompt <span class="mp-req">*</span></label>
+    <textarea id="mp-form-prompt" name="entry.1496551128" rows="6" maxlength="1000" placeholder="อธิบายภาพที่ต้องการสร้าง" aria-describedby="mp-form-prompt-err mp-form-count" required></textarea>
+    <p class="mp-field-count" id="mp-form-count">0 / 1000</p>
+    <p class="mp-field-err" id="mp-form-prompt-err" hidden>กรอก Prompt ก่อนส่ง</p>
+  </div>
+
+  <div class="mp-form-actions">
+    <button type="submit" class="mp-form-submit">ส่ง Prompt</button>
+    <button type="reset" class="mp-form-reset">ล้างฟอร์ม</button>
+  </div>
+</form>
+<iframe name="mp-form-sink" title="ผลการส่งฟอร์ม" hidden></iframe>
+
+<div class="mp-note">ห้ามใส่รหัสผ่าน API key หรือข้อมูลลูกค้าจริงใน Prompt</div>
