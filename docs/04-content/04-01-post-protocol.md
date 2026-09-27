@@ -36,6 +36,11 @@ Write `#0001` anywhere in the body text. `05-theme.js` reads the blog feed and r
 4. `<h2 title="{short TOC label}">` sections, optional `<h3>`, images with captions, `mp-note` / `mp-evidence` boxes.
 5. Images come from Pexels, are stored in `02-meefunblog/11-images/` with credits in its README, and are linked from GitHub Pages.
 6. Facts that could harm a reader (health, pets, money) cite a source; never invent numbers.
+7. Evergreen by default: write so the post stays true and useful for years. No dates, "this year", prices, promotions or news hooks in the title, URL or summary. Put facts that will age in one clearly dated `mp-note` box so they are easy to update later.
+
+## 4a. Posts that earn no AdSense revenue
+
+A post that earns little or nothing is refreshed into evergreen content, not deleted. Keep its URL and post ID. Remove time-bound parts (news hooks, dates, prices), answer the lasting question behind the topic, and add links to related posts with `#NNNN`. Only change the text when it is actually improved; do not bump dates to fake freshness.
 
 ## 5. After publishing (Blogger editor, a few minutes)
 
