@@ -4,7 +4,7 @@ Every post follows these rules, whether it is created in the Blogger editor or s
 
 ## 1. Title: Thai first, English keywords in brackets
 
-```
+```textplain
 {Thai title} ({3–5 English keywords})
 ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (Low Light Condo Plants)
 ```
@@ -43,6 +43,6 @@ Email posting cannot set labels or a Search description. The description is cove
 
 ## Post register
 
-| ID | Title | Body file | URL |
-| --- | --- | --- | --- |
-| 0001 | ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (Low Light Condo Plants) | [13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) | https://meefunblog.blogspot.com/2026/09/3-0001.html (keep: Blogger does not change the URL when the title changes) |
+| ID   | Title                                                            | Body file                                                                  | URL                                                                                                                |
+| ---- | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 0001 | ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (Low Light Condo Plants) | [13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) | https://meefunblog.blogspot.com/2026/09/3-low-light-condo-plants.html (old /3-0001.html now 404) |

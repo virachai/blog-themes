@@ -763,3 +763,8 @@ body.page-view .Blog .blog-posts .post-outer-container { padding-top: 0; overflo
 .item-view .post-body > .separator.mp-banner,
 .item-view .post-body > .separator.mp-banner img,
 .item-view .post-body > .separator.mp-banner::after { border-radius: 16px 16px 0 0; }
+
+/* Lead image after the hidden ID marker (post protocol): same treatment as a first-child lead image. */
+.item-view .post-body > .mp-id { display: none; }
+.item-view .post-body.entry-content.float-container > .mp-id:first-child + .separator { padding-bottom: 0; margin-bottom: 1.2em; }
+.item-view .post-body > .mp-id:first-child + .separator img { display: block; width: 100%; border-radius: 0; }
