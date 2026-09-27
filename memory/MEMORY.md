@@ -4,3 +4,4 @@ One line per memory file: `- [slug](YYYYMMDD-HHMMSS-slug.md) — one-line descri
 
 - [hidden-widget-title-labels](20260927-222823-hidden-widget-title-labels.md) — HTML3 and HTML4 widget titles are editor-only labels and must stay hidden on the blog
 - [keep-layout-polish-details](20260927-223500-keep-layout-polish-details.md) — Keep the current Mee Prompt layout; improve only visual details, never redesign the structure
+- [design-reference-blockdit](20260927-230422-design-reference-blockdit.md) — The owner's design inspiration for Mee Prompt is Blockdit's discover page; borrow its card details, not its layout

@@ -17,6 +17,7 @@ Staging has its own stylesheet so a CSS change can be tested without touching th
   - Typefaces: IBM Plex Sans Thai for UI and headings, IBM Plex Sans Thai Looped for post body text, loaded by a Google Fonts `<link>` in the XML `<head>`. The base theme's `* { font-family: Lobster !important }` is removed from `04-theme-base.css` (Lobster never loaded; the rule only forced the fallback).
   - Colour: links, read-more and the CTA button use `--mp-accent` #a3281f (the page red deepened, 7.3:1 on white) instead of three different blues; focus rings use the logo orange.
   - Post text: the base `.post-body.entry-content * { font-size: 15px; color: #000 }` is removed from `04-theme-base.css`, so paragraphs and lists are 17px in `--mp-text`; blockquotes no longer use the skin's centred x-large italic.
+  - Post cards on listing pages (Blockdit-inspired, approved 2026-09-27): image first, bold title clamped to 3 lines, author and date only, 2-line snippet, the whole card is the link and "Read more" is hidden; two cards per row below 800px. CSS only (`display: contents` + `order`).
   - Details: post title larger than its H2s, card titles 19px with Thai line-height, quieter byline without the colour-cycling author link, sentence-case "Read more", red-tinted card shadow, dark code blocks, no synthetic italics on Thai.
 - Moving theme CSS out of the XML (`04-theme-base.css`) is staging-only until verified.
 

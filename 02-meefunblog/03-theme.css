@@ -321,3 +321,112 @@
   .widget *::before,
   .widget *::after { transition: none !important; animation: none !important; }
 }
+
+/* ---------- Post cards on home, label, search and archive pages (Blockdit-style) ----------
+   Image first, bold clamped title, one compact meta row, the whole card is the link.
+   CSS only: .post-body is display:contents so the thumbnail becomes a flex item of .post. */
+
+body:not(.item-view) .Blog .blog-posts .post-outer-container {
+  overflow: hidden;              /* rounds the image corners with the card */
+  padding: 14px 16px 16px;
+  min-height: 0;                 /* base reserves 440px/345px; the 16:9 image now reserves its own space */
+}
+
+body:not(.item-view) .Blog .post {
+  display: flex;
+  flex-direction: column;
+}
+
+body:not(.item-view) .Blog .post > .post-body.entry-content { display: contents; }
+
+body:not(.item-view) .Blog .post .snippet-thumbnail {
+  order: -1;
+  margin: -14px -16px 12px;      /* flush with the card edges */
+  width: auto;
+  height: auto;                  /* the base theme fixes it at 56vw below 512px */
+  min-height: 0;
+  max-height: none;
+}
+
+body:not(.item-view) .Blog .post .snippet-thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+body:not(.item-view) .Blog .post > .post-title { order: 1; }
+body:not(.item-view) .Blog .post > .post-header { order: 2; }
+body:not(.item-view) .Blog .post .post-snippet { order: 3; }
+body:not(.item-view) .Blog .post > .post-bottom { display: none; }   /* "Read more": the card is the link now */
+
+body:not(.item-view) .Blog h3.post-title,
+body:not(.item-view) .Blog h3.post-title a {
+  font-weight: 700;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* Whole card clickable: the title link stretches over the card; other links stay on top. */
+body:not(.item-view) .Blog .post-outer { position: relative; }
+
+body:not(.item-view) .Blog h3.post-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+body:not(.item-view) .Blog .post-header a { position: relative; z-index: 1; }
+
+body:not(.item-view) .Blog .post-outer-container:has(h3.post-title a:focus-visible) {
+  outline: 3px solid var(--mp-highlight);
+  outline-offset: 3px;
+}
+
+body:not(.item-view) .Blog h3.post-title a:focus-visible { outline: none; }
+
+/* Meta: author name and date only, one quiet row. */
+body:not(.item-view) .Blog .post-header { margin-top: 0.35em; }
+body:not(.item-view) .Blog .post-author-label,
+body:not(.item-view) .Blog .post-timestamp .fa { display: none; }
+body:not(.item-view) .Blog .post-header .byline { font-size: 0.78rem; }
+
+/* Snippet: two lines, below the meta. */
+body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snippet-container > div.snippet-item {
+  padding-top: 0.5em;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Mobile: two cards per row, image and title only, like a discovery feed. */
+@media (max-width: 800px) {
+  body:not(.item-view) .Blog .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 0 10px;
+    align-items: start;
+  }
+
+  body:not(.item-view) .Blog .blog-posts .post-outer-container {
+    margin: 0;
+    padding: 10px 10px 12px;
+    border-radius: 14px;
+  }
+
+  body:not(.item-view) .Blog .post .snippet-thumbnail { margin: -10px -10px 10px; }
+
+  body:not(.item-view) .Blog h3.post-title,
+  body:not(.item-view) .Blog h3.post-title a {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  body:not(.item-view) .Blog .post-snippet,
+  body:not(.item-view) .Blog .post-timestamp { display: none; }
+}
