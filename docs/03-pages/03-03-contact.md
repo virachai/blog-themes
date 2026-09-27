@@ -4,7 +4,7 @@ Create in Blogger → meefunblog → **Pages** → **New page**.
 
 | Field | Enter |
 | --- | --- |
-| Title | `ติดต่อเรา` |
+| Title | `Contact Us (ติดต่อเรา) - Mee Prompt (มีพร้อม)` |
 | Permalink (Page settings → Permalink → Custom) | `contact` → URL `https://meefunblog.blogspot.com/p/contact.html` |
 | Body | Switch the editor to **HTML view**, paste the whole of [02-meefunblog/08-page-contact.html](../../02-meefunblog/08-page-contact.html) |
 | Search description (Page settings) | `ช่องทางติดต่อทีม Mee Prompt เรื่อง Prompt และ workflow AI` |

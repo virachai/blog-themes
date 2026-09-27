@@ -4,7 +4,7 @@ Create in Blogger → meefunblog → **Pages** → **New page**.
 
 | Field | Enter |
 | --- | --- |
-| Title | `นโยบายความเป็นส่วนตัว` |
+| Title | `Privacy Policy (นโยบายความเป็นส่วนตัว) - Mee Prompt (มีพร้อม)` |
 | Permalink (Page settings → Permalink → Custom) | `privacy` → URL `https://meefunblog.blogspot.com/p/privacy.html` |
 | Body | Switch the editor to **HTML view**, paste the whole of [02-meefunblog/10-page-privacy.html](../../02-meefunblog/10-page-privacy.html) |
 | Search description (Page settings) | `นโยบายความเป็นส่วนตัวของ Mee Prompt: Google Analytics, AdSense และคุกกี้` |

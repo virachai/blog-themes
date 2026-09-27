@@ -4,7 +4,7 @@ Create in Blogger → meefunblog → **Pages** → **New page**.
 
 | Field | Enter |
 | --- | --- |
-| Title | `หมวดหมู่` |
+| Title | `Categories (หมวดหมู่) - Mee Prompt (มีพร้อม)` |
 | Permalink (Page settings → Permalink → Custom) | `category` → URL `https://meefunblog.blogspot.com/p/category.html` |
 | Body | Switch the editor to **HTML view**, paste the whole of [02-meefunblog/06-page-category.html](../../02-meefunblog/06-page-category.html) |
 | Search description (Page settings) | `รวมบทความ Mee Prompt แยกตามหมวด: Prompt พร้อมใช้, Workflow อัตโนมัติ และเครื่องมือ AI` |

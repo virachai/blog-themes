@@ -4,7 +4,7 @@ Create in Blogger → meefunblog → **Pages** → **New page**.
 
 | Field | Enter |
 | --- | --- |
-| Title | `เกี่ยวกับเรา` |
+| Title | `About Us (เกี่ยวกับเรา) - Mee Prompt (มีพร้อม)` |
 | Permalink (Page settings → Permalink → Custom) | `about` → URL `https://meefunblog.blogspot.com/p/about.html` |
 | Body | Switch the editor to **HTML view**, paste the whole of [02-meefunblog/09-page-about.html](../../02-meefunblog/09-page-about.html) |
 | Search description (Page settings) | `Mee Prompt คือคลัง Prompt และ workflow AI ที่ทดสอบใช้งานจริง สำหรับเจ้าของธุรกิจและทีม SMB ไทย` |
