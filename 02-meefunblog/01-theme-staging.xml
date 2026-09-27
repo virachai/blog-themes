@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' lang='th' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-28.6' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-28.7' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6' rel='stylesheet'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/04-theme-base.css?v=4' rel='stylesheet'/>
-    <script defer='defer' src='https://virachai.github.io/blog-themes/02-meefunblog/05-theme.js?v=1'></script>
+    <!-- EXPERIMENT (staging): cache-busting ts param on theme CSS/JS. Revert = move the static tags out of <noscript>. -->
+    <script>//<![CDATA[
+(function(){var B='https://virachai.github.io/blog-themes/02-meefunblog/';var ts=window.__mpTs=Date.now();
+document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+'<link rel="stylesheet" href="'+B+'04-theme-base.css?v=4&ts='+ts+'">'+'<script defer src="'+B+'05-theme.js?v=1&ts='+ts+'"></script>');})();
+//]]></script>
+    <noscript>
+      <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6' rel='stylesheet'/>
+      <link href='https://virachai.github.io/blog-themes/02-meefunblog/04-theme-base.css?v=4' rel='stylesheet'/>
+      <script defer='defer' src='https://virachai.github.io/blog-themes/02-meefunblog/05-theme.js?v=1'></script>
+    </noscript>
     <meta content='F269D94506B7CDB4BFE29ACA40036431' name='msvalidate.01'/>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- 2023 Update -->
@@ -810,7 +817,7 @@
       <b:include cond='data:imagePlacement in {&quot;REPLACE&quot;, &quot;BEFORE_DESCRIPTION&quot;}' name='image'/>
       <b:include cond='data:imagePlacement not in {&quot;REPLACE&quot;, &quot;BEFORE_DESCRIPTION&quot;}' name='title'/>
       <b:include cond='data:imagePlacement != &quot;REPLACE&quot;' name='description'/>
-      <b:if cond='data:blog.pageType == &quot;item&quot;'>
+      <b:if cond='data:view.isSingleItem'>
       <a expr:href='data:blog.homepageUrl'><p style='font-size:40px;text-align:left;white-space:nowrap;padding:0;line-height:1;max-width:224px;overflow:hidden;margin-left:12px' title='MeePrompt'>MeePrompt Prompt Hub</p></a>
       <b:else/>
       <a expr:href='data:blog.homepageUrl'><h1 style='font-size:40px;text-align:left;white-space:nowrap;padding:0;line-height:1;max-width:224px;overflow:hidden;margin-left:12px' title='MeePrompt'>MeePrompt Prompt Hub</h1></a>
@@ -2173,7 +2180,7 @@
                     <b:includable id='postTitle' var='post'>
   <a expr:name='data:post.id'/>
   <b:if cond='data:post.title != &quot;&quot;'>
-    <b:if cond='data:blog.pageType == &quot;item&quot;'>
+    <b:if cond='data:view.isSingleItem'>
     <h1 class='post-title entry-title'>    
       <b:if cond='data:post.link or (data:post.url and data:view.url != data:post.url)'>
         <a expr:href='data:post.link ?: data:post.url'><data:post.title/></a>
@@ -3456,6 +3463,8 @@ head.appendChild(script);
 <!-- <div class="dim-overlay hidden"></div> -->
 <!-- Styles moved to 02-meefunblog/04-theme-base.css (end of <body>) -->
 <!-- Script moved to 02-meefunblog/05-theme.js (end of <body>) -->  
-<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6' rel='stylesheet'/>
+<script>//<![CDATA[
+document.write('<link rel="stylesheet" href="https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=6&ts='+(window.__mpTs||Date.now())+'">');
+//]]></script>
   </body>
 </html>

@@ -13,6 +13,10 @@
 
 Staging has its own stylesheet so a CSS change can be tested without touching the live blog. The release
 
+## Experiment: ts cache-busting (build .7)
+
+Build `meefun-staging 2026-09-28.7` loads 03/04/05 through a small head script that appends `&ts=Date.now()` (static tags kept in `<noscript>`). Baseline on build .6, post #0001, repeat visit: FCP 264 ms, theme assets 7 KB over the network (revalidated). Keep the experiment only if the repeat-visit numbers stay close; revert by moving the static tags out of `<noscript>` and deleting both `document.write` scripts.
+
 ## Changes waiting to be promoted to Mee Prompt
 
 - Detail polish (layout unchanged), build `meefun-staging 2026-09-27.3`:
