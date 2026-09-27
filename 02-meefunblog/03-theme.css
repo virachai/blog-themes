@@ -577,3 +577,57 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
 /* Footer: less dead space above and below the links. */
 .page_body .centered > #footer.footer.section { padding: 1.5rem 0 2rem; }
 #HTML4 hr { margin-top: 1.25rem; margin-bottom: 1.5rem; border-bottom-color: rgba(255, 255, 255, 0.3); }
+
+/* ---------- Static pages (category, tags, contact, about) ---------- */
+
+.item-view .post-body .mp-page-links { display: grid; gap: 10px; margin: 0 0 1.5em; }
+
+.item-view .post-body a.mp-page-card {
+  display: block;
+  padding: 0.9em 1.1em;
+  border: 1px solid var(--mp-border);
+  border-radius: var(--mp-radius);
+  background: #fff;
+  color: var(--mp-text);
+  text-decoration: none;
+}
+.item-view .post-body a.mp-page-card:hover { border-color: var(--mp-accent); color: var(--mp-text); }
+.item-view .post-body .mp-page-card strong { display: block; font-family: var(--mp-font-ui); font-size: 1.1rem; color: var(--mp-accent); }
+.item-view .post-body .mp-page-card span { display: block; font-size: 0.95rem; color: var(--mp-muted); line-height: 1.6; }
+
+.item-view .post-body .mp-tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 1.5em; }
+.item-view .post-body .mp-tag-list a {
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  background: var(--mp-surface);
+  border: 1px solid var(--mp-border);
+  color: var(--mp-text);
+  font-family: var(--mp-font-ui);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.item-view .post-body .mp-tag-list a:hover { border-color: var(--mp-accent); color: var(--mp-accent); }
+
+.item-view .post-body .mp-search { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 1.5em; }
+.item-view .post-body .mp-search label { flex-basis: 100%; font-family: var(--mp-font-ui); font-weight: 600; font-size: 0.95rem; }
+.item-view .post-body .mp-search input {
+  flex: 1 1 12em;
+  min-width: 0;
+  padding: 0.6em 0.9em;
+  border: 1px solid var(--mp-border);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 1rem;
+}
+.item-view .post-body .mp-search button {
+  padding: 0.6em 1.3em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--mp-accent);
+  color: #fff;
+  font-family: var(--mp-font-ui);
+  font-weight: 600;
+  cursor: pointer;
+}
+.item-view .post-body .mp-search input:focus-visible,
+.item-view .post-body .mp-search button:focus-visible { outline: 3px solid var(--mp-highlight); outline-offset: 2px; }

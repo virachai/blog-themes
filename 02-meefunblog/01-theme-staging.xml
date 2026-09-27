@@ -3,7 +3,7 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-27.4' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-27.5' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
@@ -992,8 +992,7 @@
   <div id="left-menu-mask" class="Cb"></div>
   <div id="left-menu-body" class="Db isActive">
     <div class="Fb" id="left-menu-sections">
-      <a href="#home" id="home" class="Jb" name="left-main-menu"
-        ><h2 style="margin: 0; font-size: 18px">มาทำความรู้จักมีพร้อม</h2>
+      <h2 class="mp-menu-title">มาทำความรู้จักมีพร้อม</h2>
       <a class="Jb" href="https://meefunblog.blogspot.com/"
         ><div class="icon-left-menu">
           <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
@@ -1006,38 +1005,6 @@
           </svg>
         </div>
         <span>หน้าแรก</span></a>
-         <!-- <a
-        id="left_menu_about"
-        class="Jb"
-        href="https://meefunblog.blogspot.com#/p/about.html"
-        ><div class="icon-left-menu">
-          <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
-            <g>
-              <path
-                d="M7.501 19.917L7.471 21H.472l.029-1.027c.184-6.618 3.736-8.977 7-8.977.963 0 1.95.212 2.87.672-.444.478-.851 1.03-1.212 1.656-.507-.204-1.054-.329-1.658-.329-2.767 0-4.57 2.223-4.938 6.004H7.56c-.023.302-.05.599-.059.917zm15.998.056L23.528 21H9.472l.029-1.027c.184-6.618 3.736-8.977 7-8.977s6.816 2.358 7 8.977zM21.437 19c-.367-3.781-2.17-6.004-4.938-6.004s-4.57 2.223-4.938 6.004h9.875zm-4.938-9c-.799 0-1.527-.279-2.116-.73-.836-.64-1.384-1.638-1.384-2.77 0-1.93 1.567-3.5 3.5-3.5s3.5 1.57 3.5 3.5c0 1.132-.548 2.13-1.384 2.77-.589.451-1.317.73-2.116.73zm-1.5-3.5c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5-.673-1.5-1.5-1.5-1.5.673-1.5 1.5zM7.5 3C9.433 3 11 4.57 11 6.5S9.433 10 7.5 10 4 8.43 4 6.5 5.567 3 7.5 3zm0 2C6.673 5 6 5.673 6 6.5S6.673 8 7.5 8 9 7.327 9 6.5 8.327 5 7.5 5z"
-              >
-            </path
-></g>
-          </svg>
-        </div>
-        <span>เกี่ยวกับเรา</span></a
-      >
-      <a
-        id="left_menu_contact"
-        class="Jb"
-        href="https://meefunblog.blogspot.com#/p/contact.html"
-        ><div class="icon-left-menu">
-          <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
-            <g>
-              <path
-                d="M1.998 5.5c0-1.381 1.119-2.5 2.5-2.5h15c1.381 0 2.5 1.119 2.5 2.5v13c0 1.381-1.119 2.5-2.5 2.5h-15c-1.381 0-2.5-1.119-2.5-2.5v-13zm2.5-.5c-.276 0-.5.224-.5.5v2.764l8 3.638 8-3.636V5.5c0-.276-.224-.5-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5v-8.037z"
-              >
-            </path
-></g>
-          </svg>
-        </div>
-        <span>ติดต่อเรา</span></a
-      > -->
       <a
         id="left_menu_contact"
         class="Jb"
@@ -1049,33 +1016,6 @@
         </div>
         <span>ส่งพร้อม</span></a
       >
-      
-      <!-- <a id="left_menu_whatIsNew" class="Jb" href="#What-s-New"
-        ><div class="icon-left-menu">
-          <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
-            <g>
-              <path
-                d="M19.993 9.042C19.48 5.017 16.054 2 11.996 2s-7.49 3.021-7.999 7.051L2.866 18H7.1c.463 2.282 2.481 4 4.9 4s4.437-1.718 4.9-4h4.236l-1.143-8.958zM12 20c-1.306 0-2.417-.835-2.829-2h5.658c-.412 1.165-1.523 2-2.829 2zm-6.866-4l.847-6.698C6.364 6.272 8.941 4 11.996 4s5.627 2.268 6.013 5.295L18.864 16H5.134z"
-              >
-            </path
-></g>
-          </svg>
-        </div>
-        <span>What’s New?</span>
-      </a>
-      <a id="left_menu_collapse" class="Jb" href="#Collapse"
-        ><div class="icon-left-menu">
-          <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
-            <g>
-              <path
-                d="M12 11.59L3.96 3.54 2.54 4.96 12 14.41l9.46-9.45-1.42-1.42L12 11.59zm0 7l-8.04-8.05-1.42 1.42L12 21.41l9.46-9.45-1.42-1.42L12 18.59z"
-              >
-            </path
-></g>
-          </svg>
-        </div>
-        <span>Collapse</span>
-      </a> -->
       <a id="left_menu_category" class="Jb" href="https://meefunblog.blogspot.com/p/category.html"
         ><div class="icon-left-menu">
           <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
@@ -1089,19 +1029,10 @@
         </div>
         <span>เลือกหัวข้อที่คุณสนใจ</span>
       </a>
-      <ul>
-		<li class="cat-item cat-item-905"><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/makeup-tips" rel="tag">เคล็ดลับการแต่งหน้า</a></li>
-		<li class="cat-item cat-item-905"><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/knowledge" rel="tag">สาระน่ารู้</a></li>
-		<li class="cat-item cat-item-905"><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/news" rel="tag">ข่าวสาร</a></li>
-        <!-- <li class="cat-item cat-item-905">
-          <a aria-current="page" href="https://meefunblog.blogspot.com/search/label/choose-lipstick-color">วิธีเลือกสีลิป</a>
-        </li>
-        <li class="cat-item cat-item-905">
-          <a aria-current="page" href="https://meefunblog.blogspot.com/search/label/how-to-apply">วิธีการใช้</a>
-        </li>
-        <li class="cat-item cat-item-905">
-          <a aria-current="page" href="https://meefunblog.blogspot.com/search/label/lipstick-trend">ลิปสติกเทรนด์</a>
-        </li> -->
+      <ul class="mp-menu-list">
+        <li><a href="https://meefunblog.blogspot.com/search/label/prompts" rel="tag">Prompt พร้อมใช้</a></li>
+        <li><a href="https://meefunblog.blogspot.com/search/label/workflows" rel="tag">Workflow อัตโนมัติ</a></li>
+        <li><a href="https://meefunblog.blogspot.com/search/label/ai-tools" rel="tag">เครื่องมือ AI</a></li>
       </ul>
       <a
         id="left_menu_category_more"
@@ -1118,9 +1049,9 @@
 ></g>
           </svg>
         </div>
-        <span style="margin-left: 5px">Show 9+ more</span>
+        <span>ดูหมวดหมู่ทั้งหมด</span>
       </a
-></a>
+>
       <a id="left_menu_tag" class="Jb" href="https://meefunblog.blogspot.com/p/tags.html"
         ><div class="icon-left-menu">
           <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
@@ -1132,43 +1063,8 @@
 ></g>
           </svg>
         </div>
-        <span style="overflow:unset;">แท็กยอดนิยม (Tag)</span>
+        <span>แท็กทั้งหมด</span>
       </a>
-      <ul style="list-style-type: '#'">
-		<li class="cat-item cat-item-905">
-<a aria-current="label" href="https://meefunblog.blogspot.com/search/label/wearing-lipstick" rel="tag">การทาลิป</a></li>
-		<li class="cat-item cat-item-905">
-<a aria-current="label" href="https://meefunblog.blogspot.com/search/label/natural-tones" rel="tag">โทนสีธรรมชาติ</a></li>
-		<li class="cat-item cat-item-905">
-<a aria-current="label" href="https://meefunblog.blogspot.com/search/label/bold-lips" rel="tag">แบบเต็มปาก</a></li>
-        <!-- <li class="cat-item cat-item-905">
-          <a aria-current="page" href="https://meefunblog.blogspot.com/search/label/makeup">แต่งหน้า</a>
-        </li>
-        <li class="cat-item cat-item-905">
-          <a aria-current="page" href="https://meefunblog.blogspot.com/search/label/history">ประวัติศาสตร์</a>
-        </li>
-        <li class="cat-item cat-item-905">
-          <a aria-current="page" href="https://meefunblog.blogspot.com/search/label/news">ข่าวสาร</a>
-        </li> -->
-      </ul>
-      <a
-        id="left_menu_tag_more"
-        class="Jb"
-        href="https://meefunblog.blogspot.com/p/tags.html#more"
-        style="margin-left: 5px"
-        ><div class="icon-left-menu">
-          <svg viewbox="0 0 24 24" aria-hidden="true" fill="white">
-            <g>
-              <path
-                d="M3.75 12c0-4.56 3.69-8.25 8.25-8.25s8.25 3.69 8.25 8.25-3.69 8.25-8.25 8.25S3.75 16.56 3.75 12zM12 1.75C6.34 1.75 1.75 6.34 1.75 12S6.34 22.25 12 22.25 22.25 17.66 22.25 12 17.66 1.75 12 1.75zm-4.75 11.5c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25S6 11.31 6 12s.56 1.25 1.25 1.25zm9.5 0c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25-1.25.56-1.25 1.25.56 1.25 1.25 1.25zM13.25 12c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25.56-1.25 1.25-1.25 1.25.56 1.25 1.25z"
-              >
-            </path
-></g>
-          </svg>
-        </div>
-        <span style="margin-left: 5px">Show 9+ more</span>
-      </a
->
     </div>
   </div>
 </div>]]></b:widget-setting>
@@ -2681,27 +2577,20 @@
                   <b:widget-setting name='content'><![CDATA[<!-- Styles moved to 02-meefunblog/04-theme-base.css (HTML4 widget content) -->
 <section id="footer-cat-hashtag-menu">
     <ul>
-      <li><h3>Tag (ป้ายกำกับ)</h3></li>
-      <li><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/wearing-lipstick" rel="tag" data-track="wearing-lipstick">การทาลิป</a></li>
-      <li><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/natural-tones" rel="tag" data-track="natural-tones">โทนสีธรรมชาติ</a></li>
-      <li><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/bold-lips" rel="tag" data-track="bold-lips">แบบเต็มปาก</a></li>
-	  <li><a href="https://meefunblog.blogspot.com/p/tags.html#more" data-track="Show Tags More">Show 9+ more</a></li>
+      <li><h3>หมวดหมู่</h3></li>
+      <li><a href="https://meefunblog.blogspot.com/search/label/prompts" rel="tag" data-track="prompts">Prompt พร้อมใช้</a></li>
+      <li><a href="https://meefunblog.blogspot.com/search/label/workflows" rel="tag" data-track="workflows">Workflow อัตโนมัติ</a></li>
+      <li><a href="https://meefunblog.blogspot.com/search/label/ai-tools" rel="tag" data-track="ai-tools">เครื่องมือ AI</a></li>
+      <li><a href="https://meefunblog.blogspot.com/p/category.html" data-track="Show Category More">ดูหมวดหมู่ทั้งหมด</a></li>
     </ul>
-    <ul>
-      <li><h3>Category (หมวดหมู่)</h3></li>
-      <li><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/makeup-tips" rel="tag" data-track="makeup-tips">เคล็ดลับการแต่งหน้า</a></li>
-      <li><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/knowledge" rel="tag" data-track="knowledge">สาระน่ารู้</a></li>
-      <li><a aria-current="label" href="https://meefunblog.blogspot.com/search/label/news" rel="tag" data-track="news">ข่าวสาร</a></li>
-      <li><a href="https://meefunblog.blogspot.com/p/category.html#more" data-track="Show Category More">Show 9+ more</a></li>
-    </ul> 
   </section>
 <hr />
 <!-- Styles moved to 02-meefunblog/04-theme-base.css (HTML4 widget content) -->
 <section class="meta">
     <ul>
       <li><a href="https://meefunblog.blogspot.com/" class="ga-footer" data-track="Terms of Service">Home</a></li>
-	    <li><a href="https://meefunblog.blogspot.com#/p/contact.html" class="ga-footer" data-track="Contact Us">Contact</a></li>
-      <li><a href="https://meefunblog.blogspot.com#/p/about.html" class="ga-footer" data-track="About Us">About</a></li>
+	    <li><a href="https://meefunblog.blogspot.com/p/contact.html" class="ga-footer" data-track="Contact Us">Contact</a></li>
+      <li><a href="https://meefunblog.blogspot.com/p/about.html" class="ga-footer" data-track="About Us">About</a></li>
       <li><a href="https://meefunblog.blogspot.com/p/form.html#more" class="ga-footer" data-track="Contact Us">Send Prompt</a></li>
 	</ul>
 	<ul>
