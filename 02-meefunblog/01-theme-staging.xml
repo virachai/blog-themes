@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' lang='th' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=3' rel='stylesheet'/>
+    <link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=4' rel='stylesheet'/>
     <meta content='F269D94506B7CDB4BFE29ACA40036431' name='msvalidate.01'/>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- 2023 Update -->
@@ -129,9 +129,7 @@ console.log(widgetsCount);
       <!-- <link as='image' href='https://blogger.googleusercontent.com/img/proxy/AVvXsEjzIjusFcyFhmSp8VZ75HCfw0FgdHQRwiUkghqcM8diD_3SvroYhv6GATDml7Fi_qj6llRYt7ZCvEXgPvRTU4pEEAnmax6fQK3GylfX5nDs7AGjjW3hvEQbjihNQs4DBbnKiI9dh9O40QUfzbN1ui3T_t4umTCZPMA8ic1XD7tGp9mMGoufwRo5Tvpx7CuKzSuTtTdg=w640-h360-p-k-no-nu' rel='preload'/> -->
       <!-- <link as='image' href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHTiORdCsMwc_809jgShlgXZVrwmPAhs5HxRq6NM0GxSjK_4dw0oFiOb7lcXUQrNsjv1iZogLEkPfyWauYmb3QFby_GgHQrlPGDE4WCumKY3PoO_hp8mUuG8cwsbltWxM_2ujrYA8MoVcAvZDnHLxBvN65ww1oqQU9D1criZue8bEoN9ssFFYODMX3L5k/s1600/Lipstick_1266x.webp' rel='preload'/> -->
       <link as='image' href='https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg' rel='preload'/>
-      <b:if cond='!data:blog.metaDescription'>
-        <meta content='Prompt และ workflow AI ที่ทดสอบจริง ช่วย SMB ไทยลดงานคีย์ข้อมูล ดึงข้อมูลจาก PDF เข้า Sheets และทำงานเอกสารอัตโนมัติ' name='description'/>
-      </b:if>
+      <meta content='ร่วมเดินทางไปกับ MeePrompt' name='description'/>
     </b:if>
     
     <!--  2022 End -->
@@ -147,8 +145,6 @@ console.log(widgetsCount);
     <b:if cond='data:blog.pageType == &quot;archive&quot;'>
     <title>[STAGING] <data:blog.pageName/></title>
     <!-- https://ultimatebloggerguide.blogspot.com/2016/07/blogger-conditional-tags-for-page-types.html -->
-    <b:elseif cond='data:view.isHomepage'/>
-    <title>Mee Prompt [STAGING]</title>
     <b:else/> 
     <title><data:view.title.escaped/></title>
       <b:if cond='data:view.isHomepage == false'>
@@ -165,7 +161,7 @@ console.log(widgetsCount);
         <!-- <link href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css' rel='stylesheet'/>
 		<script src='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js'/> -->
 <!-- Twitter Card Meta Tags by SWT ~ www.superwebtricks.com -->
-<meta content='summary_large_image' name='twitter:card'/>
+<meta content='summary' name='twitter:card'/>
 <!-- <meta content='@SuperWebTricks' name='twitter:site'/> -->
 <b:if cond='data:blog.pageType == &quot;item&quot;'>
   <meta expr:content='data:blog.pageName' name='twitter:title'/>
@@ -175,7 +171,7 @@ console.log(widgetsCount);
 <b:if cond='data:blog.metaDescription'>
   <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
 <b:else/>
-  <meta expr:content='data:view.description.escaped' name='twitter:description'/>
+  <meta expr:content='&quot;MeePrompt - &quot; + data:view.title.escaped' name='twitter:description'/>
 </b:if>
 <b:if cond='data:blog.postImageUrl'>
 <link as='image' expr:href='data:blog.postImageUrl' rel='preload'/>  
@@ -187,28 +183,18 @@ console.log(widgetsCount);
     </b:if>
     <!-- <meta content='width=device-width, initial-scale=1.0' name='viewport'/> -->
        
-    <!-- Home page identity (hardcoded; Blogger Settings stay the source for the header widget). -->
-    <b:if cond='data:view.isHomepage'>
-      <meta content='Mee Prompt [STAGING]' property='og:title'/>
-      <meta content='Prompt และ workflow AI ที่ทดสอบใช้งานจริง สำหรับเจ้าของธุรกิจและทีมงาน SMB ไทย ลดงานซ้ำ ทำงานเอกสารเร็วขึ้น' property='og:description'/>
-      <meta content='summary_large_image' name='twitter:card'/>
-      <meta content='Mee Prompt [STAGING]' name='twitter:title'/>
-      <meta content='Prompt และ workflow AI ที่ทดสอบใช้งานจริง สำหรับเจ้าของธุรกิจและทีมงาน SMB ไทย ลดงานซ้ำ ทำงานเอกสารเร็วขึ้น' name='twitter:description'/>
-      <meta content='https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg' name='twitter:image'/>
-    </b:if>
-    <!-- og:description fallback: first og tag wins for Facebook/LINE/X, so it sits before all-head-content.
-         Used only when the post has no Search Description. Edit the tagline here. -->
-    <b:if cond='data:view.isSingleItem and !data:blog.metaDescription'>
-      <meta expr:content='data:view.title.escaped + &quot; — Prompt และ workflow AI ที่ทดสอบใช้งานจริง&quot;' property='og:description'/>
-    </b:if>
     <b:include data='blog' name='all-head-content'/>
-    <!-- SEO (server-side, readable by crawlers that do not run JavaScript) -->
-    <b:if cond='data:view.isSingleItem and !data:blog.metaDescription'>
-      <meta expr:content='data:view.description.escaped' name='description'/>
-    </b:if>
-    <b:if cond='data:view.isSearch or data:view.isArchive'>
-      <meta content='noindex,follow' name='robots'/>
-    </b:if>
+<script>
+  (() =&gt; {
+    if (document.querySelector(&quot;meta[name=&#39;description&#39;]&quot;)) return;
+    const desc = document.querySelector(&quot;meta[property=&#39;og:description&#39;]&quot;);
+    if (!desc) return;
+    let clone = desc.cloneNode(true);
+    clone.setAttribute(&quot;name&quot;, &quot;description&quot;);
+    clone.removeAttribute(&quot;property&quot;);
+    document.querySelector(&quot;head&quot;).appendChild(clone);
+  })();
+</script>
     <!-- <include expiration='7d' path='**favicon-32x32.png'/> -->
     <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLU8nAHh2T13oOlJrmbuvgDwXAo7GAV9K1KRBOllFHBmZzCksFg1v4f0GwIx3zg7sUXx1DCfEl2MOfr3SOLUyO_mCvBjqd9Bx3r29ux65MjL8QaA3CQ5GHQujr0wf2wd_nya2_DYowQ8ZkG9xXEnwzRlVP5RTnvNyQhRvUeWKrqIQX2sTVfv17YYiZ-Jc/s1600/apple-touch-icon.png' rel='apple-touch-icon' sizes='57x57'/>
     <link href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLU8nAHh2T13oOlJrmbuvgDwXAo7GAV9K1KRBOllFHBmZzCksFg1v4f0GwIx3zg7sUXx1DCfEl2MOfr3SOLUyO_mCvBjqd9Bx3r29ux65MjL8QaA3CQ5GHQujr0wf2wd_nya2_DYowQ8ZkG9xXEnwzRlVP5RTnvNyQhRvUeWKrqIQX2sTVfv17YYiZ-Jc/s1600/apple-touch-icon.png' rel='apple-touch-icon' sizes='60x60'/>
@@ -3752,7 +3738,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
 
           <div class='centered'>
             <div class='centered-top-placeholder'/>
-            <header class='centered-top-container mf-header' role='banner'>
+            <header class='centered-top-container' role='banner'>
               <div class='centered-top'>
                 <b:class cond='data:view.isSearch and data:view.search.query' name='search-focused'/>
 
@@ -3872,9 +3858,9 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
                     </b:widget>
                   </b:section>
                   <b:comment>Nav primarily intended for sections that consist of major navigation blocks.</b:comment>
-                  <nav class='mf-primary-nav' aria-label='Primary navigation' role='navigation'>
+                  <nav role='navigation' style='display:none;'>
                     <b:section class='clearboth' id='page_list_top' name='Page List (Top)' showaddelement='false'>
-                      <b:widget id='PageList1' locked='true' title='Pages' type='PageList' visible='true'>
+                      <b:widget id='PageList1' locked='true' title='Pages' type='PageList' visible='false'>
                         <b:widget-settings>
                           <b:widget-setting name='pageListJson'>{}</b:widget-setting>
                           <b:widget-setting name='homeTitle'>Home</b:widget-setting>
@@ -3967,7 +3953,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
         </b:includable>
                 </b:widget>
               </b:section>
-              <main class='centered-bottom mf-main' id='main' role='main' tabindex='-1'>
+              <main class='centered-bottom' id='main' role='main' tabindex='-1'>
                 <b:if cond='data:view.isMultipleItems'>
                   <h2 class='main-heading'><data:messages.posts/></h2>
                 </b:if>
@@ -3987,7 +3973,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
                     </div>
                   </div>
                 </b:if>
-                <b:section class='main mf-content' id='page_body' name='Page Body' showaddelement='false'>
+                <b:section class='main' id='page_body' name='Page Body' showaddelement='false'>
                   <b:widget id='HTML7' locked='false' title='Active-Float-Button' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'/>
@@ -3999,7 +3985,7 @@ body.item-view #HTML6 .float-button.show_toc_section {display: none;}
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='HTML2' locked='false' title='Legacy Hero' type='HTML' visible='false'>
+                  <b:widget id='HTML2' locked='false' title=' ' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[<style>
    #Blog1 {padding-top:32px}
@@ -4111,7 +4097,7 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='HTML3' locked='false' title='Legacy Navigation' type='HTML' visible='false'>
+                  <b:widget id='HTML3' locked='false' title='มาทำความรู้จักมีพร้อม' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[<style>
   #left-menu-section .Db {
@@ -4443,7 +4429,7 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='HTML5' locked='false' title='สารบัญ' type='HTML' visible='false'>
+                  <b:widget id='HTML5' locked='false' title='สารบัญ' type='HTML' visible='true'>
                     <b:widget-settings>
                       <b:widget-setting name='content'><![CDATA[No Data!<!--<ol>
     <li><a href="#toc_1">สวย...แต่ก็อันตราย</a></li>
@@ -4737,10 +4723,10 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
   </div>
 </b:includable>
                   </b:widget>
-                  <b:widget id='FeaturedPost1' locked='true' title='Featured Story' type='FeaturedPost' version='2' visible='true'>
+                  <b:widget id='FeaturedPost1' locked='true' title='Featured Post' type='FeaturedPost' version='2' visible='false'>
                     <b:widget-settings>
                       <b:widget-setting name='showSnippet'>true</b:widget-setting>
-                      <b:widget-setting name='showPostTitle'>true</b:widget-setting>
+                      <b:widget-setting name='showPostTitle'>false</b:widget-setting>
                       <b:widget-setting name='postId'>2832570450720480216</b:widget-setting>
                       <b:widget-setting name='showFirstImage'>true</b:widget-setting>
                       <b:widget-setting name='useMostRecentPost'>true</b:widget-setting>
@@ -5005,9 +4991,9 @@ background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("
                     <b:widget-settings>
                       <b:widget-setting name='showDateHeader'>false</b:widget-setting>
                       <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
-                      <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+                      <b:widget-setting name='showShareButtons'>false</b:widget-setting>
                       <b:widget-setting name='authorLabel'>Written By</b:widget-setting>
-                      <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+                      <b:widget-setting name='showCommentLink'>false</b:widget-setting>
                       <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
                       <b:widget-setting name='showAuthor'>true</b:widget-setting>
                       <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
@@ -6833,7 +6819,7 @@ window.addEventListener("load", cookieConsent);
   </ul>
 </b:includable>
         </b:widget>
-        <b:widget id='Label1' locked='false' title='ป้ายกำกับ' type='Label' visible='true'>
+        <b:widget id='Label1' locked='false' title='ป้ายกำกับ' type='Label' visible='false'>
           <b:widget-settings>
             <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
             <b:widget-setting name='display'>LIST</b:widget-setting>
@@ -6866,7 +6852,7 @@ window.addEventListener("load", cookieConsent);
           <b:include data='{                               buttonClass: &quot;pill-button&quot;,                               items: data:this.labels,                               itemSet: &quot;labels&quot;,                               itemsMarkup: &quot;super.list&quot;                             }' name='extendableItems'/>
         </b:includable>
         </b:widget>
-        <b:widget id='PopularPosts2' locked='false' title='บทความยอดนิยม' type='PopularPosts' version='2' visible='true'>
+        <b:widget id='PopularPosts2' locked='false' title='' type='PopularPosts' version='2' visible='false'>
           <b:widget-settings>
             <b:widget-setting name='numItemsToShow'>6</b:widget-setting>
             <b:widget-setting name='showThumbnails'>true</b:widget-setting>
@@ -7475,6 +7461,6 @@ function autoGenTocv11() {
   }
 }
 </script>  
-<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=3' rel='stylesheet'/>
+<link href='https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css?v=4' rel='stylesheet'/>
   </body>
 </html>
