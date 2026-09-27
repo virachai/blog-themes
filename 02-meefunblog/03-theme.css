@@ -50,6 +50,9 @@
 .item-view .post-body ul,
 .item-view .post-body ol { margin: 0 0 1.1em; }
 
+/* The base theme sets p to 15px black; paragraphs follow .post-body instead. */
+.item-view .post-body p { font-size: 1em; color: inherit; }
+
 .item-view .post-body li { margin-bottom: 0.35em; }
 
 .item-view .post-body img {
@@ -121,6 +124,8 @@
   padding: 0.2em 1em;
   border-left: 3px solid var(--mp-border);
   color: var(--mp-muted);
+  font: inherit;               /* the skin sets italic 300 x-large Roboto, centred */
+  text-align: left;
 }
 
 /* Thai has no true italics; browsers slant the glyphs, which hurts stacked vowels. */
@@ -147,7 +152,8 @@
 .mp-note > :last-child,
 .mp-cta > :last-child { margin-bottom: 0; }
 
-.mp-label {
+.mp-label,
+.item-view .post-body .mp-label {
   font-family: var(--mp-font-ui);
   font-size: 0.85rem;
   font-weight: 700;
@@ -177,9 +183,11 @@
   text-align: center;
 }
 
-.mp-cta-title {
+.mp-cta-title,
+.item-view .post-body .mp-cta-title {
   font-family: var(--mp-font-ui);
   font-size: 1.2rem;
+  line-height: 1.4;
   font-weight: 700;
   margin: 0 0 0.3em;
 }

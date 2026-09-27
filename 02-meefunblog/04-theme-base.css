@@ -2598,10 +2598,9 @@ a.timestamp-link::before {
 .post-body {color: #000;}
 
 /* --! 2024 */
-.post-body.entry-content * {
-  color: #000000;
-  font-size: 15px;
-}
+/* Removed: .post-body.entry-content * { color: #000000; font-size: 15px; }
+   It forced every element inside a post to 15px black, so post text could not follow the
+   size and colour set on .post-body in 03-theme.css. */
 .post-body.entry-content h3, .post-body.entry-content h4,
 .post-body.entry-content h5, .post-body.entry-content h6{
   color: #000000;
