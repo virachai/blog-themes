@@ -561,7 +561,7 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
   max-height: none;
   background-image:
     linear-gradient(180deg, rgba(20, 6, 5, 0.55) 0%, rgba(20, 6, 5, 0.35) 45%, rgba(188, 56, 46, 0.92) 100%),
-    url("https://cdn.pixabay.com/photo/2023/04/23/13/24/ai-generated-7945706_1280.jpg");
+    url("11-images/01-hero.jpg");     /* Pexels 18545017, see 11-images/README.md */
 }
 
 #HTML2 .hero-text h2 { font-size: clamp(2rem, 1.4rem + 2.4vw, 2.75rem) !important; margin: 0 0 0.3em; }
@@ -584,6 +584,7 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
 
 .item-view .post-body a.mp-page-card {
   display: block;
+  overflow: hidden;
   padding: 0.9em 1.1em;
   border: 1px solid var(--mp-border);
   border-radius: var(--mp-radius);
@@ -631,3 +632,5 @@ body:not(.item-view) .Blog .container.post-body.entry-content .post-snippet.snip
 }
 .item-view .post-body .mp-search input:focus-visible,
 .item-view .post-body .mp-search button:focus-visible { outline: 3px solid var(--mp-highlight); outline-offset: 2px; }
+
+.item-view .post-body .mp-page-card img { display: block; width: calc(100% + 2.2em); max-width: none; margin: -0.9em -1.1em 0.8em; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 0; }
