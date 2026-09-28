@@ -1,0 +1,51 @@
+{
+  "runtime": "value-mission-asset-runtime-v1",
+  "run_id": "VLM-001-20260928154951",
+  "mission_id": "VLM-001",
+  "status": "RELEASE_CANDIDATE",
+  "evidence_gate": {
+    "status": "EVIDENCE_READY",
+    "checks": [
+      {
+        "id": "evidence_file",
+        "pass": true,
+        "target": "evidence.json exists"
+      },
+      {
+        "id": "observations_present",
+        "pass": true,
+        "target": ">= 1 observation"
+      },
+      {
+        "id": "traceable_sources",
+        "pass": true,
+        "target": "every observation has sources"
+      },
+      {
+        "id": "https_sources",
+        "pass": true,
+        "target": "all sources use HTTPS"
+      },
+      {
+        "id": "claim_recorded",
+        "pass": true,
+        "target": "every observation records a claim"
+      },
+      {
+        "id": "uncertainty_recorded",
+        "pass": true,
+        "target": "every observation records uncertainty"
+      }
+    ],
+    "blockers": []
+  },
+  "artifacts": [
+    "asset-spec.json",
+    "asset-package.md",
+    "asset-report.json"
+  ],
+  "authority": {
+    "asset": false,
+    "release": false
+  }
+}
