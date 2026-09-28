@@ -6,10 +6,10 @@
   "release_authority": false,
   "approval_required": true,
   "approval": {
-    "status": "PENDING",
-    "approved_by": "",
-    "approved_at": "",
-    "notes": ""
+    "status": "APPROVED",
+    "approved_by": "owner",
+    "approved_at": "2026-09-28T16:13:16.123Z",
+    "notes": "Explicit approval instruction from the repository owner. Approves this release candidate for this run only; it does not authorise publication."
   },
   "source": {
     "signal_id": "SIG-001",

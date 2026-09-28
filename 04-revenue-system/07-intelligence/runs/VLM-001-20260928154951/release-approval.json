@@ -1,0 +1,60 @@
+{
+  "runtime": "value-mission-release-approval-v1",
+  "run_id": "VLM-001-20260928154951",
+  "mission_id": "VLM-001",
+  "approved_at": "2026-09-28T16:13:16.123Z",
+  "approved_by": "owner",
+  "approval_basis": "explicit written instruction from the repository owner in the working session",
+  "candidate_status_before": "READY_FOR_RELEASE_APPROVAL",
+  "candidate_status_after": "READY_FOR_RELEASE_APPROVAL",
+  "pre_approval_gate_check": {
+    "runtime": "value-mission-release-runtime-v1",
+    "run_id": "VLM-001-20260928154951",
+    "mission_id": "VLM-001",
+    "status": "READY_FOR_RELEASE_APPROVAL",
+    "checks": [
+      {
+        "id": "asset_spec",
+        "pass": true,
+        "target": "asset-spec.json exists"
+      },
+      {
+        "id": "asset_package",
+        "pass": true,
+        "target": "asset-package.md exists"
+      },
+      {
+        "id": "evidence_ready",
+        "pass": true,
+        "target": "asset evidence gate is EVIDENCE_READY"
+      },
+      {
+        "id": "asset_authority",
+        "pass": true,
+        "target": "evidence authority remains explicit"
+      },
+      {
+        "id": "release_boundary",
+        "pass": true,
+        "target": "release authority is not granted by runtime"
+      }
+    ],
+    "blockers": [],
+    "release_authority": false
+  },
+  "approved_scope": {
+    "authorises": [
+      "release approval for run VLM-001-20260928154951"
+    ],
+    "does_not_authorise": [
+      "EMAIL_PUBLISH_CONFIRM=YES",
+      "sending the publication email",
+      "publishing to Blogger",
+      "creating a publication receipt",
+      "running Phase B observation"
+    ]
+  },
+  "release_authority": false,
+  "publication_status": "NOT_EXECUTED",
+  "boundary": "Approving a release candidate records human sign-off on the asset and its evidence. It is not a publication. Publication remains gated separately by EMAIL_PUBLISH_CONFIRM on the Email-to-Blogger transport."
+}
