@@ -1,0 +1,2 @@
+id,opportunity_id,date,type,title_or_slug,target_intent,primary_action,monetization,status,canonical_url
+AST-001,OPP-001,2026-09-28,article,example asset,informational,read_next,adsense,draft,
