@@ -275,12 +275,47 @@ const noDate = buildPublicationReceipt({ runId: 'r', verification: { status: 'PA
 if (noDate.publication.published_at !== null) fail('G10 published_at was filled in without a post page date — it must stay null and say so');
 if (noDate.publication.published_at_source !== 'unknown') fail('G11 published_at_source does not record that the date was unknown');
 
+// --- H. Every evidence write goes through the declared schema ----------------
+// Section D guards the observer and the adapter by name, which is how stage 59
+// and stage 60 kept passing raw {type, run_id, observed_at} objects after the
+// fix landed: nothing looked at them. This scans every call site instead.
+
+const SELF = 'scripts/node/publication-evidence-check.mjs';
+for (const dir of ['scripts/node', 'scripts/node/cdp-runtime']) {
+  for (const name of readdirSync(join(ROOT, dir))) {
+    if (!name.endsWith('.mjs')) continue;
+    const rel = dir + '/' + name;
+    // The scanner necessarily contains the patterns it searches for. It writes
+    // no evidence itself, so it is the one file excluded from its own scan.
+    if (rel === SELF) continue;
+    const src = source(rel);
+    if (!src) continue;
+    for (const m of src.matchAll(/ledger\.add\(/g)) {
+      const call = src.slice(m.index, m.index + 600);
+      if (!call.startsWith('ledger.add(createEvidence(')) {
+        fail('H1 ' + rel + ' calls ledger.add() with a raw object; evidence fields must be built by createEvidence() so the hash varies with content');
+        continue;
+      }
+      if (!/\bclaim\s*:/.test(call)) fail('H2 ' + rel + ': a createEvidence() call omits claim — the verifier BLOCKs such a record (E003)');
+      if (!/\bobservedAt\s*:/.test(call)) fail('H3 ' + rel + ': a createEvidence() call omits observedAt — the caller\'s observed_at would be dropped and replaced with the current time');
+    }
+  }
+}
+
+// The three modules that previously carried raw evidence writes must use the
+// schema now. Named explicitly because each was a shipped defect.
+for (const rel of ['scripts/node/editorial-production-execution-adapter.mjs', 'scripts/node/editorial-publication-transaction-runtime.mjs']) {
+  const src = source(rel);
+  if (!src) { fail('H4 ' + rel + ' not found'); continue; }
+  if (!src.includes("from './cdp-runtime/evidence.mjs'")) fail('H5 ' + rel + ' does not import createEvidence');
+}
+
 // --- Report -----------------------------------------------------------------
 
 if (errors.length) {
   console.log('PUBLICATION-EVIDENCE-CHECK: FAIL');
   errors.forEach(e => console.log('- ' + e));
 } else {
-  console.log('PUBLICATION-EVIDENCE-CHECK: PASS (evidence varies with content, verifier wired, editor ≠ public post, external id required, legacy evidence cannot be revived, receipt has one writer, title has a declared source, source guards hold)');
+  console.log('PUBLICATION-EVIDENCE-CHECK: PASS (evidence varies with content, every evidence write uses the declared schema, verifier wired, editor ≠ public post, external id required, legacy evidence cannot be revived, receipt has one writer, title has a declared source, source guards hold)');
 }
 process.exitCode = errors.length ? 1 : 0;

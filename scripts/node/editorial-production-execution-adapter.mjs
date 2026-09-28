@@ -5,6 +5,8 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { CdpSession } from './cdp-runtime/cdp-session.mjs';
 import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
+import { createEvidence } from './cdp-runtime/evidence.mjs';
+import { classifyBloggerPage } from './blogger-page-state.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -66,14 +68,21 @@ function plan(run, mode) {
 
 async function dryRun(run, output) {
   const ledger = await EvidenceLedger.load(run.dir);
-  const record = ledger.add({
-    type: 'execution-preflight',
-    source: 'editorial-production-execution-adapter-v1',
-    run_id: run.manifest.run_id,
-    status: output.status,
-    preflight: output.preflight,
-    observed_at: new Date().toISOString()
-  });
+  const record = ledger.add(createEvidence({
+    claim: 'stage 59 dry-run preflight for ' + run.manifest.run_id + ' completed with status ' + output.status,
+    sourceUrl: null,
+    selector: null,
+    snapshot: null,
+    screenshot: null,
+    observedAt: new Date().toISOString(),
+    metadata: {
+      run_id: run.manifest.run_id,
+      mode: 'dry-run',
+      status: output.status,
+      preflight_status: output.preflight.status,
+      blockers: output.preflight.blockers,
+    },
+  }));
   await ledger.save();
   writeFileSync(join(run.dir, 'execution-plan.json'), JSON.stringify(output, null, 2) + '\n');
   console.log('EXECUTION-ADAPTER: ' + output.status);
@@ -87,25 +96,36 @@ async function dryRun(run, output) {
 async function cdpProbe(run, output) {
   if (output.status !== 'READY_FOR_EXTERNAL_EXECUTION') throw new Error('CDP execution blocked by preflight: ' + output.preflight.blockers.join(', '));
   const endpoint = process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222';
-  // Connectivity check only — this adapter makes no claim about page identity,
-  // so it explicitly accepts whichever tab is first.
-  const session = new CdpSession({ endpoint, targetPolicy: 'first-page' });
+  // Bound to a named target. This used to accept whichever tab was first, which
+  // made "target verification" mean only "some CDP page exists" — a snapshot of
+  // an unrelated tab reported the same success as the intended one.
+  const session = new CdpSession({ endpoint, targetId: process.env.BLOGGER_TARGET_ID || null });
   try {
     const target = await session.connect();
     const snapshot = await session.snapshot();
+    const classification = classifyBloggerPage(target.url, { publicHost: process.env.BLOGGER_PUBLIC_HOST || null });
     const ledger = await EvidenceLedger.load(run.dir);
-    const evidence = ledger.add({
-      type: 'cdp-preflight-observation',
-      source: 'editorial-production-execution-adapter-v1',
-      run_id: run.manifest.run_id,
-      target: { id: target.id, url: target.url, title: target.title },
-      snapshot_fingerprint: session.fingerprint(snapshot),
-      observed_at: snapshot.capturedAt
-    });
+    const evidence = ledger.add(createEvidence({
+      claim: 'stage 59 CDP target verification for ' + run.manifest.run_id + ' (page_state=' + classification.state + ')',
+      sourceUrl: target.url,
+      selector: null,
+      snapshot: JSON.stringify({ url: target.url, title: target.title, page_state: classification.state }),
+      screenshot: null,
+      observedAt: snapshot.capturedAt,
+      metadata: {
+        run_id: run.manifest.run_id,
+        cdp_target_id: target.id,
+        cdp_target_resolved_by: session.targetResolvedBy,
+        page_state: classification.state,
+        page_state_reason: classification.reason,
+        snapshot_fingerprint: session.fingerprint(snapshot),
+      },
+    }));
     await ledger.save();
-    writeFileSync(join(run.dir, 'execution-plan.json'), JSON.stringify({ ...output, cdp: { endpoint, target, evidence_id: evidence.id, status: 'CONNECTED_NOT_PUBLISHED' } }, null, 2) + '\n');
+    writeFileSync(join(run.dir, 'execution-plan.json'), JSON.stringify({ ...output, cdp: { endpoint, target, page_state: classification.state, evidence_id: evidence.id, status: 'CONNECTED_NOT_PUBLISHED' } }, null, 2) + '\n');
     console.log('EXECUTION-ADAPTER: CDP_CONNECTED_NOT_PUBLISHED');
     console.log('TARGET: ' + target.url);
+    console.log('PAGE STATE: ' + classification.state);
     console.log('EVIDENCE: ' + evidence.id);
     console.log('NEXT: invoke an explicit publication operation only after verifying target, payload, approval, and rollback path.');
   } finally { session.close(); }

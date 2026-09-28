@@ -6,6 +6,7 @@ import { CdpSession } from './cdp-runtime/cdp-session.mjs';
 import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
 import { IdempotencyLedger, DistributedCommitCoordinator } from './cdp-runtime/commit-coordinator.mjs';
 import { ReleaseTransaction } from './cdp-runtime/release-transaction.mjs';
+import { createEvidence } from './cdp-runtime/evidence.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -73,7 +74,21 @@ async function main() {
   if (mode !== 'cdp') throw new Error('unsupported mode');
   const result = await transaction(run, run.release?.approval?.status === 'APPROVED', true);
   const ledger = await EvidenceLedger.load(run.dir);
-  const evidence = ledger.add({ type: 'publication-transaction', run_id: runId, result, observed_at: new Date().toISOString() });
+  const evidence = ledger.add(createEvidence({
+    claim: 'publication transaction for ' + runId + ' completed with status ' + result.status,
+    sourceUrl: result?.verification?.url || null,
+    selector: null,
+    snapshot: result?.verification ? JSON.stringify(result.verification) : null,
+    screenshot: null,
+    observedAt: new Date().toISOString(),
+    metadata: {
+      run_id: runId,
+      tx_id: result.tx_id || null,
+      transaction_status: result.status,
+      verification_status: result.verification?.status || null,
+      idempotent: result.idempotent === true,
+    },
+  }));
   await ledger.save();
   save(run.dir, 'publication-transaction-result.json', { ...result, evidence_id: evidence.id });
   console.log(JSON.stringify({ ...result, evidence_id: evidence.id }, null, 2));
