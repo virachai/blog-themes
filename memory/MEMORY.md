@@ -7,3 +7,4 @@ One line per memory file: `- [slug](YYYYMMDD-HHMMSS-slug.md) — one-line descri
 - [design-reference-blockdit](20260927-230422-design-reference-blockdit.md) — The owner's design inspiration for Mee Prompt is Blockdit's discover page; borrow its card details, not its layout
 - [improve-prototype-incrementally](20260928-003740-improve-prototype-incrementally.md) — The staging blog is a prototype to improve gradually, one small verified change at a time
 - [post-protocol](20260928-004411-post-protocol.md) — Posts follow docs/04-content/04-01-post-protocol.md: Thai title + English keywords, hidden mp-id marker, #NNNN links
+- [redact-mail2blogger-address](20260928-213855-redact-mail2blogger-address.md) — Redact the blog's Mail2Blogger address from run artifacts before committing; recompute the eml fingerprint
