@@ -3,6 +3,8 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import crypto from 'node:crypto';
+import net from 'node:net';
+import tls from 'node:tls';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -80,18 +82,86 @@ function transportConfig() {
   };
 }
 
-function sendViaCurl(message) {
+async function readSmtpResponse(socket) {
+  return new Promise((resolve, reject) => {
+    let buffer = '';
+    const cleanup = () => {
+      socket.off('data', onData);
+      socket.off('error', onError);
+      socket.off('close', onClose);
+    };
+    const onData = chunk => {
+      buffer += chunk.toString('utf8');
+      const lines = buffer.split(/\r?\n/);
+      buffer = lines.pop() || '';
+      for (const line of lines) {
+        const match = line.match(/^(\d{3})([ -])(.*)$/);
+        if (match && match[2] === '-') continue;
+        if (match) {
+          cleanup();
+          resolve({ code: Number(match[1]), text: match[3] });
+          return;
+        }
+      }
+    };
+    const onError = error => { cleanup(); reject(error); };
+    const onClose = () => { cleanup(); reject(new Error('SMTP connection closed unexpectedly')); };
+    socket.on('data', onData);
+    socket.once('error', onError);
+    socket.once('close', onClose);
+  });
+}
+
+async function smtpCommand(socket, command, expected) {
+  socket.write(command + '\r\n');
+  const response = await readSmtpResponse(socket);
+  if (!expected.includes(response.code)) throw new Error('SMTP command failed: ' + response.code);
+  return response;
+}
+
+async function sendViaSmtp(message) {
   const cfg = transportConfig();
   const missing = ['EMAIL_SMTP_HOST', 'EMAIL_SMTP_USER', 'EMAIL_SMTP_PASSWORD', 'EMAIL_FROM'].filter(k => !env(k));
   if (missing.length) throw new Error('SMTP configuration missing: ' + missing.join(', '));
-  const file = join('/tmp', `blogger-email-${process.pid}-${Date.now()}.eml`);
-  writeFileSync(file, message.eml, { mode: 0o600 });
+  if (!Number.isInteger(cfg.port) || cfg.port < 1 || cfg.port > 65535) throw new Error('invalid EMAIL_SMTP_PORT');
+
+  let socket = await new Promise((resolve, reject) => {
+    const s = cfg.secure
+      ? tls.connect({ host: cfg.host, port: cfg.port, servername: cfg.host })
+      : net.createConnection({ host: cfg.host, port: cfg.port });
+    const timer = setTimeout(() => { s.destroy(); reject(new Error('SMTP connection timeout')); }, 30000);
+    const ready = () => { clearTimeout(timer); resolve(s); };
+    s.once('error', error => { clearTimeout(timer); reject(new Error('SMTP connection failed: ' + error.message)); });
+    s.once('connect', ready);
+    if (cfg.secure) s.once('secureConnect', ready);
+  });
+
   try {
-    const url = `${cfg.secure ? 'smtps' : 'smtp'}://${cfg.host}:${cfg.port}`;
-    const args = ['--fail', '--silent', '--show-error', '--url', url, '--user', `${cfg.user}:${cfg.password}`, '--mail-from', cfg.user, '--mail-rcpt', message.to, '--upload-file', file];
-    execFileSync('curl', args, { stdio: 'pipe', encoding: 'utf8' });
+    let response = await readSmtpResponse(socket);
+    if (response.code !== 220) throw new Error('SMTP greeting failed: ' + response.code);
+    response = await smtpCommand(socket, 'EHLO localhost', [250]);
+
+    if (!cfg.secure && cfg.port === 587) {
+      await smtpCommand(socket, 'STARTTLS', [220]);
+      socket = await new Promise((resolve, reject) => {
+        const tlsSocket = tls.connect({ socket, servername: cfg.host }, () => resolve(tlsSocket));
+        tlsSocket.once('error', reject);
+      });
+      await smtpCommand(socket, 'EHLO localhost', [250]);
+    }
+
+    await smtpCommand(socket, 'AUTH PLAIN ' + Buffer.from('\0' + cfg.user + '\0' + cfg.password).toString('base64'), [235]);
+    await smtpCommand(socket, 'MAIL FROM:<' + message.from + '>', [250]);
+    await smtpCommand(socket, 'RCPT TO:<' + message.to + '>', [250, 251]);
+    await smtpCommand(socket, 'DATA', [354]);
+
+    const data = message.eml.replace(/\r?\n/g, '\r\n').replace(/^\./gm, '..');
+    socket.write(data + '\r\n.\r\n');
+    response = await readSmtpResponse(socket);
+    if (response.code !== 250) throw new Error('SMTP message rejected: ' + response.code);
+    await smtpCommand(socket, 'QUIT', [221, 250]);
   } finally {
-    try { writeFileSync(file, '', { flag: 'w' }); } catch {}
+    socket.end();
   }
 }
 
@@ -121,7 +191,7 @@ async function main() {
     return;
   }
   if (env('EMAIL_PUBLISH_CONFIRM') !== 'YES') throw new Error('EMAIL_PUBLISH_CONFIRM=YES is required for external publication');
-  sendViaCurl(message);
+  await sendViaSmtp(message);
   const sentAt = new Date().toISOString();
   save(run.dir, 'email-publication-result.json', { runtime: 'email-to-blogger-publication-transport-v1', run_id: runId, status: 'EMAIL_SENT', sent_at: sentAt, recipient: message.to, subject: message.subject, fingerprint: message.fingerprint, observation: 'EMAIL_SENT_IS_NOT_PUBLICATION_PROOF' });
   console.log(JSON.stringify({ runtime: 'email-to-blogger-publication-transport-v1', stage: 62, run_id: runId, status: 'EMAIL_SENT', sent_at: sentAt, message_fingerprint: message.fingerprint, action: 'EMAIL_SENT_ONLY', next: 'observe Blogger publication before creating publication receipt' }, null, 2));

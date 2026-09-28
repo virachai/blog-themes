@@ -13,3 +13,6 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/node/build-index.mjs --check
+      # Publication invariants. Depends only on tracked files, so it runs on a
+      # clean checkout unlike the runtimes that previously imported from .tmp/.
+      - run: node scripts/node/publication-evidence-check.mjs

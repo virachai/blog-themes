@@ -8,3 +8,4 @@ One line per memory file: `- [slug](YYYYMMDD-HHMMSS-slug.md) — one-line descri
 - [improve-prototype-incrementally](20260928-003740-improve-prototype-incrementally.md) — The staging blog is a prototype to improve gradually, one small verified change at a time
 - [post-protocol](20260928-004411-post-protocol.md) — Posts follow docs/04-content/04-01-post-protocol.md: Thai title + English keywords, hidden mp-id marker, #NNNN links
 - [redact-mail2blogger-address](20260928-213855-redact-mail2blogger-address.md) — Redact the blog's Mail2Blogger address from run artifacts before committing; recompute the eml fingerprint
+- [publication-evidence-invariants](20260928-222932-publication-evidence-invariants.md) — EMAIL_SENT ≠ PUBLISHED, EDITOR_URL ≠ PUBLIC_POST_URL, OBSERVED ≠ VERIFIED; never relax to make a check pass

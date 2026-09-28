@@ -4,3 +4,9 @@ node scripts/node/build-index.mjs --check || {
   echo "Fix the structure (run node scripts/node/build-index.mjs) before committing." >&2
   exit 1
 }
+
+# Publication evidence gate.
+node scripts/node/publication-evidence-check.mjs || {
+  echo "Publication invariants are broken; see the failures above." >&2
+  exit 1
+}

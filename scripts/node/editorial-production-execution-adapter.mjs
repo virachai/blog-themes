@@ -3,8 +3,8 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { CdpSession } from '../../.tmp/cdp/runtime/cdp-session.mjs';
-import { EvidenceLedger } from '../../.tmp/cdp/runtime/evidence-ledger.mjs';
+import { CdpSession } from './cdp-runtime/cdp-session.mjs';
+import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -87,7 +87,9 @@ async function dryRun(run, output) {
 async function cdpProbe(run, output) {
   if (output.status !== 'READY_FOR_EXTERNAL_EXECUTION') throw new Error('CDP execution blocked by preflight: ' + output.preflight.blockers.join(', '));
   const endpoint = process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222';
-  const session = new CdpSession({ endpoint });
+  // Connectivity check only — this adapter makes no claim about page identity,
+  // so it explicitly accepts whichever tab is first.
+  const session = new CdpSession({ endpoint, targetPolicy: 'first-page' });
   try {
     const target = await session.connect();
     const snapshot = await session.snapshot();

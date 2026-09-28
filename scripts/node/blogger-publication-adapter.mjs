@@ -2,10 +2,12 @@
 /** Stage 61 — Blogger Publication Adapter. Explicit approval + intent verification + receipt. */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { CdpSession } from '../../.tmp/cdp/runtime/cdp-session.mjs';
-import { EvidenceLedger } from '../../.tmp/cdp/runtime/evidence-ledger.mjs';
-import { IdempotencyLedger, DistributedCommitCoordinator } from '../../.tmp/cdp/runtime/commit-coordinator.mjs';
-import { ReleaseTransaction } from '../../.tmp/cdp/runtime/release-transaction.mjs';
+import { CdpSession } from './cdp-runtime/cdp-session.mjs';
+import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
+import { IdempotencyLedger, DistributedCommitCoordinator } from './cdp-runtime/commit-coordinator.mjs';
+import { ReleaseTransaction } from './cdp-runtime/release-transaction.mjs';
+import { createEvidence } from './cdp-runtime/evidence.mjs';
+import { classifyBloggerPage, isBloggerHost, assertPublishable } from './blogger-page-state.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -51,16 +53,18 @@ async function inspectTarget(session) {
   return { snapshot, info };
 }
 
-function bloggerUrl(url) {
-  try { return new URL(url).hostname.endsWith('blogger.com'); } catch { return false; }
-}
-
 function buildAdapter(run, session, mode) {
+  // Records what actually happened, so evidence is written only for a real
+  // publication attempt — not for a transaction that rolled back at preflight.
+  const trace = { publish_attempted: false, publish_clicked: false, target_before: null, target_after: null, verification: null };
   return {
+    trace,
     async execute({ payload }) {
       const before = await inspectTarget(session);
-      if (!bloggerUrl(before.info.url)) throw new Error('active target is not Blogger');
+      trace.target_before = before.info;
+      if (!isBloggerHost(before.info.url, { publicHost: process.env.BLOGGER_PUBLIC_HOST || null })) throw new Error('active target is not Blogger');
       if (mode !== 'publish') return { status: 'TARGET_INSPECTED_ONLY', target: before.info, fingerprint: session.fingerprint(before.snapshot) };
+      trace.publish_attempted = true;
 
       const intent = await session.evaluate(`(() => {
         const find = s => document.querySelector(s);
@@ -105,10 +109,38 @@ function buildAdapter(run, session, mode) {
         el.click(); return true;
       })()`);
       if (!clicked) return { status: 'BLOCKED', reason: 'publish_button_unavailable' };
+      trace.publish_clicked = true;
       await new Promise(r => setTimeout(r, Number(process.env.BLOGGER_VERIFY_DELAY_MS || 1500)));
       const post = await inspectTarget(session);
-      const published = /\/post\//i.test(post.info.url) || /published|post/i.test(post.info.title);
-      return { status: published ? 'PASS' : 'BLOCKED', published, url: post.info.url, title: post.info.title, fingerprint: session.fingerprint(post.snapshot) };
+      trace.target_after = post.info;
+
+      // PUBLISHED is claimed only from a public post URL.
+      //
+      // This previously tested the URL for a "post" path segment and the document
+      // title for "published" or "post" as substrings. The Blogger *editor* at
+      // .../blog/post/edit/<blogId>/<postId> passed on both counts — its path
+      // contains that segment and its title contains the post title. So an
+      // unpublished draft could be recorded as published. assertPublishable()
+      // classifies the editor as EDITING and refuses.
+      const classification = classifyBloggerPage(post.info.url, { publicHost: process.env.BLOGGER_PUBLIC_HOST || null });
+      let externalId = null;
+      try {
+        externalId = assertPublishable(classification);
+      } catch (error) {
+        trace.verification = { status: 'BLOCKED', reason: error.message, page_state: classification.state };
+        return {
+          status: 'BLOCKED', reason: error.message, published: false,
+          page_state: classification.state, page_state_reason: classification.reason,
+          url: post.info.url, title: post.info.title, fingerprint: session.fingerprint(post.snapshot),
+        };
+      }
+      trace.verification = { status: 'PASS', page_state: classification.state, external_id: externalId };
+      return {
+        status: 'PASS', published: true, external_id: externalId,
+        page_state: classification.state,
+        url: classification.post_url, observed_url: post.info.url,
+        title: post.info.title, fingerprint: session.fingerprint(post.snapshot),
+      };
     },
     async rollback({ reason }) {
       return { status: 'MANUAL_ROLLBACK_REQUIRED', reason, note: 'Blogger publication is externally committed; adapter does not delete content automatically.' };
@@ -123,14 +155,22 @@ async function main() {
   const pf = preflight(run);
   const plan = {
     runtime: 'blogger-publication-adapter-v1', stage: 61, run_id: runId, status: pf.status,
-    preflight: pf, mode, target_contract: { host: 'blogger.com', selectors, intent_verification: true, post_publish_verification: true },
+    preflight: pf, mode, target_contract: { host: 'blogger.com or blogspot.com (or BLOGGER_PUBLIC_HOST)', selectors, intent_verification: true, post_publish_verification: 'public post URL required' },
     external_side_effect: command === 'execute' && mode === 'publish',
     receipt: 'NOT_CREATED_UNTIL_VERIFIED'
   };
   save(run.dir, 'blogger-publication-plan.json', plan);
   if (command === 'plan') { console.log(JSON.stringify(plan, null, 2)); return; }
 
-  const session = new CdpSession({ endpoint: process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222', targetId: process.env.BLOGGER_TARGET_ID || null });
+  // A publication claim must name its target. `inspect` only reports what is on
+  // screen and claims nothing, so it explicitly opts into the first-page fallback
+  // rather than relying on a silent default.
+  const willPublish = command === 'execute' && mode === 'publish';
+  const session = new CdpSession({
+    endpoint: process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222',
+    targetId: process.env.BLOGGER_TARGET_ID || null,
+    targetPolicy: willPublish ? 'required' : 'first-page',
+  });
   try {
     await session.connect();
     const inspected = await inspectTarget(session);
@@ -142,9 +182,10 @@ async function main() {
       console.log(JSON.stringify({ ...plan, action: 'BLOCKED', external_side_effect: false }, null, 2));
       return;
     }
+    const adapter = buildAdapter(run, session, mode);
     const tx = new ReleaseTransaction({
       auditPath: join(run.dir, 'blogger-publication.ndjson'),
-      adapter: buildAdapter(run, session, mode),
+      adapter,
       commitCoordinator: new DistributedCommitCoordinator({ ledger: new IdempotencyLedger(join(run.dir, 'blogger-publication-idempotency.ndjson')) })
     });
     const result = await tx.run({
@@ -154,17 +195,58 @@ async function main() {
       idempotencyKey: 'blogger-publication:' + run.manifest.run_id,
       fencingToken: process.env.BLOGGER_FENCING_TOKEN || 'manual-stage61'
     });
-    const ledger = await EvidenceLedger.load(run.dir);
-    const evidence = ledger.add({ type: 'blogger-publication', run_id: runId, result, observed_at: new Date().toISOString() });
-    await ledger.save();
+    // Evidence only for a real attempt. A transaction that rolled back at
+    // preflight never touched the browser, so recording evidence for it would
+    // put a record in the ledger for something that did not happen.
+    let evidence = null;
+    if (adapter.trace.publish_attempted) {
+      const ledger = await EvidenceLedger.load(run.dir);
+      evidence = ledger.add(createEvidence({
+        claim: 'blogger publication attempt for ' + runId + ' (result=' + result.status + ', page_state=' + (adapter.trace.verification?.page_state || 'UNKNOWN') + ')',
+        sourceUrl: adapter.trace.target_after?.url || adapter.trace.target_before?.url || '',
+        selector: selectors.publish,
+        snapshot: JSON.stringify({ before: adapter.trace.target_before, after: adapter.trace.target_after }),
+        screenshot: null,
+        observedAt: new Date().toISOString(),
+        metadata: {
+          run_id: runId,
+          tx_id: result.tx_id || null,
+          transaction_status: result.status,
+          verification_status: result.verification?.status || adapter.trace.verification?.status || null,
+          page_state: adapter.trace.verification?.page_state || null,
+          external_id: result.verification?.external_id || null,
+          publish_clicked: adapter.trace.publish_clicked,
+          cdp_target_id: session.targetId,
+          cdp_target_resolved_by: session.targetResolvedBy,
+        },
+      }));
+      await ledger.save();
+    }
+
+    // An idempotent replay returns the stored verification, so re-writing here
+    // would re-stamp published_at and make the receipt look newly issued for an
+    // event that happened earlier. The first commit already recorded it.
+    if (result.idempotent === true) {
+      console.log(JSON.stringify({ ...result, evidence_id: evidence?.id || null, receipt: 'ALREADY_RECORDED_BY_PRIOR_COMMIT' }, null, 2));
+      return;
+    }
+
     if (result.status === 'COMMITTED' && result.verification?.status === 'PASS') {
+      const externalId = result.verification.external_id;
+      if (!externalId) throw new Error('refusing to record a publication receipt without an external id');
       save(run.dir, 'publication-receipt.json', {
         runtime: 'blogger-publication-adapter-v1', run_id: runId, status: 'PUBLISHED',
-        publication: { status: 'PUBLISHED', url: result.verification.url, published_at: new Date().toISOString(), external_id: '' },
-        evidence_id: evidence.id, transaction_id: result.tx_id
+        publication: {
+          status: 'PUBLISHED',
+          url: result.verification.url,
+          published_at: new Date().toISOString(),
+          external_id: externalId,
+        },
+        evidence_id: evidence?.id || null,
+        transaction_id: result.tx_id,
       });
     }
-    console.log(JSON.stringify({ ...result, evidence_id: evidence.id }, null, 2));
+    console.log(JSON.stringify({ ...result, evidence_id: evidence?.id || null }, null, 2));
   } finally { session.close(); }
 }
 main().catch(error => { console.error('BLOGGER-ADAPTER: ERROR ' + error.message); process.exitCode = 1; });

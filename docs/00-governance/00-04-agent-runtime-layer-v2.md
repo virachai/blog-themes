@@ -65,13 +65,13 @@ Runtime flow:
 
 TASK -> ROUTE -> CAPABILITY RESOLUTION -> SESSION -> OBSERVE -> EXECUTE -> TRACE -> EVIDENCE -> VALIDATE -> REPORT
 
-Implemented runtime modules live under `.tmp/cdp/runtime/`:
+Implemented runtime modules originate under `.tmp/cdp/runtime/`. The subset consumed by tracked scripts was promoted to [`scripts/node/cdp-runtime/`](../../scripts/node/cdp-runtime/README.md) — `.tmp/` is gitignored, so importing from it meant a fresh clone and CI could not resolve the stage 58–62 runtimes at all:
 
-- `session.mjs` — browser session state and navigation history.
-- `observation.mjs` — normalized page observation and summaries.
-- `capability.mjs` — canonical runtime capability resolution.
-- `runtime-plan.mjs` — deterministic execution-phase plan with security boundaries.
-- `evidence.mjs` — timestamped evidence records with SHA-256 content hashes.
+- `session.mjs` — browser session state and navigation history. Still in `.tmp/`; no tracked script imports it.
+- `observation.mjs` — normalized page observation and summaries. Still in `.tmp/`; no tracked script imports it.
+- `capability.mjs` — canonical runtime capability resolution. **Moved** to `scripts/node/cdp-runtime/`.
+- `runtime-plan.mjs` — deterministic execution-phase plan with security boundaries. **Moved** to `scripts/node/cdp-runtime/`.
+- `evidence.mjs` — timestamped evidence records with SHA-256 content hashes. **Moved** to `scripts/node/cdp-runtime/`.
 
 `browser-trace` is the observability adapter. It remains read-only and is not the browser control plane.
 

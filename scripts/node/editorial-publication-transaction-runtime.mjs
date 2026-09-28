@@ -2,10 +2,10 @@
 /** Stage 60 — Publication Transaction Runtime. Real publication is opt-in and fail-closed. */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { CdpSession } from '../../.tmp/cdp/runtime/cdp-session.mjs';
-import { EvidenceLedger } from '../../.tmp/cdp/runtime/evidence-ledger.mjs';
-import { IdempotencyLedger, DistributedCommitCoordinator } from '../../.tmp/cdp/runtime/commit-coordinator.mjs';
-import { ReleaseTransaction } from '../../.tmp/cdp/runtime/release-transaction.mjs';
+import { CdpSession } from './cdp-runtime/cdp-session.mjs';
+import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
+import { IdempotencyLedger, DistributedCommitCoordinator } from './cdp-runtime/commit-coordinator.mjs';
+import { ReleaseTransaction } from './cdp-runtime/release-transaction.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -32,7 +32,9 @@ function transaction(run, approved, cdp) {
   const adapter = {
     async execute({ payload }) {
       if (!cdp) throw new Error('publication adapter is not armed; use --cdp');
-      const session = new CdpSession({ endpoint: process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222' });
+      // Connectivity check only — no page-identity claim, so an explicit opt-in
+      // to the first-page fallback rather than a silent default.
+      const session = new CdpSession({ endpoint: process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222', targetPolicy: 'first-page' });
       const target = await session.connect();
       const snapshot = await session.snapshot();
       session.close();
