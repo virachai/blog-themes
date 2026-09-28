@@ -1,0 +1,19 @@
+{
+  "runtime": "measurement-source-adapter-runtime-v1",
+  "stage": 67,
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "status": "BLOCKED",
+  "blockers": [
+    "measurement_window_not_ready",
+    "measured_value_missing",
+    "unit_missing",
+    "baseline_missing",
+    "target_missing",
+    "source_missing_or_invalid",
+    "checked_at_invalid",
+    "source_reference_missing"
+  ],
+  "measurement_authority": false,
+  "external_side_effect": false
+}
