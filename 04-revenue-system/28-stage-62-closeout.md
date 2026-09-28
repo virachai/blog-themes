@@ -34,7 +34,14 @@ The successful path has never run. Everything above demonstrates that the pipeli
 
 1. **External publication has not been executed.** Blocked on `EMAIL_PUBLISH_CONFIRM=YES`, which is the operator's consent gate and remains unset.
 2. **Observer does not load `.env`.** `email-to-blogger-publication-observer.mjs` reads `process.env` directly, so values kept in `.env` never reach it — the same defect fixed in stage 59 by `scripts/node/dotenv.mjs`. Left unfixed deliberately; it is a Stage 62 change, not a Stage 59 one.
-3. **Chrome/CDP still running.** PID 17096 holding port 9222 with `--remote-allow-origins=*` and a profile signed into Google. Left open on instruction.
+3. **CDP session closed; the scratch profile remains on disk.** The Chrome
+   instance this work used is no longer running: PID 17096 does not exist,
+   port 9222 is not LISTENING, no process holds the `%TEMP%\chrome-cdp`
+   profile, and the CDP endpoint returns `fetch failed`. That failure is the
+   expected fail-closed behaviour — stage 59's `verify-target` exits 1 and the
+   observer's preflight reports `BLOCKED`, with no artifact changed. The
+   profile directory itself was not deleted. No other Chrome process was
+   touched.
 4. **No single run passes both halves.** `VLM-001-20260928154951` is release-ready but has no stage 58 state, so stage 59 cannot load it; `VLM-001-20260928085443` has the stage 58 state but its asset and release remain `BLOCKED`. An execution attempt needs one run that satisfies both.
 5. **`release prepare` would silently discard the approval.** `value-mission-release-runtime.mjs prepare` rewrites `release-candidate.json` with `approval: {status: 'PENDING'}`, overwriting `APPROVED` with no warning. An idempotent `approve` command is the proper fix and was not added.
 
