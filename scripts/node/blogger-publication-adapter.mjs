@@ -8,6 +8,8 @@ import { IdempotencyLedger, DistributedCommitCoordinator } from './cdp-runtime/c
 import { ReleaseTransaction } from './cdp-runtime/release-transaction.mjs';
 import { createEvidence } from './cdp-runtime/evidence.mjs';
 import { classifyBloggerPage, isBloggerHost, assertPublishable } from './blogger-page-state.mjs';
+import { resolvePublicationTitle, resolvePublicationBody, assertPublicationPayload } from './publication-payload.mjs';
+import { RECEIPT_FILE, buildPublicationReceipt } from './publication-receipt.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -82,9 +84,9 @@ function buildAdapter(run, session, mode) {
 
       if (process.env.BLOGGER_PUBLISH_CONFIRM !== 'YES') throw new Error('BLOGGER_PUBLISH_CONFIRM=YES is required for external publication');
 
-      const title = payload.title || run.asset?.title || '';
-      const body = payload.body || process.env.BLOGGER_BODY || '';
-      if (!title || !body) throw new Error('publication payload requires title and body');
+      const resolvedTitle = resolvePublicationTitle({ mission: run.manifest?.mission, asset: run.asset, override: payload.title });
+      const resolvedBody = resolvePublicationBody({ override: payload.body || process.env.BLOGGER_BODY });
+      const { title, body } = assertPublicationPayload({ title: resolvedTitle.title, body: resolvedBody.body });
 
       const fill = await session.evaluate(`(async () => {
         const titleEl = document.querySelector(${JSON.stringify(selectors.title)});
@@ -134,11 +136,20 @@ function buildAdapter(run, session, mode) {
           url: post.info.url, title: post.info.title, fingerprint: session.fingerprint(post.snapshot),
         };
       }
+      // Read the publication date off the post page. It is left null when the
+      // theme exposes none, rather than substituted with local wall-clock time.
+      const pageDate = await session.evaluate(`(() => {
+        const el = document.querySelector('time[datetime], .published, .post-timestamp, abbr.published, .post-date');
+        if (!el) return '';
+        return ((el.getAttribute && el.getAttribute('datetime')) || el.textContent || '').trim();
+      })()`);
+
       trace.verification = { status: 'PASS', page_state: classification.state, external_id: externalId };
       return {
         status: 'PASS', published: true, external_id: externalId,
         page_state: classification.state,
         url: classification.post_url, observed_url: post.info.url,
+        published_at: pageDate || null,
         title: post.info.title, fingerprint: session.fingerprint(post.snapshot),
       };
     },
@@ -190,7 +201,7 @@ async function main() {
     });
     const result = await tx.run({
       taskId: run.manifest.run_id, operation: 'blogger.publish',
-      payload: { run_id: run.manifest.run_id, title: run.asset?.title || '', body: process.env.BLOGGER_BODY || '' },
+      payload: { run_id: run.manifest.run_id, title: resolvePublicationTitle({ mission: run.manifest?.mission, asset: run.asset }).title || '', body: process.env.BLOGGER_BODY || '' },
       preflight: pf, requireApproval: true, approved: run.release?.approval?.status === 'APPROVED',
       idempotencyKey: 'blogger-publication:' + run.manifest.run_id,
       fencingToken: process.env.BLOGGER_FENCING_TOKEN || 'manual-stage61'
@@ -232,19 +243,15 @@ async function main() {
     }
 
     if (result.status === 'COMMITTED' && result.verification?.status === 'PASS') {
-      const externalId = result.verification.external_id;
-      if (!externalId) throw new Error('refusing to record a publication receipt without an external id');
-      save(run.dir, 'publication-receipt.json', {
-        runtime: 'blogger-publication-adapter-v1', run_id: runId, status: 'PUBLISHED',
-        publication: {
-          status: 'PUBLISHED',
-          url: result.verification.url,
-          published_at: new Date().toISOString(),
-          external_id: externalId,
-        },
-        evidence_id: evidence?.id || null,
-        transaction_id: result.tx_id,
-      });
+      // The single authoritative receipt write. Every field is derived from the
+      // verified public post; buildPublicationReceipt refuses the rest.
+      save(run.dir, RECEIPT_FILE, buildPublicationReceipt({
+        runId,
+        verification: result.verification,
+        evidenceId: evidence?.id || null,
+        transactionId: result.tx_id,
+        verifiedAt: new Date().toISOString(),
+      }));
     }
     console.log(JSON.stringify({ ...result, evidence_id: evidence?.id || null }, null, 2));
   } finally { session.close(); }

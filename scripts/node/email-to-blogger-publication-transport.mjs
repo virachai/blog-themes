@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import crypto from 'node:crypto';
 import net from 'node:net';
 import tls from 'node:tls';
+import { resolvePublicationTitle, assertPublicationPayload } from './publication-payload.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -53,9 +54,12 @@ function preflight(run) {
 }
 
 function compose(run) {
-  const title = run.asset?.title || env('BLOGGER_EMAIL_TITLE') || run.manifest?.mission_id || run.manifest?.run_id;
+  // Same title chain as the stage 61 adapter. This previously fell back to
+  // mission_id, which is how a subject of "VLM-001" was produced — an identifier
+  // standing in for a title, with nothing to signal it was a placeholder.
+  const resolvedTitle = resolvePublicationTitle({ mission: run.manifest?.mission, asset: run.asset, override: env('BLOGGER_EMAIL_TITLE') });
   const body = env('BLOGGER_EMAIL_BODY') || run.package;
-  if (!body.trim()) throw new Error('publication body is empty');
+  const { title } = assertPublicationPayload({ title: resolvedTitle.title, body });
   const to = env('EMAIL_FOR_POSTING');
   const from = env('EMAIL_FROM');
   const lines = [

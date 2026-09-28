@@ -16,11 +16,13 @@
  * evidence ledger whose content_hash was a constant because every caller passed
  * field names createEvidence() never read.
  */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createEvidence, hashText } from './cdp-runtime/evidence.mjs';
-import { verifyEvidenceLedger } from './cdp-runtime/adversarial-verifier.mjs';
+import { verifyEvidenceLedger, assertEvidenceSupportsPublication } from './cdp-runtime/adversarial-verifier.mjs';
 import { classifyBloggerPage, assertPublishable, externalIdFor } from './blogger-page-state.mjs';
+import { resolvePublicationTitle, assertPublicationPayload } from './publication-payload.mjs';
+import { AUTHORITATIVE_WRITER_FILE, isAuthoritativeReceipt, buildPublicationReceipt, assertAuthoritativeReceipt } from './publication-receipt.mjs';
 
 const ROOT = process.cwd();
 const errors = [];
@@ -165,12 +167,120 @@ else {
   }
 }
 
+// --- E. Publication payload: the title has a declared source -----------------
+// The asset spec derived from a mission block with no title field, so
+// `run.asset?.title` was always '' and the stage 61 publish path threw a generic
+// "requires title and body" on every asset shaped like VLM-001.
+
+const untitled = resolvePublicationTitle({ mission: { issue: 'Define the real user problem' } });
+if (untitled.title !== null) fail('E1 a mission with no title field produced a title out of nowhere');
+if (untitled.source !== null) fail('E2 a mission with no title reported a title source');
+const titled = resolvePublicationTitle({ mission: { title: '  A real declared title  ' } });
+if (titled.title !== 'A real declared title') fail('E3 the declared title was not resolved and trimmed');
+if (titled.source !== 'mission.title') fail('E4 the title source was misreported as ' + titled.source);
+if (resolvePublicationTitle({ mission: { title: 'a' }, asset: { title: 'b' } }).title !== 'b') fail('E5 asset.title does not take precedence over mission.title');
+if (resolvePublicationTitle({ mission: { title: 'a' }, override: 'c' }).title !== 'c') fail('E6 the explicit override does not win');
+
+let gateNamesSource = false;
+try { assertPublicationPayload({ title: null, body: 'body' }); } catch (error) { gateNamesSource = /mission\.title/.test(error.message); }
+if (!gateNamesSource) fail('E7 the payload gate does not name where the title must come from — the operator sees a generic payload error');
+
+const assetRuntimeSrc = source('scripts/node/value-mission-asset-runtime.mjs');
+if (!assetRuntimeSrc?.includes('resolvePublicationTitle')) fail('E8 the asset runtime does not derive the title through the shared resolver');
+if (!assetRuntimeSrc?.includes('title_missing')) fail('E9 the asset runtime does not record a title blocker when no title is declared');
+if (source('scripts/node/blogger-publication-adapter.mjs')?.includes('requires title and body')) fail('E10 the adapter still throws the generic payload error instead of naming the missing source');
+
+// --- F. Legacy evidence cannot be revived ------------------------------------
+// The VLM-001 record predates the field-mismatch fix: no claim, no snapshot, and
+// a content_hash that is a constant. Its hash is preserved for audit and it is
+// rejected on its marker, so a later edit cannot quietly make it valid again.
+
+const legacyLedgerPath = '04-revenue-system/07-intelligence/runs/VLM-001-20260928085443/ledger.json';
+const legacyRecord = existsSync(join(ROOT, legacyLedgerPath)) ? JSON.parse(readFileSync(join(ROOT, legacyLedgerPath), 'utf8')).records?.[0] : null;
+if (!legacyRecord) {
+  fail('F0 the VLM-001 legacy ledger record is missing — it is kept for audit, not deleted');
+} else {
+  if (legacyRecord.content_hash !== CONSTANT_HASH) fail('F1 the legacy record content_hash was rewritten; it must be preserved unchanged for audit');
+  if (!legacyRecord.legacy_status) fail('F2 the legacy record carries no legacy_status marker');
+  const legacyFindings = verifyEvidenceLedger([legacyRecord]);
+  if (!legacyFindings.some(f => f.id === 'E003')) fail('F3 the verifier no longer flags the legacy record as incomplete');
+  if (!legacyFindings.some(f => f.id === 'E006')) fail('F4 the verifier does not reject the record on its legacy marker');
+
+  let legacyAccepted = false;
+  try { assertEvidenceSupportsPublication(legacyRecord); legacyAccepted = true; } catch { legacyAccepted = false; }
+  if (legacyAccepted) fail('F5 a LEGACY_INVALID record was accepted as publication evidence');
+
+  // The important one: repairing the shape must not revive it.
+  const revived = { ...legacyRecord, claim: 'a claim added later', observed_at: '2026-09-28T15:00:00.000Z' };
+  let revivedAccepted = false;
+  try { assertEvidenceSupportsPublication(revived); revivedAccepted = true; } catch { revivedAccepted = false; }
+  if (revivedAccepted) fail('F6 a legacy-marked record was accepted once a claim was added — the legacy marker must block regardless of shape');
+}
+
+// --- G. publication-receipt.json has exactly one writer ----------------------
+// Three runtimes used to write this path with incompatible shapes, and two
+// consumers read different fields of whichever shape was on disk.
+
+function receiptWriters() {
+  const found = [];
+  for (const dir of ['scripts/node', 'scripts/node/cdp-runtime']) {
+    for (const name of readdirSync(join(ROOT, dir))) {
+      if (!name.endsWith('.mjs')) continue;
+      const rel = dir + '/' + name;
+      const src = source(rel);
+      if (!src) continue;
+      for (const m of src.matchAll(/(?:save|writeFileSync)\(/g)) {
+        if (/RECEIPT_FILE|publication-receipt\.json/.test(src.slice(m.index, m.index + 200))) { found.push(rel); break; }
+      }
+    }
+  }
+  return found.sort();
+}
+
+const writers = receiptWriters();
+if (writers.length !== 1) {
+  fail('G1 ' + writers.length + ' files write publication-receipt.json (' + writers.join(', ') + ') — exactly one authoritative writer is allowed');
+} else if (writers[0] !== AUTHORITATIVE_WRITER_FILE) {
+  fail('G2 publication-receipt.json is written by ' + writers[0] + ', not the authoritative writer ' + AUTHORITATIVE_WRITER_FILE);
+}
+
+// A foreign writer's output must be rejected on read.
+const legacyReceipt = { runtime: 'value-mission-publication-runtime-v1', run_id: 'VLM-001-20260928085443', status: 'BLOCKED', publication: { status: 'NOT_EXECUTED', url: '', published_at: '', external_id: '' } };
+if (isAuthoritativeReceipt(legacyReceipt)) fail('G3 a receipt from a non-authoritative runtime was accepted as authoritative');
+let foreignAccepted = false;
+try { assertAuthoritativeReceipt(legacyReceipt); foreignAccepted = true; } catch { foreignAccepted = false; }
+if (foreignAccepted) fail('G4 assertAuthoritativeReceipt accepted a foreign writer receipt');
+
+// The receipt builder only accepts facts from a verified public post.
+const goodVerification = { status: 'PASS', page_state: 'PUBLISHED_CANDIDATE', external_id: PUBLIC_URL, url: PUBLIC_URL, published_at: '2026-08-01T00:00:00.000Z' };
+const goodReceipt = buildPublicationReceipt({ runId: 'r', verification: goodVerification, verifiedAt: '2026-09-28T15:00:00.000Z' });
+if (goodReceipt.publication.url !== PUBLIC_URL) fail('G5 the receipt url does not come from the verified public post');
+if (goodReceipt.publication.external_id !== PUBLIC_URL) fail('G6 the receipt external_id does not come from the verified public post');
+if (goodReceipt.publication.published_at !== '2026-08-01T00:00:00.000Z') fail('G7 the receipt dropped the post page publication date');
+if (assertAuthoritativeReceipt(goodReceipt) !== goodReceipt) fail('G8 a well-formed authoritative receipt was rejected');
+
+for (const [label, verification] of [
+  ['an editor page', { status: 'PASS', page_state: 'EDITING', external_id: 'x', url: 'https://www.blogger.com/blog/post/edit/1/2', published_at: null }],
+  ['a failed verification', { status: 'BLOCKED', page_state: 'PUBLISHED_CANDIDATE', external_id: 'x', url: PUBLIC_URL, published_at: null }],
+  ['a missing external id', { status: 'PASS', page_state: 'PUBLISHED_CANDIDATE', external_id: '', url: PUBLIC_URL, published_at: null }],
+  ['a missing url', { status: 'PASS', page_state: 'PUBLISHED_CANDIDATE', external_id: 'x', url: '', published_at: null }],
+]) {
+  let built = false;
+  try { buildPublicationReceipt({ runId: 'r', verification, verifiedAt: 'now' }); built = true; } catch { built = false; }
+  if (built) fail('G9 the receipt builder accepted ' + label);
+}
+
+// published_at is never invented from local time.
+const noDate = buildPublicationReceipt({ runId: 'r', verification: { status: 'PASS', page_state: 'PUBLISHED_CANDIDATE', external_id: PUBLIC_URL, url: PUBLIC_URL, published_at: null }, verifiedAt: '2026-09-28T15:00:00.000Z' });
+if (noDate.publication.published_at !== null) fail('G10 published_at was filled in without a post page date — it must stay null and say so');
+if (noDate.publication.published_at_source !== 'unknown') fail('G11 published_at_source does not record that the date was unknown');
+
 // --- Report -----------------------------------------------------------------
 
 if (errors.length) {
   console.log('PUBLICATION-EVIDENCE-CHECK: FAIL');
   errors.forEach(e => console.log('- ' + e));
 } else {
-  console.log('PUBLICATION-EVIDENCE-CHECK: PASS (evidence varies with content, verifier wired, editor ≠ public post, external id required, source guards hold)');
+  console.log('PUBLICATION-EVIDENCE-CHECK: PASS (evidence varies with content, verifier wired, editor ≠ public post, external id required, legacy evidence cannot be revived, receipt has one writer, title has a declared source, source guards hold)');
 }
 process.exitCode = errors.length ? 1 : 0;

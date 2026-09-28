@@ -2,16 +2,23 @@
 /** Stage 22F — Value Mission Outcome & Measurement Runtime. Measurement intake and decision gate. */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { RECEIPT_FILE, assertAuthoritativeReceipt } from './publication-receipt.mjs';
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
 function fail(message){ console.error('MISSION-MEASURE: ERROR '+message); process.exitCode=1; }
 function load(runId){ const dir=join(RUNS,runId); const manifest=join(dir,'manifest.json'); if(!existsSync(manifest)) throw new Error('run not found: '+runId); return {dir,manifest:JSON.parse(readFileSync(manifest,'utf8'))}; }
 function readJson(file){ return existsSync(file)?JSON.parse(readFileSync(file,'utf8')):null; }
 function inspect(runId){
-  const run=load(runId), receipt=readJson(join(run.dir,'publication-receipt.json')), plan=readJson(join(run.dir,'measurement-plan.json')), outcome=readJson(join(run.dir,'outcome.json'));
+  const run=load(runId), receipt=readJson(join(run.dir,RECEIPT_FILE)), plan=readJson(join(run.dir,'measurement-plan.json')), outcome=readJson(join(run.dir,'outcome.json'));
+  // Existence alone is not evidence of publication — a legacy file at this path,
+  // or a readiness record from another runtime, used to satisfy this check.
+  let receiptStatus='not present';
+  let receiptOk=false;
+  try { assertAuthoritativeReceipt(receipt); receiptOk=true; receiptStatus='PUBLISHED (authoritative)'; }
+  catch(error){ receiptStatus=error.message; }
   const checks=[
-    {id:'publication_receipt',pass:!!receipt,target:'publication-receipt.json exists'},
-    {id:'published',pass:receipt?.publication?.status==='PUBLISHED',target:'publication status is PUBLISHED'},
+    {id:'publication_receipt',pass:receiptOk,target:'an authoritative '+RECEIPT_FILE+' from the stage 61 adapter is present — '+receiptStatus},
+    {id:'published',pass:receiptOk,target:'receipt claims PUBLISHED with url and external_id taken from the verified public post'},
     {id:'measurement_plan',pass:!!plan && Number(plan.observation_days)>0 && String(plan.metric||'').trim()!=='',target:'measurement plan has metric and observation window'},
     {id:'outcome_recorded',pass:!!outcome && Array.isArray(outcome.observations) && outcome.observations.length>0,target:'at least one measured outcome observation'},
     {id:'measured_value',pass:!!outcome && outcome.observations?.every(x=>String(x.value??'').trim()!==''),target:'every outcome has a measured value'},

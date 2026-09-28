@@ -21,8 +21,25 @@ export function verifyEvidenceLedger(records = []) {
     if (record?.content_hash && record?.content_hash !== hashText(JSON.stringify({ claim: record.claim, sourceUrl: record.source_url, selector: record.selector, snapshot: record.snapshot }))) {
       findings.push(finding('E004', 'BLOCK', 'evidence-integrity', `Content hash mismatch: ${record.id ?? 'unknown'}`));
     }
+    // A record written before the field-mismatch fix carries a constant
+    // content_hash and records nothing about what was observed. It is kept as
+    // history, not silently rewritten, so it must be rejected on its marker
+    // rather than only on its shape — otherwise a future edit that happens to
+    // add a claim would quietly revive it as valid evidence.
+    if (record?.legacy_status) {
+      findings.push(finding('E006', 'BLOCK', 'evidence-legacy', `Evidence record ${record.id ?? 'unknown'} is marked ${record.legacy_status}${record.legacy_reason ? ': ' + record.legacy_reason : ''}`));
+    }
   }
   return findings;
+}
+
+/** A record may only be used as publication evidence if it is neither legacy-marked nor blocking. */
+export function assertEvidenceSupportsPublication(record) {
+  if (!record) throw new Error('publication evidence is missing');
+  if (record.legacy_status) throw new Error('publication evidence ' + (record.id ?? 'unknown') + ' is ' + record.legacy_status + ' and cannot support a publication claim');
+  const blocking = verifyEvidenceLedger([record]).filter(f => f.severity === 'BLOCK');
+  if (blocking.length) throw new Error('publication evidence ' + (record.id ?? 'unknown') + ' failed verification: ' + blocking.map(f => f.id + '/' + f.check).join(', '));
+  return record;
 }
 
 export function adversarialVerify({ state, evidence = [], handoffs = [], invocations = [], requiredEvidenceIds = [], expectedToSkills = [] } = {}) {

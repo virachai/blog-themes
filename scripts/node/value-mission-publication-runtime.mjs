@@ -20,10 +20,15 @@ function inspect(runId){
 }
 function prepare(runId){
   const run=load(runId), result=inspect(runId);
-  const receipt={runtime:'value-mission-publication-runtime-v1',run_id:runId,mission_id:run.manifest.mission_id,status:result.status,publication_authority:false,adapter:'manual-or-trusted-blogspot-adapter',publication:{status:'NOT_EXECUTED',url:'',published_at:'',external_id:''},approval:{status:'PENDING'},checks:result.checks,boundary:'No external publication is performed by this deterministic runtime unless an approved adapter is explicitly invoked.'};
-  writeFileSync(join(run.dir,'publication-receipt.json'),JSON.stringify(receipt,null,2)+'\n');
-  console.log('MISSION-PUBLISH: '+result.status); console.log('MISSION: '+run.manifest.mission_id); console.log('RUN: '+runId); console.log('ARTIFACT: '+run.dir.replace(ROOT+'/','')+'/publication-receipt.json');
-  if(result.status==='BLOCKED'){ console.log('BLOCKERS: '+result.blockers.join(', ')); console.log('NEXT: approve the release candidate, then invoke a trusted publication adapter'); } else console.log('NEXT: invoke the trusted adapter and record the real publication URL/id in publication-receipt.json');
+  // This runtime inspects readiness; it does not publish. It used to write its
+  // result to publication-receipt.json, which made a not-published run look like
+  // it had produced a receipt and put a second writer on that path. The readiness
+  // record now lives in its own artifact, and only the stage 61 adapter may write
+  // a receipt.
+  const plan={runtime:'value-mission-publication-runtime-v1',run_id:runId,mission_id:run.manifest.mission_id,status:result.status,publication_authority:false,adapter:'manual-or-trusted-blogspot-adapter',publication_plan:{status:'NOT_EXECUTED',url:'',published_at:'',external_id:''},approval:{status:'PENDING'},checks:result.checks,boundary:'No external publication is performed by this deterministic runtime unless an approved adapter is explicitly invoked. This artifact is a readiness check, not a publication receipt.'};
+  writeFileSync(join(run.dir,'value-publication-plan.json'),JSON.stringify(plan,null,2)+'\n');
+  console.log('MISSION-PUBLISH: '+result.status); console.log('MISSION: '+run.manifest.mission_id); console.log('RUN: '+runId); console.log('ARTIFACT: '+run.dir.replace(ROOT+'/','')+'/value-publication-plan.json');
+  if(result.status==='BLOCKED'){ console.log('BLOCKERS: '+result.blockers.join(', ')); console.log('NEXT: approve the release candidate, then invoke a trusted publication adapter'); } else console.log('NEXT: invoke the trusted adapter; a publication receipt is written only by the stage 61 adapter after it verifies the live public post');
   if(result.status==='BLOCKED') process.exitCode=2;
 }
 const [command,id]=process.argv.slice(2);

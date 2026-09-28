@@ -8,7 +8,9 @@
       "screenshot": null,
       "content_hash": "7e09b49294dd7a7a5e3180ff2cf1ddcb1476bf368df6539aa65ec40ca6bcf4c9",
       "metadata": {},
-      "id": "c18f2508addb87b8"
+      "id": "c18f2508addb87b8",
+      "legacy_status": "LEGACY_INVALID",
+      "legacy_reason": "Written before the createEvidence field-mismatch fix. The caller passed {type, run_id, verified, target, fingerprint, observed_at} to a function that reads {claim, sourceUrl, selector, snapshot}, so claim and snapshot are absent and content_hash is a constant (7e09b492...) that does not vary with content. Retained unchanged for audit; superseded and not evidence of any observation."
     }
   ]
 }

@@ -2,6 +2,7 @@
 /** Stage 58 — Editorial Production Loop Runtime. Manual-first, fail-closed orchestration. */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { RECEIPT_FILE, assertAuthoritativeReceipt } from './publication-receipt.mjs';
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
@@ -20,15 +21,18 @@ function inspect(runId) {
   const run = load(runId);
   const asset = readJson(join(run.dir, 'asset-spec.json'));
   const release = readJson(join(run.dir, 'release-candidate.json'));
-  const receipt = readJson(join(run.dir, 'publication-receipt.json'));
+  const receipt = readJson(join(run.dir, RECEIPT_FILE));
   const outcome = readJson(join(run.dir, 'outcome.json'));
+  // A legacy or foreign file at the receipt path is not a publication record.
+  let publicationRecorded = false;
+  try { assertAuthoritativeReceipt(receipt); publicationRecorded = true; } catch { publicationRecorded = false; }
 
   const gates = [
     gate('opportunity', run.manifest.validation?.status === 'READY' ? 'READY' : 'BLOCKED', 'mission contract must be validated'),
     gate('research', existsSync(join(run.dir, 'research-brief.md')) ? 'READY' : 'BLOCKED', 'research brief is the evidence handoff'),
     gate('asset', asset?.status === 'RELEASE_CANDIDATE' ? 'READY' : 'BLOCKED', 'asset must be a release candidate'),
     gate('release', release?.status === 'READY_FOR_RELEASE_APPROVAL' ? 'READY_FOR_APPROVAL' : 'BLOCKED', 'release runtime prepares but never grants authority'),
-    gate('publication', receipt?.status === 'PUBLISHED' ? 'RECORDED' : 'PENDING_APPROVAL', 'publication is external and must be recorded from real evidence'),
+    gate('publication', publicationRecorded ? 'RECORDED' : 'PENDING_APPROVAL', 'publication is external and must be recorded from an authoritative receipt written by the stage 61 adapter'),
     gate('measurement', outcome?.status === 'MEASURED' ? 'RECORDED' : 'PENDING', 'measurement requires observed outcome data'),
     gate('learning', outcome?.decision ? 'READY' : 'PENDING', 'optimization/learning decision follows measurement'),
   ];
