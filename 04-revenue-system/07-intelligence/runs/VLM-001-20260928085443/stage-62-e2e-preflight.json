@@ -1,0 +1,126 @@
+{
+  "runtime": "stage-62-real-target-e2e-preflight-v1",
+  "stage": 62,
+  "phase": "A",
+  "run_id": "VLM-001-20260928085443",
+  "status": "BLOCKED",
+  "recorded_at": "2026-09-28T15:45:25.400Z",
+  "checks": [
+    {
+      "group": "gates",
+      "id": "git_diff_check",
+      "pass": true,
+      "target": "git diff --check clean"
+    },
+    {
+      "group": "gates",
+      "id": "structure_check",
+      "pass": true,
+      "target": "STRUCTURE-CHECK: PASS"
+    },
+    {
+      "group": "gates",
+      "id": "publication_evidence_check",
+      "pass": true,
+      "target": "PUBLICATION-EVIDENCE-CHECK: PASS"
+    },
+    {
+      "group": "operator",
+      "id": "mission_title",
+      "pass": false,
+      "target": "mission.title declared",
+      "observed": null
+    },
+    {
+      "group": "operator",
+      "id": "operator_consent",
+      "pass": false,
+      "target": "EMAIL_PUBLISH_CONFIRM=YES",
+      "observed": "(unset)"
+    },
+    {
+      "group": "operator",
+      "id": "target_id_configured",
+      "pass": true,
+      "target": "BLOGGER_TARGET_ID set",
+      "observed": "FCC6AC44E6D2732EDAA28C8233E4DED6"
+    },
+    {
+      "group": "state",
+      "id": "no_authoritative_receipt",
+      "pass": true,
+      "target": "no authoritative receipt present"
+    },
+    {
+      "group": "state",
+      "id": "email_sent_recorded",
+      "pass": false,
+      "target": "email-publication-result.json records EMAIL_SENT"
+    },
+    {
+      "group": "target",
+      "id": "target_is_blogger_editor",
+      "pass": true,
+      "target": "CDP target is the Blogger editor",
+      "observed": "EDITING"
+    },
+    {
+      "group": "internal",
+      "id": "release_ready",
+      "pass": false,
+      "target": "release candidate READY_FOR_RELEASE_APPROVAL",
+      "observed": "BLOCKED"
+    },
+    {
+      "group": "internal",
+      "id": "human_approval",
+      "pass": false,
+      "target": "approval.status APPROVED",
+      "observed": "PENDING"
+    },
+    {
+      "group": "internal",
+      "id": "asset_ready",
+      "pass": false,
+      "target": "asset is ready to publish",
+      "observed": "BLOCKED"
+    },
+    {
+      "group": "content",
+      "id": "evidence_present",
+      "pass": false,
+      "target": "asset evidence has a claim and sources",
+      "observed": "claim=\"\" sources=[]"
+    }
+  ],
+  "blockers": [
+    "mission_title",
+    "operator_consent",
+    "email_sent_recorded",
+    "release_ready",
+    "human_approval",
+    "asset_ready",
+    "evidence_present"
+  ],
+  "target": {
+    "cdp_endpoint": "http://127.0.0.1:9222",
+    "cdp_target_id": "FCC6AC44E6D2732EDAA28C8233E4DED6",
+    "url": "https://www.blogger.com/blog/post/edit/6973756749045108777/6268864657932604137",
+    "document_title": "Post: Edit",
+    "classification": {
+      "state": "EDITING",
+      "reason": "blogger-editor-path",
+      "post_url": null
+    }
+  },
+  "not_evaluated": [
+    "intended-post identity cannot be confirmed: VLM-001 declares no title and no post id to compare the open editor against"
+  ],
+  "safety": {
+    "publication_attempted": false,
+    "receipt_created": false,
+    "external_side_effect": false,
+    "cdp_access": "read-only (evaluate + classify, no navigation, no clicks, no writes)"
+  },
+  "boundary": "Phase A only. Phase B not started: preflight is BLOCKED. No publication was attempted and no publication receipt was created."
+}
