@@ -15,6 +15,7 @@ const LAYERS = [
   ['04', 'Monetization', '04-monetization/plans.csv'],
   ['05', 'Measurement', '05-measurement/snapshots.csv'],
   ['06', 'Optimization', '06-optimization/decisions.csv'],
+  ['07', 'Intelligence', '07-intelligence/signals.csv'],
 ];
 
 function fail(message) {
@@ -48,7 +49,7 @@ function check() {
     errors.forEach((e) => console.log('- ' + e));
     return false;
   }
-  console.log('REVENUE-CHECK: PASS (6 layers, ledgers, runbook)');
+  console.log('REVENUE-CHECK: PASS (6 execution layers + Stage 20+ intelligence)');
   return true;
 }
 
@@ -58,7 +59,7 @@ function status() {
   for (const [number, name, file] of LAYERS) {
     console.log('L' + number + ' ' + name.padEnd(16) + ' records=' + csvRows(file));
   }
-  console.log('LOOP: Discovery -> Asset -> Distribution -> Monetization -> Measurement -> Optimization -> Discovery');
+  console.log('LOOP: Discovery -> Asset -> Distribution -> Monetization -> Measurement -> Optimization -> Intelligence -> Discovery');
 }
 
 function next() {
