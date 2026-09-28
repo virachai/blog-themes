@@ -1,0 +1,18 @@
+{
+  "runtime": "measurement-observation-runtime-v1",
+  "stage": 65,
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "status": "BLOCKED",
+  "blockers": [
+    "measurement_intake_not_ready",
+    "authoritative_publication_receipt_missing",
+    "measured_value_missing",
+    "checked_at_missing",
+    "source_missing_or_invalid",
+    "baseline_missing",
+    "target_missing"
+  ],
+  "measurement_authority": false,
+  "external_side_effect": false
+}
