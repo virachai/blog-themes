@@ -24,6 +24,9 @@ import { CdpSession } from './cdp-runtime/cdp-session.mjs';
 import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
 import { createEvidence } from './cdp-runtime/evidence.mjs';
 import { classifyBloggerPage } from './blogger-page-state.mjs';
+import { loadDotEnv } from './dotenv.mjs';
+
+loadDotEnv();
 
 const ROOT = process.cwd();
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');

@@ -1,0 +1,25 @@
+{
+  "runtime": "publication-verification-runtime-v1",
+  "stage": 63,
+  "run_id": "VLM-001-20260928085443",
+  "status": "BLOCKED",
+  "verified": false,
+  "publication_status": "UNVERIFIED",
+  "feedback_state": "AWAITING_VERIFICATION",
+  "findings": [
+    {
+      "id": "V63-001",
+      "severity": "BLOCK",
+      "message": "receipt is not authoritative: runtime is \"value-mission-publication-runtime-v1\", expected \"blogger-publication-adapter-v1\" (legacy or foreign writer)"
+    },
+    {
+      "id": "V63-002",
+      "severity": "BLOCK",
+      "message": "Stage 62 observation is missing"
+    }
+  ],
+  "external_side_effect": false,
+  "receipt_writer": null,
+  "boundary": "Read-side verification only. This runtime never creates publication-receipt.json and never performs external publication.",
+  "verified_at": null
+}
