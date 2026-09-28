@@ -87,3 +87,27 @@ Stage 5 now includes four live-runtime adapters:
 - `skill-invocation.mjs` — validates runtime-to-skill handoffs against the canonical 15-skill registry and never grants execution authority.
 
 A live smoke test has passed against the active Chrome target: CDP connection, snapshot capture, evidence creation, snapshot diff, and `technical-seo` invocation validation all completed successfully.
+
+## Stage 6 — Task State & Checkpoint Runtime
+
+Stage 6 adds durable task state so a planned or active run can be paused, validated, and resumed without reconstructing execution context from memory.
+
+Runtime flow:
+
+TASK -> RUN CREATED -> ROUTE -> SKILL CHAIN -> SESSION -> OBSERVE -> EVIDENCE -> CHECKPOINT -> PAUSE/FAIL -> RESUME -> VALIDATE -> CONTINUE -> COMPLETE
+
+Implemented modules:
+
+- `task-state.mjs` — versioned lifecycle state, deterministic transition rules, atomic JSON persistence, checkpoint creation, checkpoint integrity verification, and resume validation.
+- `handoff-contract.mjs` — hash-bound skill handoff records bound to a task, destination skill, evidence IDs, and checkpoint revision.
+- `task-state-smoke.mjs` — verifies create/run/checkpoint/pause/resume and handoff validation end-to-end.
+
+Stage 6 invariants:
+
+1. Every resumable run has a stable `task_id` and monotonically increasing checkpoint revision.
+2. Invalid lifecycle transitions fail closed.
+3. Checkpoints are integrity-checked before resume.
+4. Resume is allowed only from `PAUSED` or `FAILED` state.
+5. Handoffs are task-bound and evidence-aware; validation does not grant execution authority.
+6. State persistence uses write-then-rename to avoid exposing partial checkpoint files.
+7. State recovery does not bypass browser security, authentication, release gates, or human handoff requirements.
