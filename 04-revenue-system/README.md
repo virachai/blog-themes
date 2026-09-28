@@ -38,9 +38,11 @@ node scripts/node/revenue-system.mjs status
 node scripts/node/revenue-system.mjs check
 node scripts/node/revenue-system.mjs next
 node scripts/node/revenue-system.mjs dashboard
+node scripts/node/editorial-production-loop-runtime.mjs check <run_id>
+node scripts/node/editorial-production-loop-runtime.mjs prepare <run_id>
 ```
 
-See [04-01-runbook.md](RUNBOOK.md) for the exact manual operating procedure.
+Stage 58 connects the six execution layers and intelligence runtime into a resumable production loop. Stage 59 adds the execution adapter for preflight, evidence, and CDP target verification. Stage 60 wraps publication attempts in an approval-gated transaction boundary with idempotency, verification, rollback, and evidence. Stage 61 binds that boundary to a Blogger-specific CDP adapter with UI intent verification and post-publish receipt creation. See [23-stage-58-editorial-production-loop.md](23-stage-58-editorial-production-loop.md), [24-stage-59-production-execution-adapter.md](24-stage-59-production-execution-adapter.md), [25-stage-60-publication-transaction-runtime.md](25-stage-60-publication-transaction-runtime.md), and [26-stage-61-blogger-publication-adapter.md](26-stage-61-blogger-publication-adapter.md). Stage 62 adds an Email-to-Blogger transport that separates SMTP delivery from publication proof. See [27-stage-62-email-to-blogger-publication-transport.md](27-stage-62-email-to-blogger-publication-transport.md).
 
 ## Rules
 

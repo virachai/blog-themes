@@ -1,0 +1,57 @@
+{
+  "runtime": "editorial-production-loop-runtime-v1",
+  "stage": 58,
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "status": "INCOMPLETE",
+  "gates": [
+    {
+      "id": "opportunity",
+      "status": "READY",
+      "reason": "mission contract must be validated"
+    },
+    {
+      "id": "research",
+      "status": "READY",
+      "reason": "research brief is the evidence handoff"
+    },
+    {
+      "id": "asset",
+      "status": "BLOCKED",
+      "reason": "asset must be a release candidate"
+    },
+    {
+      "id": "release",
+      "status": "BLOCKED",
+      "reason": "release runtime prepares but never grants authority"
+    },
+    {
+      "id": "publication",
+      "status": "PENDING_APPROVAL",
+      "reason": "publication is external and must be recorded from real evidence"
+    },
+    {
+      "id": "measurement",
+      "status": "PENDING",
+      "reason": "measurement requires observed outcome data"
+    },
+    {
+      "id": "learning",
+      "status": "PENDING",
+      "reason": "optimization/learning decision follows measurement"
+    }
+  ],
+  "next_action": {
+    "gate": "asset",
+    "instruction": "Create and validate asset-spec.json and asset-package.md."
+  },
+  "authority": {
+    "research": false,
+    "editorial": false,
+    "publish": false,
+    "monetization": false,
+    "measurement": false,
+    "learning": false
+  },
+  "boundary": "This runtime coordinates state and evidence only. It does not invent evidence, publish externally, or claim outcomes without recorded receipts."
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "observed_at": "2026-09-28T14:00:28.134Z",
+      "selector": null,
+      "snapshot": null,
+      "screenshot": null,
+      "content_hash": "7e09b49294dd7a7a5e3180ff2cf1ddcb1476bf368df6539aa65ec40ca6bcf4c9",
+      "metadata": {},
+      "id": "c18f2508addb87b8"
+    }
+  ]
+}

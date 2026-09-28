@@ -1,0 +1,21 @@
+{
+  "runtime": "editorial-publication-transaction-runtime-v1",
+  "stage": 60,
+  "run_id": "VLM-001-20260928085443",
+  "status": "BLOCKED",
+  "preflight": {
+    "status": "BLOCKED",
+    "blockers": [
+      "release_not_ready",
+      "human_approval_required"
+    ]
+  },
+  "mode": "dry-run",
+  "publication_receipt": "NOT_CREATED",
+  "safety": {
+    "approval_required": true,
+    "idempotency_required": true,
+    "verification_required": true,
+    "rollback_required": true
+  }
+}

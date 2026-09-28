@@ -1,0 +1,24 @@
+{
+  "runtime": "email-to-blogger-publication-transport-v1",
+  "stage": 62,
+  "run_id": "VLM-001-20260928085443",
+  "status": "BLOCKED",
+  "preflight": {
+    "status": "BLOCKED",
+    "blockers": [
+      "release_not_ready",
+      "human_approval_required",
+      "asset_not_ready"
+    ]
+  },
+  "transport": "email-to-blogger",
+  "recipient_configured": true,
+  "external_side_effect": false,
+  "receipt": "NOT_CREATED_UNTIL_PUBLICATION_OBSERVED",
+  "safety": {
+    "approval_required": true,
+    "idempotency_required": true,
+    "send_requires_explicit_command": true,
+    "secrets_never_logged": true
+  }
+}

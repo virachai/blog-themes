@@ -1,0 +1,26 @@
+{
+  "runtime": "blogger-publication-adapter-v1",
+  "stage": 61,
+  "run_id": "VLM-001-20260928085443",
+  "status": "BLOCKED",
+  "preflight": {
+    "status": "BLOCKED",
+    "blockers": [
+      "release_not_ready",
+      "human_approval_required"
+    ]
+  },
+  "mode": "inspect",
+  "target_contract": {
+    "host": "blogger.com",
+    "selectors": {
+      "title": "[contenteditable=\"true\"], input[aria-label*=\"Title\" i], textarea[aria-label*=\"Title\" i]",
+      "body": "[contenteditable=\"true\"]",
+      "publish": "button[aria-label*=\"Publish\" i], button:has-text(\"Publish\")"
+    },
+    "intent_verification": true,
+    "post_publish_verification": true
+  },
+  "external_side_effect": false,
+  "receipt": "NOT_CREATED_UNTIL_VERIFIED"
+}

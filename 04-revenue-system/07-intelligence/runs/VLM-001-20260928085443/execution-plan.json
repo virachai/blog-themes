@@ -1,0 +1,44 @@
+{
+  "runtime": "editorial-production-execution-adapter-v1",
+  "stage": 59,
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "mode": "dry-run",
+  "status": "BLOCKED",
+  "preflight": {
+    "status": "BLOCKED",
+    "blockers": [
+      "asset",
+      "release",
+      "human_approval"
+    ],
+    "authority": {
+      "publish": false,
+      "measurement": false
+    },
+    "idempotency_key": "editorial:VLM-001-20260928085443:publication",
+    "artifact_hash": "c248aa1ef6469bae319644ecf84bdbd5c2143f2ece279c4de3171c482d677e5a"
+  },
+  "adapters": {
+    "asset": {
+      "status": "AVAILABLE",
+      "source": "asset-package.md"
+    },
+    "publication": {
+      "type": "CDP",
+      "status": "HANDOFF_ONLY"
+    },
+    "measurement": {
+      "type": "RECEIPT",
+      "status": "NOT_EXECUTED"
+    }
+  },
+  "safety": {
+    "dry_run_default": true,
+    "approval_required": true,
+    "idempotency_required": true,
+    "evidence_required": true,
+    "rollback_required": true
+  },
+  "boundary": "Adapter coordinates execution and evidence. It does not invent publication receipts, metrics, or approval."
+}
