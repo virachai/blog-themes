@@ -1,0 +1,12 @@
+{
+  "mission_id": "VLM-001",
+  "metric": "organic_clicks_28d",
+  "observation_days": 28,
+  "decision_gate": "review_after_measurement",
+  "baseline_required": true,
+  "target_required": true,
+  "rules": [
+    "Do not mark success without measured outcome.",
+    "Do not infer causality from correlation alone."
+  ]
+}

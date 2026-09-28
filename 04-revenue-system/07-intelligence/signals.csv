@@ -1,0 +1,2 @@
+signal_id,observed_at,source,topic,signal_type,evidence,confidence,next_action,status
+SIG-001,2026-09-28,manual,blog-topic,seed,Initial system bootstrap,medium,create_brief,open

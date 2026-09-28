@@ -1,0 +1,2 @@
+brief_id,signal_id,created_at,topic,intent,audience,information_gap,evidence_plan,success_metric,observation_days,status
+BRF-001,SIG-001,2026-09-28,blog-topic,informational,general,Define the real user problem before drafting,Use primary or authoritative sources where available,organic_clicks_28d,28,draft

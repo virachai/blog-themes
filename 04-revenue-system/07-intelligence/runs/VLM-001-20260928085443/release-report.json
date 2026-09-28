@@ -1,0 +1,40 @@
+{
+  "runtime": "value-mission-release-runtime-v1",
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "status": "BLOCKED",
+  "checks": [
+    {
+      "id": "asset_spec",
+      "pass": true,
+      "target": "asset-spec.json exists"
+    },
+    {
+      "id": "asset_package",
+      "pass": true,
+      "target": "asset-package.md exists"
+    },
+    {
+      "id": "evidence_ready",
+      "pass": false,
+      "target": "asset evidence gate is EVIDENCE_READY"
+    },
+    {
+      "id": "asset_authority",
+      "pass": true,
+      "target": "evidence authority remains explicit"
+    },
+    {
+      "id": "release_boundary",
+      "pass": true,
+      "target": "release authority is not granted by runtime"
+    }
+  ],
+  "blockers": [
+    "evidence_ready"
+  ],
+  "authority": {
+    "release": false,
+    "publish": false
+  }
+}

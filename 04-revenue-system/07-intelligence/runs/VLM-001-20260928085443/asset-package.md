@@ -1,0 +1,37 @@
+# Asset Package
+
+> Status: BLOCKED
+> Mission: VLM-001
+> Run: VLM-001-20260928085443
+
+## Editorial Thesis
+An evidence-backed editorial thesis should create a more useful asset than topic-first drafting
+
+## Audience
+general
+
+## User Problem
+Unclear user problem causes low-value production
+
+## Evidence
+### Observation 1
+- Observation: 
+- Claim supported: 
+- Sources: 
+- Checked: not recorded
+- Uncertainty: 
+- Notes: 
+
+## Asset Structure
+- Problem / context
+- Evidence and what it supports
+- Editorial thesis
+- Practical implications
+- Uncertainty / limitations
+- Next action
+
+## Value Path
+organic discovery and durable usefulness
+
+## Release Boundary
+This package is not published. Publication requires an explicit release gate.

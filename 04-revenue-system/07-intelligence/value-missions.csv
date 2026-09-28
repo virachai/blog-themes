@@ -1,0 +1,2 @@
+mission_id,created_at,signal_id,issue,thesis,audience,problem,evidence_plan,value_class,value_path,human_effort,success_metric,observation_days,decision_gate,status
+VLM-001,2026-09-28,SIG-001,Define the real user problem before drafting,An evidence-backed editorial thesis should create a more useful asset than topic-first drafting,general,Unclear user problem causes low-value production,Use primary or authoritative sources where available,asset,organic discovery and durable usefulness,low,organic_clicks_28d,28,review_after_measurement,planned

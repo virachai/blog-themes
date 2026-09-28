@@ -1,0 +1,160 @@
+{
+  "runtime": "value-mission-runtime-v1",
+  "run_id": "VLM-001-20260928085317",
+  "mission_id": "VLM-001",
+  "created_at": "2026-09-28T08:53:17.516Z",
+  "source": {
+    "ledger": "04-revenue-system/07-intelligence/value-missions.csv",
+    "signal_id": "SIG-001"
+  },
+  "mission": {
+    "mission_id": "VLM-001",
+    "created_at": "2026-09-28",
+    "signal_id": "SIG-001",
+    "issue": "Define the real user problem before drafting",
+    "thesis": "An evidence-backed editorial thesis should create a more useful asset than topic-first drafting",
+    "audience": "general",
+    "problem": "Unclear user problem causes low-value production",
+    "evidence_plan": "Use primary or authoritative sources where available",
+    "value_class": "asset",
+    "value_path": "organic discovery and durable usefulness",
+    "human_effort": "low",
+    "success_metric": "organic_clicks_28d",
+    "observation_days": "28",
+    "decision_gate": "review_after_measurement",
+    "status": "planned"
+  },
+  "validation": {
+    "status": "READY",
+    "checks": [
+      {
+        "id": "mission_id",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "created_at",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "signal_id",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "issue",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "thesis",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "audience",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "problem",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "evidence_plan",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "value_class",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "value_path",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "human_effort",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "success_metric",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "observation_days",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "decision_gate",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "status",
+        "pass": true,
+        "target": "mission field is populated"
+      },
+      {
+        "id": "value_class",
+        "pass": true,
+        "target": "revenue|asset|infrastructure"
+      },
+      {
+        "id": "observation_days",
+        "pass": true,
+        "target": "positive integer days"
+      }
+    ],
+    "blockers": []
+  },
+  "execution": {
+    "completed_deterministic_steps": [
+      "mission_loaded",
+      "mission_contract_validated",
+      "value_path_validated",
+      "measurement_plan_materialized",
+      "approval_gates_materialized"
+    ],
+    "pending_external_steps": [
+      "research_and_evidence_collection",
+      "asset_creation",
+      "publication",
+      "analytics_measurement",
+      "diagnosis_and_learning"
+    ],
+    "authority": {
+      "research": false,
+      "editorial": false,
+      "publish": false,
+      "monetization": false,
+      "measurement": false
+    }
+  },
+  "gates": {
+    "research": {
+      "status": "PENDING",
+      "reason": "requires real evidence; runtime does not fabricate sources"
+    },
+    "publication": {
+      "status": "PENDING_APPROVAL",
+      "reason": "publishing is a high-impact external action"
+    },
+    "measurement": {
+      "status": "PENDING",
+      "metric": "organic_clicks_28d",
+      "observation_days": 28
+    },
+    "decision": {
+      "status": "PENDING",
+      "gate": "review_after_measurement"
+    }
+  }
+}
