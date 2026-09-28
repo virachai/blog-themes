@@ -2,6 +2,7 @@
 /** Meefunblog Agent Runtime Layer v2. */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createRuntimePlan } from '../../.tmp/cdp/runtime/runtime-plan.mjs';
 
 const ROOT = process.cwd();
 const REGISTRY_PATHS = [join(ROOT, '.agents/skills/meefunblog-registry.yaml'), join(ROOT, '.claude/skills/meefunblog-registry.yaml')];

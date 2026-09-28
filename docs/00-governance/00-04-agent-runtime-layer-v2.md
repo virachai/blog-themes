@@ -57,3 +57,22 @@ The contract is an **execution boundary**, not an authorization token. A skill m
 
 ## Scope Boundary
 v2 stops before execution automation. Future layers may add task-state persistence, evidence ledgers, confidence calibration, handoff contracts, adversarial verification, structured reports, and controlled skill invocation adapters.
+## Stage 5 — Runtime Integration
+
+Stage 5 turns the v2 control plane into a capability-oriented runtime foundation. The runtime now has explicit adapters for browser sessions, observations, capability resolution, runtime planning, and evidence records.
+
+Runtime flow:
+
+TASK -> ROUTE -> CAPABILITY RESOLUTION -> SESSION -> OBSERVE -> EXECUTE -> TRACE -> EVIDENCE -> VALIDATE -> REPORT
+
+Implemented runtime modules live under `.tmp/cdp/runtime/`:
+
+- `session.mjs` — browser session state and navigation history.
+- `observation.mjs` — normalized page observation and summaries.
+- `capability.mjs` — canonical runtime capability resolution.
+- `runtime-plan.mjs` — deterministic execution-phase plan with security boundaries.
+- `evidence.mjs` — timestamped evidence records with SHA-256 content hashes.
+
+`browser-trace` is the observability adapter. It remains read-only and is not the browser control plane.
+
+Stage 5 establishes the runtime integration contract but does not grant autonomous authority. Browser security challenges require human handoff, authentication remains session-explicit, and planning does not bypass release gates. Future work may add persistent task state, live CDP session adapters, snapshot diffing, evidence ledgers, skill invocation adapters, and adversarial verification.
