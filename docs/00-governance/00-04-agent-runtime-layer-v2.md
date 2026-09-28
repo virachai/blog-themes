@@ -76,3 +76,14 @@ Implemented runtime modules live under `.tmp/cdp/runtime/`:
 `browser-trace` is the observability adapter. It remains read-only and is not the browser control plane.
 
 Stage 5 establishes the runtime integration contract but does not grant autonomous authority. Browser security challenges require human handoff, authentication remains session-explicit, and planning does not bypass release gates. Future work may add persistent task state, live CDP session adapters, snapshot diffing, evidence ledgers, skill invocation adapters, and adversarial verification.
+
+## Stage 5 Adapters
+
+Stage 5 now includes four live-runtime adapters:
+
+- `cdp-session.mjs` — connects to the active Chrome CDP target, evaluates page state, navigates, captures snapshots and screenshots.
+- `evidence-ledger.mjs` — persists structured evidence records with stable IDs and content hashes.
+- `snapshot-diff.mjs` — compares page snapshots by URL, title, readiness, text and HTML hashes/lengths.
+- `skill-invocation.mjs` — validates runtime-to-skill handoffs against the canonical 15-skill registry and never grants execution authority.
+
+A live smoke test has passed against the active Chrome target: CDP connection, snapshot capture, evidence creation, snapshot diff, and `technical-seo` invocation validation all completed successfully.
