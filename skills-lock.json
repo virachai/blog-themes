@@ -1,47 +1,4 @@
 {
   "version": 1,
-  "skills": {
-    "content-strategy": {
-      "source": "coreyhaines31/marketingskills",
-      "sourceType": "github",
-      "skillPath": "skills/content-strategy/SKILL.md",
-      "computedHash": "76c86dae5b6ee6aaf79bd1a7b6cd4ee15a3162f4a289462601bfa8e8b945873b"
-    },
-    "copywriting": {
-      "source": "coreyhaines31/marketingskills",
-      "sourceType": "github",
-      "skillPath": "skills/copywriting/SKILL.md",
-      "computedHash": "779f05c8be67da475e6a7af78de3e0400b0038e371ce898dd6ff9d3331aab7db"
-    },
-    "frontend-design": {
-      "source": "anthropics/skills",
-      "sourceType": "github",
-      "skillPath": "skills/frontend-design/SKILL.md",
-      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
-    },
-    "seo-audit": {
-      "source": "coreyhaines31/marketingskills",
-      "sourceType": "github",
-      "skillPath": "skills/seo-audit/SKILL.md",
-      "computedHash": "01f9f8a3feb3ea69c6c212d61189c610f96ef2cc363adc27fd314d78254bf6ae"
-    },
-    "site-architecture": {
-      "source": "coreyhaines31/marketingskills",
-      "sourceType": "github",
-      "skillPath": "skills/site-architecture/SKILL.md",
-      "computedHash": "48a38c5e2b000d134c3db282364b1014bad362fa91d4618ad8c2eb7cee991208"
-    },
-    "web-design-guidelines": {
-      "source": "vercel-labs/agent-skills",
-      "sourceType": "github",
-      "skillPath": "skills/web-design-guidelines/SKILL.md",
-      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
-    },
-    "web-perf": {
-      "source": "cloudflare/skills",
-      "sourceType": "github",
-      "skillPath": "skills/web-perf/SKILL.md",
-      "computedHash": "72d0dd9706147e19bf3c1a36fdc02570f77685541d89d901a3a2f570824ba3cb"
-    }
-  }
+  "skills": {}
 }
