@@ -1,0 +1,40 @@
+{
+  "runtime": "value-mission-publication-runtime-v1",
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "status": "BLOCKED",
+  "publication_authority": false,
+  "adapter": "manual-or-trusted-blogspot-adapter",
+  "publication": {
+    "status": "NOT_EXECUTED",
+    "url": "",
+    "published_at": "",
+    "external_id": ""
+  },
+  "approval": {
+    "status": "PENDING"
+  },
+  "checks": [
+    {
+      "id": "release_candidate",
+      "pass": true,
+      "target": "release-candidate.json exists"
+    },
+    {
+      "id": "release_ready",
+      "pass": false,
+      "target": "release candidate is ready for approval"
+    },
+    {
+      "id": "approval",
+      "pass": false,
+      "target": "explicit approval is APPROVED"
+    },
+    {
+      "id": "publish_boundary",
+      "pass": true,
+      "target": "publication authority remains adapter-gated"
+    }
+  ],
+  "boundary": "No external publication is performed by this deterministic runtime unless an approved adapter is explicitly invoked."
+}

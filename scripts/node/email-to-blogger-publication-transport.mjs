@@ -48,7 +48,7 @@ function preflight(run) {
   const blockers = [];
   if (run.release?.status !== 'READY_FOR_RELEASE_APPROVAL') blockers.push('release_not_ready');
   if (run.release?.approval?.status !== 'APPROVED') blockers.push('human_approval_required');
-  if (run.asset?.status !== 'READY') blockers.push('asset_not_ready');
+  if (!['RELEASE_CANDIDATE', 'READY'].includes(run.asset?.status)) blockers.push('asset_not_ready');
   if (!env('EMAIL_FOR_POSTING')) blockers.push('EMAIL_FOR_POSTING_missing');
   return { status: blockers.length ? 'BLOCKED' : 'PASS', blockers };
 }

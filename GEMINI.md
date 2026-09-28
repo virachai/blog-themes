@@ -2,6 +2,10 @@
 
 This file provides architectural, operational, and workflow instructions for AI agents (Gemini CLI) working in this repository.
 
+## Agent Protocol Contract
+
+Before non-trivial work, read `AGENTS.md`, `docs/00-governance/00-42-agent-protocol-contract.md`, and `docs/00-governance/00-03-sovereign-agent-enterprise-protocol.md`. The repository contract applies to Gemini CLI and all other agents: classify changes, preserve human authorization boundaries, verify before claiming completion, and stop on failed critical gates.
+
 ## Project Overview
 
 This repository contains static CSS and Blogger theme XML files for the owner's Blogger blogs, served as-is by GitHub Pages (`https://virachai.github.io/blog-themes/...`, `.nojekyll`). Live Blogger themes `<link>` directly to stylesheets in this repository. A pushed commit updates live sites within ~10 minutes (`Cache-Control: max-age=600`; bump `?v=` in theme XML for immediate effect).

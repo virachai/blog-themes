@@ -2,7 +2,7 @@
   "runtime": "value-mission-release-runtime-v1",
   "run_id": "VLM-001-20260928085443",
   "mission_id": "VLM-001",
-  "status": "BLOCKED",
+  "status": "READY_FOR_RELEASE_APPROVAL",
   "checks": [
     {
       "id": "asset_spec",
@@ -16,7 +16,7 @@
     },
     {
       "id": "evidence_ready",
-      "pass": false,
+      "pass": true,
       "target": "asset evidence gate is EVIDENCE_READY"
     },
     {
@@ -30,9 +30,7 @@
       "target": "release authority is not granted by runtime"
     }
   ],
-  "blockers": [
-    "evidence_ready"
-  ],
+  "blockers": [],
   "authority": {
     "release": false,
     "publish": false

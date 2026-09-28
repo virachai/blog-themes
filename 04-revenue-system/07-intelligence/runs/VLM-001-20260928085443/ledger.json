@@ -71,6 +71,30 @@
         "publication_authority": false
       },
       "id": "520f19b0d4c573a2"
+    },
+    {
+      "claim": "blogger page observed for VLM-001-20260928085443 (page_state=PUBLISHED_CANDIDATE, title_match=true)",
+      "observed_at": "2026-09-28T16:41:21.145Z",
+      "selector": ".post-title",
+      "snapshot": "{\"url\":\"https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html\",\"document_title\":\"Why Defining the User Problem Should Come Before Content Drafting\",\"title_candidates\":[{\"selector\":\".post-title\",\"text\":\"ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (low light condo plants)\"},{\"selector\":\".post-title\",\"text\":\"why defining the user problem should come before content drafting\"},{\"selector\":\"h2\",\"text\":\"meeprompt.com\"},{\"selector\":\"h2\",\"text\":\"มาทำความรู้จักมีพร้อม\"},{\"selector\":\"h2\",\"text\":\"มีพร้อมดอทคอม\"}],\"page_state\":\"PUBLISHED_CANDIDATE\"}",
+      "screenshot": null,
+      "content_hash": "a4cf89183f9b5260ac6a219098eae394d525980a4c1e05aa8adb9b2402a6ed6a",
+      "metadata": {
+        "run_id": "VLM-001-20260928085443",
+        "page_state": "PUBLISHED_CANDIDATE",
+        "page_state_reason": "public-post-path",
+        "title_match": true,
+        "title_elements_found": 5,
+        "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+        "cdp_target_resolved_by": "targetId",
+        "snapshot_fingerprint": "be492600852d90c6ecf7afd9e7aea17613a610e0b124638a42510c15b61455a7",
+        "screenshot_sha256": "b456e785ef13581f9b17c3ef09873c020d39aa712dea835f5707fb138fc48fcd",
+        "screenshot_bytes": 243448,
+        "screenshot_embedded": false,
+        "email_fingerprint": "f0b1a48f6b7c5f808d2519e2f016e285b7ea303328dd2c7326cc676a3347bb3a",
+        "email_sent_at": "2026-09-28T16:38:18.441Z"
+      },
+      "id": "cdbc815d6bdebdff"
     }
   ]
 }

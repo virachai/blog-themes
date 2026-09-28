@@ -1,0 +1,22 @@
+{
+  "runtime": "blogger-publication-adapter-v1",
+  "stage": 61,
+  "mode": "ADOPT_EXTERNAL_PUBLICATION",
+  "run_id": "VLM-001-20260928085443",
+  "status": "ADOPTED",
+  "external_side_effect": false,
+  "adoption_id": "adoption:cdbc815d6bdebdff",
+  "source": {
+    "stage_62_observation": "email-publication-observation.json",
+    "evidence_id": "cdbc815d6bdebdff",
+    "transport": "email-to-blogger"
+  },
+  "verification": {
+    "url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+    "title": "Why Defining the User Problem Should Come Before Content Drafting",
+    "page_state": "PUBLISHED_CANDIDATE",
+    "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+    "snapshot_fingerprint": "26b588ee6ce1104455495c0196e01a885c9e31789e51e0d7a17699c4bd1175e1"
+  },
+  "note": "Adopts an already-observed external publication. Does not publish, edit, delete, or fabricate publication facts."
+}

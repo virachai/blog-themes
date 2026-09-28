@@ -5,8 +5,6 @@
   "mission_id": "VLM-001",
   "status": "BLOCKED",
   "blockers": [
-    "measurement_intake_not_ready",
-    "authoritative_publication_receipt_missing",
     "measured_value_missing",
     "checked_at_missing",
     "source_missing_or_invalid",

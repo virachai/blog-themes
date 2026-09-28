@@ -2,11 +2,19 @@
   "runtime": "value-mission-asset-runtime-v1",
   "mission_id": "VLM-001",
   "run_id": "VLM-001-20260928085443",
-  "status": "BLOCKED",
+  "title": "Why Defining the User Problem Should Come Before Content Drafting",
+  "publication": {
+    "title_source": "mission.title",
+    "publication_blocker": null
+  },
+  "status": "RELEASE_CANDIDATE",
   "traceability": {
     "signal_id": "SIG-001",
-    "evidence_observations": 1,
-    "sources": []
+    "evidence_observations": 2,
+    "sources": [
+      "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide"
+    ]
   },
   "objective": "Define the real user problem before drafting",
   "audience": "general",
@@ -24,7 +32,7 @@
     "Next action"
   ],
   "provenance": {
-    "evidence_gate": "BLOCKED",
+    "evidence_gate": "EVIDENCE_READY",
     "evidence_authority": false
   }
 }

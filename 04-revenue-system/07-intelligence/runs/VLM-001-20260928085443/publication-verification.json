@@ -2,24 +2,49 @@
   "runtime": "publication-verification-runtime-v1",
   "stage": 63,
   "run_id": "VLM-001-20260928085443",
-  "status": "BLOCKED",
-  "verified": false,
-  "publication_status": "UNVERIFIED",
-  "feedback_state": "AWAITING_VERIFICATION",
+  "status": "PASS",
+  "verified": true,
+  "publication_status": "PUBLISHED_VERIFIED",
+  "feedback_state": "PUBLISHED_VERIFIED",
   "findings": [
     {
       "id": "V63-001",
-      "severity": "BLOCK",
-      "message": "receipt is not authoritative: runtime is \"value-mission-publication-runtime-v1\", expected \"blogger-publication-adapter-v1\" (legacy or foreign writer)"
+      "severity": "PASS",
+      "message": "authoritative Stage 61 publication receipt is present"
     },
     {
       "id": "V63-002",
-      "severity": "BLOCK",
-      "message": "Stage 62 observation is missing"
+      "severity": "PASS",
+      "message": "Stage 62 observation is OBSERVED"
+    },
+    {
+      "id": "V63-003",
+      "severity": "PASS",
+      "message": "observation identifies a public-post candidate"
+    },
+    {
+      "id": "V63-004",
+      "severity": "PASS",
+      "message": "receipt URL matches observed public post URL"
+    },
+    {
+      "id": "V63-005",
+      "severity": "PASS",
+      "message": "receipt contains a non-empty external_id"
+    },
+    {
+      "id": "V63-006",
+      "severity": "PASS",
+      "message": "receipt and observation page_state agree"
+    },
+    {
+      "id": "V63-007",
+      "severity": "PASS",
+      "message": "observation evidence supports publication verification"
     }
   ],
   "external_side_effect": false,
-  "receipt_writer": null,
+  "receipt_writer": "blogger-publication-adapter-v1",
   "boundary": "Read-side verification only. This runtime never creates publication-receipt.json and never performs external publication.",
-  "verified_at": null
+  "verified_at": "2026-09-28T16:43:50.821Z"
 }

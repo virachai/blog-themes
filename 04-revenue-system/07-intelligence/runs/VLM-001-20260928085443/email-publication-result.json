@@ -1,0 +1,10 @@
+{
+  "runtime": "email-to-blogger-publication-transport-v1",
+  "run_id": "VLM-001-20260928085443",
+  "status": "EMAIL_SENT",
+  "sent_at": "2026-09-28T16:38:18.441Z",
+  "recipient": "[REDACTED-MAIL2BLOGGER]@blogger.com",
+  "subject": "Why Defining the User Problem Should Come Before Content Drafting",
+  "fingerprint": "f0b1a48f6b7c5f808d2519e2f016e285b7ea303328dd2c7326cc676a3347bb3a",
+  "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"
+}

@@ -3,22 +3,22 @@
   "stage": 64,
   "run_id": "VLM-001-20260928085443",
   "mission_id": "VLM-001",
-  "status": "BLOCKED",
-  "measurement_state": "AWAITING_PUBLICATION",
+  "status": "READY_FOR_MEASUREMENT",
+  "measurement_state": "READY_FOR_MEASUREMENT",
   "checks": [
     {
       "id": "V64-001",
-      "severity": "BLOCK",
-      "message": "receipt is not authoritative: runtime is \"value-mission-publication-runtime-v1\", expected \"blogger-publication-adapter-v1\" (legacy or foreign writer)"
+      "severity": "PASS",
+      "message": "authoritative Stage 61 publication receipt is present"
     },
     {
       "id": "V64-002",
-      "severity": "BLOCK",
-      "message": "Stage 63 verification is not PUBLISHED_VERIFIED for this run"
+      "severity": "PASS",
+      "message": "Stage 63 confirms PUBLISHED_VERIFIED"
     },
     {
       "id": "V64-003",
-      "severity": "BLOCK",
+      "severity": "PASS",
       "message": "receipt contains public URL and external_id"
     },
     {
@@ -27,12 +27,12 @@
       "message": "measurement plan declares metric and positive observation window"
     }
   ],
-  "blockers": [
-    "V64-001",
-    "V64-002",
-    "V64-003"
-  ],
-  "publication": null,
+  "blockers": [],
+  "publication": {
+    "url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+    "external_id": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+    "published_at": null
+  },
   "measurement": {
     "metric": "organic_clicks_28d",
     "observation_days": 28,
@@ -46,5 +46,5 @@
     "learning": false
   },
   "external_side_effect": false,
-  "next_action": "complete the separately gated publication path and obtain an authoritative receipt"
+  "next_action": "record real observations with sources using value-mission-measurement-runtime.mjs"
 }

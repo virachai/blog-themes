@@ -2,9 +2,9 @@
   "runtime": "value-mission-asset-runtime-v1",
   "run_id": "VLM-001-20260928085443",
   "mission_id": "VLM-001",
-  "status": "BLOCKED",
+  "status": "RELEASE_CANDIDATE",
   "evidence_gate": {
-    "status": "BLOCKED",
+    "status": "EVIDENCE_READY",
     "checks": [
       {
         "id": "evidence_file",
@@ -18,7 +18,7 @@
       },
       {
         "id": "traceable_sources",
-        "pass": false,
+        "pass": true,
         "target": "every observation has sources"
       },
       {
@@ -28,20 +28,16 @@
       },
       {
         "id": "claim_recorded",
-        "pass": false,
+        "pass": true,
         "target": "every observation records a claim"
       },
       {
         "id": "uncertainty_recorded",
-        "pass": false,
+        "pass": true,
         "target": "every observation records uncertainty"
       }
     ],
-    "blockers": [
-      "traceable_sources",
-      "claim_recorded",
-      "uncertainty_recorded"
-    ]
+    "blockers": []
   },
   "artifacts": [
     "asset-spec.json",

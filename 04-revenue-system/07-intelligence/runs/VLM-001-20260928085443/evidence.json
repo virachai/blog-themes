@@ -3,12 +3,24 @@
   "run_id": "VLM-001-20260928085443",
   "observations": [
     {
-      "observation": "",
-      "claim": "",
-      "sources": [],
-      "checked_at": "",
-      "uncertainty": "",
-      "notes": ""
+      "observation": "Google Search Central explicitly recommends creating helpful, reliable, people-first content and asks creators whether an intended audience would find the content useful, whether readers will learn enough to achieve their goal, and whether the experience is satisfying.",
+      "claim": "A content workflow that starts by identifying the intended audience and the reader's goal is directly aligned with Google's documented people-first content guidance.",
+      "sources": [
+        "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+      ],
+      "checked_at": "2026-09-28",
+      "uncertainty": "This is Google's guidance for content creators and does not establish that a particular editorial workflow will increase traffic or rankings for this specific blog.",
+      "notes": "Source guidance is used as evidence for the editorial principle, not as a guarantee of search performance."
+    },
+    {
+      "observation": "Google Search Central's current guidance for AI search says to focus on unique, valuable, non-commodity content that is helpful, reliable, and people-first, and emphasizes focusing on what users want rather than producing many pages primarily to manipulate rankings.",
+      "claim": "Evidence-backed, user-focused editorial work should prioritize useful content for visitors over topic volume or search-engine-first production.",
+      "sources": [
+        "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide"
+      ],
+      "checked_at": "2026-09-28",
+      "uncertainty": "The guidance describes principles and search-system behavior; it does not prove that this single post will receive organic clicks or that evidence-backed drafting always outperforms topic-first drafting.",
+      "notes": "The observation supports the thesis direction while preserving uncertainty about causal performance."
     }
   ]
 }

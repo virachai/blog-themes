@@ -1,0 +1,43 @@
+{
+  "runtime": "email-to-blogger-publication-observer-v1",
+  "stage": 62,
+  "run_id": "VLM-001-20260928085443",
+  "status": "OBSERVED",
+  "page_state": "PUBLISHED_CANDIDATE",
+  "page_state_reason": "public-post-path",
+  "public_post_url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+  "title_match": true,
+  "expected_title": "Why Defining the User Problem Should Come Before Content Drafting",
+  "observed_url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+  "document_title": "Why Defining the User Problem Should Come Before Content Drafting",
+  "title_candidates": [
+    {
+      "selector": ".post-title",
+      "text": "ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (low light condo plants)"
+    },
+    {
+      "selector": ".post-title",
+      "text": "why defining the user problem should come before content drafting"
+    },
+    {
+      "selector": "h2",
+      "text": "meeprompt.com"
+    },
+    {
+      "selector": "h2",
+      "text": "มาทำความรู้จักมีพร้อม"
+    },
+    {
+      "selector": "h2",
+      "text": "มีพร้อมดอทคอม"
+    }
+  ],
+  "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+  "cdp_target_resolved_by": "targetId",
+  "evidence_id": "cdbc815d6bdebdff",
+  "snapshot_fingerprint": "be492600852d90c6ecf7afd9e7aea17613a610e0b124638a42510c15b61455a7",
+  "screenshot_sha256": "b456e785ef13581f9b17c3ef09873c020d39aa712dea835f5707fb138fc48fcd",
+  "screenshot_bytes": 243448,
+  "observed_at": "2026-09-28T16:41:20.722Z",
+  "boundary": "This runtime records an observation. It does not create a publication receipt; publication is claimed only by the gated stage 60/61 transaction path."
+}

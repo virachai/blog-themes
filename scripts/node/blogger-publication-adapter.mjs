@@ -161,7 +161,7 @@ function buildAdapter(run, session, mode) {
 
 async function main() {
   const [command, runId, mode = 'inspect'] = process.argv.slice(2);
-  if (!runId || !['plan','inspect','execute'].includes(command)) throw new Error('usage: blogger-publication-adapter.mjs plan|inspect|execute <run_id> [inspect|publish]');
+  if (!runId || !['plan','inspect','execute','adopt'].includes(command)) throw new Error('usage: blogger-publication-adapter.mjs plan|inspect|execute <run_id> [inspect|publish] | adopt <run_id>');
   const run = load(runId);
   const pf = preflight(run);
   const plan = {
@@ -177,6 +177,42 @@ async function main() {
   // screen and claims nothing, so it explicitly opts into the first-page fallback
   // rather than relying on a silent default.
   const willPublish = command === 'execute' && mode === 'publish';
+  if (command === 'adopt') {
+    const observation = json(join(run.dir, 'email-publication-observation.json'));
+    if (!observation || observation.status !== 'OBSERVED') throw new Error('adoption refused: Stage 62 observation is missing or not OBSERVED');
+    if (observation.page_state !== 'PUBLISHED_CANDIDATE' || observation.title_match !== true) throw new Error('adoption refused: CDP observation is not a verified public-post candidate with exact title match');
+    const targetId = process.env.BLOGGER_TARGET_ID || observation.cdp_target_id;
+    const session = new CdpSession({ endpoint: process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222', targetId, targetPolicy: 'required' });
+    try {
+      await session.connect();
+      await session.navigate(observation.public_post_url);
+      await new Promise(r => setTimeout(r, 1200));
+      const live = await inspectTarget(session);
+      const classification = classifyBloggerPage(live.info.url, { publicHost: process.env.BLOGGER_PUBLIC_HOST || null });
+      const externalId = assertPublishable(classification);
+      if (classification.post_url !== observation.public_post_url) throw new Error('adoption refused: live public URL does not match observed publication URL');
+      const expectedTitle = observation.expected_title || '';
+      if (live.info.title.trim() !== expectedTitle.trim()) throw new Error('adoption refused: live document title does not match observed expected title');
+      const verification = {
+        status: 'PASS', page_state: classification.state, external_id: externalId,
+        url: classification.post_url, observed_url: live.info.url, published_at: null,
+        title: live.info.title, fingerprint: session.fingerprint(live.snapshot)
+      };
+      const evidenceId = observation.evidence_id || null;
+      const adoptionId = 'adoption:' + evidenceId;
+      save(run.dir, RECEIPT_FILE, buildPublicationReceipt({ runId, verification, evidenceId, transactionId: adoptionId, verifiedAt: new Date().toISOString() }));
+      const adoption = {
+        runtime: 'blogger-publication-adapter-v1', stage: 61, mode: 'ADOPT_EXTERNAL_PUBLICATION', run_id: runId,
+        status: 'ADOPTED', external_side_effect: false, adoption_id: adoptionId,
+        source: { stage_62_observation: 'email-publication-observation.json', evidence_id: evidenceId, transport: 'email-to-blogger' },
+        verification: { url: classification.post_url, title: live.info.title, page_state: classification.state, cdp_target_id: session.targetId, snapshot_fingerprint: verification.fingerprint },
+        note: 'Adopts an already-observed external publication. Does not publish, edit, delete, or fabricate publication facts.'
+      };
+      save(run.dir, 'stage-61-publication-adoption.json', adoption);
+      console.log(JSON.stringify(adoption, null, 2));
+    } finally { session.close(); }
+    return;
+  }
   const session = new CdpSession({
     endpoint: process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222',
     targetId: process.env.BLOGGER_TARGET_ID || null,

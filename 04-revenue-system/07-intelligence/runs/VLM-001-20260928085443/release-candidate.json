@@ -2,25 +2,28 @@
   "runtime": "value-mission-release-runtime-v1",
   "run_id": "VLM-001-20260928085443",
   "mission_id": "VLM-001",
-  "status": "BLOCKED",
+  "status": "READY_FOR_RELEASE_APPROVAL",
   "release_authority": false,
   "approval_required": true,
   "approval": {
-    "status": "PENDING",
-    "approved_by": "",
-    "approved_at": "",
-    "notes": ""
+    "status": "APPROVED",
+    "approved_by": "user",
+    "approved_at": "2026-09-28T16:37:32+00:00",
+    "notes": "Explicit publication approval given in chat for VLM-001."
   },
   "source": {
     "signal_id": "SIG-001",
-    "evidence_sources": []
+    "evidence_sources": [
+      "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide"
+    ]
   },
   "asset": {
     "spec": "asset-spec.json",
     "package": "asset-package.md"
   },
   "gates": {
-    "release": "BLOCKED",
+    "release": "READY_FOR_APPROVAL",
     "publication": "NOT_EXECUTED",
     "measurement": "NOT_STARTED"
   },

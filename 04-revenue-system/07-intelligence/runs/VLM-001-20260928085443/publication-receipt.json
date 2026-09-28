@@ -1,40 +1,16 @@
 {
-  "runtime": "value-mission-publication-runtime-v1",
+  "runtime": "blogger-publication-adapter-v1",
   "run_id": "VLM-001-20260928085443",
-  "mission_id": "VLM-001",
-  "status": "BLOCKED",
-  "publication_authority": false,
-  "adapter": "manual-or-trusted-blogspot-adapter",
+  "status": "PUBLISHED",
   "publication": {
-    "status": "NOT_EXECUTED",
-    "url": "",
-    "published_at": "",
-    "external_id": ""
+    "status": "PUBLISHED",
+    "url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+    "external_id": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+    "page_state": "PUBLISHED_CANDIDATE",
+    "verified_at": "2026-09-28T16:43:45.459Z",
+    "published_at": null,
+    "published_at_source": "unknown"
   },
-  "approval": {
-    "status": "PENDING"
-  },
-  "checks": [
-    {
-      "id": "release_candidate",
-      "pass": true,
-      "target": "release-candidate.json exists"
-    },
-    {
-      "id": "release_ready",
-      "pass": false,
-      "target": "release candidate is ready for approval"
-    },
-    {
-      "id": "approval",
-      "pass": false,
-      "target": "explicit approval is APPROVED"
-    },
-    {
-      "id": "publish_boundary",
-      "pass": true,
-      "target": "publication authority remains adapter-gated"
-    }
-  ],
-  "boundary": "No external publication is performed by this deterministic runtime unless an approved adapter is explicitly invoked."
+  "evidence_id": "cdbc815d6bdebdff",
+  "transaction_id": "adoption:cdbc815d6bdebdff"
 }
