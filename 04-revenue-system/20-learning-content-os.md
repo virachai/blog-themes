@@ -22,6 +22,7 @@ Planned next stages:
 - Stage 21 — Editorial Quality Runtime
 - Stage 22 — Value-Driven Editorial Intelligence
 - Stage 22A — Executable Mission Runtime
+- Stage 23 — Editorial Opportunity & Portfolio Runtime
 - Stage 23 — Content Refresh & Decay Runtime
 - Stage 24 — Experiment Portfolio Runtime
 - Stage 25 — Revenue Attribution Runtime

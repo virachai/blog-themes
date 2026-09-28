@@ -1,0 +1,11 @@
+{
+  "runtime": "editorial-opportunity-runtime-v1",
+  "generated_at": "2026-09-28T09:12:36.323Z",
+  "status": "NO_UNCOVERED_OPPORTUNITIES",
+  "opportunities": [],
+  "authority": {
+    "ranking": false,
+    "mission_creation": false
+  },
+  "boundary": "Score is an operational prioritization signal, not a claim of business value or outcome."
+}
