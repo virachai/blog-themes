@@ -11,6 +11,66 @@
       "id": "c18f2508addb87b8",
       "legacy_status": "LEGACY_INVALID",
       "legacy_reason": "Written before the createEvidence field-mismatch fix. The caller passed {type, run_id, verified, target, fingerprint, observed_at} to a function that reads {claim, sourceUrl, selector, snapshot}, so claim and snapshot are absent and content_hash is a constant (7e09b492...) that does not vary with content. Retained unchanged for audit; superseded and not evidence of any observation."
+    },
+    {
+      "claim": "stage 59 connectivity check for VLM-001-20260928085443: bound target FCC6AC44E6D2732EDAA28C8233E4DED6, page classified EDITING",
+      "observed_at": "2026-09-28T16:04:25.363Z",
+      "selector": null,
+      "snapshot": "{\"url\":\"https://www.blogger.com/blog/post/edit/6973756749045108777/6268864657932604137?pli=1\",\"title\":\"Post: Edit\",\"page_state\":\"EDITING\"}",
+      "screenshot": null,
+      "content_hash": "ec078f352ccbe183fa7ca251b0503fff1571e5a16a753060db707bedcb5fac55",
+      "metadata": {
+        "run_id": "VLM-001-20260928085443",
+        "command": "verify-target",
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "cdp_target_id": "FCC6AC44E6D2732EDAA28C8233E4DED6",
+        "cdp_target_resolved_by": "targetId",
+        "page_state": "EDITING",
+        "page_state_reason": "blogger-editor-path",
+        "snapshot_fingerprint": "888407898f131bc954995e97aed84c859c21db5dd2d88dd59652064688010885",
+        "publication_authority": false
+      },
+      "id": "ebca66b2c034a78f"
+    },
+    {
+      "claim": "stage 59 connectivity check for VLM-001-20260928085443: bound target FCC6AC44E6D2732EDAA28C8233E4DED6, page classified EDITING",
+      "observed_at": "2026-09-28T16:07:57.915Z",
+      "selector": null,
+      "snapshot": "{\"url\":\"https://www.blogger.com/blog/post/edit/6973756749045108777/6268864657932604137?pli=1\",\"title\":\"Post: Edit\",\"page_state\":\"EDITING\"}",
+      "screenshot": null,
+      "content_hash": "ec078f352ccbe183fa7ca251b0503fff1571e5a16a753060db707bedcb5fac55",
+      "metadata": {
+        "run_id": "VLM-001-20260928085443",
+        "command": "verify-target",
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "cdp_target_id": "FCC6AC44E6D2732EDAA28C8233E4DED6",
+        "cdp_target_resolved_by": "targetId",
+        "page_state": "EDITING",
+        "page_state_reason": "blogger-editor-path",
+        "snapshot_fingerprint": "888407898f131bc954995e97aed84c859c21db5dd2d88dd59652064688010885",
+        "publication_authority": false
+      },
+      "id": "bb86e9703f80f7c6"
+    },
+    {
+      "claim": "stage 59 connectivity check for VLM-001-20260928085443: bound target FCC6AC44E6D2732EDAA28C8233E4DED6, page classified EDITING",
+      "observed_at": "2026-09-28T16:08:05.718Z",
+      "selector": null,
+      "snapshot": "{\"url\":\"https://www.blogger.com/blog/post/edit/6973756749045108777/6268864657932604137?pli=1\",\"title\":\"Post: Edit\",\"page_state\":\"EDITING\"}",
+      "screenshot": null,
+      "content_hash": "ec078f352ccbe183fa7ca251b0503fff1571e5a16a753060db707bedcb5fac55",
+      "metadata": {
+        "run_id": "VLM-001-20260928085443",
+        "command": "verify-target",
+        "cdp_endpoint": "http://127.0.0.1:9222",
+        "cdp_target_id": "FCC6AC44E6D2732EDAA28C8233E4DED6",
+        "cdp_target_resolved_by": "targetId",
+        "page_state": "EDITING",
+        "page_state_reason": "blogger-editor-path",
+        "snapshot_fingerprint": "888407898f131bc954995e97aed84c859c21db5dd2d88dd59652064688010885",
+        "publication_authority": false
+      },
+      "id": "520f19b0d4c573a2"
     }
   ]
 }

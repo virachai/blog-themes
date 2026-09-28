@@ -1,0 +1,41 @@
+{
+  "runtime": "editorial-production-execution-adapter-v1",
+  "stage": 59,
+  "run_id": "VLM-001-20260928085443",
+  "mission_id": "VLM-001",
+  "command": "verify-target",
+  "status": "CONNECTIVITY_VERIFIED",
+  "authority": {
+    "publish": false,
+    "measurement": false,
+    "publication_receipt": false
+  },
+  "preflight": {
+    "status": "BLOCKED",
+    "blockers": [
+      "asset",
+      "release",
+      "human_approval"
+    ],
+    "authority": {
+      "publish": false,
+      "measurement": false
+    },
+    "idempotency_key": "editorial:VLM-001-20260928085443:publication",
+    "artifact_hash": "c248aa1ef6469bae319644ecf84bdbd5c2143f2ece279c4de3171c482d677e5a"
+  },
+  "preflight_note": "Reported for context only. This check does not require execution readiness and does not grant it.",
+  "target": {
+    "cdp_endpoint": "http://127.0.0.1:9222",
+    "cdp_target_id": "FCC6AC44E6D2732EDAA28C8233E4DED6",
+    "cdp_target_resolved_by": "targetId",
+    "url": "https://www.blogger.com/blog/post/edit/6973756749045108777/6268864657932604137?pli=1",
+    "title": "Post: Edit",
+    "snapshot_fingerprint": "888407898f131bc954995e97aed84c859c21db5dd2d88dd59652064688010885"
+  },
+  "page_state": "EDITING",
+  "page_state_reason": "blogger-editor-path",
+  "public_post_url": null,
+  "evidence_id": "520f19b0d4c573a2",
+  "boundary": "Connectivity and target identity only. A bound browser target is not Blogger page identity, and an EDITING page is not a publication. This command creates no publication receipt and confers no publication authority."
+}

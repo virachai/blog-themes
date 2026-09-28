@@ -7,8 +7,10 @@ import { CdpSession } from './cdp-runtime/cdp-session.mjs';
 import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
 import { createEvidence } from './cdp-runtime/evidence.mjs';
 import { classifyBloggerPage } from './blogger-page-state.mjs';
+import { loadDotEnv } from './dotenv.mjs';
 
 const ROOT = process.cwd();
+loadDotEnv(ROOT);
 const RUNS = join(ROOT, '04-revenue-system/07-intelligence/runs');
 
 function fail(message) { console.error('EXECUTION-ADAPTER: ERROR ' + message); process.exitCode = 1; }
@@ -131,9 +133,85 @@ async function cdpProbe(run, output) {
   } finally { session.close(); }
 }
 
+/**
+ * Connectivity and target-identity check only.
+ *
+ * Deliberately NOT gated on `READY_FOR_EXTERNAL_EXECUTION`: that status requires
+ * a human approval, and the target check is an input to that decision, so
+ * requiring it would be circular — the target could not be verified until it had
+ * already been cleared for use.
+ *
+ * This asserts nothing beyond what it observes: which target was bound, what the
+ * page classified as, and a snapshot fingerprint. It is not a publication claim:
+ * a browser target is not Blogger page identity, and `EDITING` is the expected
+ * state for the editor. It grants no publication authority and writes no receipt.
+ */
+async function verifyTarget(run, output) {
+  const endpoint = process.env.CDP_ENDPOINT || 'http://127.0.0.1:9222';
+  const session = new CdpSession({ endpoint, targetId: process.env.BLOGGER_TARGET_ID || null });
+  try {
+    const target = await session.connect();
+    const snapshot = await session.snapshot();
+    const classification = classifyBloggerPage(target.url, { publicHost: process.env.BLOGGER_PUBLIC_HOST || null });
+    const ledger = await EvidenceLedger.load(run.dir);
+    const evidence = ledger.add(createEvidence({
+      claim: 'stage 59 connectivity check for ' + run.manifest.run_id + ': bound target ' + target.id + ', page classified ' + classification.state,
+      sourceUrl: target.url,
+      selector: null,
+      snapshot: JSON.stringify({ url: target.url, title: target.title, page_state: classification.state }),
+      screenshot: null,
+      observedAt: snapshot.capturedAt,
+      metadata: {
+        run_id: run.manifest.run_id,
+        command: 'verify-target',
+        cdp_endpoint: endpoint,
+        cdp_target_id: target.id,
+        cdp_target_resolved_by: session.targetResolvedBy,
+        page_state: classification.state,
+        page_state_reason: classification.reason,
+        snapshot_fingerprint: session.fingerprint(snapshot),
+        publication_authority: false,
+      },
+    }));
+    await ledger.save();
+
+    const record = {
+      runtime: 'editorial-production-execution-adapter-v1',
+      stage: 59,
+      run_id: run.manifest.run_id,
+      mission_id: run.manifest.mission_id,
+      command: 'verify-target',
+      status: 'CONNECTIVITY_VERIFIED',
+      authority: { publish: false, measurement: false, publication_receipt: false },
+      preflight: output.preflight,
+      preflight_note: 'Reported for context only. This check does not require execution readiness and does not grant it.',
+      target: {
+        cdp_endpoint: endpoint,
+        cdp_target_id: target.id,
+        cdp_target_resolved_by: session.targetResolvedBy,
+        url: target.url,
+        title: target.title,
+        snapshot_fingerprint: session.fingerprint(snapshot),
+      },
+      page_state: classification.state,
+      page_state_reason: classification.reason,
+      public_post_url: classification.post_url,
+      evidence_id: evidence.id,
+      boundary: 'Connectivity and target identity only. A bound browser target is not Blogger page identity, and an EDITING page is not a publication. This command creates no publication receipt and confers no publication authority.',
+    };
+    writeFileSync(join(run.dir, 'cdp-target-verification.json'), JSON.stringify(record, null, 2) + '\n');
+    console.log('EXECUTION-ADAPTER: CONNECTIVITY_VERIFIED');
+    console.log('TARGET: ' + target.url);
+    console.log('RESOLVED BY: ' + session.targetResolvedBy);
+    console.log('PAGE STATE: ' + classification.state + ' (' + classification.reason + ')');
+    console.log('EVIDENCE: ' + evidence.id);
+    console.log('AUTHORITY: publish=false receipt=NOT_CREATED');
+  } finally { session.close(); }
+}
+
 async function main() {
   const [command, runId, mode = 'dry-run'] = process.argv.slice(2);
-  if (!runId || !['plan', 'execute'].includes(command)) throw new Error('usage: editorial-production-execution-adapter.mjs plan|execute <run_id> [dry-run|cdp]');
+  if (!runId || !['plan', 'execute', 'verify-target'].includes(command)) throw new Error('usage: editorial-production-execution-adapter.mjs plan|execute|verify-target <run_id> [dry-run|cdp]');
   const run = load(runId);
   const output = plan(run, mode);
   if (command === 'plan') {
@@ -141,6 +219,7 @@ async function main() {
     console.log(JSON.stringify(output, null, 2));
     return;
   }
+  if (command === 'verify-target') return verifyTarget(run, output);
   if (mode === 'dry-run') return dryRun(run, output);
   if (mode === 'cdp') return cdpProbe(run, output);
   throw new Error('unsupported mode: ' + mode);

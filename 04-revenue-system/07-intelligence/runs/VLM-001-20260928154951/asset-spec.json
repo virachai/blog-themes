@@ -2,10 +2,10 @@
   "runtime": "value-mission-asset-runtime-v1",
   "mission_id": "VLM-001",
   "run_id": "VLM-001-20260928154951",
-  "title": null,
+  "title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
   "publication": {
-    "title_source": null,
-    "publication_blocker": "title_missing"
+    "title_source": "mission.title",
+    "publication_blocker": null
   },
   "status": "RELEASE_CANDIDATE",
   "traceability": {

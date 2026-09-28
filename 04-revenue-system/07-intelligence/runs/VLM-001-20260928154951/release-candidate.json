@@ -1,0 +1,31 @@
+{
+  "runtime": "value-mission-release-runtime-v1",
+  "run_id": "VLM-001-20260928154951",
+  "mission_id": "VLM-001",
+  "status": "READY_FOR_RELEASE_APPROVAL",
+  "release_authority": false,
+  "approval_required": true,
+  "approval": {
+    "status": "PENDING",
+    "approved_by": "",
+    "approved_at": "",
+    "notes": ""
+  },
+  "source": {
+    "signal_id": "SIG-001",
+    "evidence_sources": [
+      "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "https://www.nngroup.com/articles/user-need-statements/"
+    ]
+  },
+  "asset": {
+    "spec": "asset-spec.json",
+    "package": "asset-package.md"
+  },
+  "gates": {
+    "release": "READY_FOR_APPROVAL",
+    "publication": "NOT_EXECUTED",
+    "measurement": "NOT_STARTED"
+  },
+  "boundary": "This runtime prepares a release candidate only; it does not publish, claim publication success, or grant release authority."
+}
