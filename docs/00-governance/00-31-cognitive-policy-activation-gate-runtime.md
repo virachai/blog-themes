@@ -33,7 +33,7 @@ Stage 47 may not:
 
 ## CLI
 
-node scripts/node/cognitive-policy-activation-gate-runtime.mjs init
-node scripts/node/cognitive-policy-activation-gate-runtime.mjs status
-node scripts/node/cognitive-policy-activation-gate-runtime.mjs check <policy_id> [reviewer] [notes]
-node scripts/node/cognitive-policy-activation-gate-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs init
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs check <policy_id> [reviewer] [notes]
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]

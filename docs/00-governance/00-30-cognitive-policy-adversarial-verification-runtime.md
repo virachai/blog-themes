@@ -34,7 +34,7 @@ Stage 46 may not:
 
 ## CLI
 
-node scripts/node/cognitive-policy-adversarial-verification-runtime.mjs init
-node scripts/node/cognitive-policy-adversarial-verification-runtime.mjs status
-node scripts/node/cognitive-policy-adversarial-verification-runtime.mjs verify <policy_id> [attack] [reviewer] [notes]
-node scripts/node/cognitive-policy-adversarial-verification-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs init
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs verify <policy_id> [attack] [reviewer] [notes]
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]

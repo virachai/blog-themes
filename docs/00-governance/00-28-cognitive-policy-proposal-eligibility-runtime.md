@@ -23,8 +23,8 @@ Stage 44 may not:
 
 ## CLI
 
-node scripts/node/cognitive-policy-proposal-eligibility-runtime.mjs init
-node scripts/node/cognitive-policy-proposal-eligibility-runtime.mjs status
-node scripts/node/cognitive-policy-proposal-eligibility-runtime.mjs assess <binding_id> [reviewer] [rationale] [threshold]
-node scripts/node/cognitive-policy-proposal-eligibility-runtime.mjs approve <eligibility_id>
-node scripts/node/cognitive-policy-proposal-eligibility-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs init
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs assess <binding_id> [reviewer] [rationale] [threshold]
+node scripts/node/cognitive-policy-governance-runtime.mjs approve <eligibility_id>
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]

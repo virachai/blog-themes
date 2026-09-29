@@ -27,7 +27,7 @@ Stage 43 may not:
 
 ## CLI
 
-node scripts/node/cognitive-policy-evidence-binding-runtime.mjs init
-node scripts/node/cognitive-policy-evidence-binding-runtime.mjs status
-node scripts/node/cognitive-policy-evidence-binding-runtime.mjs bind <eligibility_id> [policy_scope] [purpose] [claim] [evidence]
-node scripts/node/cognitive-policy-evidence-binding-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs init
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs bind <eligibility_id> [policy_scope] [purpose] [claim] [evidence]
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]

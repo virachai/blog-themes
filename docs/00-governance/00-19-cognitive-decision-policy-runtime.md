@@ -10,16 +10,16 @@ Stage 35 previously created policy proposals directly from reviewed memory. That
 
 Policy proposals are now created only by:
 
-`scripts/node/cognitive-policy-proposal-runtime.mjs`
+`scripts/node/cognitive-policy-governance-runtime.mjs`
 
 Stage 45 requires a valid `PROPOSAL_ELIGIBLE` record before writing a policy proposal.
 
 Use:
 
 ```
-node scripts/node/cognitive-policy-proposal-runtime.mjs status
-node scripts/node/cognitive-policy-proposal-runtime.mjs propose <eligibility_id> <name> <scope> <condition> <action> [confidence] [source] [preconditions] [expires_at] [rollback]
-node scripts/node/cognitive-policy-proposal-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs propose <eligibility_id> <name> <scope> <condition> <action> [confidence] [source] [preconditions] [expires_at] [rollback]
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]
 ```
 
 ## Boundary
