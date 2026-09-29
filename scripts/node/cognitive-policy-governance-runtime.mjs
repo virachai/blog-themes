@@ -69,7 +69,7 @@ function bind(a) {
     )
   );
 }
-function assess(a) {
+function proposalAssess(a) {
   const [
     bindingId,
     reviewer = "review",
@@ -105,7 +105,7 @@ function assess(a) {
     )
   );
 }
-function approve(id) {
+function proposalApprove(id) {
   const x = read("eligibility").find((v) => v.id === id);
   if (!x) throw Error("unknown proposal eligibility id: " + id);
   if (x.eligibility !== "CANDIDATE") throw Error("eligibility is not CANDIDATE");
@@ -464,13 +464,36 @@ function status() {
     )
   );
 }
+function knowledgeAssess(a) {
+  const [promotionId, scope = 'policy', purpose = 'decision-support', evidence = 'trusted-learning'] = a;
+  if (!promotionId) throw Error('usage: knowledge-assess <promotion_id> [scope] [purpose] [evidence]');
+  const p = read('promotions').find(x => x.id === promotionId);
+  if (!p) throw Error('unknown promotion id: ' + promotionId);
+  if (p.trust !== 'TRUSTED' || p.status !== 'TRUSTED') throw Error('eligibility requires TRUSTED knowledge');
+  const row = { knowledge_id: promotionId, scope, purpose, evidence, status: 'ELIGIBILITY_PROPOSED', eligibility: 'CANDIDATE', gate: 'REVIEW_REQUIRED' };
+  add('knowledge', row, 'ELIG');
+  console.log(JSON.stringify({ runtime: 'cognitive-policy-governance-runtime-v2', stage: 42, status: row.status, eligibility: row }, null, 2));
+}
+function knowledgeApprove(id) {
+  const x = read('knowledge').find(v => v.id === id);
+  if (!x) throw Error('unknown knowledge eligibility id: ' + id);
+  if (x.eligibility !== 'CANDIDATE') throw Error('eligibility is not CANDIDATE');
+  const row = { knowledge_id: x.knowledge_id, scope: x.scope, purpose: x.purpose, evidence: x.evidence, status: 'ELIGIBLE', eligibility: 'ELIGIBLE', gate: 'PASSED', approved_from: id };
+  add('knowledge', row, 'ELIG');
+  console.log(JSON.stringify({ runtime: 'cognitive-policy-governance-runtime-v2', stage: 42, status: row.status, eligibility: row }, null, 2));
+}
+function knowledgeReview(id) {
+  const rows = read('knowledge').filter(x => !id || x.id === id || x.knowledge_id === id);
+  console.log(JSON.stringify({ runtime: 'cognitive-policy-governance-runtime-v2', stage: 42, status: 'KNOWLEDGE_ELIGIBILITY_REVIEW', count: rows.length, records: rows }, null, 2));
+}
+
 const [cmd, ...a] = process.argv.slice(2);
 try {
   if (cmd === "init" || cmd === "status") {
     if (cmd === "init") ensure();
     status();
   } else if (cmd === "bind") bind(a);
-  else if (cmd === "assess") assess(a);
+  else if (cmd === "assess") proposalAssess(a);
   else if (cmd === "approve") approve(a[0]);
   else if (cmd === "propose") propose(a);
   else if (cmd === "verify") verify(a);
