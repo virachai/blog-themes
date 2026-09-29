@@ -55,12 +55,12 @@ Stage 36 may not:
 
 ## CLI
 
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs init
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs status
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs activate <id> [expires_at]
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs suspend <id>
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs resume <id>
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs retire <id>
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs rollback <id>
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs review [id]
-node scripts/node/cognitive-policy-lifecycle-runtime.mjs evaluate
+node scripts/node/cognitive-policy-governance-runtime.mjs init
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs activate <id> [expires_at]
+node scripts/node/cognitive-policy-governance-runtime.mjs suspend <id>
+node scripts/node/cognitive-policy-governance-runtime.mjs resume <id>
+node scripts/node/cognitive-policy-governance-runtime.mjs retire <id>
+node scripts/node/cognitive-policy-governance-runtime.mjs rollback <id>
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs evaluate
