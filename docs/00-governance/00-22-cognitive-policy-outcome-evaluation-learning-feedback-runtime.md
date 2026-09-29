@@ -36,7 +36,7 @@ May not:
 
 ## CLI
 
-node scripts/node/cognitive-policy-feedback-runtime.mjs init
-node scripts/node/cognitive-policy-feedback-runtime.mjs status
-node scripts/node/cognitive-policy-feedback-runtime.mjs evaluate <execution_id> <assessment> [evidence]
-node scripts/node/cognitive-policy-feedback-runtime.mjs review [policy_id]
+node scripts/node/cognitive-learning-commit-runtime.mjs init
+node scripts/node/cognitive-learning-commit-runtime.mjs status
+node scripts/node/cognitive-learning-commit-runtime.mjs evaluate <execution_id> <assessment> [evidence]
+node scripts/node/cognitive-learning-commit-runtime.mjs review [policy_id]
