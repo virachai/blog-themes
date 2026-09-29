@@ -280,7 +280,7 @@ async function main() {
     external_side_effect: command === 'send', receipt: 'NOT_CREATED_UNTIL_PUBLICATION_OBSERVED',
     safety: { approval_required: true, idempotency_required: true, send_requires_explicit_command: true, secrets_never_logged: true }
   };
-  save(run.dir, 'email-publication-plan.json', plan);
+
   if (command === 'plan') { console.log(JSON.stringify(plan, null, 2)); return; }
   const message = compose(run);
   save(run.dir, 'email-publication-message.json', { ...message, eml: undefined });

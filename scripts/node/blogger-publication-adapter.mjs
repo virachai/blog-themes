@@ -170,7 +170,7 @@ async function main() {
     external_side_effect: command === 'execute' && mode === 'publish',
     receipt: 'NOT_CREATED_UNTIL_VERIFIED'
   };
-  save(run.dir, 'blogger-publication-plan.json', plan);
+
   if (command === 'plan') { console.log(JSON.stringify(plan, null, 2)); return; }
 
   // A publication claim must name its target. `inspect` only reports what is on
@@ -201,15 +201,7 @@ async function main() {
       const evidenceId = observation.evidence_id || null;
       const adoptionId = 'adoption:' + evidenceId;
       save(run.dir, RECEIPT_FILE, buildPublicationReceipt({ runId, verification, evidenceId, transactionId: adoptionId, verifiedAt: new Date().toISOString() }));
-      const adoption = {
-        runtime: 'blogger-publication-adapter-v1', stage: 61, mode: 'ADOPT_EXTERNAL_PUBLICATION', run_id: runId,
-        status: 'ADOPTED', external_side_effect: false, adoption_id: adoptionId,
-        source: { stage_62_observation: 'email-publication-observation.json', evidence_id: evidenceId, transport: 'email-to-blogger' },
-        verification: { url: classification.post_url, title: live.info.title, page_state: classification.state, cdp_target_id: session.targetId, snapshot_fingerprint: verification.fingerprint },
-        note: 'Adopts an already-observed external publication. Does not publish, edit, delete, or fabricate publication facts.'
-      };
-      save(run.dir, 'stage-61-publication-adoption.json', adoption);
-      console.log(JSON.stringify(adoption, null, 2));
+      console.log(JSON.stringify({ runtime: 'blogger-publication-adapter-v1', stage: 61, mode: 'ADOPT_EXTERNAL_PUBLICATION', run_id: runId, status: 'ADOPTED', external_side_effect: false, adoption_id: adoptionId, receipt: RECEIPT_FILE, source: { stage_62_observation: 'email-publication-observation.json', evidence_id: evidenceId, transport: 'email-to-blogger' }, verification: { url: classification.post_url, title: live.info.title, page_state: classification.state, cdp_target_id: session.targetId, snapshot_fingerprint: verification.fingerprint } }, null, 2));
     } finally { session.close(); }
     return;
   }
