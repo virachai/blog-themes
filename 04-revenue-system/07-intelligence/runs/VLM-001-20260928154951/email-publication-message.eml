@@ -1,101 +1,20 @@
 To: wvirachai.e9bfd423cc3644e38fa8@blogger.com
 From: setimocra@gmail.com
-Subject: How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval
+Subject: [PEXELS TEST] Mail2Blogger HTML protocol
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="blogger-stage62-alternative"
---blogger-stage62-alternative
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-# Asset Package
-
-> Status: RELEASE_CANDIDATE
-> Mission: VLM-001
-> Run: VLM-001-20260928154951
-
-## Editorial Thesis
-An evidence-backed editorial thesis should create a more useful asset than topic-first drafting
-
-## Audience
-general
-
-## User Problem
-Unclear user problem causes low-value production
-
-## Evidence
-### Observation 1
-- Observation: Google Search Central says its automated ranking systems are designed to prioritize helpful, reliable information created to benefit people, and its self-assessment asks whether content serves an intended audience and helps readers achieve their goal.
-- Claim supported: A content process should define the intended audience and user goal before drafting so usefulness can be assessed against the real reader rather than search-engine attraction alone.
-- Sources: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
-- Checked: 2026-09-28
-- Uncertainty: Google's guidance describes what its systems seek to reward; it does not establish that every audience-first process will produce higher traffic or a causal effect on rankings.
-- Notes: Primary source: Google Search Central.
-
-### Observation 2
-- Observation: Nielsen Norman Group describes a user-need statement as an actionable problem statement capturing who the user is, what they need, and why the need matters, and recommends grounding it in qualitative research before generating solutions.
-- Claim supported: Explicitly stating the user, need, and goal before producing the solution helps keep work focused on the problem rather than prematurely locking onto an output.
-- Sources: https://www.nngroup.com/articles/user-need-statements/
-- Checked: 2026-09-28
-- Uncertainty: This is UX research guidance rather than a controlled study of editorial publishing outcomes; it supports the process principle but does not quantify its effect on content performance.
-- Notes: NN/G guidance emphasizes real user needs, research inputs, and a success benchmark.
-
-## Asset Structure
-- Problem / context
-- Evidence and what it supports
-- Editorial thesis
-- Practical implications
-- Uncertainty / limitations
-- Next action
-
-## Value Path
-organic discovery and durable usefulness
-
-## Release Boundary
-This package is not published. Publication requires an explicit release gate.
---blogger-stage62-alternative
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-<h1>Asset Package</h1>
-<blockquote>
-<p>Status: RELEASE_CANDIDATE</p>
-<p>Mission: VLM-001</p>
-<p>Run: VLM-001-20260928154951</p>
-</blockquote>
-<h2>Editorial Thesis</h2>
-<p>An evidence-backed editorial thesis should create a more useful asset than topic-first drafting</p>
-<h2>Audience</h2>
-<p>general</p>
-<h2>User Problem</h2>
-<p>Unclear user problem causes low-value production</p>
-<h2>Evidence</h2>
-<h3>Observation 1</h3>
-<ul>
-  <li>Observation: Google Search Central says its automated ranking systems are designed to prioritize helpful, reliable information created to benefit people, and its self-assessment asks whether content serves an intended audience and helps readers achieve their goal.</li>
-  <li>Claim supported: A content process should define the intended audience and user goal before drafting so usefulness can be assessed against the real reader rather than search-engine attraction alone.</li>
-  <li>Sources: https://developers.google.com/search/docs/fundamentals/creating-helpful-content</li>
-  <li>Checked: 2026-09-28</li>
-  <li>Uncertainty: Google&#39;s guidance describes what its systems seek to reward; it does not establish that every audience-first process will produce higher traffic or a causal effect on rankings.</li>
-  <li>Notes: Primary source: Google Search Central.</li>
-</ul>
-<h3>Observation 2</h3>
-<ul>
-  <li>Observation: Nielsen Norman Group describes a user-need statement as an actionable problem statement capturing who the user is, what they need, and why the need matters, and recommends grounding it in qualitative research before generating solutions.</li>
-  <li>Claim supported: Explicitly stating the user, need, and goal before producing the solution helps keep work focused on the problem rather than prematurely locking onto an output.</li>
-  <li>Sources: https://www.nngroup.com/articles/user-need-statements/</li>
-  <li>Checked: 2026-09-28</li>
-  <li>Uncertainty: This is UX research guidance rather than a controlled study of editorial publishing outcomes; it supports the process principle but does not quantify its effect on content performance.</li>
-  <li>Notes: NN/G guidance emphasizes real user needs, research inputs, and a success benchmark.</li>
-</ul>
-<h2>Asset Structure</h2>
-<ul>
-  <li>Problem / context</li>
-  <li>Evidence and what it supports</li>
-  <li>Editorial thesis</li>
-  <li>Practical implications</li>
-  <li>Uncertainty / limitations</li>
-  <li>Next action</li>
-</ul>
-<h2>Value Path</h2>
-<p>organic discovery and durable usefulness</p>
-<h2>Release Boundary</h2>
-<p>This package is not published. Publication requires an explicit release gate.</p>
---blogger-stage62-alternative--
+<div class="mp-id" data-id="0002"></div>
+<div class="separator"><img src="https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg" alt="Snake plant in a living area"></div>
+<div class="mp-summary">
+  <p>This is the summary sentence using a Pexels lead image.</p>
+</div>
+<div id="toc_container"><h2>สารบัญ</h2></div>
+<h2 title="First section">First section</h2>
+<p>This opening section demonstrates the production HTML protocol with a real Pexels image.</p>
+<div class="separator"><img src="https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg" alt="Plant in a white pot" loading="lazy"></div>
+<p class="mp-caption">ภาพ: cottonbro studio / Pexels</p>
+<p>This is the body paragraph after the image.</p>
+<h3>Practical note</h3>
+<p>Use the same structure for future Mail2Blogger publications.</p>
+<p class="mp-credits">ภาพนำ: Hanna Pad / Pexels</p>

@@ -161,7 +161,7 @@ function buildAdapter(run, session, mode) {
 
 async function main() {
   const [command, runId, mode = 'inspect'] = process.argv.slice(2);
-  if (!runId || !['plan','inspect','execute','adopt'].includes(command)) throw new Error('usage: blogger-publication-adapter.mjs plan|inspect|execute <run_id> [inspect|publish] | adopt <run_id>');
+  if (!runId || !['plan','inspect','execute','adopt','adopt-feed'].includes(command)) throw new Error('usage: blogger-publication-adapter.mjs plan|inspect|execute <run_id> [inspect|publish] | adopt|adopt-feed <run_id>');
   const run = load(runId);
   const pf = preflight(run);
   const plan = {
@@ -177,6 +177,36 @@ async function main() {
   // screen and claims nothing, so it explicitly opts into the first-page fallback
   // rather than relying on a silent default.
   const willPublish = command === 'execute' && mode === 'publish';
+  if (command === 'adopt-feed') {
+    const observation = json(join(run.dir, 'email-publication-observation.json'));
+    if (!observation || observation.status !== 'OBSERVED' || observation.source !== 'blogger-public-feed') throw new Error('feed adoption refused: public-feed observation is missing');
+    if (observation.title_match !== true) throw new Error('feed adoption refused: title match is not exact');
+    const classification = classifyBloggerPage(observation.public_post_url, { publicHost: process.env.BLOGGER_PUBLIC_HOST || null });
+    const externalId = assertPublishable(classification);
+    const expectedTitle = String(observation.expected_title || '').trim();
+    if (!expectedTitle || String(observation.observed_title || '').trim() !== expectedTitle) throw new Error('feed adoption refused: observed title does not match expected title');
+    const ledger = await EvidenceLedger.load(run.dir);
+    const evidence = ledger.add(createEvidence({
+      claim: 'Blogger public feed observed published post for ' + runId,
+      sourceUrl: observation.feed_url,
+      selector: 'feed.entry.link[rel=alternate]',
+      snapshot: JSON.stringify({ url: observation.public_post_url, title: observation.observed_title, published_at: observation.published_at, blogger_entry_id: observation.blogger_entry_id }),
+      screenshot: null,
+      observedAt: observation.observed_at,
+      metadata: { run_id: runId, source: 'blogger-public-feed', page_state: classification.state, title_match: true, blogger_entry_id: observation.blogger_entry_id }
+    }));
+    await ledger.save();
+    const verification = {
+      status: 'PASS', page_state: classification.state, external_id: externalId,
+      url: classification.post_url, observed_url: classification.post_url,
+      published_at: observation.published_at || null, title: observation.observed_title,
+      fingerprint: null
+    };
+    const adoptionId = 'feed-adoption:' + evidence.id;
+    save(run.dir, RECEIPT_FILE, buildPublicationReceipt({ runId, verification, evidenceId: evidence.id, transactionId: adoptionId, verifiedAt: new Date().toISOString() }));
+    console.log(JSON.stringify({ runtime: 'blogger-publication-adapter-v1', stage: 61, mode: 'ADOPT_PUBLIC_FEED_PUBLICATION', run_id: runId, status: 'ADOPTED', external_side_effect: false, adoption_id: adoptionId, receipt: RECEIPT_FILE, source: { stage_62_observation: 'email-publication-observation.json', evidence_id: evidence.id, transport: 'email-to-blogger', feed: observation.feed_url }, verification: { url: classification.post_url, title: observation.observed_title, page_state: classification.state, published_at: observation.published_at } }, null, 2));
+    return;
+  }
   if (command === 'adopt') {
     const observation = json(join(run.dir, 'email-publication-observation.json'));
     if (!observation || observation.status !== 'OBSERVED') throw new Error('adoption refused: Stage 62 observation is missing or not OBSERVED');

@@ -2,9 +2,9 @@
   "runtime": "email-to-blogger-publication-transport-v1",
   "run_id": "VLM-001-20260928154951",
   "status": "EMAIL_SENT",
-  "sent_at": "2026-09-29T00:58:56.903Z",
+  "sent_at": "2026-09-29T11:32:49.089Z",
   "recipient": "wvirachai.e9bfd423cc3644e38fa8@blogger.com",
-  "subject": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
-  "fingerprint": "49d006b59a4de84fdd68da8a6d1f128ba43606471975ba6cd62009043dd002c1",
+  "subject": "[PEXELS TEST] Mail2Blogger HTML protocol",
+  "fingerprint": "3309f6e031ea46fbce62a88760bc7ec66fb7472b889aa11de277b3b36e22603d",
   "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"
 }

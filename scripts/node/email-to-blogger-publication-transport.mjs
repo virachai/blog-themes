@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /** Stage 62 — Email-to-Blogger Publication Transport. */
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import crypto from 'node:crypto';
 import net from 'node:net';
@@ -72,27 +72,59 @@ function inlineMarkdown(value) {
   return html;
 }
 
+function nextPostId() {
+  const blogDir = join(ROOT, '02-meefunblog');
+  const files = readdirSync(blogDir, { withFileTypes: true })
+    .filter(entry => entry.isFile() && entry.name.endsWith('.html'))
+    .map(entry => join(blogDir, entry.name));
+  const ids = files
+    .flatMap(file => [...text(file).matchAll(/data-id=["'](\d{4})["']/g)].map(match => Number(match[1])));
+  const next = (ids.length ? Math.max(...ids) : 0) + 1;
+  return String(next).padStart(4, '0');
+}
+
+function optimizeImageUrl(src, role = 'body') {
+  const value = String(src || '').trim();
+  if (!value) return value;
+
+  // Pexels exposes CDN variants via query parameters. Keep non-Pexels URLs
+  // untouched so publication does not depend on a provider-specific contract.
+  if (!/^https?:\/\/images\.pexels\.com\//i.test(value)) return value;
+
+  const url = new URL(value);
+  url.searchParams.set('auto', 'compress');
+  url.searchParams.set('cs', 'tinysrgb');
+  url.searchParams.set('w', role === 'lead' ? '1200' : '940');
+  return url.toString();
+}
+
+function imageHtml(alt, src, lazy = false, role = 'body') {
+  const safeAlt = escapeHtml(alt || '');
+  const safeSrc = escapeHtml(optimizeImageUrl(src, role));
+  return '<div class="separator"><img src="' + safeSrc + '" alt="' + safeAlt + '"' + (lazy ? ' loading="lazy"' : '') + '></div>';
+}
+
 function markdownToHtml(markdown) {
   const lines = String(markdown || '').replace(/\r\n?/g, '\n').split('\n');
-  const out = [];
+  const blocks = [];
   let paragraph = [];
   let list = null;
   let quote = [];
 
   const flushParagraph = () => {
     if (paragraph.length) {
-      out.push('<p>' + inlineMarkdown(paragraph.join(' ')) + '</p>');
+      blocks.push({ type: 'paragraph', text: paragraph.join(' ') });
       paragraph = [];
     }
   };
   const flushList = () => {
     if (!list) return;
-    out.push('<' + list.type + '>\n' + list.items.map(item => '  <li>' + inlineMarkdown(item) + '</li>').join('\n') + '\n</' + list.type + '>');
+    blocks.push({ type: list.type, items: list.items.slice() });
     list = null;
   };
   const flushQuote = () => {
     if (quote.length) {
-      out.push('<blockquote>\n' + quote.map(line => '<p>' + inlineMarkdown(line) + '</p>').join('\n') + '\n</blockquote>');
+      blocks.push({ type: 'quote', lines: quote.slice() });
       quote = [];
     }
   };
@@ -100,24 +132,31 @@ function markdownToHtml(markdown) {
   for (const raw of lines) {
     const line = raw.trimEnd();
     if (!line.trim()) {
-      flushParagraph();
-      flushList();
-      flushQuote();
+      flushParagraph(); flushList(); flushQuote();
       continue;
     }
+
     const heading = line.match(/^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$/);
     if (heading) {
       flushParagraph(); flushList(); flushQuote();
-      const level = heading[1].length;
-      out.push('<h' + level + '>' + inlineMarkdown(heading[2]) + '</h' + level + '>');
+      blocks.push({ type: 'heading', level: heading[1].length, text: heading[2] });
       continue;
     }
+
+    const image = line.match(/^\s*!\[([^\]]*)\]\((https?:\/\/[^\s)]+)(?:\s+["']([^"']+)["'])?\)\s*$/);
+    if (image) {
+      flushParagraph(); flushList(); flushQuote();
+      blocks.push({ type: 'image', alt: image[1], src: image[2], caption: image[3] || '' });
+      continue;
+    }
+
     const quoteLine = line.match(/^\s*>\s?(.*)$/);
     if (quoteLine) {
       flushParagraph(); flushList();
       quote.push(quoteLine[1]);
       continue;
     }
+
     const item = line.match(/^\s*[-*+]\s+(.+)$/);
     const ordered = line.match(/^\s*\d+[.)]\s+(.+)$/);
     if (item || ordered) {
@@ -130,14 +169,82 @@ function markdownToHtml(markdown) {
       list.items.push((item || ordered)[1]);
       continue;
     }
-    flushList();
-    flushQuote();
+
+    flushList(); flushQuote();
     paragraph.push(line.trim());
   }
 
-  flushParagraph();
-  flushList();
-  flushQuote();
+  flushParagraph(); flushList(); flushQuote();
+
+  const id = nextPostId();
+  const firstImageIndex = blocks.findIndex(block => block.type === 'image');
+  const summaryIndex = blocks.findIndex((block, index) =>
+    block.type === 'paragraph' && (firstImageIndex === -1 || index > firstImageIndex)
+  );
+  const out = ['<div class="mp-id" data-id="' + id + '"></div>'];
+
+  let leadCredit = '';
+  if (firstImageIndex >= 0) {
+    const lead = blocks[firstImageIndex];
+    leadCredit = lead.caption || '';
+    out.push(imageHtml(lead.alt, lead.src, false, 'lead'));
+  }
+
+  if (summaryIndex >= 0) {
+    out.push('<div class="mp-summary">');
+    out.push('  <p>' + inlineMarkdown(blocks[summaryIndex].text) + '</p>');
+    out.push('</div>');
+  }
+
+  let tocInserted = false;
+  for (let index = 0; index < blocks.length; index += 1) {
+    const block = blocks[index];
+    if (index === firstImageIndex || index === summaryIndex) continue;
+
+    if (block.type === 'heading') {
+      if (block.level === 1) continue;
+      const level = Math.min(block.level, 6);
+      const title = inlineMarkdown(block.text).replace(/<[^>]+>/g, '');
+      if (level === 2 && !tocInserted) {
+        out.push('<div id="toc_container"><h2>สารบัญ</h2></div>');
+        tocInserted = true;
+      }
+      out.push('<h' + level + (level === 2 ? ' title="' + escapeHtml(title) + '"' : '') + '>' + inlineMarkdown(block.text) + '</h' + level + '>');
+      continue;
+    }
+
+    if (block.type === 'paragraph') {
+      if (/^ภาพนำ\s*:/i.test(block.text)) {
+        leadCredit = block.text.replace(/^ภาพนำ\s*:\s*/i, '').trim();
+        continue;
+      }
+      out.push('<p>' + inlineMarkdown(block.text) + '</p>');
+      continue;
+    }
+
+    if (block.type === 'ul' || block.type === 'ol') {
+      out.push('<' + block.type + '>\n' + block.items.map(item => '  <li>' + inlineMarkdown(item) + '</li>').join('\n') + '\n</' + block.type + '>');
+      continue;
+    }
+
+    if (block.type === 'quote') {
+      out.push('<blockquote>\n' + block.lines.map(line => '<p>' + inlineMarkdown(line) + '</p>').join('\n') + '\n</blockquote>');
+      continue;
+    }
+
+    if (block.type === 'image') {
+      out.push(imageHtml(block.alt, block.src, true));
+      let caption = block.caption || '';
+      const next = blocks[index + 1];
+      if (!caption && next?.type === 'paragraph' && /^ภาพ\s*:/i.test(next.text)) {
+        caption = next.text.replace(/^ภาพ\s*:\s*/i, '').trim();
+        index += 1;
+      }
+      if (caption) out.push('<p class="mp-caption">ภาพ: ' + inlineMarkdown(caption) + '</p>');
+    }
+  }
+
+  if (leadCredit) out.push('<p class="mp-credits">ภาพนำ: ' + inlineMarkdown(leadCredit) + '</p>');
   return out.join('\n');
 }
 
@@ -145,30 +252,22 @@ function compose(run) {
   const resolvedTitle = resolvePublicationTitle({ mission: run.manifest?.mission, asset: run.asset, override: env('BLOGGER_EMAIL_TITLE') });
   const markdown = env('BLOGGER_EMAIL_BODY') || run.package;
   const { title } = assertPublicationPayload({ title: resolvedTitle.title, body: markdown });
-  const html = markdownToHtml(markdown);
+  const runMarker = escapeHtml(run.run_id || run.manifest?.run_id || '');
+  const html = markdownToHtml(markdown).replace(/^(<div class="mp-id" data-id="[^\"]+")/, '$1 data-run-id="' + runMarker + '"');
   const to = env('EMAIL_FOR_POSTING');
   const from = env('EMAIL_FROM');
-  const boundary = 'blogger-stage62-alternative';
+  // Blogger Mail2Blogger can ingest the text/plain alternative instead of the
+  // HTML alternative. Send a single-part text/html message so the published
+  // post is deterministically the same HTML protocol we prepared.
   const lines = [
     'To: ' + to,
     from ? 'From: ' + from : '',
     'Subject: ' + title,
     'MIME-Version: 1.0',
-    'Content-Type: multipart/alternative; boundary="' + boundary + '"',
-    '',
-    '--' + boundary,
-    'Content-Type: text/plain; charset=UTF-8',
-    'Content-Transfer-Encoding: 8bit',
-    '',
-    markdown.trim(),
-    '',
-    '--' + boundary,
     'Content-Type: text/html; charset=UTF-8',
     'Content-Transfer-Encoding: 8bit',
     '',
     html,
-    '',
-    '--' + boundary + '--',
     '',
   ].filter(Boolean);
   const eml = lines.join('\r\n');
@@ -258,11 +357,13 @@ async function sendViaSmtp(message) {
     await smtpCommand(socket, 'RCPT TO:<' + message.to + '>', [250, 251]);
     await smtpCommand(socket, 'DATA', [354]);
 
-    const data = message.eml.replace(/\r?\n/g, '\r\n').replace(/^\./gm, '..');
-    socket.write(data + '\r\n.\r\n');
+    const data = message.eml.replace(/\\r?\\n/g, '\\r\\n').replace(/^\\./gm, '..');
+    socket.write(data + '\\r\\n.\\r\\n');
     response = await readSmtpResponse(socket);
     if (response.code !== 250) throw new Error('SMTP message rejected: ' + response.code);
+    const acceptance = { code: response.code, text: response.text, message_bytes: Buffer.byteLength(data, 'utf8') };
     await smtpCommand(socket, 'QUIT', [221, 250]);
+    return acceptance;
   } finally {
     socket.end();
   }
@@ -282,9 +383,20 @@ async function main() {
   };
 
   if (command === 'plan') { console.log(JSON.stringify(plan, null, 2)); return; }
-  const message = compose(run);
-  save(run.dir, 'email-publication-message.json', { ...message, eml: undefined });
-  writeFileSync(join(run.dir, 'email-publication-message.eml'), message.eml);
+  let message;
+  const preparedPath = join(run.dir, 'email-publication-message.json');
+  if (command === 'send' && existsSync(preparedPath)) {
+    const prepared = json(preparedPath);
+    const preparedEmlPath = join(run.dir, 'email-publication-message.eml');
+    const preparedEml = existsSync(preparedEmlPath) ? readFileSync(preparedEmlPath, 'utf8') : '';
+    if (!prepared?.fingerprint || !prepared?.to || !prepared?.subject || !preparedEml) throw new Error('prepared message is incomplete');
+    message = { ...prepared, from: prepared.from || null, eml: preparedEml };
+    if (sha(message.eml) !== message.fingerprint) throw new Error('prepared message fingerprint mismatch');
+  } else {
+    message = compose(run);
+    save(run.dir, 'email-publication-message.json', { ...message, eml: undefined });
+    writeFileSync(join(run.dir, 'email-publication-message.eml'), message.eml);
+  }
   if (command === 'prepare') {
     console.log(JSON.stringify({ ...plan, status: pf.status, message: { to_configured: !!message.to, subject: message.subject, fingerprint: message.fingerprint }, action: 'NO_EXTERNAL_SIDE_EFFECT' }, null, 2));
     return;
@@ -294,10 +406,42 @@ async function main() {
     return;
   }
   if (env('EMAIL_PUBLISH_CONFIRM') !== 'YES') throw new Error('EMAIL_PUBLISH_CONFIRM=YES is required for external publication');
-  await sendViaSmtp(message);
+  const smtpAcceptance = await sendViaSmtp(message);
   const sentAt = new Date().toISOString();
-  save(run.dir, 'email-publication-result.json', { runtime: 'email-to-blogger-publication-transport-v1', run_id: runId, status: 'EMAIL_SENT', sent_at: sentAt, recipient: message.to, subject: message.subject, fingerprint: message.fingerprint, observation: 'EMAIL_SENT_IS_NOT_PUBLICATION_PROOF' });
-  console.log(JSON.stringify({ runtime: 'email-to-blogger-publication-transport-v1', stage: 62, run_id: runId, status: 'EMAIL_SENT', sent_at: sentAt, message_fingerprint: message.fingerprint, action: 'EMAIL_SENT_ONLY', next: 'observe Blogger publication before creating publication receipt' }, null, 2));
+  save(run.dir, 'email-publication-result.json', {
+    runtime: 'email-to-blogger-publication-transport-v1',
+    run_id: runId,
+    status: 'EMAIL_SENT',
+    sent_at: sentAt,
+    recipient: message.to,
+    subject: message.subject,
+    fingerprint: message.fingerprint,
+    smtp_acceptance: smtpAcceptance,
+    envelope: {
+      recipient_matches_prepared: message.to === env('EMAIL_FOR_POSTING'),
+      from_matches_configured: message.from === env('EMAIL_FROM'),
+    },
+    message: {
+      mime_type: 'text/html',
+      bytes_after_crlf_normalisation: smtpAcceptance.message_bytes,
+    },
+    observation: 'EMAIL_SENT_IS_NOT_PUBLICATION_PROOF'
+  });
+  console.log(JSON.stringify({
+    runtime: 'email-to-blogger-publication-transport-v1',
+    stage: 62,
+    run_id: runId,
+    status: 'EMAIL_SENT',
+    sent_at: sentAt,
+    message_fingerprint: message.fingerprint,
+    smtp_acceptance: smtpAcceptance,
+    envelope: {
+      recipient_matches_prepared: message.to === env('EMAIL_FOR_POSTING'),
+      from_matches_configured: message.from === env('EMAIL_FROM'),
+    },
+    action: 'EMAIL_SENT_ONLY',
+    next: 'observe Blogger publication before creating publication receipt'
+  }, null, 2));
 }
 
 main().catch(error => { console.error('EMAIL-BLOGGER-TRANSPORT: ERROR ' + error.message); process.exitCode = 1; });

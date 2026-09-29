@@ -25,6 +25,7 @@ import { EvidenceLedger } from './cdp-runtime/evidence-ledger.mjs';
 import { createEvidence } from './cdp-runtime/evidence.mjs';
 import { classifyBloggerPage } from './blogger-page-state.mjs';
 import { loadDotEnv } from './dotenv.mjs';
+import { getBloggerPosts } from './blogger-feed-last-url.mjs';
 
 loadDotEnv();
 
@@ -107,18 +108,71 @@ async function observe(session, title) {
   return { probe, classification, snapshot, screenshot, screenshotBytes, screenshotHash };
 }
 
-function preflight(run, runId) {
+function preflight(run, runId, { feed = false } = {}) {
   const blockers = [];
   if (run.email?.status !== 'EMAIL_SENT') blockers.push('email_not_sent');
   if (env('EMAIL_PUBLISH_CONFIRM') !== 'YES') blockers.push('operator_consent_missing');
-  if (!env('BLOGGER_TARGET_ID')) blockers.push('BLOGGER_TARGET_ID_missing');
+  if (!feed && !env('BLOGGER_TARGET_ID')) blockers.push('BLOGGER_TARGET_ID_missing');
   if (existsSync(join(run.dir, RECEIPT_FILE))) blockers.push('receipt_already_exists');
   return { status: blockers.length ? 'BLOCKED' : 'PASS', blockers, run_id: runId };
 }
 
+async function observeFeed(run, runId) {
+  const expected = normalise(expectedTitle(run));
+  const marker = 'data-run-id="' + runId + '"';
+  const timeoutMs = Number(env('BLOGGER_FEED_TIMEOUT_MS') || 60000);
+  const intervalMs = Number(env('BLOGGER_FEED_POLL_MS') || 3000);
+  const started = Date.now();
+  let lastTitles = [];
+
+  while (Date.now() - started <= timeoutMs) {
+    const result = await getBloggerPosts();
+    const candidates = result.posts.filter(post => normalise(post.title) === expected);
+    lastTitles = result.posts.slice(0, 5).map(post => post.title);
+
+    for (const candidate of candidates) {
+      const response = await fetch(candidate.url, { headers: { accept: 'text/html' }, redirect: 'follow' });
+      if (!response.ok) continue;
+      const html = await response.text();
+      if (!html.includes(marker)) continue;
+      const classification = classifyBloggerPage(candidate.url, { publicHost: env('BLOGGER_PUBLIC_HOST') || null });
+      if (classification.state !== 'PUBLISHED_CANDIDATE') throw new Error('feed returned a non-public post URL');
+      const observation = {
+        runtime: 'email-to-blogger-publication-observer-v1', stage: 62, run_id: runId,
+        status: 'OBSERVED', source: 'blogger-public-feed',
+        page_state: classification.state, page_state_reason: classification.reason,
+        public_post_url: classification.post_url, title_match: true, correlation: 'title+run-marker',
+        run_marker: marker, expected_title: expectedTitle(run), observed_title: candidate.title,
+        published_at: candidate.published_at, updated_at: candidate.updated_at,
+        blogger_entry_id: candidate.id, feed_url: result.feed_url,
+        entries_checked: result.entries_checked, observed_at: result.fetched_at,
+        boundary: 'Public feed observation. It does not itself write publication-receipt.json.'
+      };
+      save(run.dir, 'email-publication-observation.json', observation);
+      console.log(JSON.stringify(observation, null, 2));
+      return;
+    }
+    if (Date.now() - started + intervalMs > timeoutMs) break;
+    await new Promise(resolve => setTimeout(resolve, intervalMs));
+  }
+  throw new Error('Blogger feed did not expose the expected title+run-marker within timeout; recent titles: ' + lastTitles.join(' | '));
+}
+
 async function main() {
   const [command, runId] = process.argv.slice(2);
-  if (!runId || command !== 'observe') throw new Error('usage: email-to-blogger-publication-observer.mjs observe <run_id>');
+  if (!runId || !['observe', 'observe-feed'].includes(command)) throw new Error('usage: email-to-blogger-publication-observer.mjs observe|observe-feed <run_id>');
+
+  if (command === 'observe-feed') {
+    const run = load(runId);
+    const pf = preflight(run, runId, { feed: true });
+    if (pf.status !== 'PASS') {
+      console.log(JSON.stringify({ runtime: 'email-to-blogger-publication-observer-v1', stage: 62, run_id: runId, status: 'BLOCKED', preflight: pf, action: 'NO_OBSERVATION_ATTEMPTED' }, null, 2));
+      process.exitCode = 2;
+      return;
+    }
+    await observeFeed(run, runId);
+    return;
+  }
 
   const run = load(runId);
   const pf = preflight(run, runId);

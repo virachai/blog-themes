@@ -1,0 +1,16 @@
+{
+  "runtime": "blogger-publication-adapter-v1",
+  "run_id": "VLM-001-20260929114442",
+  "status": "PUBLISHED",
+  "publication": {
+    "status": "PUBLISHED",
+    "url": "https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial_0964428029.html",
+    "external_id": "https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial_0964428029.html",
+    "page_state": "PUBLISHED_CANDIDATE",
+    "verified_at": "2026-09-29T11:45:08.276Z",
+    "published_at": "2026-09-29T18:44:55.364+07:00",
+    "published_at_source": "public-post-page"
+  },
+  "evidence_id": "33a260a1208d2a58",
+  "transaction_id": "feed-adoption:33a260a1208d2a58"
+}

@@ -1,0 +1,38 @@
+{
+  "runtime": "value-mission-asset-runtime-v1",
+  "mission_id": "VLM-001",
+  "run_id": "VLM-001-20260929114442",
+  "title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
+  "publication": {
+    "title_source": "mission.title",
+    "publication_blocker": null
+  },
+  "status": "RELEASE_CANDIDATE",
+  "traceability": {
+    "signal_id": "SIG-001",
+    "evidence_observations": 2,
+    "sources": [
+      "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "https://www.nngroup.com/articles/user-need-statements/"
+    ]
+  },
+  "objective": "Define the real user problem before drafting",
+  "audience": "general",
+  "problem": "Unclear user problem causes low-value production",
+  "thesis": "An evidence-backed editorial thesis should create a more useful asset than topic-first drafting",
+  "value_class": "asset",
+  "value_path": "organic discovery and durable usefulness",
+  "success_metric": "organic_clicks_28d",
+  "required_sections": [
+    "Problem / context",
+    "Evidence and what it supports",
+    "Editorial thesis",
+    "Practical implications",
+    "Uncertainty / limitations",
+    "Next action"
+  ],
+  "provenance": {
+    "evidence_gate": "EVIDENCE_READY",
+    "evidence_authority": false
+  }
+}
