@@ -1,29 +1,32 @@
 # Stage 53 - Cognitive Learning Commit Enforcement Runtime
 
-## Purpose
-Make the Stage 51 eligibility gate a hard prerequisite for Stage 39 learning commits.
+## Status
 
-## Enforcement
-Stage 39 now checks `learning-eligibility-gates.jsonl` before committing:
-- matching feedback is required;
-- latest matching gate must be `PASS`;
-- gate status must be `LEARNING_ELIGIBLE`.
+**Superseded by the Lean Cognitive Learning Commit Runtime v2.**
 
-Otherwise the commit fails closed with `LEARNING_COMMIT_BLOCKED`.
+Stage 53 remains as historical governance documentation, but its standalone runtime was removed during the learning-runtime consolidation.
 
-## Audit
-Stage 53 provides an append-only audit runtime to detect any existing commit whose feedback does not have a passing Stage 51 gate.
+## Current authority
 
-## Chain
-Outcome → Evidence → Attribution [50] → Feedback → Validation → Eligibility Gate [51] → Commit Integrity [52] → Commit Enforcement [53]
+Enforcement is now implemented directly at:
 
-## CLI
-```
-node scripts/node/cognitive-learning-commit-enforcement-runtime.mjs init
-node scripts/node/cognitive-learning-commit-enforcement-runtime.mjs status
-node scripts/node/cognitive-learning-commit-enforcement-runtime.mjs audit
-node scripts/node/cognitive-learning-commit-enforcement-runtime.mjs review [id]
-```
+`scripts/node/cognitive-learning-commit-runtime.mjs`
 
-## Authority
-Enforcement is implemented at the Stage 39 commit boundary. Stage 53 itself audits; it does not create or mutate learning records.
+A learning commit is fail-closed unless its lineage contains:
+
+- a matching Stage 51 eligibility gate;
+- gate status `PASS`;
+- eligibility status `LEARNING_ELIGIBLE`;
+- verified attribution;
+- outcome provenance;
+- execution evidence.
+
+## Historical contract
+
+The former Stage 53 runtime existed only to audit whether Stage 39 commits respected the Stage 51 prerequisite. Keeping a second audit runtime created a second authority surface.
+
+The Lean v2 boundary removes that duplication: the commit cannot be created unless the prerequisite is satisfied.
+
+## Boundary
+
+The standalone Stage 53 runtime is intentionally deleted. Do not recreate it. New enforcement behavior belongs in the Lean Cognitive Learning Commit Runtime.

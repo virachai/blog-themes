@@ -1,37 +1,32 @@
 # Stage 52 - Cognitive Learning Commit Integrity Runtime
 
-## Purpose
-Verify that every learning commit is backed by a valid Stage 51 learning-eligibility gate and cannot be treated as integrity-verified when the gate is absent, blocked, or lineage-mismatched.
+## Status
 
-## Chain
-Outcome → Evidence → Attribution [50] → Feedback → Validation/Regression → Eligibility Gate [51] → Learning Commit [39] → Commit Integrity [52]
+**Superseded by the Lean Cognitive Learning Commit Runtime v2.**
 
-## Contract
-Stage 52 checks:
-- the Stage 39 learning commit exists;
-- its feedback record exists;
-- a matching Stage 51 gate exists;
-- the gate is PASS / LEARNING_ELIGIBLE;
-- feedback and execution lineage agree;
-- gate evidence/validation lineage is preserved.
+Stage 52 remains as historical governance documentation, but its standalone runtime was removed during the learning-runtime consolidation.
 
-A failed check is fail-closed as COMMIT_BLOCKED.
+## Current authority
 
-## Authority
-Stage 52 verifies integrity only. It does not create commits, mutate beliefs, edit policies, activate policies, or create missions.
+Integrity verification is now part of:
 
-## CLI
-```
-node scripts/node/cognitive-learning-commit-integrity-runtime.mjs init
-node scripts/node/cognitive-learning-commit-integrity-runtime.mjs status
-node scripts/node/cognitive-learning-commit-integrity-runtime.mjs check <commit_id> [reviewer] [notes]
-node scripts/node/cognitive-learning-commit-integrity-runtime.mjs review [id]
-```
+`scripts/node/cognitive-learning-commit-runtime.mjs`
 
-## Ledger
-`04-revenue-system/07-intelligence/cognitive-memory/learning-commit-integrity.jsonl`
+The consolidated runtime verifies the eligibility gate, attribution, outcome provenance, and execution evidence as part of the learning-commit boundary. A failed lineage check blocks the commit.
 
-The ledger is append-only and stores commit, feedback, execution, gate, and validation lineage.
+## Historical contract
+
+The former Stage 52 boundary verified:
+
+- the Stage 39 learning commit existed;
+- its feedback record existed;
+- a matching Stage 51 eligibility gate existed;
+- the gate was PASS / LEARNING_ELIGIBLE;
+- feedback and execution lineage agreed;
+- gate evidence and validation lineage were preserved.
+
+Those checks are now owned by the v2 commit runtime rather than a separate post-commit process.
 
 ## Boundary
-Stage 39 remains the commit executor. Stage 52 is the integrity checkpoint that must pass before a learning commit is considered valid for downstream use.
+
+The standalone Stage 52 runtime is intentionally deleted. Do not recreate it. New integrity behavior belongs in the Lean Cognitive Learning Commit Runtime.
