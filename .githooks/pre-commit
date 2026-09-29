@@ -10,3 +10,9 @@ node scripts/node/publication-evidence-check.mjs || {
   echo "Publication invariants are broken; see the failures above." >&2
   exit 1
 }
+
+# Secret address gate (Mail2Blogger posting address must never be committed).
+node scripts/node/secret-address-check.mjs || {
+  echo "Redact the Mail2Blogger address in the files above before committing." >&2
+  exit 1
+}

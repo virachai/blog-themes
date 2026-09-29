@@ -16,3 +16,5 @@ jobs:
       # Publication invariants. Depends only on tracked files, so it runs on a
       # clean checkout unlike the runtimes that previously imported from .tmp/.
       - run: node scripts/node/publication-evidence-check.mjs
+      # Mail2Blogger posting address is a publishing credential; the repo is public.
+      - run: node scripts/node/secret-address-check.mjs --tree
