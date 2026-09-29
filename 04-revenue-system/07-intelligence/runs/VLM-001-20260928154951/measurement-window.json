@@ -1,0 +1,17 @@
+{
+  "runtime": "measurement-window-control-runtime-v1",
+  "stage": 66,
+  "run_id": "VLM-001-20260928154951",
+  "status": "WAITING_FOR_WINDOW",
+  "blockers": [],
+  "external_side_effect": false,
+  "window": {
+    "metric": "organic_clicks_28d",
+    "observation_days": 28,
+    "anchored_at": "2026-09-29T01:05:16.569Z",
+    "due_at": "2026-10-27T01:05:16.569Z",
+    "checked_at": "2026-09-29T01:06:45.844Z"
+  },
+  "next_action": "wait until due_at; do not record outcome yet",
+  "immutable_anchor": true
+}

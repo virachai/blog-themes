@@ -1,0 +1,22 @@
+{
+  "runtime": "blogger-publication-adapter-v1",
+  "stage": 61,
+  "mode": "ADOPT_EXTERNAL_PUBLICATION",
+  "run_id": "VLM-001-20260928154951",
+  "status": "ADOPTED",
+  "external_side_effect": false,
+  "adoption_id": "adoption:9082822512ff82eb",
+  "source": {
+    "stage_62_observation": "email-publication-observation.json",
+    "evidence_id": "9082822512ff82eb",
+    "transport": "email-to-blogger"
+  },
+  "verification": {
+    "url": "https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial.html",
+    "title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
+    "page_state": "PUBLISHED_CANDIDATE",
+    "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+    "snapshot_fingerprint": "28907771f00a838b8cf817c18402b760703de09495fa3c0ef4ef6803e7e40b2a"
+  },
+  "note": "Adopts an already-observed external publication. Does not publish, edit, delete, or fabricate publication facts."
+}

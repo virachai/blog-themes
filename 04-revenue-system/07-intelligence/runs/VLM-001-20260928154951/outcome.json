@@ -1,0 +1,19 @@
+{
+  "mission_id": "VLM-001",
+  "run_id": "VLM-001-20260928154951",
+  "metric": "organic_clicks_28d",
+  "observation_window_days": 28,
+  "baseline": "",
+  "target": "",
+  "observations": [
+    {
+      "value": "",
+      "unit": "",
+      "checked_at": "",
+      "sources": [],
+      "notes": ""
+    }
+  ],
+  "diagnosis": "",
+  "decision": ""
+}

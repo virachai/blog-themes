@@ -24,6 +24,30 @@
         "email_sent_at": "2026-09-29T00:58:56.903Z"
       },
       "id": "f602211b7e55e148"
+    },
+    {
+      "claim": "blogger page observed for VLM-001-20260928154951 (page_state=PUBLISHED_CANDIDATE, title_match=true)",
+      "observed_at": "2026-09-29T01:05:16.758Z",
+      "selector": ".post-title",
+      "snapshot": "{\"url\":\"https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial.html\",\"document_title\":\"How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval\",\"title_candidates\":[{\"selector\":\".post-title\",\"text\":\"ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (low light condo plants)\"},{\"selector\":\".post-title\",\"text\":\"why defining the user problem should come before content drafting\"},{\"selector\":\".post-title\",\"text\":\"how to build a reliable editorial workflow with evidence, quality gates, and human approval\"},{\"selector\":\"h2\",\"text\":\"meeprompt.com\"},{\"selector\":\"h2\",\"text\":\"มาทำความรู้จักมีพร้อม\"},{\"selector\":\"h2\",\"text\":\"มีพร้อมดอทคอม\"}],\"page_state\":\"PUBLISHED_CANDIDATE\"}",
+      "screenshot": null,
+      "content_hash": "7b842ab3f4d92bc36bf7ebdaeb91483cf5fbb0c4fd511b6ed0bf195ac7727b76",
+      "metadata": {
+        "run_id": "VLM-001-20260928154951",
+        "page_state": "PUBLISHED_CANDIDATE",
+        "page_state_reason": "public-post-path",
+        "title_match": true,
+        "title_elements_found": 6,
+        "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+        "cdp_target_resolved_by": "targetId",
+        "snapshot_fingerprint": "a5d4d32440fdd389dc4fb6ec720204ef1fb8c94a70b673dc16617bef054f92b9",
+        "screenshot_sha256": "66120c53b2bfe9a1289d1dd6917a64cf65a47423ec6eb0d9611d2738f25683b2",
+        "screenshot_bytes": 233152,
+        "screenshot_embedded": false,
+        "email_fingerprint": "49d006b59a4de84fdd68da8a6d1f128ba43606471975ba6cd62009043dd002c1",
+        "email_sent_at": "2026-09-29T00:58:56.903Z"
+      },
+      "id": "9082822512ff82eb"
     }
   ]
 }

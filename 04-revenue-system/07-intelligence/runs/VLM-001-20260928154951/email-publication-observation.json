@@ -2,14 +2,14 @@
   "runtime": "email-to-blogger-publication-observer-v1",
   "stage": 62,
   "run_id": "VLM-001-20260928154951",
-  "status": "OBSERVATION_PENDING",
+  "status": "OBSERVED",
   "page_state": "PUBLISHED_CANDIDATE",
   "page_state_reason": "public-post-path",
-  "public_post_url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
-  "title_match": false,
+  "public_post_url": "https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial.html",
+  "title_match": true,
   "expected_title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
-  "observed_url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
-  "document_title": "Why Defining the User Problem Should Come Before Content Drafting",
+  "observed_url": "https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial.html",
+  "document_title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
   "title_candidates": [
     {
       "selector": ".post-title",
@@ -18,6 +18,10 @@
     {
       "selector": ".post-title",
       "text": "why defining the user problem should come before content drafting"
+    },
+    {
+      "selector": ".post-title",
+      "text": "how to build a reliable editorial workflow with evidence, quality gates, and human approval"
     },
     {
       "selector": "h2",
@@ -34,10 +38,10 @@
   ],
   "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
   "cdp_target_resolved_by": "targetId",
-  "evidence_id": "f602211b7e55e148",
-  "snapshot_fingerprint": "b03f62b1ab4cc1cd21bd82a712c6403a51f03aacb7de7a47e456fd9d5055fdf8",
-  "screenshot_sha256": "7970c72751bd17c74ce90e496ce82d00c1a827b6c4c4043e5711664ca06d47e9",
-  "screenshot_bytes": 243712,
-  "observed_at": "2026-09-29T00:59:06.674Z",
+  "evidence_id": "9082822512ff82eb",
+  "snapshot_fingerprint": "a5d4d32440fdd389dc4fb6ec720204ef1fb8c94a70b673dc16617bef054f92b9",
+  "screenshot_sha256": "66120c53b2bfe9a1289d1dd6917a64cf65a47423ec6eb0d9611d2738f25683b2",
+  "screenshot_bytes": 233152,
+  "observed_at": "2026-09-29T01:05:16.569Z",
   "boundary": "This runtime records an observation. It does not create a publication receipt; publication is claimed only by the gated stage 60/61 transaction path."
 }
