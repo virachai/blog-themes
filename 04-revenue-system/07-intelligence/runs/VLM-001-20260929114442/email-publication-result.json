@@ -3,7 +3,7 @@
   "run_id": "VLM-001-20260929114442",
   "status": "EMAIL_SENT",
   "sent_at": "2026-09-29T11:44:54.053Z",
-  "recipient": "wvirachai.e9bfd423cc3644e38fa8@blogger.com",
+  "recipient": "[REDACTED]@blogger.com",
   "subject": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
   "fingerprint": "c1aaf37d4f188e697a93d8960c4dacc0681ab9b3bd5d0af9f44e23e6e98cfe36",
   "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"

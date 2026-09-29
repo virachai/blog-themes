@@ -1,8 +1,8 @@
 {
-  "to": "wvirachai.e9bfd423cc3644e38fa8@blogger.com",
+  "to": "[REDACTED]@blogger.com",
   "from": "setimocra@gmail.com",
   "subject": "[PEXELS TEST] Mail2Blogger HTML protocol",
   "body": "# Pexels Plant Format Test\n\n![Snake plant in a living area](https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg)\n\nThis is the summary sentence using a Pexels lead image.\n\n## First section\n\nThis opening section demonstrates the production HTML protocol with a real Pexels image.\n\n![Plant in a white pot](https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg)\n\nภาพ: cottonbro studio / Pexels\n\nThis is the body paragraph after the image.\n\n### Practical note\n\nUse the same structure for future Mail2Blogger publications.\n\nภาพนำ: Hanna Pad / Pexels",
   "html": "<div class=\"mp-id\" data-id=\"0002\"></div>\n<div class=\"separator\"><img src=\"https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg\" alt=\"Snake plant in a living area\"></div>\n<div class=\"mp-summary\">\n  <p>This is the summary sentence using a Pexels lead image.</p>\n</div>\n<div id=\"toc_container\"><h2>สารบัญ</h2></div>\n<h2 title=\"First section\">First section</h2>\n<p>This opening section demonstrates the production HTML protocol with a real Pexels image.</p>\n<div class=\"separator\"><img src=\"https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg\" alt=\"Plant in a white pot\" loading=\"lazy\"></div>\n<p class=\"mp-caption\">ภาพ: cottonbro studio / Pexels</p>\n<p>This is the body paragraph after the image.</p>\n<h3>Practical note</h3>\n<p>Use the same structure for future Mail2Blogger publications.</p>\n<p class=\"mp-credits\">ภาพนำ: Hanna Pad / Pexels</p>",
-  "fingerprint": "3309f6e031ea46fbce62a88760bc7ec66fb7472b889aa11de277b3b36e22603d"
+  "fingerprint": "a923a689c96eae6d113bf49ab9befab5c36d50577849821f9464c35b15970488"
 }

@@ -3,7 +3,7 @@
   "run_id": "VLM-001-20260928154951",
   "status": "EMAIL_SENT",
   "sent_at": "2026-09-29T11:32:49.089Z",
-  "recipient": "wvirachai.e9bfd423cc3644e38fa8@blogger.com",
+  "recipient": "[REDACTED]@blogger.com",
   "subject": "[PEXELS TEST] Mail2Blogger HTML protocol",
   "fingerprint": "3309f6e031ea46fbce62a88760bc7ec66fb7472b889aa11de277b3b36e22603d",
   "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"
