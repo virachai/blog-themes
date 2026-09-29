@@ -1,0 +1,22 @@
+{
+  "runtime": "publication-rendering-reconciliation-v1",
+  "stage": 63,
+  "run_id": "VLM-001-20260928154951",
+  "status": "UNVERIFIED",
+  "publication_status": "UNVERIFIED",
+  "rendering_status": "UNVERIFIED",
+  "public_post_url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+  "title_match": false,
+  "markdown_literal_detected": true,
+  "dom": {
+    "h1": 1,
+    "h2": 0,
+    "ul": 0,
+    "li": 0,
+    "blockquote": 0
+  },
+  "observed_at": "2026-09-29T01:00:14.415Z",
+  "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+  "external_side_effect": false,
+  "next_action": "feed rendering result into measurement and learning"
+}

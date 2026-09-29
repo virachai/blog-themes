@@ -1,0 +1,20 @@
+{
+  "runtime": "email-to-blogger-publication-transport-v1",
+  "stage": 62,
+  "run_id": "VLM-001-20260928154951",
+  "status": "PASS",
+  "preflight": {
+    "status": "PASS",
+    "blockers": []
+  },
+  "transport": "email-to-blogger",
+  "recipient_configured": true,
+  "external_side_effect": true,
+  "receipt": "NOT_CREATED_UNTIL_PUBLICATION_OBSERVED",
+  "safety": {
+    "approval_required": true,
+    "idempotency_required": true,
+    "send_requires_explicit_command": true,
+    "secrets_never_logged": true
+  }
+}

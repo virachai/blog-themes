@@ -27,7 +27,7 @@ async function main(){
     const markdownLiteral=/(^|\n)#{1,6} |\*\*[^\n]+\*\*|(^|\n)> /m.test(probe.text);
     const rendered=probe.checks.h2>0 && probe.checks.ul>0 && !markdownLiteral;
     const status=rendered?'RENDERING_OK':titleOk?'RENDERING_DEGRADED':'UNVERIFIED';
-    const result={runtime:'publication-rendering-reconciliation-v1',stage:63,run_id:runId,status,publication_status:obs.page_state==='PUBLISHED_CANDIDATE'?'PUBLISHED':'UNVERIFIED',rendering_status:status,public_post_url:obs.public_post_url,title_match:titleOk,markdown_literal_detected:markdownLiteral,dom:probe.checks,observed_at:new Date().toISOString(),cdp_target_id:targetId,external_side_effect:false,next_action:status==='RENDERING_DEGRADED'?'replace/repair publication through an authenticated Blogger write path; do not resend Mail-to-Blogger':'feed rendering result into measurement and learning'};
+    const result={runtime:'publication-rendering-reconciliation-v1',stage:63,run_id:runId,status,publication_status:titleOk?'PUBLISHED':'UNVERIFIED',rendering_status:status,public_post_url:obs.public_post_url,title_match:titleOk,markdown_literal_detected:markdownLiteral,dom:probe.checks,observed_at:new Date().toISOString(),cdp_target_id:targetId,external_side_effect:false,next_action:status==='RENDERING_DEGRADED'?'replace/repair publication through an authenticated Blogger write path; do not resend Mail-to-Blogger':'feed rendering result into measurement and learning'};
     save(dir,'publication-rendering-reconciliation.json',result);
     console.log(JSON.stringify(result,null,2));
     if(status==='UNVERIFIED') process.exitCode=2;
