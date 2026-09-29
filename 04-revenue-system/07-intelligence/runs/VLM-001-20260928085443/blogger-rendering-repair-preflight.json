@@ -1,0 +1,15 @@
+{
+  "runtime": "blogger-rendering-repair-preflight-v1",
+  "stage": 63,
+  "run_id": "VLM-001-20260928085443",
+  "status": "BLOCKED",
+  "external_side_effect": false,
+  "rendering_status": "RENDERING_DEGRADED",
+  "requirements": {
+    "authenticated_blogger_editor_target": false,
+    "explicit_repair_consent": false,
+    "html_payload_path": false
+  },
+  "target": null,
+  "next_action": "open an authenticated Blogger editor target, set BLOGGER_REPAIR_TARGET_ID, then run this preflight again; do not resend Mail-to-Blogger"
+}

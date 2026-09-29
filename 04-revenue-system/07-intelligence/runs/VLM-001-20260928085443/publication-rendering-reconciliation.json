@@ -1,0 +1,22 @@
+{
+  "runtime": "publication-rendering-reconciliation-v1",
+  "stage": 63,
+  "run_id": "VLM-001-20260928085443",
+  "status": "RENDERING_DEGRADED",
+  "publication_status": "PUBLISHED",
+  "rendering_status": "RENDERING_DEGRADED",
+  "public_post_url": "https://meefunblog.blogspot.com/2026/09/why-defining-user-problem-should-come.html",
+  "title_match": true,
+  "markdown_literal_detected": true,
+  "dom": {
+    "h1": 1,
+    "h2": 0,
+    "ul": 0,
+    "li": 0,
+    "blockquote": 0
+  },
+  "observed_at": "2026-09-28T17:00:51.188Z",
+  "cdp_target_id": "3EBA4A6D721D078567F628750A2B0AD7",
+  "external_side_effect": false,
+  "next_action": "replace/repair publication through an authenticated Blogger write path; do not resend Mail-to-Blogger"
+}
