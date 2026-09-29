@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "claim": "Blogger public feed observed published post for VLM-001-20260929190500",
+      "observed_at": "2026-09-29T12:07:31.396Z",
+      "selector": "feed.entry.link[rel=alternate]",
+      "snapshot": "{\"url\":\"https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial_0964428029.html\",\"title\":\"How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval\",\"published_at\":\"2026-09-29T18:44:55.364+07:00\",\"blogger_entry_id\":\"tag:blogger.com,1999:blog-6973756749045108777.post-7785934312455788958\"}",
+      "screenshot": null,
+      "content_hash": "cc77fc2f512e3e32d650eca2d1436dc3e5a4d3763b0f1cc8614b71a2dfaf7c3e",
+      "metadata": {
+        "run_id": "VLM-001-20260929190500",
+        "source": "blogger-public-feed",
+        "page_state": "PUBLISHED_CANDIDATE",
+        "title_match": true,
+        "blogger_entry_id": "tag:blogger.com,1999:blog-6973756749045108777.post-7785934312455788958"
+      },
+      "id": "d30b81883c32812a"
+    }
+  ]
+}

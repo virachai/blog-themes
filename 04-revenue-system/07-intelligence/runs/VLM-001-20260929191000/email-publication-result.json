@@ -1,0 +1,10 @@
+{
+  "runtime": "email-to-blogger-publication-transport-v1",
+  "run_id": "VLM-001-20260929191000",
+  "status": "EMAIL_SENT",
+  "sent_at": "2026-09-29T12:11:39.562Z",
+  "recipient": "[REDACTED]@blogger.com",
+  "subject": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
+  "fingerprint": "a3a7de58af0593770c006b34fec297f1277180ff9b535b49025e0365b1372020",
+  "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"
+}
