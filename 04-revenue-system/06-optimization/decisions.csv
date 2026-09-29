@@ -1,2 +1,0 @@
-id,date,asset_id,evidence_snapshot,decision,reason,next_action,review_date
-DEC-001,2026-09-28,AST-001,baseline,wait,baseline only,collect first comparable measurement,2026-10-05

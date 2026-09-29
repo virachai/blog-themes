@@ -185,9 +185,9 @@ let gateNamesSource = false;
 try { assertPublicationPayload({ title: null, body: 'body' }); } catch (error) { gateNamesSource = /mission\.title/.test(error.message); }
 if (!gateNamesSource) fail('E7 the payload gate does not name where the title must come from — the operator sees a generic payload error');
 
-const assetRuntimeSrc = source('scripts/node/value-mission-asset-runtime.mjs');
-if (!assetRuntimeSrc?.includes('resolvePublicationTitle')) fail('E8 the asset runtime does not derive the title through the shared resolver');
-if (!assetRuntimeSrc?.includes('title_missing')) fail('E9 the asset runtime does not record a title blocker when no title is declared');
+const payloadSrc = source('scripts/node/publication-payload.mjs');
+if (!payloadSrc?.includes('resolvePublicationTitle')) fail('E8 the shared publication payload resolver is missing');
+if (!payloadSrc?.includes('mission.title')) fail('E9 the payload resolver does not declare mission.title as an accepted source');
 if (source('scripts/node/blogger-publication-adapter.mjs')?.includes('requires title and body')) fail('E10 the adapter still throws the generic payload error instead of naming the missing source');
 
 // --- F. Legacy evidence cannot be revived ------------------------------------

@@ -43,7 +43,7 @@ The successful path has never run. Everything above demonstrates that the pipeli
    profile directory itself was not deleted. No other Chrome process was
    touched.
 4. **No single run passes both halves.** `VLM-001-20260928154951` is release-ready but has no stage 58 state, so stage 59 cannot load it; `VLM-001-20260928085443` has the stage 58 state but its asset and release remain `BLOCKED`. An execution attempt needs one run that satisfies both.
-5. **`release prepare` would silently discard the approval.** `value-mission-release-runtime.mjs prepare` rewrites `release-candidate.json` with `approval: {status: 'PENDING'}`, overwriting `APPROVED` with no warning. An idempotent `approve` command is the proper fix and was not added.
+5. **`release prepare` would silently discard the approval.** Historical Stage 22A release artifacts could be overwritten by the former `release prepare` path, resetting an approved candidate to `PENDING`. The legacy release runtime is no longer part of the current publication path; the historical artifact is retained for audit context.
 
 ## Boundaries held
 

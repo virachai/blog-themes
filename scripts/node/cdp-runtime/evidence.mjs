@@ -10,9 +10,3 @@ export function createEvidence({ claim, sourceUrl, selector = null, snapshot = n
   return { claim, source_url: sourceUrl, observed_at: observedAt, selector, snapshot, screenshot, content_hash: hashText(JSON.stringify({ claim, sourceUrl, selector, snapshot })), metadata };
 }
 
-export async function writeEvidence(dir, evidence) {
-  await mkdir(dir, { recursive: true });
-  const path = join(dir, 'evidence.json');
-  await writeFile(path, JSON.stringify({ version: 1, evidence }, null, 2) + '\n');
-  return path;
-}

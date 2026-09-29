@@ -1,2 +1,0 @@
-experiment_id,brief_id,started_at,hypothesis,change,metric,baseline,target,stop_condition,status
-EXP-001,BRF-001,2026-09-28,A focused brief will improve measurable engagement,Produce one tightly scoped article from the brief,organic_clicks_28d,0,1,Stop if evidence is insufficient after observation window,planned

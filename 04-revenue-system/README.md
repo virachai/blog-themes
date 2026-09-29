@@ -1,53 +1,48 @@
-# Meefunblog Revenue System - Manual Mode
+# Revenue System
 
-A six-layer, human-runnable operating system for turning blog assets into measurable revenue.
+The current production system is the resumable editorial loop in Stages 58-64. Run state and evidence live under `07-intelligence/runs/`.
 
-**No AI agent is required.** Every layer is file-based, inspectable, and executable with ordinary Node commands and a text editor.
+## Production loop
 
-## Six layers
+```text
+Opportunity
+  ↓
+Research
+  ↓
+Asset
+  ↓
+Release Approval
+  ↓
+Publication Receipt
+  ↓
+Measurement
+  ↓
+Learning / Optimization
+  ↺
+Opportunity
+```
 
-| Layer | Purpose | Primary artifact |
-| :-- | :-- | :-- |
-| 01 Discovery | Find opportunities worth testing | opportunity |
-| 02 Asset Factory | Turn an opportunity into a publishable asset | asset |
-| 03 Distribution | Publish and distribute the asset | distribution run |
-| 04 Monetization | Attach a revenue mechanism | monetization plan |
-| 05 Measurement | Record traffic, conversion and revenue | metric snapshot |
-| 06 Optimization | Decide keep / improve / stop / expand | experiment decision |
+The loop is manual-first and fail-closed. It coordinates state and evidence without inventing research, publication receipts, measurements, revenue, or decisions.
 
-## Operating loop
-
-`Discovery → Asset → Distribution → Monetization → Measurement → Optimization → Discovery`
-
-The system is intentionally **manual-first**:
-
-1. Edit the templates in this directory.
-2. Run the CLI checks.
-3. Publish using your normal Blogger/GitHub workflow.
-4. Record measured outcomes.
-5. Make the next decision from evidence.
-
-AI can later assist with individual steps, but it is not a runtime dependency.
-
-## CLI
+## Commands
 
 From the repository root:
 
 ```bash
-node scripts/node/revenue-system.mjs status
-node scripts/node/revenue-system.mjs check
-node scripts/node/revenue-system.mjs next
-node scripts/node/revenue-system.mjs dashboard
 node scripts/node/editorial-production-loop-runtime.mjs check <run_id>
 node scripts/node/editorial-production-loop-runtime.mjs prepare <run_id>
+node scripts/node/editorial-production-execution-adapter.mjs plan <run_id>
+node scripts/node/blogger-publication-adapter.mjs plan <run_id>
+node scripts/node/publication-verification-runtime.mjs verify <run_id>
+node scripts/node/publication-measurement-intake-runtime.mjs prepare <run_id>
 ```
 
-Stage 58 connects the six execution layers and intelligence runtime into a resumable production loop. Stage 59 adds the execution adapter for preflight, evidence, and CDP target verification. Stage 61 owns the approval-gated publication transaction boundary with idempotency, verification, rollback, evidence, and post-publish receipt creation. See [23-stage-58-editorial-production-loop.md](23-stage-58-editorial-production-loop.md), [24-stage-59-production-execution-adapter.md](24-stage-59-production-execution-adapter.md), and [26-stage-61-blogger-publication-adapter.md](26-stage-61-blogger-publication-adapter.md). Stage 62 adds an Email-to-Blogger transport that separates SMTP delivery from publication proof. See [27-stage-62-email-to-blogger-publication-transport.md](27-stage-62-email-to-blogger-publication-transport.md).
+## Boundaries
 
-## Rules
-
-- Never treat traffic as revenue. Revenue must be recorded from the actual monetization source.
-- Never publish a large batch without a measurable hypothesis.
-- Every experiment gets an owner, start date, success metric, and stop condition.
-- Keep credentials and secrets outside this repository.
-- Prefer small reversible tests over irreversible bulk changes.
+- Stage 58 owns resumable production state.
+- Stage 59 owns execution and CDP target verification.
+- Stage 61 owns the authoritative Blogger publication transaction and receipt.
+- Stage 62 owns Email-to-Blogger transport and observation.
+- Stage 63 owns read-side publication verification.
+- Stage 64 owns measurement eligibility and intake.
+- Human approval remains the publication authority.

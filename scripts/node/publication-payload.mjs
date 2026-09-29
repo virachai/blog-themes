@@ -1,17 +1,11 @@
 /**
  * Publication payload resolution — one definition of where a post title comes from.
  *
- * Stage 61's publish path reads `run.asset?.title`, and the asset spec is built by
- * value-mission-asset-runtime.mjs from the mission block. That mission block has
- * `issue`, `thesis`, `problem` and `audience` but no title at all, so `title` was
- * always '' and `blogger-publication-adapter.mjs` threw "publication payload
- * requires title and body" on every asset shaped like VLM-001. The publish path
- * was structurally unreachable, and the failure looked like a payload problem
- * rather than a missing field.
- *
- * The title is now a declared mission field, emitted into the asset spec, and
- * resolved through one chain here so the adapter, the transport and the asset
- * builder cannot disagree about it.
+ * Stage 61's publish path accepts an explicit title from the mission, asset, or
+ * caller override. This helper owns that precedence so the adapter and transport
+ * cannot disagree about where a publication title came from. Historical Stage 22A
+ * asset artifacts may still record the old runtime name, but that runtime is not
+ * part of the current publication path.
  */
 
 /** Declared sources for a post title, in precedence order (a caller-supplied override wins). */

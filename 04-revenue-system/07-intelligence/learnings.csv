@@ -1,2 +1,0 @@
-learning_id,recorded_at,source_experiment,evidence,learning,confidence,action,status
-LRN-001,2026-09-28,EXP-001,Bootstrap record only,Do not generalize from a single data point,low,collect_real_measurements,open
