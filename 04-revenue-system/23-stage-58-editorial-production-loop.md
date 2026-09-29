@@ -1,4 +1,4 @@
-# Stage 58 — Editorial Production Loop Runtime
+# Stage 58 - Editorial Production Loop Runtime
 
 Stage 58 connects the existing discovery, asset, distribution, monetization, measurement, optimization, and intelligence layers into one inspectable production state machine.
 

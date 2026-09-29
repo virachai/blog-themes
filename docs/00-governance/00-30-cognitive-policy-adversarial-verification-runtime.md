@@ -1,4 +1,4 @@
-# Stage 46 — Cognitive Policy Proposal Adversarial Verification Runtime
+# Stage 46 - Cognitive Policy Proposal Adversarial Verification Runtime
 
 Stage 46 inserts an adversarial gate between policy proposal and policy activation.
 

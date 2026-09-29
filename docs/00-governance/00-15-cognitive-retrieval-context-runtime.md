@@ -1,4 +1,4 @@
-# Stage 31 — Cognitive Retrieval & Context Assembly Runtime
+# Stage 31 - Cognitive Retrieval & Context Assembly Runtime
 
 Stage 31 turns Stage 30 durable memory into an executable pre-action context layer.
 

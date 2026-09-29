@@ -1,4 +1,4 @@
-# Stage 49 — Cognitive Policy Execution Evidence & Outcome Integrity Runtime
+# Stage 49 - Cognitive Policy Execution Evidence & Outcome Integrity Runtime
 
 Stage 49 creates the auditable bridge from a version-authorized execution to its observed outcomes and evidence.
 

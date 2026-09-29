@@ -20,7 +20,7 @@ Commit `5c06245` (2026-09-27), titled "refine staging theme and css styling for 
 | `grep -c 'theme.css?v=4' 02-meefunblog/01-theme-staging.xml` | 2 |
 | `node scripts/node/build-index.mjs --check` | pass (see log) |
 | CDP 390px / 1366px after `b0fc907` | pass: no page overflow, table scrolls, Thai line-height 27.75px, HTML3/HTML4 titles hidden |
-| Staging blog render (Thai post, mobile tables) | skipped — owner must paste the XML into the staging blog |
+| Staging blog render (Thai post, mobile tables) | skipped - owner must paste the XML into the staging blog |
 
 ## Open Items
 

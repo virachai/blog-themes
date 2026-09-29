@@ -1,4 +1,4 @@
-# Stage 34 — Cognitive Contradiction & Resolution Runtime
+# Stage 34 - Cognitive Contradiction & Resolution Runtime
 
 Stage 34 detects candidate contradictions across beliefs, lessons, and procedures and creates auditable resolution proposals.
 

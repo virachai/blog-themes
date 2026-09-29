@@ -1,4 +1,4 @@
-# Stage 54 — Cognitive Learning Commit Provenance Runtime
+# Stage 54 - Cognitive Learning Commit Provenance Runtime
 
 ## Purpose
 Create a complete, append-only provenance chain for every learning commit.

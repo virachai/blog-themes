@@ -1,4 +1,4 @@
-# Stage 21 — Editorial Quality Runtime
+# Stage 21 - Editorial Quality Runtime
 
 Stage 21 turns editorial quality into a deterministic runtime boundary. It evaluates a draft before the existing SEO/release gate and produces a machine-readable report.
 
@@ -17,13 +17,13 @@ Passing editorial quality does not publish, deploy, or bypass the existing relea
 
 ## Quality dimensions
 
-1. Title — usable length for a search-facing article.
-2. Substance — minimum body length.
-3. Structure — headings and paragraphs support scanning.
-4. Navigation/evidence — links are present.
-5. Media — long-form drafts are expected to consider imagery.
-6. Readability — sentence-length discipline.
-7. Intent — the draft exposes reader questions or sufficiently deep structure.
+1. Title - usable length for a search-facing article.
+2. Substance - minimum body length.
+3. Structure - headings and paragraphs support scanning.
+4. Navigation/evidence - links are present.
+5. Media - long-form drafts are expected to consider imagery.
+6. Readability - sentence-length discipline.
+7. Intent - the draft exposes reader questions or sufficiently deep structure.
 
 ## CLI
 

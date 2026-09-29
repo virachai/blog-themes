@@ -1,4 +1,4 @@
-# Stage 45 — Cognitive Policy Proposal Runtime
+# Stage 45 - Cognitive Policy Proposal Runtime
 
 Stage 45 connects the validated cognitive evidence chain to the existing policy proposal lifecycle.
 

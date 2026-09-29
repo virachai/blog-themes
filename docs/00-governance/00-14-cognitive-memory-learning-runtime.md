@@ -1,4 +1,4 @@
-# Stage 30 — Cognitive Memory & Learning Runtime
+# Stage 30 - Cognitive Memory & Learning Runtime
 
 Stage 30 introduces a durable cognitive layer above mission execution. It records experience, beliefs, decisions, lessons, and procedures as structured memory so future runs can retrieve prior context and learn from measured outcomes.
 

@@ -53,27 +53,126 @@ function preflight(run) {
   return { status: blockers.length ? 'BLOCKED' : 'PASS', blockers };
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function inlineMarkdown(value) {
+  let html = escapeHtml(value);
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+  html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  html = html.replace(/_([^_]+)_/g, '<em>$1</em>');
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>');
+  return html;
+}
+
+function markdownToHtml(markdown) {
+  const lines = String(markdown || '').replace(/\r\n?/g, '\n').split('\n');
+  const out = [];
+  let paragraph = [];
+  let list = null;
+  let quote = [];
+
+  const flushParagraph = () => {
+    if (paragraph.length) {
+      out.push('<p>' + inlineMarkdown(paragraph.join(' ')) + '</p>');
+      paragraph = [];
+    }
+  };
+  const flushList = () => {
+    if (!list) return;
+    out.push('<' + list.type + '>\n' + list.items.map(item => '  <li>' + inlineMarkdown(item) + '</li>').join('\n') + '\n</' + list.type + '>');
+    list = null;
+  };
+  const flushQuote = () => {
+    if (quote.length) {
+      out.push('<blockquote>\n' + quote.map(line => '<p>' + inlineMarkdown(line) + '</p>').join('\n') + '\n</blockquote>');
+      quote = [];
+    }
+  };
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line.trim()) {
+      flushParagraph();
+      flushList();
+      flushQuote();
+      continue;
+    }
+    const heading = line.match(/^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$/);
+    if (heading) {
+      flushParagraph(); flushList(); flushQuote();
+      const level = heading[1].length;
+      out.push('<h' + level + '>' + inlineMarkdown(heading[2]) + '</h' + level + '>');
+      continue;
+    }
+    const quoteLine = line.match(/^\s*>\s?(.*)$/);
+    if (quoteLine) {
+      flushParagraph(); flushList();
+      quote.push(quoteLine[1]);
+      continue;
+    }
+    const item = line.match(/^\s*[-*+]\s+(.+)$/);
+    const ordered = line.match(/^\s*\d+[.)]\s+(.+)$/);
+    if (item || ordered) {
+      flushParagraph(); flushQuote();
+      const type = ordered ? 'ol' : 'ul';
+      if (!list || list.type !== type) {
+        flushList();
+        list = { type, items: [] };
+      }
+      list.items.push((item || ordered)[1]);
+      continue;
+    }
+    flushList();
+    flushQuote();
+    paragraph.push(line.trim());
+  }
+
+  flushParagraph();
+  flushList();
+  flushQuote();
+  return out.join('\n');
+}
+
 function compose(run) {
-  // Same title chain as the stage 61 adapter. This previously fell back to
-  // mission_id, which is how a subject of "VLM-001" was produced — an identifier
-  // standing in for a title, with nothing to signal it was a placeholder.
   const resolvedTitle = resolvePublicationTitle({ mission: run.manifest?.mission, asset: run.asset, override: env('BLOGGER_EMAIL_TITLE') });
-  const body = env('BLOGGER_EMAIL_BODY') || run.package;
-  const { title } = assertPublicationPayload({ title: resolvedTitle.title, body });
+  const markdown = env('BLOGGER_EMAIL_BODY') || run.package;
+  const { title } = assertPublicationPayload({ title: resolvedTitle.title, body: markdown });
+  const html = markdownToHtml(markdown);
   const to = env('EMAIL_FOR_POSTING');
   const from = env('EMAIL_FROM');
+  const boundary = 'blogger-stage62-alternative';
   const lines = [
-    `To: ${to}`,
-    from ? `From: ${from}` : '',
-    `Subject: ${title}`,
+    'To: ' + to,
+    from ? 'From: ' + from : '',
+    'Subject: ' + title,
     'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Type: multipart/alternative; boundary="' + boundary + '"',
     '',
-    body.trim(),
+    '--' + boundary,
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: 8bit',
+    '',
+    markdown.trim(),
+    '',
+    '--' + boundary,
+    'Content-Type: text/html; charset=UTF-8',
+    'Content-Transfer-Encoding: 8bit',
+    '',
+    html,
+    '',
+    '--' + boundary + '--',
     '',
   ].filter(Boolean);
   const eml = lines.join('\r\n');
-  return { to, from: from || null, subject: title, body, eml, fingerprint: sha(eml) };
+  return { to, from: from || null, subject: title, body: markdown, html, eml, fingerprint: sha(eml) };
 }
 
 function transportConfig() {

@@ -1,4 +1,4 @@
-# Stage 42 — Cognitive Knowledge Promotion & Policy Eligibility Runtime
+# Stage 42 - Cognitive Knowledge Promotion & Policy Eligibility Runtime
 
 Stage 42 adds a second trust boundary: trusted knowledge is not automatically eligible to influence policy.
 

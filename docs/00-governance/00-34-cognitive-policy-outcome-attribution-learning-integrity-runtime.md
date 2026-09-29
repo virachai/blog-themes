@@ -1,4 +1,4 @@
-# Stage 50 — Cognitive Policy Outcome Attribution & Learning Integrity Runtime
+# Stage 50 - Cognitive Policy Outcome Attribution & Learning Integrity Runtime
 
 Stage 50 determines whether an observed outcome has sufficient evidence to be attributed to the exact policy execution before learning is considered eligible.
 
@@ -14,10 +14,10 @@ Ledger: `04-revenue-system/07-intelligence/cognitive-memory/policy-outcome-attri
 
 ## Attribution levels
 
-- `DIRECT` — explicit evidence supports attribution; confounder assessment required.
-- `LIKELY` — evidence supports a probable relationship; confounder assessment required.
-- `UNCERTAIN` — preserved for review but not learning-eligible.
-- `NOT_ATTRIBUTABLE` — preserved as evidence but not learning-eligible.
+- `DIRECT` - explicit evidence supports attribution; confounder assessment required.
+- `LIKELY` - evidence supports a probable relationship; confounder assessment required.
+- `UNCERTAIN` - preserved for review but not learning-eligible.
+- `NOT_ATTRIBUTABLE` - preserved as evidence but not learning-eligible.
 
 ## Invariants
 

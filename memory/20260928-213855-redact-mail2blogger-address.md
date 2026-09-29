@@ -5,7 +5,7 @@ metadata:
   pinned: false
 ---
 
-The email-to-blogger publication transport (stage 62, `scripts/node/email-to-blogger-publication-transport.mjs`) writes the composed message into the run folder as `email-publication-message.eml` and `email-publication-message.json`. Both contain the blog's Mail2Blogger posting address, read from `EMAIL_FOR_POSTING` in `.env`. That address is effectively a publishing credential — anyone holding it can attempt to post to the blog by email — and this repository is public, so a committed address stays indexed even if it is deleted later.
+The email-to-blogger publication transport (stage 62, `scripts/node/email-to-blogger-publication-transport.mjs`) writes the composed message into the run folder as `email-publication-message.eml` and `email-publication-message.json`. Both contain the blog's Mail2Blogger posting address, read from `EMAIL_FOR_POSTING` in `.env`. That address is effectively a publishing credential - anyone holding it can attempt to post to the blog by email - and this repository is public, so a committed address stays indexed even if it is deleted later.
 
 The owner's decision, given on 2026-09-28, is to redact the address rather than drop the artifacts or commit it in the clear: replace the address with `[REDACTED]@blogger.com` in both the `.eml` and the `.json`, so the run still records that the transport composed a message and the workflow stays reproducible (a re-run reads the real address from `.env`).
 

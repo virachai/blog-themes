@@ -1,8 +1,11 @@
-To: [REDACTED-MAIL2BLOGGER]@blogger.com
+To: wvirachai.e9bfd423cc3644e38fa8@blogger.com
 From: setimocra@gmail.com
 Subject: Why Defining the User Problem Should Come Before Content Drafting
 MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="blogger-stage62-alternative"
+--blogger-stage62-alternative
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 # Asset Package
 
 > Status: RELEASE_CANDIDATE
@@ -48,3 +51,51 @@ organic discovery and durable usefulness
 
 ## Release Boundary
 This package is not published. Publication requires an explicit release gate.
+--blogger-stage62-alternative
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+<h1>Asset Package</h1>
+<blockquote>
+<p>Status: RELEASE_CANDIDATE</p>
+<p>Mission: VLM-001</p>
+<p>Run: VLM-001-20260928085443</p>
+</blockquote>
+<h2>Editorial Thesis</h2>
+<p>An evidence-backed editorial thesis should create a more useful asset than topic-first drafting</p>
+<h2>Audience</h2>
+<p>general</p>
+<h2>User Problem</h2>
+<p>Unclear user problem causes low-value production</p>
+<h2>Evidence</h2>
+<h3>Observation 1</h3>
+<ul>
+  <li>Observation: Google Search Central explicitly recommends creating helpful, reliable, people-first content and asks creators whether an intended audience would find the content useful, whether readers will learn enough to achieve their goal, and whether the experience is satisfying.</li>
+  <li>Claim supported: A content workflow that starts by identifying the intended audience and the reader&#39;s goal is directly aligned with Google&#39;s documented people-first content guidance.</li>
+  <li>Sources: https://developers.google.com/search/docs/fundamentals/creating-helpful-content</li>
+  <li>Checked: 2026-09-28</li>
+  <li>Uncertainty: This is Google&#39;s guidance for content creators and does not establish that a particular editorial workflow will increase traffic or rankings for this specific blog.</li>
+  <li>Notes: Source guidance is used as evidence for the editorial principle, not as a guarantee of search performance.</li>
+</ul>
+<h3>Observation 2</h3>
+<ul>
+  <li>Observation: Google Search Central&#39;s current guidance for AI search says to focus on unique, valuable, non-commodity content that is helpful, reliable, and people-first, and emphasizes focusing on what users want rather than producing many pages primarily to manipulate rankings.</li>
+  <li>Claim supported: Evidence-backed, user-focused editorial work should prioritize useful content for visitors over topic volume or search-engine-first production.</li>
+  <li>Sources: https://developers.google.com/search/docs/fundamentals/ai-optimization-guide</li>
+  <li>Checked: 2026-09-28</li>
+  <li>Uncertainty: The guidance describes principles and search-system behavior; it does not prove that this single post will receive organic clicks or that evidence-backed drafting always outperforms topic-first drafting.</li>
+  <li>Notes: The observation supports the thesis direction while preserving uncertainty about causal performance.</li>
+</ul>
+<h2>Asset Structure</h2>
+<ul>
+  <li>Problem / context</li>
+  <li>Evidence and what it supports</li>
+  <li>Editorial thesis</li>
+  <li>Practical implications</li>
+  <li>Uncertainty / limitations</li>
+  <li>Next action</li>
+</ul>
+<h2>Value Path</h2>
+<p>organic discovery and durable usefulness</p>
+<h2>Release Boundary</h2>
+<p>This package is not published. Publication requires an explicit release gate.</p>
+--blogger-stage62-alternative--

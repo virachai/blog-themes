@@ -1,4 +1,4 @@
-# Stage 23 — Editorial Fact & Freshness Runtime
+# Stage 23 - Editorial Fact & Freshness Runtime
 
 Stage 23 adds a deterministic freshness boundary after evidence detection and before SEO/release.
 

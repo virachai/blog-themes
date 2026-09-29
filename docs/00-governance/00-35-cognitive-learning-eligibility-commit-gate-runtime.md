@@ -1,4 +1,4 @@
-# Stage 51 — Cognitive Learning Eligibility & Commit Gate Runtime
+# Stage 51 - Cognitive Learning Eligibility & Commit Gate Runtime
 
 Stage 51 is the fail-closed gate immediately before learning is allowed to enter the existing learning-commit runtime.
 

@@ -1,4 +1,4 @@
-# Stage 27 — Editorial Semantic Coverage Runtime
+# Stage 27 - Editorial Semantic Coverage Runtime
 
 Stage 27 adds an intent and semantic-coverage boundary before SEO/release.
 

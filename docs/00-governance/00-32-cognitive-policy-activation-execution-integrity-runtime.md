@@ -1,4 +1,4 @@
-# Stage 48 — Cognitive Policy Activation & Execution Integrity Runtime
+# Stage 48 - Cognitive Policy Activation & Execution Integrity Runtime
 
 Stage 48 creates a fail-closed execution authorization boundary between an activation gate and real policy execution.
 

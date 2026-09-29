@@ -6,6 +6,10 @@ This file provides architectural, operational, and workflow instructions for AI 
 
 Before non-trivial work, read `AGENTS.md`, `docs/00-governance/00-42-agent-protocol-contract.md`, and `docs/00-governance/00-03-sovereign-agent-enterprise-protocol.md`. The repository contract applies to Gemini CLI and all other agents: classify changes, preserve human authorization boundaries, verify before claiming completion, and stop on failed critical gates.
 
+## Editing Rules
+
+- **No Em-dash:** Do not use em-dashes (-) when editing or creating files in this repository.
+
 ## Project Overview
 
 This repository contains static CSS and Blogger theme XML files for the owner's Blogger blogs, served as-is by GitHub Pages (`https://virachai.github.io/blog-themes/...`, `.nojekyll`). Live Blogger themes `<link>` directly to stylesheets in this repository. A pushed commit updates live sites within ~10 minutes (`Cache-Control: max-age=600`; bump `?v=` in theme XML for immediate effect).
@@ -14,13 +18,13 @@ The repository is public. Never commit secrets, API tokens, or personal data. Th
 
 ## Repository Structure
 
-- `01-meeprompt/` — Live blog (Mee Prompt): `01-theme.css`, `02-theme-v2.xml`, backup XML.
-- `02-meefunblog/` — Staging blog: `01-theme-staging.xml`, `02-staging-post.html` (test post), `03-theme.css`.
-- `03-lipscode/` — Backup only.
-- `docs/` — Documentation (`00-governance/` for naming/structure rules, `01-runbooks/` for theme release runbook).
-- `scripts/` — Utility scripts (`scripts/node/build-index.mjs`).
-- `.githooks/` — Git hooks (`pre-commit` structure gate).
-- `.github/workflows/` — CI workflows (`structure.yml`).
+- `01-meeprompt/` - Live blog (Mee Prompt): `01-theme.css`, `02-theme-v2.xml`, backup XML.
+- `02-meefunblog/` - Staging blog: `01-theme-staging.xml`, `02-staging-post.html` (test post), `03-theme.css`.
+- `03-lipscode/` - Backup only.
+- `docs/` - Documentation (`00-governance/` for naming/structure rules, `01-runbooks/` for theme release runbook).
+- `scripts/` - Utility scripts (`scripts/node/build-index.mjs`).
+- `.githooks/` - Git hooks (`pre-commit` structure gate).
+- `.github/workflows/` - CI workflows (`structure.yml`).
 
 ## Key Commands
 

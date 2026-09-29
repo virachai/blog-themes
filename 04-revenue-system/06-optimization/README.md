@@ -1,7 +1,7 @@
-# Layer 06 — Optimization
+# Layer 06 - Optimization
 
 Purpose: turn measured results into the next action.
 
 Files:
-- `decisions.csv` — decision ledger.
-- `TEMPLATE.md` — decision protocol.
+- `decisions.csv` - decision ledger.
+- `TEMPLATE.md` - decision protocol.

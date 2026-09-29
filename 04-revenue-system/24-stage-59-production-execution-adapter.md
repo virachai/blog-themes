@@ -1,4 +1,4 @@
-# Stage 59 — Production Execution Adapter
+# Stage 59 - Production Execution Adapter
 
 Stage 59 bridges the Stage 58 production state machine to the existing CDP, evidence, and transaction primitives without making external execution implicit.
 
@@ -12,9 +12,9 @@ node scripts/node/editorial-production-execution-adapter.mjs execute <run_id> cd
 
 ### Modes
 
-- **plan** — materializes the execution contract.
-- **dry-run** — records preflight evidence without touching an external system.
-- **cdp** — connects to the configured CDP browser, verifies the target, records a snapshot fingerprint, and stops before publication.
+- **plan** - materializes the execution contract.
+- **dry-run** - records preflight evidence without touching an external system.
+- **cdp** - connects to the configured CDP browser, verifies the target, records a snapshot fingerprint, and stops before publication.
 
 CDP endpoint defaults to `http://127.0.0.1:9222`; override with `CDP_ENDPOINT`.
 

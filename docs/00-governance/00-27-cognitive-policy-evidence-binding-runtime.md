@@ -1,4 +1,4 @@
-# Stage 43 — Cognitive Policy Evidence Binding Runtime
+# Stage 43 - Cognitive Policy Evidence Binding Runtime
 
 Stage 43 creates explicit lineage between eligible knowledge and a future policy proposal.
 

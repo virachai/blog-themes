@@ -1,4 +1,4 @@
-# SeleniumBase — Knowledge Base
+# SeleniumBase - Knowledge Base
 
 Source: https://github.com/seleniumbase/SeleniumBase
 

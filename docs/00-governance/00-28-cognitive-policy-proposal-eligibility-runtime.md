@@ -1,4 +1,4 @@
-# Stage 44 — Cognitive Policy Proposal Eligibility Runtime
+# Stage 44 - Cognitive Policy Proposal Eligibility Runtime
 
 Stage 44 adds a final gate between evidence lineage and the policy proposal lifecycle.
 

@@ -1,4 +1,4 @@
-# Stage 52 — Cognitive Learning Commit Integrity Runtime
+# Stage 52 - Cognitive Learning Commit Integrity Runtime
 
 ## Purpose
 Verify that every learning commit is backed by a valid Stage 51 learning-eligibility gate and cannot be treated as integrity-verified when the gate is absent, blocked, or lineage-mismatched.

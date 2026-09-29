@@ -1,4 +1,4 @@
-# Stage 39 — Cognitive Learning Commit & Belief Update Runtime
+# Stage 39 - Cognitive Learning Commit & Belief Update Runtime
 
 Stage 39 is the controlled commit boundary between reviewed learning feedback and durable cognitive memory.
 

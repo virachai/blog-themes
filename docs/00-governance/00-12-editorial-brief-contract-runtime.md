@@ -1,4 +1,4 @@
-# Stage 28 — Editorial Brief Contract Runtime
+# Stage 28 - Editorial Brief Contract Runtime
 
 Stage 28 turns the editorial brief into an executable contract between the research/briefing layer and the article.
 

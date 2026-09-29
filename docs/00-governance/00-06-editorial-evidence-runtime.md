@@ -1,4 +1,4 @@
-# Stage 22 — Editorial Evidence Runtime
+# Stage 22 - Editorial Evidence Runtime
 
 Stage 22 adds an evidence boundary between writing quality and SEO/release. It extracts factual-claim signals, discovers source URLs, measures source density, and emits a durable evidence ledger.
 

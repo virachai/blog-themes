@@ -1,4 +1,4 @@
-# Stage 36 — Cognitive Policy Activation & Lifecycle Runtime
+# Stage 36 - Cognitive Policy Activation & Lifecycle Runtime
 
 Stage 36 is the explicit authority boundary between proposed decision policies and operational policy state.
 
@@ -25,14 +25,14 @@ The proposal record is not rewritten during lifecycle transitions.
 
 ## Supported transitions
 
-- `activate <id> [expires_at]` — explicit human-authorized activation; increments version.
-- `suspend <id>` — pauses an active policy.
-- `resume <id>` — resumes a suspended policy.
-- `retire <id>` — permanently retires a policy.
-- `rollback <id>` — returns an active/suspended policy to PROPOSED state.
-- `evaluate` — exposes the currently active policy set without changing state.
-- `review [id]` — derives lifecycle state for review.
-- `status` — reports lifecycle counts and authority.
+- `activate <id> [expires_at]` - explicit human-authorized activation; increments version.
+- `suspend <id>` - pauses an active policy.
+- `resume <id>` - resumes a suspended policy.
+- `retire <id>` - permanently retires a policy.
+- `rollback <id>` - returns an active/suspended policy to PROPOSED state.
+- `evaluate` - exposes the currently active policy set without changing state.
+- `review [id]` - derives lifecycle state for review.
+- `status` - reports lifecycle counts and authority.
 
 ## Expiry
 

@@ -1,4 +1,4 @@
-# Stage 61 — Blogger Publication Adapter
+# Stage 61 - Blogger Publication Adapter
 
 Stage 61 binds the Stage 60 transaction boundary to a real Blogger UI without treating CDP connectivity as publication success.
 

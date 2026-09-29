@@ -1,4 +1,4 @@
-# Stage 67 — Measurement Source Adapter & Evidence Capture Runtime
+# Stage 67 - Measurement Source Adapter & Evidence Capture Runtime
 
 Stage 67 defines a **read-only measurement evidence boundary** for Stage 65. It accepts an operator-supplied observation from an authoritative source and validates provenance, timing, metric identity, and publication linkage before Stage 65 can consume it.
 

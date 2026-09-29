@@ -1,4 +1,4 @@
-# Stage 33 — Cognitive Consolidation & Knowledge Graph Runtime
+# Stage 33 - Cognitive Consolidation & Knowledge Graph Runtime
 
 Stage 33 consolidates cognitive memory into an explicit graph of nodes and typed relationships.
 

@@ -1,4 +1,4 @@
-# Stage 57 — Cognitive Provenance Attestation Enforcement Runtime
+# Stage 57 - Cognitive Provenance Attestation Enforcement Runtime
 
 ## Purpose
 Enforce Stage 56 attestation as the downstream usability gate for Stage 54 learning provenance.

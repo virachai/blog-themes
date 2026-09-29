@@ -1,4 +1,4 @@
-# Stage 65 — Measurement Observation & Outcome Runtime
+# Stage 65 - Measurement Observation & Outcome Runtime
 
 > Status: IMPLEMENTED
 > Date: 2026-09-28

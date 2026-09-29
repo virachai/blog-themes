@@ -1,4 +1,4 @@
-# Stage 40 — Cognitive Learning Validation & Regression Runtime
+# Stage 40 - Cognitive Learning Validation & Regression Runtime
 
 Stage 40 validates committed learning before downstream cognitive systems rely on it.
 

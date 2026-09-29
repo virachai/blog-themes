@@ -1,4 +1,4 @@
-# Stage 38 — Cognitive Policy Outcome Evaluation & Learning Feedback Runtime
+# Stage 38 - Cognitive Policy Outcome Evaluation & Learning Feedback Runtime
 
 Stage 38 evaluates observed policy outcomes and produces reviewable learning proposals.
 

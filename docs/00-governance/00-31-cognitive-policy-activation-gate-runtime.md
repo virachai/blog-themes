@@ -1,4 +1,4 @@
-# Stage 47 — Cognitive Policy Activation Gate Runtime
+# Stage 47 - Cognitive Policy Activation Gate Runtime
 
 Stage 47 is the fail-closed gate immediately before policy activation.
 

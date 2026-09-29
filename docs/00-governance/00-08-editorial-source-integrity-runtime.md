@@ -1,4 +1,4 @@
-# Stage 24 — Editorial Source Integrity Runtime
+# Stage 24 - Editorial Source Integrity Runtime
 
 Stage 24 adds a deterministic source-integrity boundary after fact/freshness review and before SEO/release.
 

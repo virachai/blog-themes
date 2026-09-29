@@ -1,4 +1,4 @@
-# Stage 53 — Cognitive Learning Commit Enforcement Runtime
+# Stage 53 - Cognitive Learning Commit Enforcement Runtime
 
 ## Purpose
 Make the Stage 51 eligibility gate a hard prerequisite for Stage 39 learning commits.

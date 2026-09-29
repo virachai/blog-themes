@@ -1,4 +1,4 @@
-# Stage 63 — Publication Verification & Feedback Runtime
+# Stage 63 - Publication Verification & Feedback Runtime
 
 > Status: IMPLEMENTED
 > Date: 2026-09-28

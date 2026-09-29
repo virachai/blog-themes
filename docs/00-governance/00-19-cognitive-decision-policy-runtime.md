@@ -1,4 +1,4 @@
-# Stage 35 — Cognitive Decision Policy Runtime
+# Stage 35 - Cognitive Decision Policy Runtime
 
 Stage 35 turns reviewed cognitive knowledge into explicit decision-policy proposals.
 

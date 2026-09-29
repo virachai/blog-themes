@@ -1,4 +1,4 @@
-# Stage 41 — Cognitive Learning Promotion Runtime
+# Stage 41 - Cognitive Learning Promotion Runtime
 
 Stage 41 separates durable learning from trusted knowledge.
 

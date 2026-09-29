@@ -1,4 +1,4 @@
-# Stage 55 — Cognitive Learning Provenance Integrity & Tamper Detection Runtime
+# Stage 55 - Cognitive Learning Provenance Integrity & Tamper Detection Runtime
 
 ## Purpose
 Continuously verify that Stage 54 provenance records still resolve to the same append-only learning lineage, and detect post-build drift or tampering.

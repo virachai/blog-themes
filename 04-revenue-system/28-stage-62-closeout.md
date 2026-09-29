@@ -1,4 +1,4 @@
-# Stage 62 — Closeout (no publication)
+# Stage 62 - Closeout (no publication)
 
 > Status: **CLOSED_WITH_DEFERRED_PUBLICATION**
 > Recorded: 2026-09-28
@@ -24,21 +24,21 @@ Stage 62 closes here without an external publication. The transport, the evidenc
 
 `email-to-blogger-publication-transport.mjs` was verified against `smtp.gmail.com:587` with actual delivery (STARTTLS → AUTH PLAIN → DATA → QUIT, body intact).
 
-Stage 59 binds the live Chrome CDP target `FCC6AC44E6D2732EDAA28C8233E4DED6` by id — not by whichever tab is first — and classifies it `EDITING` (`blogger-editor-path`). That is the same URL the pre-fix code would have recorded as `PUBLISHED`: the Blogger editor at `/blog/post/edit/6973756749045108777/6268864657932604137` matches a `blogger.com` host check, contains the post title in its body text, and its path contains `/post/`. Classifier output is now recorded as evidence with a content hash that varies with the observation.
+Stage 59 binds the live Chrome CDP target `FCC6AC44E6D2732EDAA28C8233E4DED6` by id - not by whichever tab is first - and classifies it `EDITING` (`blogger-editor-path`). That is the same URL the pre-fix code would have recorded as `PUBLISHED`: the Blogger editor at `/blog/post/edit/6973756749045108777/6268864657932604137` matches a `blogger.com` host check, contains the post title in its body text, and its path contains `/post/`. Classifier output is now recorded as evidence with a content hash that varies with the observation.
 
 ## What is NOT proven
 
-The successful path has never run. Everything above demonstrates that the pipeline **refuses** correctly. It does not demonstrate that a publication would succeed, and in particular it is not known whether Blogger navigates to a public post URL after a publish action — if it stays in the editor, stage 61's verification returns `BLOCKED` by design, and the publish path may not be able to succeed as written. That question can only be settled against a real target.
+The successful path has never run. Everything above demonstrates that the pipeline **refuses** correctly. It does not demonstrate that a publication would succeed, and in particular it is not known whether Blogger navigates to a public post URL after a publish action - if it stays in the editor, stage 61's verification returns `BLOCKED` by design, and the publish path may not be able to succeed as written. That question can only be settled against a real target.
 
 ## Deferred
 
 1. **External publication has not been executed.** Blocked on `EMAIL_PUBLISH_CONFIRM=YES`, which is the operator's consent gate and remains unset.
-2. **Observer does not load `.env`.** `email-to-blogger-publication-observer.mjs` reads `process.env` directly, so values kept in `.env` never reach it — the same defect fixed in stage 59 by `scripts/node/dotenv.mjs`. Left unfixed deliberately; it is a Stage 62 change, not a Stage 59 one.
+2. **Observer does not load `.env`.** `email-to-blogger-publication-observer.mjs` reads `process.env` directly, so values kept in `.env` never reach it - the same defect fixed in stage 59 by `scripts/node/dotenv.mjs`. Left unfixed deliberately; it is a Stage 62 change, not a Stage 59 one.
 3. **CDP session closed; the scratch profile remains on disk.** The Chrome
    instance this work used is no longer running: PID 17096 does not exist,
    port 9222 is not LISTENING, no process holds the `%TEMP%\chrome-cdp`
    profile, and the CDP endpoint returns `fetch failed`. That failure is the
-   expected fail-closed behaviour — stage 59's `verify-target` exits 1 and the
+   expected fail-closed behaviour - stage 59's `verify-target` exits 1 and the
    observer's preflight reports `BLOCKED`, with no artifact changed. The
    profile directory itself was not deleted. No other Chrome process was
    touched.
@@ -47,7 +47,7 @@ The successful path has never run. Everything above demonstrates that the pipeli
 
 ## Boundaries held
 
-`approval.status` was set to `APPROVED` only on explicit owner instruction, and approval is not publication — `EMAIL_PUBLISH_CONFIRM` is a separate gate and remains unset. No email was sent, no publication receipt was created, no publication authority was inferred from browser connectivity, and the publication transport remains Email-to-Blogger rather than CDP.
+`approval.status` was set to `APPROVED` only on explicit owner instruction, and approval is not publication - `EMAIL_PUBLISH_CONFIRM` is a separate gate and remains unset. No email was sent, no publication receipt was created, no publication authority was inferred from browser connectivity, and the publication transport remains Email-to-Blogger rather than CDP.
 
 ## Evidence
 

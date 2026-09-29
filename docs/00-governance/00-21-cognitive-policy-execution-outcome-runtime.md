@@ -1,4 +1,4 @@
-# Stage 37 — Cognitive Policy Execution & Outcome Measurement Runtime
+# Stage 37 - Cognitive Policy Execution & Outcome Measurement Runtime
 
 Stage 37 connects ACTIVE policies to observable executions and measured outcomes without allowing the runtime to activate policies, edit policy definitions, update beliefs, or create missions.
 
@@ -8,8 +8,8 @@ ACTIVE Policy -> Execute -> Execution Record -> Observe -> Outcome Record -> Mea
 
 ## Event records
 
-- `policy-executions.jsonl` — immutable execution records.
-- `policy-outcomes.jsonl` — immutable observed outcome records.
+- `policy-executions.jsonl` - immutable execution records.
+- `policy-outcomes.jsonl` - immutable observed outcome records.
 - Stage 36 remains authoritative for policy lifecycle state.
 - Stage 35 remains authoritative for policy proposals.
 

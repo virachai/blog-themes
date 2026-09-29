@@ -141,11 +141,11 @@ The receiving agent MUST validate the handoff before acting on it.
 
 A completed task report MUST state:
 
-1. **Result** — what was achieved.
-2. **Changes** — important files/surfaces affected.
-3. **Verification** — checks/evidence performed.
-4. **Risk** — remaining uncertainty.
-5. **Next** — only if follow-up is genuinely required.
+1. **Result** - what was achieved.
+2. **Changes** - important files/surfaces affected.
+3. **Verification** - checks/evidence performed.
+4. **Risk** - remaining uncertainty.
+5. **Next** - only if follow-up is genuinely required.
 
 "Code written" is not equivalent to "task complete."
 

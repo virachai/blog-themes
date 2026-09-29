@@ -1,4 +1,4 @@
-# Stage 29 — Editorial Mission Runtime
+# Stage 29 - Editorial Mission Runtime
 
 Stage 29 introduces a mission-level contract above individual editorial validators. A mission binds the originating signal, executable brief, article execution state, and measurement contract into one traceable unit.
 

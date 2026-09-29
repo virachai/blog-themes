@@ -1,4 +1,4 @@
-# Stage 22 — Value-Driven Editorial Intelligence
+# Stage 22 - Value-Driven Editorial Intelligence
 
 Stage 22 reframes editorial intelligence around economic value and compounding asset creation.
 
@@ -25,9 +25,9 @@ REAL-WORLD SIGNALS
 
 ## Value hierarchy
 
-1. Revenue Work — direct path to traffic, conversion, monetization, or revenue.
-2. Asset Work — increases durable topical authority, useful evergreen coverage, reusable research, or audience knowledge.
-3. Infrastructure Work — improves execution, measurement, reliability, or automation.
+1. Revenue Work - direct path to traffic, conversion, monetization, or revenue.
+2. Asset Work - increases durable topical authority, useful evergreen coverage, reusable research, or audience knowledge.
+3. Infrastructure Work - improves execution, measurement, reliability, or automation.
 
 Infrastructure work must identify the Revenue Work or Asset Work it enables. Work with no credible value path is deferred.
 

@@ -1,4 +1,4 @@
-# Stage 64 — Publication Measurement & Learning Intake Runtime
+# Stage 64 - Publication Measurement & Learning Intake Runtime
 
 > Status: IMPLEMENTED
 > Date: 2026-09-28

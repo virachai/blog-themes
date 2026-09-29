@@ -1,4 +1,4 @@
-# Stage 32 — Cognitive Evaluation & Belief Update Runtime
+# Stage 32 - Cognitive Evaluation & Belief Update Runtime
 
 Stage 32 compares a recorded belief with an observed outcome and produces an auditable, bounded confidence proposal.
 

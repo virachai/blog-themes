@@ -1,4 +1,4 @@
-# Stage 66 — Measurement Window Control Runtime
+# Stage 66 - Measurement Window Control Runtime
 
 Stage 66 controls **when** a real outcome observation is allowed to enter Stage 65. It does not collect metrics, fabricate observations, or mutate external systems.
 

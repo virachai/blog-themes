@@ -13,7 +13,7 @@ Shared CSS and Blogger theme files for the owner's Blogger blogs, served by GitH
 | :-- | :-- | :-- |
 | Mee Prompt (meeprompt.blogspot.com) | [01-meeprompt/](01-meeprompt/README.md) | `https://virachai.github.io/blog-themes/01-meeprompt/01-theme.css` |
 | MeeFun staging (meefunblog.blogspot.com) | [02-meefunblog/](02-meefunblog/README.md) | `https://virachai.github.io/blog-themes/02-meefunblog/03-theme.css` |
-| LipsCode (backup only) | [03-lipscode/](03-lipscode/README.md) | — |
+| LipsCode (backup only) | [03-lipscode/](03-lipscode/README.md) | - |
 
 Contents are listed in [INDEX.md](INDEX.md).
 

@@ -1,4 +1,4 @@
-# Meefunblog Revenue System — Manual Mode
+# Meefunblog Revenue System - Manual Mode
 
 A six-layer, human-runnable operating system for turning blog assets into measurable revenue.
 

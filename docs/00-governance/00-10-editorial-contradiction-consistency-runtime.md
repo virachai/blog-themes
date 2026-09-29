@@ -1,4 +1,4 @@
-# Stage 26 — Editorial Contradiction & Claim Consistency Runtime
+# Stage 26 - Editorial Contradiction & Claim Consistency Runtime
 
 Stage 26 adds an internal consistency boundary after citation mapping and before SEO/release.
 

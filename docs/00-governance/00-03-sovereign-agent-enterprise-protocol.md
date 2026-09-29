@@ -10,12 +10,12 @@
 
 Every agent task MUST optimize for these outcomes, in this order:
 
-1. **Correctness** — the result matches the requested objective and repository constraints.
-2. **Safety** — no secrets, destructive actions, uncontrolled external effects, or unsafe assumptions.
-3. **Traceability** — important decisions, evidence, changes, and validation are observable.
-4. **Reversibility** — changes can be isolated, reviewed, and rolled back.
-5. **Efficiency** — use the smallest sufficient context, tool set, and execution path.
-6. **Quality** — deliver production-ready work, not merely plausible output.
+1. **Correctness** - the result matches the requested objective and repository constraints.
+2. **Safety** - no secrets, destructive actions, uncontrolled external effects, or unsafe assumptions.
+3. **Traceability** - important decisions, evidence, changes, and validation are observable.
+4. **Reversibility** - changes can be isolated, reviewed, and rolled back.
+5. **Efficiency** - use the smallest sufficient context, tool set, and execution path.
+6. **Quality** - deliver production-ready work, not merely plausible output.
 
 "Apex/Unlocked" means **high-agency execution under stronger controls**, not bypassing controls.
 
@@ -139,25 +139,25 @@ When instructions conflict, preserve the higher authority and surface the confli
 
 Every mutation MUST be classified.
 
-### C0 — Read-only
+### C0 - Read-only
 
 Search, inspect, summarize, diagnose.
 
 **Approval:** none.
 
-### C1 — Local reversible
+### C1 - Local reversible
 
 Documentation, isolated non-runtime edits, generated artifacts that can be regenerated.
 
 **Gate:** validation.
 
-### C2 — Behavioral
+### C2 - Behavioral
 
 Code, automation, theme, skill, or workflow changes that can affect behavior.
 
 **Gate:** validation + impact review.
 
-### C3 — Live-impact
+### C3 - Live-impact
 
 Published theme, production workflow, external service, destructive migration, or irreversible effect.
 
@@ -215,10 +215,10 @@ A skill MUST declare:
 
 For factual or research-heavy work, separate:
 
-- **FACT** — directly supported by a reliable source or repository evidence
-- **INFERENCE** — derived from available evidence
-- **ASSUMPTION** — temporarily assumed to proceed
-- **UNKNOWN** — not established
+- **FACT** - directly supported by a reliable source or repository evidence
+- **INFERENCE** - derived from available evidence
+- **ASSUMPTION** - temporarily assumed to proceed
+- **UNKNOWN** - not established
 
 The agent MUST NOT present inference or assumption as fact.
 
@@ -250,32 +250,32 @@ Never perform broad replacement when a narrower semantic edit is available.
 
 ## 9. Quality Gates
 
-### Gate G0 — Scope
+### Gate G0 - Scope
 
 - task understood
 - affected surface identified
 - no hidden expansion
 
-### Gate G1 — Integrity
+### Gate G1 - Integrity
 
 - syntax/structure valid
 - no accidental deletions
 - no secrets introduced
 - naming/numbering rules preserved
 
-### Gate G2 — Behavioral
+### Gate G2 - Behavioral
 
 - requested behavior works
 - relevant diagnostics/tests/checks pass
 - references remain valid
 
-### Gate G3 — Repository
+### Gate G3 - Repository
 
 - generated indexes/checks pass
 - working tree contains only intended changes
 - release-specific instructions satisfied
 
-### Gate G4 — Release
+### Gate G4 - Release
 
 - live impact understood
 - rollback path exists
@@ -312,10 +312,10 @@ Every C2/C3 change MUST have a rollback strategy appropriate to its impact.
 
 Rollback levels:
 
-1. **Edit rollback** — reverse the isolated change.
-2. **Commit rollback** — revert a bounded commit.
-3. **Artifact rollback** — restore known-good theme/content artifact.
-4. **Operational rollback** — disable or isolate the failing workflow.
+1. **Edit rollback** - reverse the isolated change.
+2. **Commit rollback** - revert a bounded commit.
+3. **Artifact rollback** - restore known-good theme/content artifact.
+4. **Operational rollback** - disable or isolate the failing workflow.
 
 Rollback MUST favor known-good state over another unverified forward patch.
 
@@ -532,11 +532,11 @@ Avoid:
 
 For completed work, report:
 
-1. **Result** — what was achieved.
-2. **Changes** — important files/surfaces affected.
-3. **Verification** — checks/tests/evidence.
-4. **Risk** — remaining known risks or uncertainty.
-5. **Next** — only if follow-up is genuinely required.
+1. **Result** - what was achieved.
+2. **Changes** - important files/surfaces affected.
+3. **Verification** - checks/tests/evidence.
+4. **Risk** - remaining known risks or uncertainty.
+5. **Next** - only if follow-up is genuinely required.
 
 For blocked work, report:
 

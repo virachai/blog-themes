@@ -57,7 +57,7 @@ The contract is an **execution boundary**, not an authorization token. A skill m
 
 ## Scope Boundary
 v2 stops before execution automation. Future layers may add task-state persistence, evidence ledgers, confidence calibration, handoff contracts, adversarial verification, structured reports, and controlled skill invocation adapters.
-## Stage 5 — Runtime Integration
+## Stage 5 - Runtime Integration
 
 Stage 5 turns the v2 control plane into a capability-oriented runtime foundation. The runtime now has explicit adapters for browser sessions, observations, capability resolution, runtime planning, and evidence records.
 
@@ -65,13 +65,13 @@ Runtime flow:
 
 TASK -> ROUTE -> CAPABILITY RESOLUTION -> SESSION -> OBSERVE -> EXECUTE -> TRACE -> EVIDENCE -> VALIDATE -> REPORT
 
-Implemented runtime modules originate under `.tmp/cdp/runtime/`. The subset consumed by tracked scripts was promoted to [`scripts/node/cdp-runtime/`](../../scripts/node/cdp-runtime/README.md) — `.tmp/` is gitignored, so importing from it meant a fresh clone and CI could not resolve the stage 58–62 runtimes at all:
+Implemented runtime modules originate under `.tmp/cdp/runtime/`. The subset consumed by tracked scripts was promoted to [`scripts/node/cdp-runtime/`](../../scripts/node/cdp-runtime/README.md) - `.tmp/` is gitignored, so importing from it meant a fresh clone and CI could not resolve the stage 58–62 runtimes at all:
 
-- `session.mjs` — browser session state and navigation history. Still in `.tmp/`; no tracked script imports it.
-- `observation.mjs` — normalized page observation and summaries. Still in `.tmp/`; no tracked script imports it.
-- `capability.mjs` — canonical runtime capability resolution. **Moved** to `scripts/node/cdp-runtime/`.
-- `runtime-plan.mjs` — deterministic execution-phase plan with security boundaries. **Moved** to `scripts/node/cdp-runtime/`.
-- `evidence.mjs` — timestamped evidence records with SHA-256 content hashes. **Moved** to `scripts/node/cdp-runtime/`.
+- `session.mjs` - browser session state and navigation history. Still in `.tmp/`; no tracked script imports it.
+- `observation.mjs` - normalized page observation and summaries. Still in `.tmp/`; no tracked script imports it.
+- `capability.mjs` - canonical runtime capability resolution. **Moved** to `scripts/node/cdp-runtime/`.
+- `runtime-plan.mjs` - deterministic execution-phase plan with security boundaries. **Moved** to `scripts/node/cdp-runtime/`.
+- `evidence.mjs` - timestamped evidence records with SHA-256 content hashes. **Moved** to `scripts/node/cdp-runtime/`.
 
 `browser-trace` is the observability adapter. It remains read-only and is not the browser control plane.
 
@@ -81,14 +81,14 @@ Stage 5 establishes the runtime integration contract but does not grant autonomo
 
 Stage 5 now includes four live-runtime adapters:
 
-- `cdp-session.mjs` — connects to the active Chrome CDP target, evaluates page state, navigates, captures snapshots and screenshots.
-- `evidence-ledger.mjs` — persists structured evidence records with stable IDs and content hashes.
-- `snapshot-diff.mjs` — compares page snapshots by URL, title, readiness, text and HTML hashes/lengths.
-- `skill-invocation.mjs` — validates runtime-to-skill handoffs against the canonical 15-skill registry and never grants execution authority.
+- `cdp-session.mjs` - connects to the active Chrome CDP target, evaluates page state, navigates, captures snapshots and screenshots.
+- `evidence-ledger.mjs` - persists structured evidence records with stable IDs and content hashes.
+- `snapshot-diff.mjs` - compares page snapshots by URL, title, readiness, text and HTML hashes/lengths.
+- `skill-invocation.mjs` - validates runtime-to-skill handoffs against the canonical 15-skill registry and never grants execution authority.
 
 A live smoke test has passed against the active Chrome target: CDP connection, snapshot capture, evidence creation, snapshot diff, and `technical-seo` invocation validation all completed successfully.
 
-## Stage 6 — Task State & Checkpoint Runtime
+## Stage 6 - Task State & Checkpoint Runtime
 
 Stage 6 adds durable task state so a planned or active run can be paused, validated, and resumed without reconstructing execution context from memory.
 
@@ -98,9 +98,9 @@ TASK -> RUN CREATED -> ROUTE -> SKILL CHAIN -> SESSION -> OBSERVE -> EVIDENCE ->
 
 Implemented modules:
 
-- `task-state.mjs` — versioned lifecycle state, deterministic transition rules, atomic JSON persistence, checkpoint creation, checkpoint integrity verification, and resume validation.
-- `handoff-contract.mjs` — hash-bound skill handoff records bound to a task, destination skill, evidence IDs, and checkpoint revision.
-- `task-state-smoke.mjs` — verifies create/run/checkpoint/pause/resume and handoff validation end-to-end.
+- `task-state.mjs` - versioned lifecycle state, deterministic transition rules, atomic JSON persistence, checkpoint creation, checkpoint integrity verification, and resume validation.
+- `handoff-contract.mjs` - hash-bound skill handoff records bound to a task, destination skill, evidence IDs, and checkpoint revision.
+- `task-state-smoke.mjs` - verifies create/run/checkpoint/pause/resume and handoff validation end-to-end.
 
 Stage 6 invariants:
 
@@ -112,14 +112,14 @@ Stage 6 invariants:
 6. State persistence uses write-then-rename to avoid exposing partial checkpoint files.
 7. State recovery does not bypass browser security, authentication, release gates, or human handoff requirements.
 
-## Stage 7 — Adversarial Verification Runtime
+## Stage 7 - Adversarial Verification Runtime
 
 Stage 7 adds a fail-closed verification layer between runtime state and continued execution. Verification independently challenges evidence integrity, checkpoint integrity, state/evidence consistency, skill handoffs, and skill invocation authority.
 
 Implemented modules:
 
-- `adversarial-verifier.mjs` — produces a versioned verification report with `PASS` or `BLOCKED` status and explicit findings.
-- `adversarial-smoke.mjs` — proves a clean run can continue and a tampered handoff is blocked.
+- `adversarial-verifier.mjs` - produces a versioned verification report with `PASS` or `BLOCKED` status and explicit findings.
+- `adversarial-smoke.mjs` - proves a clean run can continue and a tampered handoff is blocked.
 
 Stage 7 invariants:
 
@@ -134,7 +134,7 @@ Stage 7 invariants:
 The Stage 7 smoke test passes with zero findings for the clean fixture and blocks a deliberately tampered handoff with `H001`.
 
 
-## Stage 8 — Production Runtime / Execution Orchestrator
+## Stage 8 - Production Runtime / Execution Orchestrator
 
 Stage 8 composes the Stage 5–7 runtime adapters into one controlled execution loop. It owns task creation, lifecycle transitions, skill invocation, evidence persistence, skill handoffs, checkpoints, adversarial verification, and terminal completion/failure states.
 
@@ -144,8 +144,8 @@ TASK -> CREATE RUN -> RUNNING -> SKILL INVOCATION -> EXECUTE -> EVIDENCE -> HAND
 
 Implemented modules:
 
-- `execution-orchestrator.mjs` — production-oriented orchestration boundary composing task state, evidence ledger, skill invocation, handoff validation, and adversarial verification.
-- `execution-orchestrator-smoke.mjs` — end-to-end deterministic smoke test over a two-skill chain.
+- `execution-orchestrator.mjs` - production-oriented orchestration boundary composing task state, evidence ledger, skill invocation, handoff validation, and adversarial verification.
+- `execution-orchestrator-smoke.mjs` - end-to-end deterministic smoke test over a two-skill chain.
 
 Stage 8 invariants:
 
@@ -160,15 +160,15 @@ Stage 8 invariants:
 Stage 8 smoke test passes: `COMPLETED`, revision `3`, three checkpoints, two handoffs, and adversarial verification `PASS`.
 
 
-## Stage 9 — Real Skill Execution Bridge
+## Stage 9 - Real Skill Execution Bridge
 
 Stage 9 connects the production orchestrator to the canonical skill installations in `.agents/skills` and `.claude/skills` without turning a `SKILL.md` into an authorization primitive.
 
 Implemented modules:
 
-- `skill-execution-bridge.mjs` — resolves canonical skill installations, loads `SKILL.md`, exposes controlled execution through dependency-injected handlers, and enforces execution timeouts.
-- `skill-bridge-smoke.mjs` — verifies canonical skill resolution and both unbound and bound execution paths.
-- `execution-orchestrator.mjs` — now routes each skill step through the bridge before evidence/checkpoint/handoff processing.
+- `skill-execution-bridge.mjs` - resolves canonical skill installations, loads `SKILL.md`, exposes controlled execution through dependency-injected handlers, and enforces execution timeouts.
+- `skill-bridge-smoke.mjs` - verifies canonical skill resolution and both unbound and bound execution paths.
+- `execution-orchestrator.mjs` - now routes each skill step through the bridge before evidence/checkpoint/handoff processing.
 
 Stage 9 invariants:
 
@@ -183,15 +183,15 @@ Stage 9 invariants:
 Stage 9 smoke test passes against the installed `technical-seo` skill: canonical resolution succeeded, unbound mode remained non-authoritative, and a controlled bound handler executed successfully.
 
 
-## Stage 10 — Capability / Policy Enforcement Runtime
+## Stage 10 - Capability / Policy Enforcement Runtime
 
 Stage 10 adds a pre-execution policy boundary. A skill must receive only explicitly requested and granted capabilities, and policy is evaluated before the execution handler is invoked.
 
 Implemented modules:
 
-- `policy-enforcer.mjs` — canonical skill-to-capability requirements, capability validation, escalation detection, security-approval enforcement, and release-gate ownership checks.
-- `execution-orchestrator.mjs` — evaluates and asserts policy before every skill execution.
-- `policy-enforcer-smoke.mjs` — verifies a valid grant, capability escalation blocking, and security-approval blocking.
+- `policy-enforcer.mjs` - canonical skill-to-capability requirements, capability validation, escalation detection, security-approval enforcement, and release-gate ownership checks.
+- `execution-orchestrator.mjs` - evaluates and asserts policy before every skill execution.
+- `policy-enforcer-smoke.mjs` - verifies a valid grant, capability escalation blocking, and security-approval blocking.
 
 Stage 10 invariants:
 
@@ -206,14 +206,14 @@ Stage 10 invariants:
 Stage 10 smoke passes: valid `technical-seo` capability grants return `PASS`; escalation and unapproved security capability return `BLOCKED`.
 
 
-## Stage 11 — Release Gate & Transaction Safety Runtime
+## Stage 11 - Release Gate & Transaction Safety Runtime
 
 Stage 11 introduces a controlled mutation boundary for production-affecting operations. Mutations must pass preflight, optional human approval, execution, post-execution verification, and commit; verification or execution failure triggers rollback. Every transaction emits a hash-chained audit trail.
 
 Implemented modules:
 
-- `release-transaction.mjs` — transaction state machine, preflight gate, human-approval gate, execute/verify/commit flow, rollback handling, and append-only hash-chained audit trail.
-- `release-transaction-smoke.mjs` — verifies successful commit, verification-triggered rollback, approval-triggered rollback, and audit-chain integrity.
+- `release-transaction.mjs` - transaction state machine, preflight gate, human-approval gate, execute/verify/commit flow, rollback handling, and append-only hash-chained audit trail.
+- `release-transaction-smoke.mjs` - verifies successful commit, verification-triggered rollback, approval-triggered rollback, and audit-chain integrity.
 
 Stage 11 invariants:
 
@@ -229,15 +229,15 @@ Stage 11 invariants:
 Stage 11 smoke passes: one transaction `COMMITTED`, one verification failure `ROLLED_BACK`, one missing approval `ROLLED_BACK`, and the audit chain verifies successfully across 10 events.
 
 
-## Stage 12 — Observability, Audit Intelligence & Runtime Recovery
+## Stage 12 - Observability, Audit Intelligence & Runtime Recovery
 
 Stage 12 adds a structured runtime event stream, failure taxonomy, health summarization, replayable event selection, and checkpoint-aware recovery planning across the Stage 5–11 runtime.
 
 Implemented modules:
 
-- `observability.mjs` — append-only structured runtime events, event hashing, failure taxonomy, health summaries, and replayable-event extraction.
-- `recovery.mjs` — validates the latest checkpoint and produces a deterministic recovery/replay plan without granting new execution authority.
-- `observability-recovery-smoke.mjs` — verifies event capture, failure classification, health reporting, and checkpoint recovery planning.
+- `observability.mjs` - append-only structured runtime events, event hashing, failure taxonomy, health summaries, and replayable-event extraction.
+- `recovery.mjs` - validates the latest checkpoint and produces a deterministic recovery/replay plan without granting new execution authority.
+- `observability-recovery-smoke.mjs` - verifies event capture, failure classification, health reporting, and checkpoint recovery planning.
 
 Stage 12 invariants:
 
@@ -252,14 +252,14 @@ Stage 12 invariants:
 Stage 12 smoke passes: three structured events captured, one verification failure classified, health reported `DEGRADED`, and a valid checkpoint produced a `READY` recovery plan from the recorded execution cursor.
 
 
-## Stage 13 — Runtime Control Plane
+## Stage 13 - Runtime Control Plane
 
 Stage 13 adds a unified control-plane surface over runtime state, events, recovery, policy evaluation, and release transactions. It is an inspection and controlled-action boundary; it does not create new execution authority.
 
 Implemented modules:
 
-- `control-plane.mjs` — run inspection, scoped/global health, checkpoint-aware recovery planning, policy evaluation, controlled resume, and transaction delegation.
-- `control-plane-smoke.mjs` — verifies run inspection, checkpoint integrity visibility, health reporting, and recovery readiness.
+- `control-plane.mjs` - run inspection, scoped/global health, checkpoint-aware recovery planning, policy evaluation, controlled resume, and transaction delegation.
+- `control-plane-smoke.mjs` - verifies run inspection, checkpoint integrity visibility, health reporting, and recovery readiness.
 
 Stage 13 invariants:
 
@@ -274,14 +274,14 @@ Stage 13 invariants:
 Stage 13 smoke passes: paused run inspection reports a valid checkpoint, scoped health is `HEALTHY`, and recovery planning returns `READY` from the recorded execution cursor.
 
 
-## Stage 14 — Multi-Run Scheduler & Concurrency Control
+## Stage 14 - Multi-Run Scheduler & Concurrency Control
 
 Stage 14 adds controlled scheduling for multiple runtime tasks. Jobs are priority ordered, bounded by a concurrency limit, protected by resource leases, and cancellable before execution. Scheduler execution delegates to the existing orchestrator and therefore cannot bypass Stage 10–13 policy, verification, transaction, or recovery boundaries.
 
 Implemented modules:
 
-- `scheduler.mjs` — priority queue, bounded concurrency, resource lease manager, cancellation, job lifecycle, and scheduler events.
-- `scheduler-smoke.mjs` — verifies priority ordering, concurrency, resource-conflict serialization, cancellation, and completion states.
+- `scheduler.mjs` - priority queue, bounded concurrency, resource lease manager, cancellation, job lifecycle, and scheduler events.
+- `scheduler-smoke.mjs` - verifies priority ordering, concurrency, resource-conflict serialization, cancellation, and completion states.
 
 Stage 14 invariants:
 
@@ -295,7 +295,7 @@ Stage 14 invariants:
 
 Stage 14 smoke passes: four jobs reached terminal states, three completed, one was cancelled, high-priority execution preceded the lower-priority browser-conflicting job, and an independent resource ran in parallel under a concurrency limit of two.
 
-## Stage 15 — Distributed Worker Isolation, Lease Fencing & Crash Recovery
+## Stage 15 - Distributed Worker Isolation, Lease Fencing & Crash Recovery
 
 Stage 15 establishes an execution boundary between the runtime scheduler and the worker that carries an orchestrated task. The scheduler remains the authority for queueing and concurrency, while workers receive explicit, time-bounded ownership leases.
 
@@ -303,11 +303,11 @@ Stage 15 establishes an execution boundary between the runtime scheduler and the
 
 `WorkerRegistry` tracks worker identity and lifecycle:
 
-- `IDLE` — available for assignment.
-- `LEASED` — ownership assigned but execution has not started.
-- `RUNNING` — executing through the existing orchestrator boundary.
-- `DRAINING` — reserved for future graceful shutdown semantics.
-- `DEAD` — unavailable until explicitly re-registered.
+- `IDLE` - available for assignment.
+- `LEASED` - ownership assigned but execution has not started.
+- `RUNNING` - executing through the existing orchestrator boundary.
+- `DRAINING` - reserved for future graceful shutdown semantics.
+- `DEAD` - unavailable until explicitly re-registered.
 
 Workers never invoke skills directly. The worker executes only through the existing orchestrator, preserving policy enforcement, evidence, verification, handoff, and release-gate controls.
 
@@ -315,10 +315,10 @@ Workers never invoke skills directly. The worker executes only through the exist
 
 Every worker assignment receives:
 
-- `leaseId` — unique ownership instance.
-- `taskId` — execution identity.
-- `fencingToken` — monotonically increasing ownership generation.
-- `leaseExpiresAt` — time-bounded ownership.
+- `leaseId` - unique ownership instance.
+- `taskId` - execution identity.
+- `fencingToken` - monotonically increasing ownership generation.
+- `leaseExpiresAt` - time-bounded ownership.
 - heartbeat timestamp.
 
 A worker may heartbeat or release only while all ownership fields still match. A stale worker therefore cannot regain authority after its lease has been reclaimed.
@@ -361,7 +361,7 @@ Stage 15 smoke coverage verifies:
 6. all workers return to `IDLE` after execution.
 7. the existing Stage 14 scheduler smoke remains passing with worker isolation enabled.
 
-## Stage 16 — Persistent Distributed State, Durable Job Queue & Worker Recovery
+## Stage 16 - Persistent Distributed State, Durable Job Queue & Worker Recovery
 
 Stage 16 moves scheduler state from process memory toward a durable, restart-safe control boundary.
 
@@ -402,7 +402,7 @@ Stage 16 provides durable **commit-state continuity**, not a claim of exactly-on
 9. Stage 16 crash/restart smoke passes.
 10. `git diff --check` passes.
 
-## Stage 17 — Distributed Commit Coordination, Idempotency Ledger & Exactly-Once Commit
+## Stage 17 - Distributed Commit Coordination, Idempotency Ledger & Exactly-Once Commit
 
 Stage 17 adds a durable commit boundary for side-effecting release operations. It guarantees idempotent **commit state** under replay; it does not claim exactly-once physical execution of arbitrary external systems.
 
@@ -444,7 +444,7 @@ The runtime now provides exactly-once **logical commit** for a given durable ide
 9. Stage 14 scheduler smoke remains passing.
 10. `git diff --check` passes.
 
-## Stage 18 — Event-Sourced Runtime, Deterministic Replay & Time-Travel Debugging
+## Stage 18 - Event-Sourced Runtime, Deterministic Replay & Time-Travel Debugging
 
 Stage 18 establishes an append-only runtime event model that can reconstruct execution state without trusting mutable in-memory state.
 
@@ -490,7 +490,7 @@ The event-sourced layer complements, rather than replaces, the existing task-sta
 10. Stage 14 scheduler smoke remains passing.
 11. `git diff --check` passes.
 
-## Stage 19 — Runtime Snapshotting, Event Compaction & Merkle State Verification
+## Stage 19 - Runtime Snapshotting, Event Compaction & Merkle State Verification
 
 Stage 19 adds cryptographic runtime snapshots so long event histories can be restored from a verified state checkpoint plus a bounded event tail.
 
@@ -534,7 +534,7 @@ Snapshotting is an optimization and integrity layer. It does not replace event v
 10. Stage 14 scheduler remains passing.
 11. `git diff --check` passes.
 
-## Stage 20 — Distributed Event Bus, Cross-Worker Streaming & Leader Coordination
+## Stage 20 - Distributed Event Bus, Cross-Worker Streaming & Leader Coordination
 
 Stage 20 adds a durable event-stream boundary and explicit leader lease so multiple runtime nodes can observe the same lifecycle without sharing mutable process memory.
 

@@ -1,4 +1,4 @@
-# Stage 56 — Cognitive Provenance Chain Attestation Runtime
+# Stage 56 - Cognitive Provenance Chain Attestation Runtime
 
 ## Purpose
 Convert verified Stage 55 provenance integrity into an append-only attestation record.

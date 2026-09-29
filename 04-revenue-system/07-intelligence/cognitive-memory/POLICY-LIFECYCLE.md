@@ -4,8 +4,8 @@ Stage 36 operationalizes explicit policy lifecycle state while preserving append
 
 ## Sources
 
-- `policies.jsonl` — Stage 35 policy proposals.
-- `policy-events.jsonl` — Stage 36 lifecycle events.
+- `policies.jsonl` - Stage 35 policy proposals.
+- `policy-events.jsonl` - Stage 36 lifecycle events.
 
 ## State model
 

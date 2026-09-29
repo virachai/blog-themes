@@ -1,4 +1,4 @@
-# Stage 60 — Publication Transaction Runtime
+# Stage 60 - Publication Transaction Runtime
 
 Stage 60 wraps publication execution in a fail-closed transaction boundary.
 

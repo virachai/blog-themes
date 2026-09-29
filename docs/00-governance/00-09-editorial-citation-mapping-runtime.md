@@ -1,4 +1,4 @@
-# Stage 25 — Editorial Citation Mapping Runtime
+# Stage 25 - Editorial Citation Mapping Runtime
 
 Stage 25 converts source integrity into a deterministic claim-to-source mapping boundary.
 
