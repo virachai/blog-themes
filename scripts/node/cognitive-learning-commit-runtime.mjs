@@ -194,6 +194,22 @@ function finalizeLearningCommit(commit) {
   return { provenance, integrity, attestation, enforcement };
 }
 
+function evaluate(args) {
+  const [executionId, assessment, evidence = 'observed-outcome'] = args;
+  if (!executionId || !assessment) throw new Error('usage: evaluate <execution_id> <assessment> [evidence]');
+  const outcomes = read(FILES.outcomes).filter(x => x.execution_id === executionId);
+  if (!outcomes.length) throw new Error('no observed outcome for execution: ' + executionId);
+  const executionEvidence = read(FILES.evidence).find(x => x.execution_id === executionId);
+  if (!executionEvidence) throw new Error('missing execution evidence for execution: ' + executionId);
+  const latest = outcomes.at(-1);
+  const feedback = { execution_id: executionId, policy_id: latest.policy_id, policy_version: latest.policy_version,
+    assessment, evidence, outcome_ids: outcomes.map(x => x.outcome_id), status: 'PROPOSED_LEARNING', next_action: 'review' };
+  append(FILES.feedback, feedback, 'FEEDBACK');
+  const saved = read(FILES.feedback).at(-1);
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: 'LEARNING_FEEDBACK_PROPOSED',
+    feedback: saved, authority: { outcome_evaluation: true, learning_proposal: true, belief_update: false, policy_edit: false } }, null, 2));
+}
+
 function commit(args) {
   const [feedbackId, target = 'lesson', claim = '', confidenceDelta = '0'] = args;
   if (!feedbackId || !['lesson', 'belief'].includes(target) || !claim)
@@ -391,6 +407,7 @@ function status() {
 const [cmd, ...args] = process.argv.slice(2);
 try {
   if (cmd === 'init' || cmd === 'status') { if (cmd === 'init') ensure(); status(); }
+  else if (cmd === 'evaluate') evaluate(args);
   else if (cmd === 'commit') commit(args);
   else if (cmd === 'rollback') rollback(args[0]);
   else if (cmd === 'review') review(args[0]);
