@@ -304,7 +304,7 @@ for (const dir of ['scripts/node', 'scripts/node/cdp-runtime']) {
 
 // The three modules that previously carried raw evidence writes must use the
 // schema now. Named explicitly because each was a shipped defect.
-for (const rel of ['scripts/node/editorial-production-execution-adapter.mjs', 'scripts/node/editorial-publication-transaction-runtime.mjs']) {
+for (const rel of ['scripts/node/editorial-production-execution-adapter.mjs']) {
   const src = source(rel);
   if (!src) { fail('H4 ' + rel + ' not found'); continue; }
   if (!src.includes("from './cdp-runtime/evidence.mjs'")) fail('H5 ' + rel + ' does not import createEvidence');

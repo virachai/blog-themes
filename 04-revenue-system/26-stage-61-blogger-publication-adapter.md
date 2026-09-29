@@ -1,6 +1,6 @@
 # Stage 61 - Blogger Publication Adapter
 
-Stage 61 binds the Stage 60 transaction boundary to a real Blogger UI without treating CDP connectivity as publication success.
+Stage 61 owns the approval-gated publication transaction boundary and binds it to the real Blogger UI without treating CDP connectivity as publication success.
 
 ## Commands
 
@@ -29,4 +29,4 @@ Default selectors must be validated with inspect against the current Blogger UI 
 
 ## Definition of done
 
-Stage 60 can now be bound to a Blogger-specific adapter with explicit UI intent verification, post-action verification, idempotency, evidence, and a real receipt. The current run remains blocked and no publication is attempted.
+The publication boundary is now bound directly to the Blogger-specific adapter with explicit UI intent verification, post-action verification, idempotency, evidence, and a real receipt. The current run remains blocked and no publication is attempted.
