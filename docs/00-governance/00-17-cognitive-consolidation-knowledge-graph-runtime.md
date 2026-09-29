@@ -18,9 +18,9 @@ Evaluations connect observed evidence back to beliefs. The graph is a derived vi
 
 ## CLI
 
-node scripts/node/cognitive-graph-runtime.mjs status
-node scripts/node/cognitive-graph-runtime.mjs build
-node scripts/node/cognitive-graph-runtime.mjs query editorial
+node scripts/node/cognitive-memory-runtime.mjs status
+node scripts/node/cognitive-memory-runtime.mjs build
+node scripts/node/cognitive-memory-runtime.mjs query editorial
 
 ## Authority
 

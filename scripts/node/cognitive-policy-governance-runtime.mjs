@@ -1,4 +1,4 @@
-/** Lean Stages 43-47 Cognitive Policy Governance Runtime. */
+/** Lean Stages 36-47 Cognitive Policy Governance Runtime. */
 import { existsSync, readFileSync, appendFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 const M = join(process.cwd(), "04-revenue-system/07-intelligence/cognitive-memory");

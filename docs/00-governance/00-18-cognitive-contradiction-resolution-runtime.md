@@ -18,10 +18,10 @@ Detection is heuristic, not truth. Candidates require review.
 
 ## CLI
 
-node scripts/node/cognitive-conflict-runtime.mjs status
-node scripts/node/cognitive-conflict-runtime.mjs detect
-node scripts/node/cognitive-conflict-runtime.mjs review
-node scripts/node/cognitive-conflict-runtime.mjs propose
+node scripts/node/cognitive-memory-runtime.mjs status
+node scripts/node/cognitive-memory-runtime.mjs detect
+node scripts/node/cognitive-memory-runtime.mjs review
+node scripts/node/cognitive-memory-runtime.mjs propose
 
 ## Authority
 

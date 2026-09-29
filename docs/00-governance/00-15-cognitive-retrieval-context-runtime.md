@@ -22,7 +22,7 @@ Stage 31 can retrieve and assemble context. It does not decide that a belief is 
 
 ## CLI
 
-node scripts/node/cognitive-context-runtime.mjs status
-node scripts/node/cognitive-context-runtime.mjs retrieve "editorial quality"
-node scripts/node/cognitive-context-runtime.mjs assemble "editorial quality" 10
-node scripts/node/cognitive-context-runtime.mjs assemble "editorial quality" 10 --write=.agent-runs/cognitive-context.json
+node scripts/node/cognitive-memory-runtime.mjs status
+node scripts/node/cognitive-memory-runtime.mjs retrieve "editorial quality"
+node scripts/node/cognitive-memory-runtime.mjs assemble "editorial quality" 10
+node scripts/node/cognitive-memory-runtime.mjs assemble "editorial quality" 10 --write=.agent-runs/cognitive-context.json
