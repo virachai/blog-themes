@@ -33,8 +33,8 @@ Stage 40 may not:
 
 ## CLI
 
-node scripts/node/cognitive-learning-validation-runtime.mjs init
-node scripts/node/cognitive-learning-validation-runtime.mjs status
-node scripts/node/cognitive-learning-validation-runtime.mjs validate <commit_id> [positive|neutral|negative]
-node scripts/node/cognitive-learning-validation-runtime.mjs drift [claim]
-node scripts/node/cognitive-learning-validation-runtime.mjs review [id]
+node scripts/node/cognitive-learning-commit-runtime.mjs init
+node scripts/node/cognitive-learning-commit-runtime.mjs status
+node scripts/node/cognitive-learning-commit-runtime.mjs validate <commit_id> [positive|neutral|negative]
+node scripts/node/cognitive-learning-commit-runtime.mjs drift [claim]
+node scripts/node/cognitive-learning-commit-runtime.mjs review [id]

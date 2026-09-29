@@ -1,33 +1,27 @@
 # Stage 35 - Cognitive Decision Policy Runtime
 
-Stage 35 turns reviewed cognitive knowledge into explicit decision-policy proposals.
+## Status
 
-## Policy contract
+**Superseded by Stage 45.**
 
-A policy contains:
-- name
-- scope
-- condition / precondition
-- action
-- confidence
-- source
-- expiry (optional)
-- rollback procedure
-- lifecycle status
+Stage 35 previously created policy proposals directly from reviewed memory. That created a second proposal authority beside the evidence-gated Stage 45 runtime.
 
-Policies are explicit operational rules, not implicit model behavior.
+## Current authority
 
-## Lifecycle
+Policy proposals are now created only by:
 
-Knowledge -> Reviewed Evidence -> Policy Proposal -> Review -> Explicit Activation -> Measure -> Rollback/Retire
+`scripts/node/cognitive-policy-proposal-runtime.mjs`
 
-## Authority boundary
+Stage 45 requires a valid `PROPOSAL_ELIGIBLE` record before writing a policy proposal.
 
-Stage 35 can create policy proposals and expose them for review. It cannot activate, edit, or retire an active policy and cannot create missions.
+Use:
 
-## CLI
+```
+node scripts/node/cognitive-policy-proposal-runtime.mjs status
+node scripts/node/cognitive-policy-proposal-runtime.mjs propose <eligibility_id> <name> <scope> <condition> <action> [confidence] [source] [preconditions] [expires_at] [rollback]
+node scripts/node/cognitive-policy-proposal-runtime.mjs review [id]
+```
 
-node scripts/node/cognitive-policy-runtime.mjs init
-node scripts/node/cognitive-policy-runtime.mjs status
-node scripts/node/cognitive-policy-runtime.mjs propose <name> <scope> <condition> <action> <confidence> [source]
-node scripts/node/cognitive-policy-runtime.mjs review [id]
+## Boundary
+
+Do not recreate the Stage 35 standalone proposal runtime. New proposal behavior belongs in Stage 45.

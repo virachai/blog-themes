@@ -31,8 +31,8 @@ Stage 41 may not:
 
 ## CLI
 
-node scripts/node/cognitive-learning-promotion-runtime.mjs init
-node scripts/node/cognitive-learning-promotion-runtime.mjs status
-node scripts/node/cognitive-learning-promotion-runtime.mjs promote <commit_id> [reviewer] [evidence]
-node scripts/node/cognitive-learning-promotion-runtime.mjs trust <promotion_id>
-node scripts/node/cognitive-learning-promotion-runtime.mjs review [id]
+node scripts/node/cognitive-learning-commit-runtime.mjs init
+node scripts/node/cognitive-learning-commit-runtime.mjs status
+node scripts/node/cognitive-learning-commit-runtime.mjs promote <commit_id> [reviewer] [evidence]
+node scripts/node/cognitive-learning-commit-runtime.mjs trust <promotion_id>
+node scripts/node/cognitive-learning-commit-runtime.mjs review [id]

@@ -8,7 +8,7 @@ Outcome Attribution → Feedback Proposal → Validation/Regression Check → Le
 
 ## Runtime
 
-`scripts/node/cognitive-learning-eligibility-gate-runtime.mjs`
+`scripts/node/cognitive-learning-commit-runtime.mjs`
 
 Ledger: `04-revenue-system/07-intelligence/cognitive-memory/learning-eligibility-gates.jsonl`
 
