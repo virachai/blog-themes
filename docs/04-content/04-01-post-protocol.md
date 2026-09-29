@@ -36,7 +36,17 @@ Write `#0001` anywhere in the body text. `05-theme.js` reads the blog feed and r
 4. `<h2 title="{short TOC label}">` sections, optional `<h3>`, images with captions, `mp-note` / `mp-evidence` boxes.
 5. Images come from Pexels, are stored in `02-meefunblog/11-images/` with credits in its README, and are linked from GitHub Pages.
 6. Facts that could harm a reader (health, pets, money) cite a source; never invent numbers.
-7. Evergreen by default: write so the post stays true and useful for years. No dates, "this year", prices, promotions or news hooks in the title, URL or summary. Put facts that will age in one clearly dated `mp-note` box so they are easy to update later.
+7. Evergreen by default: write so the post stays true and useful for years. Avoid dates, "this year", prices, promotions or news hooks in the title, URL or summary **unless the search intent explicitly requires a time-bound fact** (for example, current fees, tax year or platform rules). Put facts that will age in one clearly dated `mp-note` box so they are easy to update later.
+
+## 4b. Lean editorial gate
+
+Before publishing, answer these five questions:
+
+1. **Intent:** Does the opening answer the reader's actual question/problem?
+2. **Evidence:** Are material, changing or consequential facts sourced or explicitly marked for verification? For changing facts, include the source and checked date in the same `mp-note` where practical. Never invent numbers.
+3. **Experience:** Is there a concrete human-use detail, example, caveat or workflow where the topic allows it? Do not fabricate first-hand experience.
+4. **UX:** Can a reader scan the answer quickly with useful headings, bullets, tables or media where appropriate?
+5. **Monetization:** Do Affiliate/AdSense elements support the answer without replacing it? For Affiliate links, use the applicable program terms and disclosure requirements, make the relationship clear to readers where required, and keep links contextually relevant.
 
 ## 4a. Posts that earn no AdSense revenue
 
@@ -51,3 +61,4 @@ Email posting cannot set labels or a Search description. The description is cove
 | ID   | Title                                                            | Body file                                                                  | URL                                                                                                                |
 | ---- | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | 0001 | ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (Low Light Condo Plants) | [13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) | https://meefunblog.blogspot.com/2026/09/3-low-light-condo-plants.html (old /3-0001.html now 404) |
+| 0002 | เริ่มขายของออนไลน์ 2569: เลือกแพลตฟอร์มไหนก่อน (Start Selling Online Thailand) | [14-post-start-selling-2569.html](../../02-meefunblog/14-post-start-selling-2569.html) | draft |
