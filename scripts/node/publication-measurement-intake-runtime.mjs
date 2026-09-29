@@ -86,7 +86,7 @@ function inspect(run, runId) {
     },
     external_side_effect: false,
     next_action: state === 'READY_FOR_MEASUREMENT'
-      ? 'record real observations with sources using value-mission-measurement-runtime.mjs'
+      ? 'record real observations with sources in the run's measurement evidence artifacts'
       : state === 'AWAITING_PUBLICATION'
         ? 'complete the separately gated publication path and obtain an authoritative receipt'
         : state === 'AWAITING_VERIFICATION'

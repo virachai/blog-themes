@@ -3,14 +3,11 @@
  *
  * The receipt path previously had three producers writing incompatible shapes:
  *
- *   - value-mission-publication-runtime.mjs  write on every `prepare`, status BLOCKED
  *   - blogger-publication-adapter.mjs (61)   write after verified publish
  *   - email-to-blogger-publication-observer  write whenever a title matched (removed)
  *
  * Two consumers then read *different fields* of whichever shape happened to be on
  * disk — editorial-production-loop-runtime.mjs reads the top-level `status`,
- * value-mission-measurement-runtime.mjs reads `publication.status` — so one file
- * could satisfy one gate and fail the other, and a plain existence check passed
  * for a run that had never been published.
  *
  * Stage 61 is now the only writer, and a receipt is only authoritative when it

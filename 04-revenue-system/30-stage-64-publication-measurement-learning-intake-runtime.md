@@ -40,8 +40,7 @@ publication-measurement-intake.json and records:
 | AWAITING_VERIFICATION | publication exists but Stage 63 is not verified |
 | BLOCKED | evidence or measurement plan is inconsistent |
 
-The existing Stage 22F measurement runtime remains the authority for measured
-outcomes. Stage 64 is the bridge, not a replacement.
+Stage 64 is the measurement-entry authority for the current publication pipeline. It only determines whether verified publication evidence is eligible for real observation; the observation itself must be supplied as run evidence.
 
 ## Safety
 
