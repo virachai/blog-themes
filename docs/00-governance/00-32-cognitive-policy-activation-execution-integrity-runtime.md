@@ -8,7 +8,7 @@ Activation Gate PASS → Execution Authorization → Version-bound Execution →
 
 ## Runtime
 
-`scripts/node/cognitive-policy-execution-integrity-runtime.mjs`
+`scripts/node/cognitive-policy-execution-runtime.mjs`
 
 Ledger: `04-revenue-system/07-intelligence/cognitive-memory/policy-execution-authorizations.jsonl`
 

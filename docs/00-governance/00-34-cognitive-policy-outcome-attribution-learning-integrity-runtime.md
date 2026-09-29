@@ -8,7 +8,7 @@ Execution → Outcome → Evidence → Attribution → Learning Eligibility → 
 
 ## Runtime
 
-`scripts/node/cognitive-policy-outcome-attribution-runtime.mjs`
+`scripts/node/cognitive-policy-execution-runtime.mjs`
 
 Ledger: `04-revenue-system/07-intelligence/cognitive-memory/policy-outcome-attributions.jsonl`
 

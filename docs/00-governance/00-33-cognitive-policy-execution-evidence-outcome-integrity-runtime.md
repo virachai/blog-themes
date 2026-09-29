@@ -8,7 +8,7 @@ Activation Gate → Execution Authorization → Execution → Outcome → Eviden
 
 ## Runtime
 
-`scripts/node/cognitive-policy-execution-evidence-runtime.mjs`
+`scripts/node/cognitive-policy-execution-runtime.mjs`
 
 Ledger: `04-revenue-system/07-intelligence/cognitive-memory/policy-execution-evidence.jsonl`
 
