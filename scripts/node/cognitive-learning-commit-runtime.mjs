@@ -21,7 +21,9 @@ const FILES = {
   provenance: join(M, 'learning-commit-provenance.jsonl'),
   integrity: join(M, 'learning-provenance-integrity.jsonl'),
   attestations: join(M, 'learning-provenance-attestations.jsonl'),
-  enforcement: join(M, 'learning-provenance-enforcement.jsonl')
+  enforcement: join(M, 'learning-provenance-enforcement.jsonl'),
+  validations: join(M, 'learning-validations.jsonl'),
+  promotions: join(M, 'learning-promotions.jsonl')
 };
 
 const CHAIN = ['OUTCOME', 'EVIDENCE', 'ATTRIBUTION', 'FEEDBACK', 'ELIGIBILITY_GATE', 'LEARNING_COMMIT'];
@@ -248,6 +250,87 @@ function commit(args) {
   }
 }
 
+function validateCommit(args) {
+  const [commitId, expected = 'neutral'] = args;
+  if (!commitId || !['positive', 'neutral', 'negative'].includes(expected))
+    throw new Error('usage: validate <commit_id> [positive|neutral|negative]');
+  const commit = read(FILES.commits).find(x => x.id === commitId);
+  if (!commit) throw new Error('unknown commit id: ' + commitId);
+  const feedback = read(FILES.feedback).find(x => x.id === commit.feedback_id);
+  if (!feedback) throw new Error('missing source feedback: ' + commit.feedback_id);
+  const delta = Number(commit.confidence_delta ?? 0);
+  const regression = expected === 'negative' || (expected === 'positive' && delta < 0);
+  const row = {
+    commit_id: commitId, feedback_id: commit.feedback_id, target: commit.target,
+    expected, confidence_delta: delta,
+    result: regression ? 'REGRESSION_FLAG' : 'VALIDATED',
+    gate: regression ? 'BLOCK' : 'PASS', status: 'REVIEW_REQUIRED'
+  };
+  append(FILES.validations, row, 'VALIDATION');
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: row.result,
+    validation: row, authority: { validation: true, regression_detection: true, learning_reversal: false } }, null, 2));
+}
+
+function drift(claim) {
+  const rows = read(FILES.beliefs).filter(x => !claim || x.claim === claim);
+  const deltas = rows.slice(1).map((x, i) => Number(x.confidence) - Number(rows[i].confidence));
+  const negative = deltas.filter(x => x < 0).length;
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: 'DRIFT_SCAN',
+    claim: claim || null, versions: rows.length, deltas, negative_transitions: negative,
+    drift: negative > 1 ? 'DETECTED' : 'NONE', authority: { detection_only: true } }, null, 2));
+}
+
+function gate(args) {
+  const [executionId, reviewer = 'learning-gate', notes = ''] = args;
+  if (!executionId) throw new Error('usage: gate <execution_id> [reviewer] [notes]');
+  const attribution = read(FILES.attribution).filter(x => x.execution_id === executionId).at(-1);
+  const feedback = read(FILES.feedback).filter(x => x.execution_id === executionId).at(-1);
+  const validations = feedback ? read(FILES.validations).filter(x => x.feedback_id === feedback.id) : [];
+  const findings = [];
+  if (!attribution) findings.push('MISSING_ATTRIBUTION');
+  else if (attribution.gate !== 'PASS' || attribution.learning_eligible !== true) findings.push('ATTRIBUTION_NOT_LEARNING_ELIGIBLE');
+  if (!feedback) findings.push('MISSING_FEEDBACK');
+  else if (feedback.status !== 'PROPOSED_LEARNING') findings.push('FEEDBACK_NOT_PROPOSED');
+  if (validations.some(x => x.gate === 'BLOCK' || x.result === 'REGRESSION_FLAG')) findings.push('REGRESSION_BLOCK');
+  const row = {
+    execution_id: executionId, attribution_id: attribution?.id || null, feedback_id: feedback?.id || null,
+    validation_ids: validations.map(x => x.id), reviewer, notes, findings,
+    gate: findings.length ? 'BLOCK' : 'PASS',
+    status: findings.length ? 'LEARNING_BLOCKED' : 'LEARNING_ELIGIBLE',
+    next_action: findings.length ? 'review' : 'eligible_for_commit'
+  };
+  append(FILES.gates, row, 'LEARNGATE');
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: row.status,
+    gate: row, authority: { learning_eligibility_gate: true, learning_commit: false } }, null, 2));
+}
+
+function promote(args) {
+  const [commitId, reviewer = 'reviewed', evidence = 'validated-learning'] = args;
+  if (!commitId) throw new Error('usage: promote <commit_id> [reviewer] [evidence]');
+  const commit = read(FILES.commits).find(x => x.id === commitId);
+  if (!commit) throw new Error('unknown commit id: ' + commitId);
+  const validations = read(FILES.validations).filter(x => x.commit_id === commitId);
+  if (!validations.length) throw new Error('promotion requires validation for commit: ' + commitId);
+  if (validations.some(x => x.gate === 'BLOCK')) throw new Error('promotion blocked by regression validation');
+  const row = { commit_id: commitId, target: commit.target, reviewer, evidence,
+    validation_ids: validations.map(x => x.id), status: 'PROMOTION_PROPOSED', trust: 'CANDIDATE' };
+  append(FILES.promotions, row, 'PROMOTION');
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: row.status,
+    promotion: row, authority: { promotion_proposal: true, trust_upgrade: false } }, null, 2));
+}
+
+function trust(promotionId) {
+  const p = read(FILES.promotions).find(x => x.id === promotionId);
+  if (!p) throw new Error('unknown promotion id: ' + promotionId);
+  if (p.status !== 'PROMOTION_PROPOSED') throw new Error('promotion must be PROPOSED');
+  const row = { promotion_of: promotionId, commit_id: p.commit_id, target: p.target,
+    reviewer: p.reviewer, evidence: p.evidence, validation_ids: p.validation_ids,
+    status: 'TRUSTED', trust: 'TRUSTED', previous_status: p.status };
+  append(FILES.promotions, row, 'PROMOTION');
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: 'LEARNING_TRUSTED',
+    promotion: row, authority: { trust_promotion: true, belief_update: false } }, null, 2));
+}
+
 function audit() {
   const ps = read(FILES.provenance);
   const results = ps.map(p => {
@@ -299,6 +382,7 @@ function status() {
     lessons: read(FILES.lessons).length, provenance: read(FILES.provenance).length,
     integrity: read(FILES.integrity).length, attestations: read(FILES.attestations).length,
     enforcement: read(FILES.enforcement).length,
+    validations: read(FILES.validations).length, promotions: read(FILES.promotions).length,
     authority: { learning_commit: true, provenance_verification: true,
       integrity_verification: true, attestation_verification: true, downstream_authorization: true }
   }, null, 2));
@@ -311,6 +395,11 @@ try {
   else if (cmd === 'rollback') rollback(args[0]);
   else if (cmd === 'review') review(args[0]);
   else if (cmd === 'audit') audit();
+  else if (cmd === 'validate') validateCommit(args);
+  else if (cmd === 'drift') drift(args[0]);
+  else if (cmd === 'gate') gate(args);
+  else if (cmd === 'promote') promote(args);
+  else if (cmd === 'trust') trust(args[0]);
   else if (cmd === 'provenance') {
     const c = read(FILES.commits).find(x => x.id === args[0]);
     if (!c) throw new Error('unknown commit id: ' + args[0]);
@@ -318,7 +407,7 @@ try {
     console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3',
       status: enforcement.status, provenance, integrity, attestation, enforcement }, null, 2));
   } else {
-    throw new Error('usage: cognitive-learning-commit-runtime.mjs init|status|commit <feedback_id> <lesson|belief> <claim> [confidence_delta]|rollback <commit_id>|review [id]|audit|provenance <commit_id>');
+    throw new Error('usage: cognitive-learning-commit-runtime.mjs init|status|commit ...|rollback <commit_id>|validate <commit_id> [positive|neutral|negative]|drift [claim]|gate <execution_id> [reviewer] [notes]|promote <commit_id> [reviewer] [evidence]|trust <promotion_id>|review [id]|audit|provenance <commit_id>');
   }
 } catch (error) {
   fail(error instanceof Error ? error.message : String(error));
