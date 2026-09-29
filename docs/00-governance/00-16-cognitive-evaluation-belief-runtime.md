@@ -18,8 +18,8 @@ Stage 32 does not mutate the belief record. It writes proposed evaluations to ev
 
 ## CLI
 
-node scripts/node/cognitive-evaluation-runtime.mjs init
-node scripts/node/cognitive-evaluation-runtime.mjs status
-node scripts/node/cognitive-evaluation-runtime.mjs evaluate <belief_id> supported
-node scripts/node/cognitive-evaluation-runtime.mjs evaluate <belief_id> contradicted
-node scripts/node/cognitive-evaluation-runtime.mjs review [belief_id]
+node scripts/node/cognitive-learning-commit-runtime.mjs init
+node scripts/node/cognitive-learning-commit-runtime.mjs status
+node scripts/node/cognitive-learning-commit-runtime.mjs evaluate <belief_id> supported
+node scripts/node/cognitive-learning-commit-runtime.mjs evaluate <belief_id> contradicted
+node scripts/node/cognitive-learning-commit-runtime.mjs review [belief_id]

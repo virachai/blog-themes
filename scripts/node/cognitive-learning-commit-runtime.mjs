@@ -23,7 +23,8 @@ const FILES = {
   attestations: join(M, 'learning-provenance-attestations.jsonl'),
   enforcement: join(M, 'learning-provenance-enforcement.jsonl'),
   validations: join(M, 'learning-validations.jsonl'),
-  promotions: join(M, 'learning-promotions.jsonl')
+  promotions: join(M, 'learning-promotions.jsonl'),
+  evaluations: join(M, 'evaluations.jsonl')
 };
 
 const CHAIN = ['OUTCOME', 'EVIDENCE', 'ATTRIBUTION', 'FEEDBACK', 'ELIGIBILITY_GATE', 'LEARNING_COMMIT'];
@@ -210,6 +211,26 @@ function evaluate(args) {
     feedback: saved, authority: { outcome_evaluation: true, learning_proposal: true, belief_update: false, policy_edit: false } }, null, 2));
 }
 
+function evaluateBelief(args) {
+  const [beliefId, observed] = args;
+  if (!beliefId || !observed) throw new Error('usage: evaluate <belief_id> <observed>');
+  const belief = read(FILES.beliefs).find(x => x.id === beliefId);
+  if (!belief) throw new Error('belief not found: ' + beliefId);
+  const prior = Number(belief.confidence);
+  if (!Number.isFinite(prior)) throw new Error('belief confidence invalid');
+  const value = String(observed).toLowerCase();
+  const positive = ['supported','confirmed','success','true','yes'].includes(value);
+  const negative = ['contradicted','failed','false','no','rejected'].includes(value);
+  if (!positive && !negative) throw new Error('observed must be supported|confirmed|success|true|yes|contradicted|failed|false|no|rejected');
+  const delta = positive ? 0.10 : -0.10;
+  const proposed = Math.max(0, Math.min(1, prior + delta));
+  const row = append(FILES.evaluations, { belief_id: beliefId, claim: belief.claim, prior_confidence: prior,
+    observed: value, confidence_delta: delta, proposed_confidence: proposed,
+    evidence_status: positive ? 'SUPPORTING' : 'CONTRADICTING', status: 'PROPOSED' }, 'EVAL');
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: 'BELIEF_UPDATE_PROPOSED',
+    evaluation: row, authority: { evaluation: true, belief_update: false, operational_rule_update: false } }, null, 2));
+}
+
 function commit(args) {
   const [feedbackId, target = 'lesson', claim = '', confidenceDelta = '0'] = args;
   if (!feedbackId || !['lesson', 'belief'].includes(target) || !claim)
@@ -363,6 +384,11 @@ function audit() {
   }, null, 2));
 }
 
+function reviewEvaluations(id) {
+  const rows = read(FILES.evaluations).filter(x => !id || x.belief_id === id);
+  console.log(JSON.stringify({ runtime: 'cognitive-learning-commit-runtime-v3', status: 'EVALUATION_REVIEW', count: rows.length, evaluations: rows, authority: { review_only: true } }, null, 2));
+}
+
 function review(id) {
   const commits = read(FILES.commits).filter(x => !id || x.id === id || x.supersedes_commit_id === id);
   const provenance = read(FILES.provenance).filter(x => !id || x.id === id || x.commit_id === id);
@@ -407,9 +433,10 @@ function status() {
 const [cmd, ...args] = process.argv.slice(2);
 try {
   if (cmd === 'init' || cmd === 'status') { if (cmd === 'init') ensure(); status(); }
-  else if (cmd === 'evaluate') evaluate(args);
+  else if (cmd === 'evaluate') evaluateBelief(args);
   else if (cmd === 'commit') commit(args);
   else if (cmd === 'rollback') rollback(args[0]);
+  else if (cmd === 'evaluation-review') reviewEvaluations(args[0]);
   else if (cmd === 'review') review(args[0]);
   else if (cmd === 'audit') audit();
   else if (cmd === 'validate') validateCommit(args);
