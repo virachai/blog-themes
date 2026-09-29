@@ -1,32 +1,27 @@
 # Stage 54 - Cognitive Learning Commit Provenance Runtime
 
-## Purpose
-Create a complete, append-only provenance chain for every learning commit.
+## Status
 
-## Chain
-Outcome → Evidence → Attribution → Feedback → Eligibility Gate → Learning Commit
+**Superseded by the Lean Cognitive Learning Commit Runtime v3.**
 
-## Contract
-A provenance record is verified only when the runtime can resolve:
-- Stage 39 learning commit;
-- source feedback and execution;
-- Stage 50 attribution with PASS / learning eligibility;
-- Stage 51 eligibility gate with PASS / LEARNING_ELIGIBLE;
-- bound execution evidence;
-- at least one referenced outcome.
+Stage 54 remains as historical governance documentation. Provenance is now owned by the single learning commit authority.
 
-Missing lineage is fail-closed as PROVENANCE_INCOMPLETE.
+## Current authority
 
-## Authority
-Stage 54 verifies and records provenance only. It does not create learning commits or mutate beliefs/policies.
+`scripts/node/cognitive-learning-commit-runtime.mjs`
 
-## CLI
+The v3 runtime creates and verifies the provenance chain as part of the learning commit boundary.
+
+Available commands:
+
 ```
-node scripts/node/cognitive-learning-provenance-runtime.mjs init
-node scripts/node/cognitive-learning-provenance-runtime.mjs status
-node scripts/node/cognitive-learning-provenance-runtime.mjs build <commit_id>
-node scripts/node/cognitive-learning-provenance-runtime.mjs review [id]
+node scripts/node/cognitive-learning-commit-runtime.mjs provenance <commit_id>
+node scripts/node/cognitive-learning-commit-runtime.mjs audit
+node scripts/node/cognitive-learning-commit-runtime.mjs review [id]
 ```
 
-## Ledger
-`04-revenue-system/07-intelligence/cognitive-memory/learning-commit-provenance.jsonl`
+The provenance chain binds outcome, evidence, attribution, feedback, eligibility gate, and learning commit lineage.
+
+## Boundary
+
+Do not recreate a standalone Stage 54 runtime. New provenance behavior belongs in the Lean Cognitive Learning Commit Runtime.

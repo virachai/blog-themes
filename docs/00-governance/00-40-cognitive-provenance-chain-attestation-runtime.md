@@ -1,23 +1,24 @@
 # Stage 56 - Cognitive Provenance Chain Attestation Runtime
 
-## Purpose
-Convert verified Stage 55 provenance integrity into an append-only attestation record.
+## Status
 
-## Contract
-An attestation is allowed only when the latest Stage 55 integrity record for the provenance is PASS and has a valid source digest. The attestation binds the provenance id, commit id, chain and integrity digest, then hashes that payload with SHA-256.
+**Superseded by the Lean Cognitive Learning Commit Runtime v3.**
 
-## States
-- ATTESTED: integrity verified and attestation recorded.
-- ATTESTATION_BLOCKED: integrity is absent, invalid, or not PASS.
+Stage 56 remains as historical governance documentation. Attestation is now part of the single learning commit authority.
 
-Stage 56 never mutates Stage 39–55 source ledgers and cannot create learning commits, update beliefs, edit/activate policies, or create missions.
+## Current authority
 
-## CLI
-node scripts/node/cognitive-provenance-attestation-runtime.mjs init
-node scripts/node/cognitive-provenance-attestation-runtime.mjs status
-node scripts/node/cognitive-provenance-attestation-runtime.mjs attest <provenance_id>
-node scripts/node/cognitive-provenance-attestation-runtime.mjs audit
-node scripts/node/cognitive-provenance-attestation-runtime.mjs review [id]
+`scripts/node/cognitive-learning-commit-runtime.mjs`
 
-## Ledger
-learning-provenance-attestations.jsonl
+The v3 runtime records an attestation only after provenance integrity is verified and binds the provenance id, commit id, source digest, and chain.
+
+Use:
+
+```
+node scripts/node/cognitive-learning-commit-runtime.mjs provenance <commit_id>
+node scripts/node/cognitive-learning-commit-runtime.mjs audit
+```
+
+## Boundary
+
+Do not recreate a standalone Stage 56 runtime. New attestation behavior belongs in the Lean Cognitive Learning Commit Runtime.

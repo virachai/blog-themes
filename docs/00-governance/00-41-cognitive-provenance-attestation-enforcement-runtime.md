@@ -1,19 +1,24 @@
 # Stage 57 - Cognitive Provenance Attestation Enforcement Runtime
 
-## Purpose
-Enforce Stage 56 attestation as the downstream usability gate for Stage 54 learning provenance.
+## Status
 
-## Contract
-A provenance chain is downstream-authorized only when its latest Stage 56 attestation is ATTESTED / PASS and the attestation commit lineage matches the provenance commit. Otherwise it is fail-closed as DOWNSTREAM_BLOCKED.
+**Superseded by the Lean Cognitive Learning Commit Runtime v3.**
 
-Stage 57 records enforcement decisions only. It does not mutate learning commits, beliefs, policies, or missions.
+Stage 57 remains as historical governance documentation. Downstream enforcement is now part of the single learning commit authority.
 
-## CLI
-node scripts/node/cognitive-provenance-attestation-enforcement-runtime.mjs init
-node scripts/node/cognitive-provenance-attestation-enforcement-runtime.mjs status
-node scripts/node/cognitive-provenance-attestation-enforcement-runtime.mjs check <provenance_id>
-node scripts/node/cognitive-provenance-attestation-enforcement-runtime.mjs audit
-node scripts/node/cognitive-provenance-attestation-enforcement-runtime.mjs review [id]
+## Current authority
 
-## Ledger
-learning-provenance-enforcement.jsonl
+`scripts/node/cognitive-learning-commit-runtime.mjs`
+
+The v3 runtime blocks downstream authorization unless the latest attestation is valid and matches the commit lineage.
+
+Use:
+
+```
+node scripts/node/cognitive-learning-commit-runtime.mjs provenance <commit_id>
+node scripts/node/cognitive-learning-commit-runtime.mjs audit
+```
+
+## Boundary
+
+Do not recreate a standalone Stage 57 runtime. New enforcement behavior belongs in the Lean Cognitive Learning Commit Runtime.
