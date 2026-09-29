@@ -1,0 +1,16 @@
+To: [REDACTED]@blogger.com
+From: setimocra@gmail.com
+Subject: Pexels CDN E2E 2026-09-29 20:30
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+<div class="mp-id" data-id="0002" data-run-id="VLM-001-20260929203000"></div>
+<div class="separator"><img src="https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Lead"></div>
+<div class="mp-summary">
+  <p>Fresh E2E test with run correlation embedded in the existing mp-id element.</p>
+</div>
+<div id="toc_container"><h2>สารบัญ</h2></div>
+<h2 title="Image delivery">Image delivery</h2>
+<p>Verifies the optimized lead and body image URLs.</p>
+<div class="separator"><img src="https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=940" alt="Body" loading="lazy"></div>
+<p class="mp-caption">ภาพ: cottonbro studio / Pexels</p>

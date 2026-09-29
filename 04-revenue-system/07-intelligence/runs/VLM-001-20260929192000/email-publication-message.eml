@@ -1,0 +1,54 @@
+To: [REDACTED]@blogger.com
+From: setimocra@gmail.com
+Subject: How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+<!-- blogger-run-id:VLM-001-20260929192000 -->
+<div class="mp-id" data-id="0002"></div>
+<div class="mp-summary">
+  <p>An evidence-backed editorial thesis should create a more useful asset than topic-first drafting</p>
+</div>
+<blockquote>
+<p>Status: RELEASE_CANDIDATE</p>
+<p>Mission: VLM-001</p>
+<p>Run: VLM-001-20260929192000</p>
+</blockquote>
+<div id="toc_container"><h2>สารบัญ</h2></div>
+<h2 title="Editorial Thesis">Editorial Thesis</h2>
+<h2 title="Audience">Audience</h2>
+<p>general</p>
+<h2 title="User Problem">User Problem</h2>
+<p>Unclear user problem causes low-value production</p>
+<h2 title="Evidence">Evidence</h2>
+<h3>Observation 1</h3>
+<ul>
+  <li>Observation: Google Search Central says its automated ranking systems are designed to prioritize helpful, reliable information created to benefit people, and its self-assessment asks whether content serves an intended audience and helps readers achieve their goal.</li>
+  <li>Claim supported: A content process should define the intended audience and user goal before drafting so usefulness can be assessed against the real reader rather than search-engine attraction alone.</li>
+  <li>Sources: https://developers.google.com/search/docs/fundamentals/creating-helpful-content</li>
+  <li>Checked: 2026-09-28</li>
+  <li>Uncertainty: Google&#39;s guidance describes what its systems seek to reward; it does not establish that every audience-first process will produce higher traffic or a causal effect on rankings.</li>
+  <li>Notes: Primary source: Google Search Central.</li>
+</ul>
+<h3>Observation 2</h3>
+<ul>
+  <li>Observation: Nielsen Norman Group describes a user-need statement as an actionable problem statement capturing who the user is, what they need, and why the need matters, and recommends grounding it in qualitative research before generating solutions.</li>
+  <li>Claim supported: Explicitly stating the user, need, and goal before producing the solution helps keep work focused on the problem rather than prematurely locking onto an output.</li>
+  <li>Sources: https://www.nngroup.com/articles/user-need-statements/</li>
+  <li>Checked: 2026-09-28</li>
+  <li>Uncertainty: This is UX research guidance rather than a controlled study of editorial publishing outcomes; it supports the process principle but does not quantify its effect on content performance.</li>
+  <li>Notes: NN/G guidance emphasizes real user needs, research inputs, and a success benchmark.</li>
+</ul>
+<h2 title="Asset Structure">Asset Structure</h2>
+<ul>
+  <li>Problem / context</li>
+  <li>Evidence and what it supports</li>
+  <li>Editorial thesis</li>
+  <li>Practical implications</li>
+  <li>Uncertainty / limitations</li>
+  <li>Next action</li>
+</ul>
+<h2 title="Value Path">Value Path</h2>
+<p>organic discovery and durable usefulness</p>
+<h2 title="Release Boundary">Release Boundary</h2>
+<p>This package is not published. Publication requires an explicit release gate.</p>

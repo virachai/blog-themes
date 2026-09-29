@@ -1,0 +1,8 @@
+{
+  "to": "[REDACTED]@blogger.com",
+  "from": "setimocra@gmail.com",
+  "subject": "Pexels CDN E2E 2026-09-29 20:10",
+  "body": "# Pexels CDN E2E 2026-09-29 20:10\n\n![Lead](https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg)\n\nThis is a fresh end-to-end publication test using the exact Mail2Blogger HTML protocol.\n\n## Image delivery\n\nThis section verifies the optimized lead and body image URLs.\n\n![Body](https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg)\n\nภาพ: cottonbro studio / Pexels",
+  "html": "<!-- blogger-run-id:VLM-001-20260929201000 -->\n<div class=\"mp-id\" data-id=\"0002\"></div>\n<div class=\"separator\"><img src=\"https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200\" alt=\"Lead\"></div>\n<div class=\"mp-summary\">\n  <p>This is a fresh end-to-end publication test using the exact Mail2Blogger HTML protocol.</p>\n</div>\n<div id=\"toc_container\"><h2>สารบัญ</h2></div>\n<h2 title=\"Image delivery\">Image delivery</h2>\n<p>This section verifies the optimized lead and body image URLs.</p>\n<div class=\"separator\"><img src=\"https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=940\" alt=\"Body\" loading=\"lazy\"></div>\n<p class=\"mp-caption\">ภาพ: cottonbro studio / Pexels</p>",
+  "fingerprint": "b488e83c5ecd3561f725389505e643faab2488a0b15c0c334d74fbda82619f8e"
+}

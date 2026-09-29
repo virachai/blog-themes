@@ -1,0 +1,10 @@
+{
+  "runtime": "email-to-blogger-publication-transport-v1",
+  "run_id": "VLM-001-20260929202000",
+  "status": "EMAIL_SENT",
+  "sent_at": "2026-09-29T13:35:10.385Z",
+  "recipient": "[REDACTED]@blogger.com",
+  "subject": "Pexels CDN E2E 2026-09-29 20:20",
+  "fingerprint": "c79c9db4bcf976af1356a619443e2c09a3062c5a8b421cee164d0a1544a63cb6",
+  "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"
+}
