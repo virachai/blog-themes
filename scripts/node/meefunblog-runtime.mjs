@@ -2,13 +2,35 @@
 /** Meefunblog Agent Runtime Layer v2. */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { createRuntimePlan } from './cdp-runtime/runtime-plan.mjs';
+import { resolveCapabilities } from './cdp-runtime/capability.mjs';
 
 const ROOT = process.cwd();
 const REGISTRY_PATHS = [join(ROOT, '.agents/skills/meefunblog-registry.yaml'), join(ROOT, '.claude/skills/meefunblog-registry.yaml')];
 const SKILL_ROOTS = [join(ROOT, '.agents/skills'), join(ROOT, '.claude/skills')];
 const CANONICAL_COUNT = 15;
 const RELEASE_GATE = 'seo-quality-gate';
+
+function createRuntimePlan({ task, route, capabilities = {} }) {
+  const requested = resolveCapabilities({ ...capabilities, trace: capabilities.trace ?? true, evidence: capabilities.evidence ?? true });
+  return {
+    version: 1,
+    runtime: 'meefunblog-agent-runtime-v2',
+    objective: task,
+    route,
+    capabilities: requested,
+    phases: [
+      { id: 'PLAN', status: 'READY' },
+      { id: 'SESSION', status: 'READY' },
+      { id: 'OBSERVE', status: 'READY' },
+      { id: 'EXECUTE', status: 'READY' },
+      { id: 'TRACE', status: requested.includes('browser-trace') ? 'READY' : 'SKIPPED' },
+      { id: 'EVIDENCE', status: requested.includes('evidence') ? 'READY' : 'SKIPPED' },
+      { id: 'VALIDATE', status: 'READY' },
+      { id: 'REPORT', status: 'READY' },
+    ],
+    security: { challenge: 'HUMAN_HANDOFF', auth: 'EXPLICIT_SESSION', bypass: false },
+  };
+}
 
 function fail(message) { console.error('RUNTIME-ERROR: ' + message); process.exitCode = 1; }
 
@@ -147,7 +169,7 @@ function output(value, json) {
     console.log('SELECTED: ' + (value.selected.join(' -> ') || 'none'));
     console.log('CHAIN: ' + (value.chain.join(' -> ') || 'none'));
     console.log('CONFIDENCE: ' + value.confidence.toFixed(2));
-    if (value.candidates?.length) { console.log('CANDIDATES:'); value.candidates.forEach((x) => console.log('- ' + x.name + ' [' + x.score + '] — ' + x.trigger)); }
+    if (value.candidates?.length) { console.log('CANDIDATES:'); value.candidates.forEach((x) => console.log('- ' + x.name + ' [' + x.score + '] - ' + x.trigger)); }
   }
 }
 const [command = 'validate', ...args] = process.argv.slice(2);

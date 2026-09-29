@@ -70,7 +70,7 @@ Implemented runtime modules originate under `.tmp/cdp/runtime/`. The subset cons
 - `session.mjs` - browser session state and navigation history. Still in `.tmp/`; no tracked script imports it.
 - `observation.mjs` - normalized page observation and summaries. Still in `.tmp/`; no tracked script imports it.
 - `capability.mjs` - canonical runtime capability resolution. **Moved** to `scripts/node/cdp-runtime/`.
-- `runtime-plan.mjs` - deterministic execution-phase plan with security boundaries. **Moved** to `scripts/node/cdp-runtime/`.
+- `meefunblog-runtime.mjs` - deterministic execution-phase plan with security boundaries.
 - `evidence.mjs` - timestamped evidence records with SHA-256 content hashes. **Moved** to `scripts/node/cdp-runtime/`.
 
 `browser-trace` is the observability adapter. It remains read-only and is not the browser control plane.

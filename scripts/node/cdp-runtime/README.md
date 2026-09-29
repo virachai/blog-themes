@@ -11,6 +11,6 @@ These modules were previously kept in the gitignored `.tmp/cdp/runtime/`, which 
 - `release-transaction.mjs` - `ReleaseTransaction`, `AuditTrail`: fail-closed preflight → approval → idempotency → execute → verify → commit, with rollback.
 - `commit-coordinator.mjs` - `IdempotencyLedger`, `DistributedCommitCoordinator`: hash-chained reservation/commit/abort with fencing tokens.
 - `task-state.mjs`, `handoff-contract.mjs`, `skill-invocation.mjs` - state and handoff validation used by the verifier.
-- `runtime-plan.mjs`, `capability.mjs` - `createRuntimePlan()` and capability resolution.
+- `capability.mjs` - capability resolution used by the agent runtime.
 
 Consumers import these as `./cdp-runtime/<name>.mjs`. Node's built-in `fetch` and `WebSocket` are used, so Node 22+ is required - consistent with the repository's zero-dependency rule.
