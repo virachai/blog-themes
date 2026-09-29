@@ -1,0 +1,10 @@
+{
+  "runtime": "email-to-blogger-publication-transport-v1",
+  "run_id": "VLM-001-20260929191300",
+  "status": "EMAIL_SENT",
+  "sent_at": "2026-09-29T12:13:16.215Z",
+  "recipient": "[REDACTED]@blogger.com",
+  "subject": "[IMAGE TEST 1913] Pexels CDN resize via Mail2Blogger",
+  "fingerprint": "dfeaae8bf42d4ad74b3b20e492e5af0e797ef215e8409a2e4ae60d06ec339758",
+  "observation": "EMAIL_SENT_IS_NOT_PUBLICATION_PROOF"
+}

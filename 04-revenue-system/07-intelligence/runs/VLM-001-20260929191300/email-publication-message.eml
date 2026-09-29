@@ -1,0 +1,19 @@
+To: [REDACTED]@blogger.com
+From: setimocra@gmail.com
+Subject: [IMAGE TEST 1913] Pexels CDN resize via Mail2Blogger
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+<div class="mp-id" data-id="0002"></div>
+<div class="separator"><img src="https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Snake plant — optimized lead"></div>
+<div class="mp-summary">
+  <p>ทดสอบภาพนำผ่าน Mail2Blogger โดยให้ Pexels CDN resize และ compress จาก URL parameter</p>
+</div>
+<div id="toc_container"><h2>สารบัญ</h2></div>
+<h2 title="ภาพในเนื้อหา">ภาพในเนื้อหา</h2>
+<p>นี่คือภาพ body ที่ควรใช้ขนาดเล็กลงและ lazy-load</p>
+<div class="separator"><img src="https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=940" alt="Plant in a white pot — optimized body" loading="lazy"></div>
+<p class="mp-caption">ภาพ: cottonbro studio / Pexels</p>
+<h3>ผลที่ต้องการ</h3>
+<p>HTML ต้องคง protocol เดิม แต่ URL ภาพควรมี auto=compress, cs=tinysrgb และ width ที่กำหนด</p>
+<p class="mp-credits">ภาพนำ: Hanna Pad / Pexels</p>

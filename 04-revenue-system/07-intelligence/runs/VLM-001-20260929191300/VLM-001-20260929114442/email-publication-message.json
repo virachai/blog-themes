@@ -1,0 +1,8 @@
+{
+  "to": "[REDACTED]@blogger.com",
+  "from": "setimocra@gmail.com",
+  "subject": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
+  "body": "# Image optimization test\n\n![Lead](https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg)\n\nSummary.\n\n## Section\n\n![Body](https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg)\n\nภาพ: cottonbro studio / Pexels",
+  "html": "<div class=\"mp-id\" data-id=\"0002\"></div>\n<div class=\"separator\"><img src=\"https://images.pexels.com/photos/8989350/pexels-photo-8989350.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200\" alt=\"Lead\"></div>\n<div class=\"mp-summary\">\n  <p>Summary.</p>\n</div>\n<div id=\"toc_container\"><h2>สารบัญ</h2></div>\n<h2 title=\"Section\">Section</h2>\n<div class=\"separator\"><img src=\"https://images.pexels.com/photos/5854046/pexels-photo-5854046.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=940\" alt=\"Body\" loading=\"lazy\"></div>\n<p class=\"mp-caption\">ภาพ: cottonbro studio / Pexels</p>",
+  "fingerprint": "a6b993e30b9333ebf93108a1407fa70197d5e62d29458d85d0e81ef0b03623f8"
+}

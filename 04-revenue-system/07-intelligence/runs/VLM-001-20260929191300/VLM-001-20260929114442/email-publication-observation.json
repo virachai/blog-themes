@@ -1,0 +1,20 @@
+{
+  "runtime": "email-to-blogger-publication-observer-v1",
+  "stage": 62,
+  "run_id": "VLM-001-20260929191300",
+  "status": "OBSERVED",
+  "source": "blogger-public-feed",
+  "page_state": "PUBLISHED_CANDIDATE",
+  "page_state_reason": "public-post-path",
+  "public_post_url": "https://meefunblog.blogspot.com/2026/09/how-to-build-reliable-editorial_0964428029.html",
+  "title_match": true,
+  "expected_title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
+  "observed_title": "How to Build a Reliable Editorial Workflow with Evidence, Quality Gates, and Human Approval",
+  "published_at": "2026-09-29T18:44:55.364+07:00",
+  "updated_at": "2026-09-29T18:44:55.364+07:00",
+  "blogger_entry_id": "tag:blogger.com,1999:blog-6973756749045108777.post-7785934312455788958",
+  "feed_url": "https://meefunblog.blogspot.com/feeds/posts/default?alt=json&max-results=10",
+  "entries_checked": 8,
+  "observed_at": "2026-09-29T11:45:01.442Z",
+  "boundary": "Public feed observation. It does not itself write publication-receipt.json."
+}
