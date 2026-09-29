@@ -27,8 +27,8 @@ Stage 42 may not:
 
 ## CLI
 
-node scripts/node/cognitive-knowledge-eligibility-runtime.mjs init
-node scripts/node/cognitive-knowledge-eligibility-runtime.mjs status
-node scripts/node/cognitive-knowledge-eligibility-runtime.mjs assess <promotion_id> [scope] [purpose] [evidence]
-node scripts/node/cognitive-knowledge-eligibility-runtime.mjs approve <eligibility_id>
-node scripts/node/cognitive-knowledge-eligibility-runtime.mjs review [id]
+node scripts/node/cognitive-policy-governance-runtime.mjs init
+node scripts/node/cognitive-policy-governance-runtime.mjs status
+node scripts/node/cognitive-policy-governance-runtime.mjs assess <promotion_id> [scope] [purpose] [evidence]
+node scripts/node/cognitive-policy-governance-runtime.mjs approve <eligibility_id>
+node scripts/node/cognitive-policy-governance-runtime.mjs review [id]

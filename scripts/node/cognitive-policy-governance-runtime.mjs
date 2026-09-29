@@ -467,7 +467,7 @@ function status() {
 function knowledgeAssess(a) {
   const [promotionId, scope = 'policy', purpose = 'decision-support', evidence = 'trusted-learning'] = a;
   if (!promotionId) throw Error('usage: knowledge-assess <promotion_id> [scope] [purpose] [evidence]');
-  const p = read('promotions').find(x => x.id === promotionId);
+  const p = readFileSync(join(M, 'learning-promotions.jsonl'), 'utf8').split(/\r?\n/).filter(Boolean).map(JSON.parse).find(x => x.id === promotionId);
   if (!p) throw Error('unknown promotion id: ' + promotionId);
   if (p.trust !== 'TRUSTED' || p.status !== 'TRUSTED') throw Error('eligibility requires TRUSTED knowledge');
   const row = { knowledge_id: promotionId, scope, purpose, evidence, status: 'ELIGIBILITY_PROPOSED', eligibility: 'CANDIDATE', gate: 'REVIEW_REQUIRED' };
@@ -494,6 +494,9 @@ try {
     status();
   } else if (cmd === "bind") bind(a);
   else if (cmd === "assess") proposalAssess(a);
+  else if (cmd === "knowledge-assess") knowledgeAssess(a);
+  else if (cmd === "knowledge-approve") knowledgeApprove(a[0]);
+  else if (cmd === "knowledge-review") knowledgeReview(a[0]);
   else if (cmd === "approve") approve(a[0]);
   else if (cmd === "propose") propose(a);
   else if (cmd === "verify") verify(a);
