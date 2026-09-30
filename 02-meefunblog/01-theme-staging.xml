@@ -81,11 +81,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
 <b:else/>
   <meta expr:content='&quot;MeePrompt - &quot; + data:view.title.escaped' name='twitter:description'/>
 </b:if>
-<b:if cond='data:blog.postImageUrl'>
-<link as='image' expr:href='data:blog.postImageUrl' rel='preload'/>  
-<meta expr:content='resizeImage(data:blog.postImageUrl, 1200, &quot;1200:630&quot;)' name='twitter:image:src'/>
-<b:else/><meta content='https://virachai.github.io/blog-themes/02-meefunblog/11-images/01-hero.jpg' name='twitter:image:src'/>
-</b:if>
+<!-- twitter:image intentionally omitted; use og:image as the single social-image source of truth -->
 <!-- Twitter Card Meta Tags HELP ~ http://www.superwebtricks.com?p=944 -->            
       </b:if>    
     </b:if>
