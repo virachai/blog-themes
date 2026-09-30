@@ -83,7 +83,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
 </b:if>
 <b:if cond='data:blog.postImageUrl'>
 <link as='image' expr:href='data:blog.postImageUrl' rel='preload'/>  
-<meta expr:content='data:blog.postImageUrl' name='twitter:image:src'/>
+<meta expr:content='resizeImage(data:blog.postImageUrl, 1200, &quot;1200:630&quot;)' name='twitter:image:src'/>
 <b:else/><meta content='https://virachai.github.io/blog-themes/02-meefunblog/11-images/01-hero.jpg' name='twitter:image:src'/>
 </b:if>
 <!-- Twitter Card Meta Tags HELP ~ http://www.superwebtricks.com?p=944 -->            
@@ -1240,7 +1240,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
         </a>
       <b:else/>
         <!-- 20240128 <span><data:post.author.name/></span> -->
-        <a class='g-profile' href='https://www.instagram.com/wvirachai/' rel='author' title='author profile'>Virachai W.</a>
+        <a class='g-profile' href='https://www.instagram.com/wvirachai/' rel='author' title='author profile'>Virachai Wongsena</a>
       </b:if>
     </span>
   </span>
@@ -1510,7 +1510,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
         </a>
       <b:else/>
         <!-- 20240128 <span><data:post.author.name/></span> -->
-        <a class='g-profile' href='https://www.instagram.com/wvirachai/' rel='author' title='author profile'>Virachai W.</a>
+        <a class='g-profile' href='https://www.instagram.com/wvirachai/' rel='author' title='author profile'>Virachai Wongsena</a>
       </b:if>
     </span>
   </span>
@@ -2012,7 +2012,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
         </a>
       <b:else/>
         <!-- 20240128 <span><data:post.author.name/></span> -->
-        <a class='g-profile' href='https://www.instagram.com/wvirachai/' rel='author' target='_blank' title='author profile'>Virachai W.</a>
+        <a class='g-profile' href='https://www.instagram.com/wvirachai/' rel='author' target='_blank' title='author profile'>Virachai Wongsena</a>
       </b:if>
     </span>
   </span>
@@ -2123,6 +2123,50 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
 </b:includable>
                     <b:includable id='postMeta' var='post'>
   <b:include data='post' name='postMetadataJSON'/>
+</b:includable>
+                    <b:includable id='postMetadataJSON' var='post'>
+  <script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "<data:post.url.canonical.jsonEscaped/>"
+  },
+  "headline": "<data:post.title.jsonEscaped/>",
+  "description": "<b:eval expr='(data:post.body snippet { length: 150, links: false, linebreaks: false, ellipsis: true }).jsonEscaped'/>",
+  "datePublished": "<data:post.date.iso8601.jsonEscaped/>",
+  "dateModified": "<data:post.lastUpdated.iso8601.jsonEscaped/>",
+  "image": {
+    "@type": "ImageObject",
+    <b:if cond='data:post.featuredImage.isResizable'>
+    "url": "<b:eval expr='resizeImage(data:post.featuredImage, 1200, &quot;1200:630&quot;)'/>",
+    "height": 630,
+    "width": 1200
+    <b:else/>
+    "url": "https://lh3.googleusercontent.com/ULB6iBuCeTVvSjjjU1A-O8e9ZpVba6uvyhtiWRti_rBAs9yMYOFBujxriJRZ-A=w1200",
+    "height": 348,
+    "width": 1200
+    </b:if>
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MeePrompt",
+    "url": "https://meefunblog.blogspot.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://meefunblog.blogspot.com/favicon.ico",
+      "width": 32,
+      "height": 32
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Virachai Wongsena",
+    "url": "https://meefunblog.blogspot.com/p/contact.html"
+  }
+}
+</script>
 </b:includable>
                     <b:includable id='postMetadataJSONImage'>
   &quot;image&quot;: {

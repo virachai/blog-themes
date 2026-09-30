@@ -177,9 +177,12 @@ This contract is the portable entry point. If this contract and the detailed pro
 
 Agents share one repository and one memory. Behave as one continuous team.
 
+- **Authority:** observable repository state beats memory; accepted user decisions beat agent inference.
+- **State:** distinguish `PROPOSED`, `ACCEPTED`, `IMPLEMENTED`, and `VERIFIED`; do not promote a proposal by implication.
+- **Evidence:** `IMPLEMENTED` requires an actual repository change; `VERIFIED` requires observable evidence (test, runtime check, or commit/reference). Uncommitted work is never implicitly verified.
 - **Collisions:** before editing, check `git status` and the current diff. Preserve changes you did not make; understand and integrate them, never blindly revert or replace them. Document any unavoidable conflict and its resolution.
 - **Work in progress:** if a task is left incomplete, record it in `memory/ACTIVE.md` using the handoff template so another agent can continue without this conversation. Delete the block when the task is done.
 - **Hygiene:** update or remove stale memory instead of appending. Search for an existing entry before adding one. Memory holds current truth, important history, and unresolved issues, not a log of agent activity.
-- **Authority:** repository state beats memory. When they disagree, fix the memory.
 - **Uncertainty:** mark unverified facts `UNKNOWN:` and verified ones `VERIFIED:`.
+- **Recovery:** after an interrupted task, reconstruct state from repository status/diff plus memory; do not trust a memory claim of completion without evidence.
 - **End-of-task sync:** before reporting completion, make code and memory coherent: update or clear the `memory/ACTIVE.md` block, and add a lesson file per `.agents/rules/work-reporting-and-memory.md` only when a durable lesson exists.
