@@ -20,6 +20,7 @@ Before any non-trivial work, an agent MUST:
 3. Read `docs/00-governance/00-03-sovereign-agent-enterprise-protocol.md`.
 4. Identify the current task, scope, constraints, and acceptance criteria.
 5. Inspect relevant repository state before mutating anything.
+6. Read `memory/MEMORY.md` for relevant lessons and `memory/ACTIVE.md` for open work-in-progress; run `git status` and `git log -5`.
 
 If the agent cannot access these instructions, it MUST NOT claim protocol compliance.
 
@@ -171,3 +172,14 @@ Detailed operational rules live in:
 `docs/00-governance/00-03-sovereign-agent-enterprise-protocol.md`
 
 This contract is the portable entry point. If this contract and the detailed protocol appear inconsistent, the higher-authority repository governance rules apply and the conflict MUST be surfaced.
+
+## 14. Shared Memory and Collisions
+
+Agents share one repository and one memory. Behave as one continuous team.
+
+- **Collisions:** before editing, check `git status` and the current diff. Preserve changes you did not make; understand and integrate them, never blindly revert or replace them. Document any unavoidable conflict and its resolution.
+- **Work in progress:** if a task is left incomplete, record it in `memory/ACTIVE.md` using the handoff template so another agent can continue without this conversation. Delete the block when the task is done.
+- **Hygiene:** update or remove stale memory instead of appending. Search for an existing entry before adding one. Memory holds current truth, important history, and unresolved issues, not a log of agent activity.
+- **Authority:** repository state beats memory. When they disagree, fix the memory.
+- **Uncertainty:** mark unverified facts `UNKNOWN:` and verified ones `VERIFIED:`.
+- **End-of-task sync:** before reporting completion, make code and memory coherent: update or clear the `memory/ACTIVE.md` block, and add a lesson file per `.agents/rules/work-reporting-and-memory.md` only when a durable lesson exists.
