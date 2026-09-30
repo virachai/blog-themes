@@ -62,3 +62,5 @@ Email posting cannot set labels or a Search description. The description is cove
 | ---- | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | 0001 | ต้นไม้ในคอนโดแสงน้อย: 3 ต้นที่เลี้ยงรอด (Low Light Condo Plants) | [13-post-condo-plants.html](../../02-meefunblog/13-post-condo-plants.html) | https://meefunblog.blogspot.com/2026/09/3-low-light-condo-plants.html (old /3-0001.html now 404) |
 | 0002 | เริ่มขายของออนไลน์ 2569: เลือกแพลตฟอร์มไหนก่อน (Start Selling Online Thailand) | [14-post-start-selling-2569.html](../../02-meefunblog/14-post-start-selling-2569.html) | draft |
+| 0003 | ค่าธรรมเนียม Shopee 2569: หักกี่เปอร์เซ็นต์ คิดยังไง (Shopee Fees Thailand) | [15-post-shopee-fees-2569.html](../../02-meefunblog/15-post-shopee-fees-2569.html) | draft |
+| 0004 | ค่าธรรมเนียม TikTok Shop 2569: หักกี่เปอร์เซ็นต์ กี่วันเงินเข้า (TikTok Shop Fees Thailand) | [16-post-tiktok-fees-2569.html](../../02-meefunblog/16-post-tiktok-fees-2569.html) | draft |
