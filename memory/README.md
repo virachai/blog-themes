@@ -79,6 +79,15 @@ cat memory/ACTIVE.md
 
 Then inspect only linked/relevant lesson files.
 
-## 8. Current task handoff
+## 8. Agent-to-agent file handoff
+
+For direct coordination between agents, use `memory/agents/{agent-name}.md`. Each agent maintains one concise status file using the contract in `memory/agents/README.md`.
+
+- Read relevant agent files before taking over work.
+- Update your own agent file before stopping or handing off.
+- Do not paste chat transcripts into the repo.
+- `memory/ACTIVE.md` remains the canonical task-level WIP record; agent files provide per-agent coordination context.
+
+## 9. Current task handoff
 
 If a task is intentionally handed from one agent to another, put the exact current state and next action in `memory/ACTIVE.md`. The receiving agent should continue from that state rather than rediscovering prior decisions.
