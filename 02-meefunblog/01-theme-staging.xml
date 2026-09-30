@@ -3,7 +3,7 @@
 <html b:css='false' b:defaultwidgetversion='2' b:js='false' b:layoutsVersion='3' b:responsive='true' b:templateUrl='strm.xml' b:templateVersion='1.0.1' expr:dir='data:blog.languageDirection' lang='th' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='noindex,nofollow' name='robots'/>
-    <meta content='meefun-staging 2026-09-28.8' name='theme-build'/>
+    <meta content='meefun-staging 2026-09-30.1' name='theme-build'/>
     <link href='https://fonts.googleapis.com' rel='preconnect'/>
     <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
     <link href='https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500;600;700&amp;family=IBM+Plex+Sans+Thai+Looped:wght@400;600&amp;display=swap' rel='stylesheet'/>
@@ -2147,7 +2147,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
   },
   "publisher": {
     "@type": "Organization",
-    "name": "MeePrompt",
+    "name": "MeePrompt Organization",
     "url": "https://meefunblog.blogspot.com/",
     "logo": {
       "@type": "ImageObject",

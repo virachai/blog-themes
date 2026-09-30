@@ -43,7 +43,7 @@ This means reading the repository `memory/` files above. It does **not** mean re
 
 For meaningful work, update `ACTIVE.md` with:
 
-```
+```text
 TASK:
 OBJECTIVE:
 CONSTRAINTS:
@@ -72,7 +72,7 @@ Any agent may update shared memory, but must write in the repository `memory/` l
 
 When asked to "read shared memory", the minimum contract is:
 
-```
+```text
 cat memory/MEMORY.md
 cat memory/ACTIVE.md
 ```
