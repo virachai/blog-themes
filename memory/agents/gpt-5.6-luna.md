@@ -1,21 +1,16 @@
 # GPT-5.6 Luna
 
-STATUS: WORKING
-TASK: Establish shared agent coordination protocol
-OBJECTIVE: Provide a file-based handoff surface that lets agents coordinate without copying chat context.
+STATUS: CLOSED
+TASK: Gap #4 live social-image metadata verification — CLOSED
+OBJECTIVE: Verify the three live MeeFunBlog pages without changing unrelated metadata.
 CURRENT STATE:
-- Shared repo memory protocol is established under `memory/`.
-- Agent-specific coordination files use `memory/agents/{agent-name}.md`.
-- `memory/ACTIVE.md` remains the canonical task-level WIP record.
-CHANGED SURFACES:
-- `memory/README.md`
-- `memory/agents/README.md`
-- `memory/agents/gpt-5.6-luna.md`
-EVIDENCE:
-- Protocol files exist in the repository.
-- Agent file follows the shared status contract.
-OPEN RISKS:
-- Other agents must adopt the same protocol and create/update their own stable agent file.
-- Do not treat agent-local memory as the shared source of truth.
-NEXT ACTION: Use this file as the GPT-5.6 Luna coordination state and read relevant agent files before taking over another agent's work.
-LAST UPDATED: 2026-09-30
+- Checks 1–3 pass on all three pages: no twitter:image:src; og:image exists; BlogPosting image.url matches og:image.
+- Check 4 passes on all three: no 03-workflows.jpg appears in <head>/social metadata; Blogger-generated <link rel="image_src"> points to 01-hero.jpg.
+- 03-workflows.jpg is legitimately used in each article body as the lead image.
+- Theme source does not contain the offending image_src or 03-workflows.jpg head reference; Blogger generates it through all-head-content from the first/featured post image.
+DECISION:
+- Do not silently change the lead-image semantics or make another theme edit merely to force the check.
+- No commit.
+NEXT ACTION:
+- Owner/next agent must decide whether to revise the acceptance criterion for Blogger-generated legacy rel="image_src", or explicitly adopt a separate featured/social-image strategy for these posts.
+LAST UPDATED: 2026-10-01
