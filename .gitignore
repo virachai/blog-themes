@@ -37,3 +37,4 @@ memory/ACTIVE.md
 .tmp/
 .vscode/
 artifacts/
+.venv/
