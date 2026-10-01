@@ -1,16 +1,18 @@
 # GPT-5.6 Luna
 
 STATUS: CLOSED
-TASK: Gap #4 live social-image metadata verification — CLOSED
-OBJECTIVE: Verify the three live MeeFunBlog pages without changing unrelated metadata.
+TASK: Gap #6 live publication metadata consistency — CLOSED
+OBJECTIVE: Verify the three live MeeFunBlog pages after publishing the surgical BlogPosting URL fix.
 CURRENT STATE:
-- Checks 1–3 pass on all three pages: no twitter:image:src; og:image exists; BlogPosting image.url matches og:image.
-- Check 4 passes on all three: no 03-workflows.jpg appears in <head>/social metadata; Blogger-generated <link rel="image_src"> points to 01-hero.jpg.
-- 03-workflows.jpg is legitimately used in each article body as the lead image.
-- Theme source does not contain the offending image_src or 03-workflows.jpg head reference; Blogger generates it through all-head-content from the first/featured post image.
+- All 3 live pages pass canonical URL equality.
+- All 3 have non-empty meta descriptions.
+- All 3 BlogPosting `url` values equal the canonical URL.
+- All 3 BlogPosting `mainEntityOfPage.@id` values equal the canonical URL.
+- All 3 have `datePublished` and `dateModified`; `dateModified` is later than `datePublished`.
+- Live verification was performed via Chrome DevTools Protocol after theme publish.
 DECISION:
-- Gap #4 is closed; no further theme edit is required.
-- Memory-state update was committed in `6a74c3e`.
+- Gap #6 is closed.
+- Surgical source fix is committed in `3d86b84` (`fix(meefunblog): add BlogPosting canonical url`).
 NEXT ACTION:
-- Proceed to the next gap.
+- No open Gap #6 work. Continue only with a newly defined gap.
 LAST UPDATED: 2026-10-01
