@@ -10,6 +10,7 @@ One line per memory file: `- [slug](YYYYMMDD-HHMMSS-slug.md) - one-line descript
 - [redact-mail2blogger-address](20260928-213855-redact-mail2blogger-address.md) - Redact the blog's Mail2Blogger address from run artifacts before committing; recompute the eml fingerprint
 - [publication-evidence-invariants](20260928-222932-publication-evidence-invariants.md) - EMAIL_SENT ≠ PUBLISHED, EDITOR_URL ≠ PUBLIC_POST_URL, OBSERVED ≠ VERIFIED; never relax to make a check pass
 - [consent-gates-are-not-config](20260928-224631-consent-gates-are-not-config.md) - Never set EMAIL_PUBLISH_CONFIRM or flip approval.status; consent gates come from the owner, not agent inference
+- [security-cleanup-ref101](20261001-security-cleanup-ref101.md) - Inspected .tmp/ref_101/me-google-clasp for secrets and deployment artifacts; verified zero git tracking leaks
 - [PRINCIPLES](PRINCIPLES.md) - PRISM-R reasoning guardrails for prompt compilation, evidence, deterministic execution, audit, and focus
 - [PROTOCOL](PROTOCOL.md) - Lean startup, execution, verification, persistence, and stop protocol for local agents
 - [KNOWLEDGE](KNOWLEDGE.md) - Evidence topology and tool-selection rules for repository, runtime, live web, and external knowledge
