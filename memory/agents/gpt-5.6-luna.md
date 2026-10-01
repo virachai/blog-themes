@@ -9,8 +9,8 @@ CURRENT STATE:
 - 03-workflows.jpg is legitimately used in each article body as the lead image.
 - Theme source does not contain the offending image_src or 03-workflows.jpg head reference; Blogger generates it through all-head-content from the first/featured post image.
 DECISION:
-- Do not silently change the lead-image semantics or make another theme edit merely to force the check.
-- No commit.
+- Gap #4 is closed; no further theme edit is required.
+- Memory-state update was committed in `6a74c3e`.
 NEXT ACTION:
-- Owner/next agent must decide whether to revise the acceptance criterion for Blogger-generated legacy rel="image_src", or explicitly adopt a separate featured/social-image strategy for these posts.
+- Proceed to the next gap.
 LAST UPDATED: 2026-10-01
