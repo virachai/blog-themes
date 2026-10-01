@@ -8,8 +8,9 @@ Before any non-trivial task:
 
 1. Read `memory/MEMORY.md`.
 2. Read `memory/ACTIVE.md`.
-3. Follow relevant memory links from `MEMORY.md`.
-4. Treat repository state and these shared files as shared state.
+3. Read `memory/PRINCIPLES.md` and `memory/PROTOCOL.md`.
+4. Follow relevant memory links from `MEMORY.md`.
+5. Treat repository state and these shared files as shared state.
 
 Required handoff command:
 
@@ -23,14 +24,20 @@ This means reading the repository `memory/` files above. It does **not** mean re
 - **Agent-local memory:** Serena/Gemini/etc. may have additional private or backend-specific memory. It is auxiliary only and must never be treated as shared state.
 - A decision that another agent must know belongs in repository `memory/`.
 
-## 3. Durable vs active state
+## 3. Reasoning and knowledge layers
+
+- `PRINCIPLES.md` = PRISM-R reasoning guardrails.
+- `PROTOCOL.md` = concise local-agent operating protocol.
+- `KNOWLEDGE.md` = evidence topology and source-selection rules.
+
+## 4. Durable vs active state
 
 - `MEMORY.md` = index of durable lessons and validated conventions. Do not put task transcripts or transient status here.
 - `ACTIVE.md` = current WIP/handoff only. One block per open task; no history.
 - Linked lesson files = durable, non-obvious decisions/conventions.
 - When a task is complete, remove its WIP block from `ACTIVE.md`; preserve durable decisions in a lesson file only when they meet the memory threshold.
 
-## 4. State and evidence
+## 5. State and evidence
 
 - Repository state wins over stale memory.
 - If memory conflicts with repository state, inspect the repo and update `ACTIVE.md` accordingly.
@@ -39,7 +46,7 @@ This means reading the repository `memory/` files above. It does **not** mean re
 - Never upgrade `UNKNOWN` to `VERIFIED` by inference.
 - Do not store secrets, credentials, consent values, or unnecessary personal data.
 
-## 5. Handoff discipline
+## 6. Handoff discipline
 
 For meaningful work, update `ACTIVE.md` with:
 
@@ -57,7 +64,7 @@ NEXT ACTION:
 
 Keep it concise. No transcript.
 
-## 6. Surgical execution
+## 7. Surgical execution
 
 - Inspect actual gaps before changing code.
 - Prefer the smallest safe change.
@@ -66,7 +73,7 @@ Keep it concise. No transcript.
 - Do not commit unrelated changes.
 - Before commit, verify the acceptance criteria and report what is VERIFIED vs UNKNOWN.
 
-## 7. Agent interoperability
+## 8. Agent interoperability
 
 Any agent may update shared memory, but must write in the repository `memory/` layer so other agents can see it.
 
@@ -79,7 +86,7 @@ cat memory/ACTIVE.md
 
 Then inspect only linked/relevant lesson files.
 
-## 8. Agent-to-agent file handoff
+## 9. Agent-to-agent file handoff
 
 For direct coordination between agents, use `memory/agents/{agent-name}.md`. Each agent maintains one concise status file using the contract in `memory/agents/README.md`.
 
@@ -88,6 +95,6 @@ For direct coordination between agents, use `memory/agents/{agent-name}.md`. Eac
 - Do not paste chat transcripts into the repo.
 - `memory/ACTIVE.md` remains the canonical task-level WIP record; agent files provide per-agent coordination context.
 
-## 9. Current task handoff
+## 10. Current task handoff
 
 If a task is intentionally handed from one agent to another, put the exact current state and next action in `memory/ACTIVE.md`. The receiving agent should continue from that state rather than rediscovering prior decisions.
