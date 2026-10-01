@@ -2130,6 +2130,7 @@ document.write('<link rel="stylesheet" href="'+B+'03-theme.css?v=6&ts='+ts+'">'+
     "@id": "<data:post.url.canonical.jsonEscaped/>"
   },
   "headline": "<data:post.title.jsonEscaped/>",
+  "url": "<data:post.url.canonical.jsonEscaped/>",
   "description": "<b:eval expr='(data:post.body snippet { length: 150, links: false, linebreaks: false, ellipsis: true }).jsonEscaped'/>",
   "datePublished": "<data:post.date.iso8601.jsonEscaped/>",
   "dateModified": "<data:post.lastUpdated.iso8601.jsonEscaped/>",
