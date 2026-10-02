@@ -1,0 +1,12 @@
+# Model registry and execution policy. Tasks request capabilities, never models.
+models:
+  gemini-3.1-flash-lite:
+    provider: google
+    command: gemini
+    capabilities:
+      - youtube.transcript
+      - research.read
+      - repo.read
+    limits:
+      concurrency: 1
+      timeout_seconds: 900
